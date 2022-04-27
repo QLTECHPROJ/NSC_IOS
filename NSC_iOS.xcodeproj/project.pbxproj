@@ -13,6 +13,12 @@
 		28A9C4182817B7CA001B252F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28A9C4172817B7CA001B252F /* Assets.xcassets */; };
 		28A9C4282817C09A001B252F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28A9C4272817C09A001B252F /* LaunchScreen.storyboard */; };
 		9A2CFCCF2818139F000A2C1D /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CFCCE2818139F000A2C1D /* ProfileVC.swift */; };
+		9A53D4CA281929B500226853 /* CampListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A53D4C9281929B500226853 /* CampListVC.swift */; };
+		9A53D4CD28192BE400226853 /* CampListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A53D4CB28192BE400226853 /* CampListCell.swift */; };
+		9A53D4CE28192BE400226853 /* CampListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A53D4CC28192BE400226853 /* CampListCell.xib */; };
+		9A53D4D0281936B400226853 /* CommonFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A53D4CF281936B400226853 /* CommonFunctions.swift */; };
+		9A53D4D228193B6D00226853 /* CampDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A53D4D128193B6D00226853 /* CampDetailVC.swift */; };
+		9A53D4D428193C8500226853 /* DailyReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A53D4D328193C8500226853 /* DailyReportVC.swift */; };
 		9A9725092818FB1E00F0E239 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A9725012818FB1D00F0E239 /* Montserrat-Medium.ttf */; };
 		9A97250A2818FB1E00F0E239 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A9725022818FB1D00F0E239 /* Montserrat-Light.ttf */; };
 		9A97250B2818FB1E00F0E239 /* NewtextRegularBT.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A9725032818FB1D00F0E239 /* NewtextRegularBT.ttf */; };
@@ -43,6 +49,12 @@
 		28A9C41C2817B7CA001B252F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28A9C4272817C09A001B252F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A2CFCCE2818139F000A2C1D /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		9A53D4C9281929B500226853 /* CampListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampListVC.swift; sourceTree = "<group>"; };
+		9A53D4CB28192BE400226853 /* CampListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampListCell.swift; sourceTree = "<group>"; };
+		9A53D4CC28192BE400226853 /* CampListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CampListCell.xib; sourceTree = "<group>"; };
+		9A53D4CF281936B400226853 /* CommonFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonFunctions.swift; sourceTree = "<group>"; };
+		9A53D4D128193B6D00226853 /* CampDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampDetailVC.swift; sourceTree = "<group>"; };
+		9A53D4D328193C8500226853 /* DailyReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReportVC.swift; sourceTree = "<group>"; };
 		9A9725012818FB1D00F0E239 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		9A9725022818FB1D00F0E239 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		9A9725032818FB1D00F0E239 /* NewtextRegularBT.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewtextRegularBT.ttf; sourceTree = "<group>"; };
@@ -149,6 +161,7 @@
 		9AE8242B2817DF7800A29373 /* Helper_Class */ = {
 			isa = PBXGroup;
 			children = (
+				9A53D4CF281936B400226853 /* CommonFunctions.swift */,
 				9AE824422817E51500A29373 /* UIViewExtension.swift */,
 				9AE8242C2817DF7800A29373 /* CardView.swift */,
 				9AE8242D2817DF7800A29373 /* Config.swift */,
@@ -167,6 +180,9 @@
 				9AE824362817DF8800A29373 /* SignUpVC.swift */,
 				9AE824372817DF8800A29373 /* CountryListVC.swift */,
 				9A2CFCCE2818139F000A2C1D /* ProfileVC.swift */,
+				9A53D4C9281929B500226853 /* CampListVC.swift */,
+				9A53D4D128193B6D00226853 /* CampDetailVC.swift */,
+				9A53D4D328193C8500226853 /* DailyReportVC.swift */,
 			);
 			path = UserModule;
 			sourceTree = "<group>";
@@ -176,6 +192,8 @@
 			children = (
 				9AE8243E2817E25200A29373 /* CountryCell.swift */,
 				9AE8243D2817E25200A29373 /* CountryCell.xib */,
+				9A53D4CB28192BE400226853 /* CampListCell.swift */,
+				9A53D4CC28192BE400226853 /* CampListCell.xib */,
 			);
 			path = TableCell;
 			sourceTree = "<group>";
@@ -240,6 +258,7 @@
 			files = (
 				9A97250A2818FB1E00F0E239 /* Montserrat-Light.ttf in Resources */,
 				9AE8243F2817E25200A29373 /* CountryCell.xib in Resources */,
+				9A53D4CE28192BE400226853 /* CampListCell.xib in Resources */,
 				9A97250F2818FB1E00F0E239 /* Montserrat-Italic.ttf in Resources */,
 				9A9725092818FB1E00F0E239 /* Montserrat-Medium.ttf in Resources */,
 				28A9C4282817C09A001B252F /* LaunchScreen.storyboard in Resources */,
@@ -259,7 +278,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A53D4D428193C8500226853 /* DailyReportVC.swift in Sources */,
 				28A9C40C2817B7C9001B252F /* AppDelegate.swift in Sources */,
+				9A53D4D0281936B400226853 /* CommonFunctions.swift in Sources */,
 				9AE824302817DF7800A29373 /* Config.swift in Sources */,
 				9A9725102818FB1E00F0E239 /* Font.swift in Sources */,
 				9AE824382817DF8800A29373 /* OTPVC.swift in Sources */,
@@ -268,7 +289,10 @@
 				9AE8243A2817DF8800A29373 /* LoginVC.swift in Sources */,
 				9AE824432817E51500A29373 /* UIViewExtension.swift in Sources */,
 				9AE8243C2817DF8800A29373 /* CountryListVC.swift in Sources */,
+				9A53D4D228193B6D00226853 /* CampDetailVC.swift in Sources */,
 				9A2CFCCF2818139F000A2C1D /* ProfileVC.swift in Sources */,
+				9A53D4CD28192BE400226853 /* CampListCell.swift in Sources */,
+				9A53D4CA281929B500226853 /* CampListVC.swift in Sources */,
 				9AE824392817DF8800A29373 /* SplashVC.swift in Sources */,
 				28A9C4162817B7C9001B252F /* NSC_iOS.xcdatamodeld in Sources */,
 				9AE8243B2817DF8800A29373 /* SignUpVC.swift in Sources */,
