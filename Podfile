@@ -1,13 +1,36 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
+def shared_pods
+  pod 'IQKeyboardManagerSwift'
+  pod 'SDWebImage'
+  pod 'Toast-Swift'
+  pod 'TTTAttributedLabel'
+  
+  # Firebase Pods
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Messaging'
+  
+end
+
+
+
 target 'NSC_iOS' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   
   # Pods for NSC_iOS
-  pod 'Firebase/Analytics'
-  pod 'Firebase/Crashlytics'
+  shared_pods
   
+end
+
+
+target 'NSC_iOS_Staging' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+  
+  # Pods for NSC_iOS
+  shared_pods
   
 end
