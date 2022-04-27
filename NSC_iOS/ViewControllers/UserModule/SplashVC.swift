@@ -18,5 +18,7 @@ class SplashVC: UIViewController {
         
     }
     
+    // MARK: - FUNCTIONS
+    
     
 }
