@@ -148,6 +148,9 @@
 		28F8316A28197BEA00CAF99C /* DJReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F8316928197BEA00CAF99C /* DJReachability.swift */; };
 		4A2E8B528681E9F4175B4FF0 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		52DCCF9EF5BEC46025670600 /* Pods_NSC_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B20B024A7E72B79AAA95889F /* Pods_NSC_iOS.framework */; };
+		9A175B57281A509100292E5A /* KidsAttendanceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A175B56281A509100292E5A /* KidsAttendanceVC.swift */; };
+		9A175B5A281A509A00292E5A /* KidsAttendenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A175B58281A509A00292E5A /* KidsAttendenceCell.swift */; };
+		9A175B5B281A509B00292E5A /* KidsAttendenceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A175B59281A509A00292E5A /* KidsAttendenceCell.xib */; };
 		9A2CFCCF2818139F000A2C1D /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CFCCE2818139F000A2C1D /* ProfileVC.swift */; };
 		9A53D4CA281929B500226853 /* CampListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A53D4C9281929B500226853 /* CampListVC.swift */; };
 		9A53D4CD28192BE400226853 /* CampListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A53D4CB28192BE400226853 /* CampListCell.swift */; };
@@ -244,6 +247,9 @@
 		7142C7BD1908CAE03439B726 /* Pods-NSC_iOS_Staging.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSC_iOS_Staging.release.xcconfig"; path = "Target Support Files/Pods-NSC_iOS_Staging/Pods-NSC_iOS_Staging.release.xcconfig"; sourceTree = "<group>"; };
 		86C1F626B48E032252486AFA /* Pods-NSC_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSC_iOS.debug.xcconfig"; path = "Target Support Files/Pods-NSC_iOS/Pods-NSC_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		942839F58BB8B0FA944DF4B2 /* Pods_NSC_iOS_Staging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NSC_iOS_Staging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A175B56281A509100292E5A /* KidsAttendanceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KidsAttendanceVC.swift; path = ../../../../../../../Documents/NSC_iOS/NSC_iOS/ViewControllers/UserModule/KidsAttendanceVC.swift; sourceTree = "<group>"; };
+		9A175B58281A509A00292E5A /* KidsAttendenceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KidsAttendenceCell.swift; path = ../../../../../../../../Documents/NSC_iOS/NSC_iOS/ViewControllers/UserModule/TableCell/KidsAttendenceCell.swift; sourceTree = "<group>"; };
+		9A175B59281A509A00292E5A /* KidsAttendenceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KidsAttendenceCell.xib; path = ../../../../../../../../Documents/NSC_iOS/NSC_iOS/ViewControllers/UserModule/TableCell/KidsAttendenceCell.xib; sourceTree = "<group>"; };
 		9A2CFCCE2818139F000A2C1D /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		9A53D4C9281929B500226853 /* CampListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampListVC.swift; sourceTree = "<group>"; };
 		9A53D4CB28192BE400226853 /* CampListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampListCell.swift; sourceTree = "<group>"; };
@@ -524,6 +530,7 @@
 				9A53D4C9281929B500226853 /* CampListVC.swift */,
 				9A53D4D128193B6D00226853 /* CampDetailVC.swift */,
 				9A53D4D328193C8500226853 /* DailyReportVC.swift */,
+				9A175B56281A509100292E5A /* KidsAttendanceVC.swift */,
 			);
 			path = UserModule;
 			sourceTree = "<group>";
@@ -535,6 +542,8 @@
 				9AE8243D2817E25200A29373 /* CountryCell.xib */,
 				9A53D4CB28192BE400226853 /* CampListCell.swift */,
 				9A53D4CC28192BE400226853 /* CampListCell.xib */,
+				9A175B58281A509A00292E5A /* KidsAttendenceCell.swift */,
+				9A175B59281A509A00292E5A /* KidsAttendenceCell.xib */,
 			);
 			path = TableCell;
 			sourceTree = "<group>";
@@ -656,6 +665,7 @@
 				28AEAB49281959D700325C90 /* GoogleService-Info.plist in Resources */,
 				9A97250A2818FB1E00F0E239 /* Montserrat-Light.ttf in Resources */,
 				9AE8243F2817E25200A29373 /* CountryCell.xib in Resources */,
+				9A175B5B281A509B00292E5A /* KidsAttendenceCell.xib in Resources */,
 				9A53D4CE28192BE400226853 /* CampListCell.xib in Resources */,
 				9A97250F2818FB1E00F0E239 /* Montserrat-Italic.ttf in Resources */,
 				9A9725092818FB1E00F0E239 /* Montserrat-Medium.ttf in Resources */,
@@ -876,6 +886,7 @@
 				28F8316328197B0600CAF99C /* String+Timepiece.swift in Sources */,
 				28F83136281977F000CAF99C /* WhereAmIRunning.swift in Sources */,
 				28F83118281977F000CAF99C /* Config.swift in Sources */,
+				9A175B57281A509100292E5A /* KidsAttendanceVC.swift in Sources */,
 				9A53D4D428193C8500226853 /* DailyReportVC.swift in Sources */,
 				28A9C40C2817B7C9001B252F /* AppDelegate.swift in Sources */,
 				28F830EA281977F000CAF99C /* ImagePicker.swift in Sources */,
@@ -897,6 +908,7 @@
 				9A53D4D228193B6D00226853 /* CampDetailVC.swift in Sources */,
 				28F83124281977F000CAF99C /* NotificationName+Extention.swift in Sources */,
 				28F830D8281977F000CAF99C /* DJPickerView.swift in Sources */,
+				9A175B5A281A509A00292E5A /* KidsAttendenceCell.swift in Sources */,
 				9A2CFCCF2818139F000A2C1D /* ProfileVC.swift in Sources */,
 				28F830D6281977F000CAF99C /* DJTextField.swift in Sources */,
 				28F83106281977F000CAF99C /* KDCircularProgress.swift in Sources */,
