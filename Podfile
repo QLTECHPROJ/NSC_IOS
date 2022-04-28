@@ -3,6 +3,7 @@
 
 def shared_pods
   pod 'IQKeyboardManagerSwift'
+  pod 'SVProgressHUD'
   pod 'SDWebImage'
   pod 'Toast-Swift'
   pod 'TTTAttributedLabel'

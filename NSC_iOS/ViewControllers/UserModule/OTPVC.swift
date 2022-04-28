@@ -1,6 +1,6 @@
 //
 //  OTPVC.swift
-//  BWS_iOS_2
+//  NSC_iOS
 //
 //  Created by Mac Mini on 22/06/21.
 //  Copyright © 2021 Dhruvit. All rights reserved.

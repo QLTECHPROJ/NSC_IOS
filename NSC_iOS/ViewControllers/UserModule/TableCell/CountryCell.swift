@@ -1,6 +1,6 @@
 //
 //  CountryCell.swift
-//  BWS
+//  NSC_iOS
 //
 //  Created by Sapu on 13/08/20.
 //  Copyright © 2020 Dhruvit. All rights reserved.

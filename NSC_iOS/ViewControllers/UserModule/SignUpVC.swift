@@ -1,6 +1,6 @@
 //
 //  SignUpVC.swift
-//  BWS_iOS_2
+//  NSC_iOS
 //
 //  Created by Dhruvit on 23/03/21.
 //  Copyright © 2021 Dhruvit. All rights reserved.
