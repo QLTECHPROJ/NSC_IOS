@@ -16,6 +16,24 @@
 		2804E3A12819847D00AF4A62 /* NSCalendar+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F8315828197B0600CAF99C /* NSCalendar+Timepiece.swift */; };
 		2804E3A22819847D00AF4A62 /* WWCalendarTimeSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F8315D28197B0600CAF99C /* WWCalendarTimeSelector.swift */; };
 		2804E3A3281984B400AF4A62 /* DJReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F8316928197BEA00CAF99C /* DJReachability.swift */; };
+		281AAE38281A85B00070D758 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AAE37281A85B00070D758 /* APIManager.swift */; };
+		281AAE39281A85B00070D758 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AAE37281A85B00070D758 /* APIManager.swift */; };
+		281AAE3B281A85BA0070D758 /* APIRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AAE3A281A85BA0070D758 /* APIRoute.swift */; };
+		281AAE3C281A85BA0070D758 /* APIRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AAE3A281A85BA0070D758 /* APIRoute.swift */; };
+		281AAE3E281AA39D0070D758 /* CountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AAE3D281AA39D0070D758 /* CountryViewModel.swift */; };
+		281AAE3F281AA39D0070D758 /* CountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AAE3D281AA39D0070D758 /* CountryViewModel.swift */; };
+		281AAE41281AA3B40070D758 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AAE40281AA3B40070D758 /* CountryModel.swift */; };
+		281AAE42281AA3B40070D758 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AAE40281AA3B40070D758 /* CountryModel.swift */; };
+		281AAE46281AA44D0070D758 /* AppVersionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AAE45281AA44D0070D758 /* AppVersionModel.swift */; };
+		281AAE47281AA44D0070D758 /* AppVersionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AAE45281AA44D0070D758 /* AppVersionModel.swift */; };
+		281AAE49281AA4D30070D758 /* AppVersionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AAE48281AA4D20070D758 /* AppVersionViewModel.swift */; };
+		281AAE4A281AA4D30070D758 /* AppVersionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AAE48281AA4D20070D758 /* AppVersionViewModel.swift */; };
+		281AAE4C281AA7800070D758 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AAE4B281AA7800070D758 /* Constants.swift */; };
+		281AAE50281AA7870070D758 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AAE4E281AA7870070D758 /* Constants.swift */; };
+		281AAE52281AA8D30070D758 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AAE51281AA8D30070D758 /* APIRouter.swift */; };
+		281AAE53281AA8D30070D758 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AAE51281AA8D30070D758 /* APIRouter.swift */; };
+		281AAE55281AAA970070D758 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AAE54281AAA970070D758 /* UICollectionView+Extension.swift */; };
+		281AAE56281AAA970070D758 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AAE54281AAA970070D758 /* UICollectionView+Extension.swift */; };
 		282C33632819617D009401FD /* DailyReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A53D4D328193C8500226853 /* DailyReportVC.swift */; };
 		282C33642819617D009401FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A9C40B2817B7C9001B252F /* AppDelegate.swift */; };
 		282C33682819617D009401FD /* OTPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE824332817DF8800A29373 /* OTPVC.swift */; };
@@ -180,6 +198,17 @@
 
 /* Begin PBXFileReference section */
 		15FF71ED063A7E208A8A060D /* Pods-NSC_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSC_iOS.release.xcconfig"; path = "Target Support Files/Pods-NSC_iOS/Pods-NSC_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		281AAE37281A85B00070D758 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		281AAE3A281A85BA0070D758 /* APIRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRoute.swift; sourceTree = "<group>"; };
+		281AAE3D281AA39D0070D758 /* CountryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryViewModel.swift; sourceTree = "<group>"; };
+		281AAE40281AA3B40070D758 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
+		281AAE45281AA44D0070D758 /* AppVersionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionModel.swift; sourceTree = "<group>"; };
+		281AAE48281AA4D20070D758 /* AppVersionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionViewModel.swift; sourceTree = "<group>"; };
+		281AAE4B281AA7800070D758 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		281AAE4E281AA7870070D758 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		281AAE51281AA8D30070D758 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
+		281AAE54281AAA970070D758 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
+		281AAE57281AAEAE0070D758 /* NSC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSC-Bridging-Header.h"; sourceTree = "<group>"; };
 		282C338B2819617D009401FD /* NSC_iOS_Staging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSC_iOS_Staging.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		282C338F281962D1009401FD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		282C339128196455009401FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -302,6 +331,7 @@
 		282C338D281961F6009401FD /* Live */ = {
 			isa = PBXGroup;
 			children = (
+				281AAE4B281AA7800070D758 /* Constants.swift */,
 				28A9C41C2817B7CA001B252F /* Info.plist */,
 				28AEAB48281959D700325C90 /* GoogleService-Info.plist */,
 			);
@@ -311,6 +341,7 @@
 		282C338E28196203009401FD /* Staging */ = {
 			isa = PBXGroup;
 			children = (
+				281AAE4E281AA7870070D758 /* Constants.swift */,
 				282C338F281962D1009401FD /* Info.plist */,
 				282C339128196455009401FD /* GoogleService-Info.plist */,
 			);
@@ -341,6 +372,10 @@
 			children = (
 				28AEAB4B28195B1100325C90 /* NSC_iOS.entitlements */,
 				28A9C40B2817B7C9001B252F /* AppDelegate.swift */,
+				281AAE3D281AA39D0070D758 /* CountryViewModel.swift */,
+				281AAE40281AA3B40070D758 /* CountryModel.swift */,
+				281AAE48281AA4D20070D758 /* AppVersionViewModel.swift */,
+				281AAE45281AA44D0070D758 /* AppVersionModel.swift */,
 				28A9C4262817BF8D001B252F /* ViewControllers */,
 				28F8316B28197BF500CAF99C /* API Helpers */,
 				28A9C4242817BF49001B252F /* Storyboards */,
@@ -365,7 +400,10 @@
 				282C338D281961F6009401FD /* Live */,
 				9A0F6F5A281BA15F008CAA4B /* Font */,
 				282C338E28196203009401FD /* Staging */,
+				282C338D281961F6009401FD /* Live */,
 				28A9C4172817B7CA001B252F /* Assets.xcassets */,
+				281AAE57281AAEAE0070D758 /* NSC-Bridging-Header.h */,
+				9A9725002818FB1D00F0E239 /* Fonts */,
 				28A9C4142817B7C9001B252F /* NSC_iOS.xcdatamodeld */,
 			);
 			path = "Supporting Files";
@@ -442,6 +480,7 @@
 				28F83098281977F000CAF99C /* UISearchBar+Extension.swift */,
 				28F83099281977F000CAF99C /* NSDate+Extension.swift */,
 				28F8309A281977F000CAF99C /* UITableView+Extension.swift */,
+				281AAE54281AAA970070D758 /* UICollectionView+Extension.swift */,
 			);
 			path = DJExtensions;
 			sourceTree = "<group>";
@@ -490,6 +529,9 @@
 		28F8316B28197BF500CAF99C /* API Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				281AAE51281AA8D30070D758 /* APIRouter.swift */,
+				281AAE37281A85B00070D758 /* APIManager.swift */,
+				281AAE3A281A85BA0070D758 /* APIRoute.swift */,
 				28F8316628197B8C00CAF99C /* CommonFunctions.swift */,
 				28F8316928197BEA00CAF99C /* DJReachability.swift */,
 			);
@@ -811,7 +853,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				28F830F7281977F000CAF99C /* UISearchBar+Extension.swift in Sources */,
+				281AAE56281AAA970070D758 /* UICollectionView+Extension.swift in Sources */,
+				281AAE4A281AA4D30070D758 /* AppVersionViewModel.swift in Sources */,
 				28F830DF281977F000CAF99C /* UIColor+Extension.swift in Sources */,
+				281AAE42281AA3B40070D758 /* CountryModel.swift in Sources */,
 				28F830FB281977F000CAF99C /* UITableView+Extension.swift in Sources */,
 				28F83137281977F000CAF99C /* WhereAmIRunning.swift in Sources */,
 				2804E39F2819847D00AF4A62 /* String+Timepiece.swift in Sources */,
@@ -834,6 +879,8 @@
 				28F83105281977F000CAF99C /* CardView.swift in Sources */,
 				9A0F6F72281BBB41008CAA4B /* ProfileStatusVC.swift in Sources */,
 				28F3C257281A5D170092A077 /* KidsAttendenceCell.swift in Sources */,
+				281AAE3C281A85BA0070D758 /* APIRoute.swift in Sources */,
+				281AAE3F281AA39D0070D758 /* CountryViewModel.swift in Sources */,
 				282C336D2819617D009401FD /* CountryListVC.swift in Sources */,
 				28F8311B281977F000CAF99C /* UIViewExtension.swift in Sources */,
 				28F8316828197BDD00CAF99C /* CommonFunctions.swift in Sources */,
@@ -845,6 +892,7 @@
 				28F83107281977F000CAF99C /* KDCircularProgress.swift in Sources */,
 				28F830E9281977F000CAF99C /* DJContants.swift in Sources */,
 				28F830D5281977F000CAF99C /* DJTextView.swift in Sources */,
+				281AAE50281AA7870070D758 /* Constants.swift in Sources */,
 				2804E3A3281984B400AF4A62 /* DJReachability.swift in Sources */,
 				28F8312B281977F000CAF99C /* BackspaceTextField.swift in Sources */,
 				28F83139281977F000CAF99C /* CryptLib.m in Sources */,
@@ -864,7 +912,9 @@
 				2804E3A12819847D00AF4A62 /* NSCalendar+Timepiece.swift in Sources */,
 				28F3C259281A5D260092A077 /* KidsAttendanceVC.swift in Sources */,
 				28F83131281977F000CAF99C /* AppConstants.swift in Sources */,
+				281AAE47281AA44D0070D758 /* AppVersionModel.swift in Sources */,
 				28F83143281977F000CAF99C /* ReadMore_Helper.swift in Sources */,
+				281AAE53281AA8D30070D758 /* APIRouter.swift in Sources */,
 				28F83123281977F000CAF99C /* NavigationClass.swift in Sources */,
 				28F83135281977F000CAF99C /* GradientView.swift in Sources */,
 				28F830FF281977F000CAF99C /* TagFlowLayout.swift in Sources */,
@@ -876,6 +926,7 @@
 				28F830DD281977F000CAF99C /* NSAttributedString+Extension.swift in Sources */,
 				282C33742819617D009401FD /* SignUpVC.swift in Sources */,
 				28F830EF281977F000CAF99C /* String+Extension.swift in Sources */,
+				281AAE39281A85B00070D758 /* APIManager.swift in Sources */,
 				28F8312D281977F000CAF99C /* AnimationFrames.swift in Sources */,
 				28F830D3281977F000CAF99C /* DJCheckBox.swift in Sources */,
 			);
@@ -886,7 +937,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				28F830F6281977F000CAF99C /* UISearchBar+Extension.swift in Sources */,
+				281AAE55281AAA970070D758 /* UICollectionView+Extension.swift in Sources */,
+				281AAE49281AA4D30070D758 /* AppVersionViewModel.swift in Sources */,
 				28F8316228197B0600CAF99C /* NSDate+Timepiece.swift in Sources */,
+				281AAE41281AA3B40070D758 /* CountryModel.swift in Sources */,
 				28F830DE281977F000CAF99C /* UIColor+Extension.swift in Sources */,
 				28F830FA281977F000CAF99C /* UITableView+Extension.swift in Sources */,
 				28F8316328197B0600CAF99C /* String+Timepiece.swift in Sources */,
@@ -909,6 +963,8 @@
 				28F830F8281977F000CAF99C /* NSDate+Extension.swift in Sources */,
 				9A0F6F71281BBB41008CAA4B /* ProfileStatusVC.swift in Sources */,
 				28F83104281977F000CAF99C /* CardView.swift in Sources */,
+				281AAE3B281A85BA0070D758 /* APIRoute.swift in Sources */,
+				281AAE3E281AA39D0070D758 /* CountryViewModel.swift in Sources */,
 				9AE8243C2817DF8800A29373 /* CountryListVC.swift in Sources */,
 				28F8311A281977F000CAF99C /* UIViewExtension.swift in Sources */,
 				9A53D4D228193B6D00226853 /* CampDetailVC.swift in Sources */,
@@ -931,6 +987,7 @@
 				28F830F2281977F000CAF99C /* DJValidation.swift in Sources */,
 				9A53D4CA281929B500226853 /* CampListVC.swift in Sources */,
 				9AE824392817DF8800A29373 /* SplashVC.swift in Sources */,
+				281AAE4C281AA7800070D758 /* Constants.swift in Sources */,
 				28F830E6281977F000CAF99C /* UIImage+Extension.swift in Sources */,
 				28F830E2281977F000CAF99C /* Int+Extension.swift in Sources */,
 				28F830E4281977F000CAF99C /* UIView+Extension.swift in Sources */,
@@ -939,7 +996,9 @@
 				28F83130281977F000CAF99C /* AppConstants.swift in Sources */,
 				28F83142281977F000CAF99C /* ReadMore_Helper.swift in Sources */,
 				28F83122281977F000CAF99C /* NavigationClass.swift in Sources */,
+				281AAE46281AA44D0070D758 /* AppVersionModel.swift in Sources */,
 				28F83134281977F000CAF99C /* GradientView.swift in Sources */,
+				281AAE52281AA8D30070D758 /* APIRouter.swift in Sources */,
 				28F830FE281977F000CAF99C /* TagFlowLayout.swift in Sources */,
 				28F83102281977F000CAF99C /* ExpandableLabel.swift in Sources */,
 				28A9C4162817B7C9001B252F /* NSC_iOS.xcdatamodeld in Sources */,
@@ -951,6 +1010,7 @@
 				28F8316428197B0600CAF99C /* Duration.swift in Sources */,
 				28F8316A28197BEA00CAF99C /* DJReachability.swift in Sources */,
 				28F8316728197B8C00CAF99C /* CommonFunctions.swift in Sources */,
+				281AAE38281A85B00070D758 /* APIManager.swift in Sources */,
 				28F8312C281977F000CAF99C /* AnimationFrames.swift in Sources */,
 				28F830D2281977F000CAF99C /* DJCheckBox.swift in Sources */,
 			);
@@ -1001,6 +1061,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/NSC_iOS/Supporting Files/NSC-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1037,6 +1098,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/NSC_iOS/Supporting Files/NSC-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1189,6 +1251,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/NSC_iOS/Supporting Files/NSC-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1225,6 +1288,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/NSC_iOS/Supporting Files/NSC-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
