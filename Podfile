@@ -8,6 +8,10 @@ def shared_pods
   pod 'Toast-Swift'
   pod 'TTTAttributedLabel'
   
+  # Pods for API Call Manager
+  pod 'EVReflection/Alamofire','~> 5.10.1'
+  pod 'Alamofire','~> 4.9.1'
+  
   # Firebase Pods
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'
