@@ -23,8 +23,10 @@ class KidsAttendanceVC: UIViewController {
         
     }
     
-    //MARK:- Functions
-    @IBAction func onTappedBack(_ sender: UIButton) {
+    //MARK:- ACTION
+    @IBAction func backClicked(_ sender: UIButton) {
+        self.view.endEditing(true)
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
@@ -48,7 +50,10 @@ extension KidsAttendanceVC : UITableViewDelegate , UITableViewDataSource {
 
         return 180
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let aVC = AppStoryBoard.main.viewController(viewControllerClass:DailyReportVC.self)
+        self.navigationController?.pushViewController(aVC, animated: true)
+    }
 
-    
-    
 }

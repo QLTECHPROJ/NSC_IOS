@@ -23,8 +23,10 @@ class DailyReportVC: UIViewController {
         
     }
     
-    //MARK:- Functions
-    @IBAction func onTappedBack(_ sender: UIButton) {
+    //MARK:- ACTION
+    @IBAction func backClicked(_ sender: UIButton) {
+        self.view.endEditing(true)
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
@@ -45,7 +47,7 @@ extension DailyReportVC: UITableViewDelegate , UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withClass: CountryCell.self)
         cell.lblCountryName.text = "  DAY - 1"
-        cell.lblCountryName.font = UIFont.boldSystemFont(ofSize: 16)
+        cell.lblCountryName.font = UIFont(name: "Poppins-SemiBold", size: 14)
         cell.btnSelect.setImage(UIImage(named: "OrangeArrow"), for: .selected)
         cell.backgroundColor = .clear
         return cell

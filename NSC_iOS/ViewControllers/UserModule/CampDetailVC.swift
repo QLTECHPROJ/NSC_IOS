@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CampDetailVC: UIViewController {
+class CampDetailVC: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,15 +15,14 @@ class CampDetailVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    //MARK:- ACTION
+    @IBAction func backClicked(_ sender: UIButton) {
+        self.view.endEditing(true)
+        self.navigationController?.popViewController(animated: true)
     }
-    */
 
+    @IBAction func onTappedContinue(_ sender: UIButton) {
+        let aVC = AppStoryBoard.main.viewController(viewControllerClass:KidsAttendanceVC.self)
+        self.navigationController?.pushViewController(aVC, animated: true)
+    }
 }

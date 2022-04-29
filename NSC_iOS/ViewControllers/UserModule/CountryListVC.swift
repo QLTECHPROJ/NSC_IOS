@@ -24,9 +24,11 @@ class CountryListVC: UIViewController {
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.register(nibWithCellClass: CountryCell.self)
        
     }
+    
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -62,9 +64,13 @@ extension CountryListVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCell")
-       
-        return cell!
+        let cell = tableView.dequeueReusableCell(withClass: CountryCell.self)
+        cell.btnSelect.setImage(nil, for: .normal)
+        cell.backgroundColor = .white
+        cell.viewBack.cornerRadius = 0
+        cell.viewBack.layer.shadowOpacity = 0
+        cell.viewBack.layer.shadowColor = UIColor.clear.cgColor
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
