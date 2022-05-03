@@ -21,7 +21,7 @@ class BaseViewController: UIViewController {
         refreshControl.addTarget(self, action:
             #selector(self.handleRefresh(_:)),
                                  for: UIControl.Event.valueChanged)
-        refreshControl.tintColor = Theme.colors.blue_63A4FF
+        refreshControl.tintColor = Theme.colors.theme_dark
         return refreshControl
     }()
     
@@ -89,7 +89,7 @@ class BaseViewController: UIViewController {
         let fullAttributedString = NSAttributedString(string:string, attributes: [
             NSAttributedString.Key.paragraphStyle: paragraphStyle,
             NSAttributedString.Key.foregroundColor: Theme.colors.gray_999999.cgColor,
-            NSAttributedString.Key.font: Theme.fonts.montserratFont(ofSize: 12, weight: .regular),
+            NSAttributedString.Key.font: Theme.fonts.appFont(ofSize: 12, weight: .regular),
         ])
         
         lblSupport.textAlignment = .center
@@ -132,7 +132,7 @@ class BaseViewController: UIViewController {
         let fullAttributedString = NSAttributedString(string:string, attributes: [
             NSAttributedString.Key.paragraphStyle: paragraphStyle,
             NSAttributedString.Key.foregroundColor: Theme.colors.gray_999999.cgColor,
-            NSAttributedString.Key.font: Theme.fonts.montserratFont(ofSize: 12, weight: .regular),
+            NSAttributedString.Key.font: Theme.fonts.appFont(ofSize: 12, weight: .regular),
         ])
         
         lblPrivacy.textAlignment = .center

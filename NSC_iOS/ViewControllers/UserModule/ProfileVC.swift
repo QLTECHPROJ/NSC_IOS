@@ -103,8 +103,7 @@ class ProfileVC: BaseViewController {
             btnConfirm.removeGradient()
         } else {
             btnConfirm.isUserInteractionEnabled = true
-            btnConfirm.backgroundColor = UIColor.clear
-            btnConfirm.applyGradient(with: [Theme.colors.blue_83EAF1, Theme.colors.blue_63A4FF], gradient: .horizontal)
+            btnConfirm.backgroundColor = Theme.colors.theme_dark
         }
     }
     

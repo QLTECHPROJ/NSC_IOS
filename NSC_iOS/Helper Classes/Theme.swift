@@ -184,52 +184,25 @@ struct AppColors {
     let blue = UIColor.blue
     let red = UIColor.red
     
-    let white_40_opacity = UIColor.black.withAlphaComponent(0.4)
     let black_40_opacity = UIColor.black.withAlphaComponent(0.4)
-    let gray_313131_80_opacity = UIColor(hex: "313131").withAlphaComponent(0.8)
-    
-    let indexScoreColor = UIColor(hex: "B8DAFF")
-    
-    let gray_313131 = UIColor(hex: "313131")
-    let gray_DDDDDD = UIColor(hex: "DDDDDD")
-    let gray_7E7E7E = UIColor(hex: "7E7E7E")
-    let gray_707070 = UIColor(hex: "707070")
-    let gray_999999 = UIColor(hex: "999999")
-    let gray_EEEEEE = UIColor(hex: "EEEEEE")
-    let gray_CDD4D9 = UIColor(hex: "CDD4D9")
+    let white_40_opacity = UIColor.black.withAlphaComponent(0.4)
     
     let off_white_F9F9F9 = UIColor(hex: "F9F9F9")
     
-    let skyBlue = UIColor(hex: "72C2DD")
-    let sky_blue_light_E4F3F3 = UIColor(hex: "E4F3F3")
-    
-    let red_CE5060 = UIColor(hex: "CE5060")
-    
-    let pink_FFDFEA = UIColor(hex: "FFDFEA")
-    let magenta_C44B6C = UIColor(hex: "C44B6C")
+    let gray_7E7E7E = UIColor(hex: "7E7E7E")
+    let gray_666666 = UIColor(hex: "666666")
+    let gray_707070 = UIColor(hex: "707070")
+    let gray_999999 = UIColor(hex: "999999")
+    let gray_CDD4D9 = UIColor(hex: "CDD4D9")
+    let gray_DDDDDD = UIColor(hex: "DDDDDD")
+    let gray_EEEEEE = UIColor(hex: "EEEEEE")
     
     let black_404040 = UIColor(hex: "404040")
-    let green_008892 = UIColor(hex: "008892")
-    let green_A2EEC5 = UIColor(hex: "A2EEC5")
-    let green_27B86A = UIColor(hex: "27B86A")
-    let green_36C2D6 = UIColor(hex: "36C2D6")
-    let green_1597AA = UIColor(hex: "1597AA")
-    
-    let blue_B8E1F7 = UIColor(hex: "B8E1F7")
-    let blue_38667E = UIColor(hex: "38667E")
-    let blue_3E82BE = UIColor(hex: "3E82BE")
-    
-    let orange_F89552 = UIColor(hex: "F89552")
-    let orange_FE8D7D = UIColor(hex: "FE8D7D")
-    let orange_F1646A = UIColor(hex: "F1646A")
-    
-    let purple = UIColor(hex: "6C63FF")
-    
-    let textColor = UIColor(hex: "313131")
     
     // NSC Coach App Colors
-    let blue_63A4FF = UIColor(hex: "63A4FF")
-    let blue_83EAF1 = UIColor(hex: "83EAF1")
+    let textColor = UIColor(hex: "1D272E")
+    let theme_dark = UIColor(hex: "F39200")
+    let theme_light = UIColor(hex: "FFF7EC")
     
 }
 
@@ -238,27 +211,30 @@ struct AppColors {
 struct AppFonts {
     
     // Font Family
-    let MontserratFontFamily = "Montserrat"
+    let fontFamily = "Poppins"
     
     // Fonts
-    let MontserratLight = "Montserrat-Light"
-    let MontserratRegular = "Montserrat-Regular"
-    let MontserratMedium = "Montserrat-Medium"
-    let MontserratSemiBold = "Montserrat-SemiBold"
-    let MontserratBold = "Montserrat-Bold"
+    let extraLight = "Poppins-ExtraLight"
+    let light = "Poppins-Light"
+    let medium = "Poppins-Medium"
+    let semiBold = "Poppins-SemiBold"
+    let bold = "Poppins-Bold"
+    let regular = "Poppins-Regular"
     
-    func montserratFont(ofSize size : CGFloat, weight : UIFont.Weight) -> UIFont {
+    func appFont(ofSize size : CGFloat, weight : UIFont.Weight) -> UIFont {
         switch weight {
+        case .ultraLight:
+            return UIFont(name: extraLight, size: size) ?? UIFont.systemFont(ofSize: size, weight: .ultraLight)
         case .light:
-            return UIFont(name: MontserratLight, size: size) ?? UIFont.systemFont(ofSize: size, weight: .light)
+            return UIFont(name: light, size: size) ?? UIFont.systemFont(ofSize: size, weight: .light)
         case .medium:
-            return UIFont(name: MontserratMedium, size: size) ?? UIFont.systemFont(ofSize: size, weight: .medium)
+            return UIFont(name: medium, size: size) ?? UIFont.systemFont(ofSize: size, weight: .medium)
         case .semibold:
-            return UIFont(name: MontserratSemiBold, size: size) ?? UIFont.systemFont(ofSize: size, weight: .semibold)
+            return UIFont(name: semiBold, size: size) ?? UIFont.systemFont(ofSize: size, weight: .semibold)
         case .bold:
-            return UIFont(name: MontserratBold, size: size) ?? UIFont.systemFont(ofSize: size, weight: .bold)
+            return UIFont(name: bold, size: size) ?? UIFont.systemFont(ofSize: size, weight: .bold)
         default:
-            return UIFont(name: MontserratRegular, size: size) ?? UIFont.systemFont(ofSize: size, weight: .regular)
+            return UIFont(name: regular, size: size) ?? UIFont.systemFont(ofSize: size, weight: .regular)
         }
     }
     
@@ -285,7 +261,7 @@ struct AppStrings {
     
     /* Disclaimer Popup */
     let disclaimer_title = "Disclaimer"
-    let disclaimer_description = "The Lobster App offers a unique, alternative and drug free method created  to assist people encountering mental challenges in their daily lives,. It may help you find inner peace and overcome negative thoughts as well as emotions. \n\nThe Lobster App Method is not a scientific method. \n\nThe testimonials of our clients speak for themselves and we are so proud of the incredible results they have achieved – we want to help you and are committed to assisting you find a way to live a better life. However, as with any service, we accept that it may not be right for everyone and that results may vary from client to client. Accordingly, we make no promises or representations that our service will work for you but we invite you to try it for yourself."
+    let disclaimer_description = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd"
     
     /* UserDefault Keys */
     let logged_in_user = "logged_in_user"
@@ -315,11 +291,11 @@ struct AppStrings {
     let update = "UPDATE"
     let not_now = "NOT NOW"
     
-    let normal_update_title = "Update The Lobster App"
-    let normal_update_subtitle = "The Lobster App recommends that you update to the latest version"
+    let normal_update_title = "Update NSC Coach App"
+    let normal_update_subtitle = "NSC Coach App recommends that you update to the latest version"
     
     let force_update_title = "Update Required"
-    let force_update_subtitle = "To keep using The Lobster App, download the latest version"
+    let force_update_subtitle = "To keep using NSC Coach App, download the latest version"
     
     let cancel_manage_alert_title = "Cancel Manage Program"
     let cancel_manage_alert_subtitle = "Are you sure you want to cancel your subscription?"
@@ -394,7 +370,7 @@ struct AppStrings {
     let profile_image_options = "Profile Image Options"
     
     /* Screen Contents */
-    let welcome_title = "The Lobster App"
+    let welcome_title = "NSC Coach App"
     let welcome_subtitle = "Your one-stop solution for mental & emotional health challenges"
     
     let register_title = "Sign Up"
@@ -408,7 +384,7 @@ struct AppStrings {
     let forgot_password_title = "Forgot your password"
     let forgot_password_subtitle = "Give us your registered email ID and we'll send you everything that you'll need to change your password"
     
-    let couser_listing_title = "Welcome to Lobster App"
+    let couser_listing_title = "Welcome to NSC Coach App"
     let couser_listing_subtitle = "Simply sign-in to your account and continue your journey towards mental & emotional transformation"
     
     let couser_welcome_subtitle = "It's good to have you here..."
@@ -440,7 +416,7 @@ struct AppStrings {
     
     let serotonin_boost_program = "Serotonin Boost Program"
     
-    let thank_you_subtitle = "Congratulations on joining The Lobster App Family."
+    let thank_you_subtitle = "Congratulations on joining NSC Coach App Family."
     
     let recommended_category_subtitle = "You can select upto three areas of focus to further customise your journey towards mental transformation."
     
@@ -452,13 +428,13 @@ struct AppStrings {
     
     /* Billing order */
     let Last_Renewed = "Last Renewed"
-    let upgradePlan_subtitle = "Get the most out of The Lobster App. Now you can add additional accounts get your loved ones started on their journey towards mental & emotional transformation. Upgrade your subscription plan right now!!"
+    let upgradePlan_subtitle = "Get the most out of NSC Coach App. Now you can add additional accounts get your loved ones started on their journey towards mental & emotional transformation. Upgrade your subscription plan right now!!"
     
     /* Alert Strings */
     let alert_check_internet = "Internet connection seems to be offline."
     let alert_something_went_wrong = "Something went wrong"
     
-    let alert_logout_message = "Are you sure you want to log out \nThe Lobster App??"
+    let alert_logout_message = "Are you sure you want to log out \nNSC Coach App??"
     let alert_blank_inputField_error = "Please fill required details"
     
     let alert_search_term_not_found = "Please try again with another search term."

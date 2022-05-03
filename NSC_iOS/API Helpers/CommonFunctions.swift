@@ -35,7 +35,7 @@ func showAlertToast(message : String) {
         toastStyle.backgroundColor = Theme.colors.black_404040
         toastStyle.titleColor = Theme.colors.white
         toastStyle.titleAlignment = .left
-        toastStyle.titleFont = Theme.fonts.montserratFont(ofSize: 12, weight: .regular)
+        toastStyle.titleFont = Theme.fonts.appFont(ofSize: 12, weight: .regular)
         // window.makeToast(message, style: toastStyle)
         
         let newX = Int(SCREEN_WIDTH / 2)
@@ -49,7 +49,7 @@ func showAlertToast(message : String) {
 func showHud() {
     DispatchQueue.main.async {
         SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
-        SVProgressHUD.setForegroundColor(Theme.colors.blue_63A4FF)
+        SVProgressHUD.setForegroundColor(Theme.colors.theme_dark)
         SVProgressHUD.show()
     }
 }
@@ -290,8 +290,8 @@ extension UILabel {
     
     func addAttribut(strText:String,strSubString:String,size:Int) {
         let attributedString = NSMutableAttributedString.getAttributedString(fromString: strText)
-        attributedString.apply(color: Theme.colors.blue_63A4FF, subString: strSubString)
-        attributedString.apply(font:UIFont(name: Theme.fonts.MontserratSemiBold, size: CGFloat(size))!, subString: strSubString)
+        attributedString.apply(color: Theme.colors.theme_dark, subString: strSubString)
+        attributedString.apply(font:UIFont(name: Theme.fonts.semiBold, size: CGFloat(size))!, subString: strSubString)
         self.attributedText = attributedString
     }
     
@@ -301,8 +301,8 @@ extension UIButton {
     
     func addAttribut(strText:String,strSubString:String,size:Int) {
         let attributedString = NSMutableAttributedString.getAttributedString(fromString: strText)
-        attributedString.apply(color: Theme.colors.blue_63A4FF, subString: strSubString)
-        attributedString.apply(font:UIFont(name: Theme.fonts.MontserratSemiBold, size: CGFloat(size))!, subString: strSubString)
+        attributedString.apply(color: Theme.colors.theme_dark, subString: strSubString)
+        attributedString.apply(font:UIFont(name: Theme.fonts.semiBold, size: CGFloat(size))!, subString: strSubString)
         self.setAttributedTitle(attributedString, for: .normal)
     }
     

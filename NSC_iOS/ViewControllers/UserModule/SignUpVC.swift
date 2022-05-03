@@ -123,8 +123,7 @@ class SignUpVC: BaseViewController {
             btnGetSMSCode.removeGradient()
         } else {
             btnGetSMSCode.isUserInteractionEnabled = true
-            btnGetSMSCode.backgroundColor = UIColor.clear
-            btnGetSMSCode.applyGradient(with: [Theme.colors.blue_83EAF1, Theme.colors.blue_63A4FF], gradient: .horizontal)
+            btnGetSMSCode.backgroundColor = Theme.colors.theme_dark
         }
     }
     

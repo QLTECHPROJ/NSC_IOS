@@ -101,8 +101,7 @@ class OTPVC: BaseViewController {
             btnDone.removeGradient()
         } else {
             btnDone.isUserInteractionEnabled = true
-            btnDone.backgroundColor = UIColor.clear
-            btnDone.applyGradient(with: [Theme.colors.blue_83EAF1, Theme.colors.blue_63A4FF], gradient: .horizontal)
+            btnDone.backgroundColor = Theme.colors.theme_dark
         }
     }
     

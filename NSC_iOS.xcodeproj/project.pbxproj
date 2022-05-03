@@ -53,6 +53,10 @@
 		282C33812819617D009401FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28A9C4172817B7CA001B252F /* Assets.xcassets */; };
 		282C33852819617D009401FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28A9C4112817B7C9001B252F /* Main.storyboard */; };
 		282C33932819645F009401FD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 282C339128196455009401FD /* GoogleService-Info.plist */; };
+		28470DAB281C0CC500FE9C66 /* AlertPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28470DAA281C0CC500FE9C66 /* AlertPopUpVC.swift */; };
+		28470DAC281C0CC500FE9C66 /* AlertPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28470DAA281C0CC500FE9C66 /* AlertPopUpVC.swift */; };
+		28470DAE281C0ED700FE9C66 /* DescriptionPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28470DAD281C0ED700FE9C66 /* DescriptionPopupVC.swift */; };
+		28470DAF281C0ED700FE9C66 /* DescriptionPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28470DAD281C0ED700FE9C66 /* DescriptionPopupVC.swift */; };
 		28A9C40C2817B7C9001B252F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A9C40B2817B7C9001B252F /* AppDelegate.swift */; };
 		28A9C4132817B7C9001B252F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28A9C4112817B7C9001B252F /* Main.storyboard */; };
 		28A9C4162817B7C9001B252F /* NSC_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28A9C4142817B7C9001B252F /* NSC_iOS.xcdatamodeld */; };
@@ -212,6 +216,8 @@
 		282C338B2819617D009401FD /* NSC_iOS_Staging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSC_iOS_Staging.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		282C338F281962D1009401FD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		282C339128196455009401FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		28470DAA281C0CC500FE9C66 /* AlertPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPopUpVC.swift; sourceTree = "<group>"; };
+		28470DAD281C0ED700FE9C66 /* DescriptionPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionPopupVC.swift; sourceTree = "<group>"; };
 		28A9C4082817B7C9001B252F /* NSC_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSC_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28A9C40B2817B7C9001B252F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28A9C4122817B7C9001B252F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -397,13 +403,11 @@
 		28A9C4252817BF59001B252F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				282C338D281961F6009401FD /* Live */,
 				9A0F6F5A281BA15F008CAA4B /* Font */,
 				282C338E28196203009401FD /* Staging */,
 				282C338D281961F6009401FD /* Live */,
 				28A9C4172817B7CA001B252F /* Assets.xcassets */,
 				281AAE57281AAEAE0070D758 /* NSC-Bridging-Header.h */,
-				9A9725002818FB1D00F0E239 /* Fonts */,
 				28A9C4142817B7C9001B252F /* NSC_iOS.xcdatamodeld */,
 			);
 			path = "Supporting Files";
@@ -566,6 +570,8 @@
 			children = (
 				9AE824412817E25B00A29373 /* TableCell */,
 				9AE824332817DF8800A29373 /* OTPVC.swift */,
+				28470DAA281C0CC500FE9C66 /* AlertPopUpVC.swift */,
+				28470DAD281C0ED700FE9C66 /* DescriptionPopupVC.swift */,
 				9AE824342817DF8800A29373 /* SplashVC.swift */,
 				9AE824352817DF8800A29373 /* LoginVC.swift */,
 				9AE824362817DF8800A29373 /* SignUpVC.swift */,
@@ -910,6 +916,7 @@
 				28F83133281977F000CAF99C /* Theme.swift in Sources */,
 				28F830F1281977F000CAF99C /* UINavigationBar+Extension.swift in Sources */,
 				2804E3A12819847D00AF4A62 /* NSCalendar+Timepiece.swift in Sources */,
+				28470DAC281C0CC500FE9C66 /* AlertPopUpVC.swift in Sources */,
 				28F3C259281A5D260092A077 /* KidsAttendanceVC.swift in Sources */,
 				28F83131281977F000CAF99C /* AppConstants.swift in Sources */,
 				281AAE47281AA44D0070D758 /* AppVersionModel.swift in Sources */,
@@ -921,6 +928,7 @@
 				28F83103281977F000CAF99C /* ExpandableLabel.swift in Sources */,
 				282C33732819617D009401FD /* NSC_iOS.xcdatamodeld in Sources */,
 				2804E39D2819847D00AF4A62 /* Int+Timepiece.swift in Sources */,
+				28470DAF281C0ED700FE9C66 /* DescriptionPopupVC.swift in Sources */,
 				28F830DB281977F000CAF99C /* UIImageView+Extension.swift in Sources */,
 				2804E39E2819847D00AF4A62 /* Duration.swift in Sources */,
 				28F830DD281977F000CAF99C /* NSAttributedString+Extension.swift in Sources */,
@@ -994,6 +1002,7 @@
 				28F83132281977F000CAF99C /* Theme.swift in Sources */,
 				28F830F0281977F000CAF99C /* UINavigationBar+Extension.swift in Sources */,
 				28F83130281977F000CAF99C /* AppConstants.swift in Sources */,
+				28470DAB281C0CC500FE9C66 /* AlertPopUpVC.swift in Sources */,
 				28F83142281977F000CAF99C /* ReadMore_Helper.swift in Sources */,
 				28F83122281977F000CAF99C /* NavigationClass.swift in Sources */,
 				281AAE46281AA44D0070D758 /* AppVersionModel.swift in Sources */,
@@ -1005,6 +1014,7 @@
 				28F8316128197B0600CAF99C /* Int+Timepiece.swift in Sources */,
 				28F830DA281977F000CAF99C /* UIImageView+Extension.swift in Sources */,
 				28F830DC281977F000CAF99C /* NSAttributedString+Extension.swift in Sources */,
+				28470DAE281C0ED700FE9C66 /* DescriptionPopupVC.swift in Sources */,
 				9AE8243B2817DF8800A29373 /* SignUpVC.swift in Sources */,
 				28F830EE281977F000CAF99C /* String+Extension.swift in Sources */,
 				28F8316428197B0600CAF99C /* Duration.swift in Sources */,
