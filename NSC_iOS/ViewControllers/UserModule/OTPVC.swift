@@ -201,8 +201,11 @@ class OTPVC: BaseViewController {
         txtFPin4.text = ""
         txtFPin5.text = ""
         txtFPin6.text = ""
+        
         lblError.isHidden = true
+        
         buttonEnableDisable()
+        
         self.sendOTP()
     }
     
