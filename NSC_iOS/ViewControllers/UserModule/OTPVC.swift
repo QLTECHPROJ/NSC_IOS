@@ -8,6 +8,7 @@
 
 import UIKit
 import TTTAttributedLabel
+import FirebaseAuth
 
 class OTPVC: BaseViewController {
     
@@ -17,12 +18,17 @@ class OTPVC: BaseViewController {
     @IBOutlet weak var txtFPin2: BackspaceTextField!
     @IBOutlet weak var txtFPin3: BackspaceTextField!
     @IBOutlet weak var txtFPin4: BackspaceTextField!
+    @IBOutlet weak var txtFPin5: BackspaceTextField!
+    @IBOutlet weak var txtFPin6: BackspaceTextField!
     
     // Label
     @IBOutlet weak var lblLine1: UILabel!
     @IBOutlet weak var lblLine2: UILabel!
     @IBOutlet weak var lblLine3: UILabel!
     @IBOutlet weak var lblLine4: UILabel!
+    @IBOutlet weak var lblLine5: UILabel!
+    @IBOutlet weak var lblLine6: UILabel!
+    
     @IBOutlet weak var lblError: UILabel!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblSubTitle: UILabel!
@@ -33,25 +39,27 @@ class OTPVC: BaseViewController {
     @IBOutlet weak var viewCard2: CardView!
     @IBOutlet weak var viewCard3: CardView!
     @IBOutlet weak var viewCard4: CardView!
+    @IBOutlet weak var viewCard5: CardView!
+    @IBOutlet weak var viewCard6: CardView!
     
     // UIButton
     @IBOutlet weak var btnDone: UIButton!
     
+    
     // MARK: - VARIABLES
     var textFields: [BackspaceTextField] {
-        return [txtFPin1, txtFPin2, txtFPin3, txtFPin4]
+        return [txtFPin1, txtFPin2, txtFPin3, txtFPin4, txtFPin5, txtFPin6]
     }
     
     var bottomLabels: [UILabel] {
-        return [lblLine1, lblLine2, lblLine3, lblLine4]
+        return [lblLine1, lblLine2, lblLine3, lblLine4, lblLine5, lblLine6]
     }
+    
     var signUpFlag = ""
     var strName = ""
-    //var selectedCountry = CountrylistDataModel()
     var strMobile = ""
     var strEmail = ""
     
-   
     
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
@@ -59,14 +67,13 @@ class OTPVC: BaseViewController {
         setupUI()
         setupSupportLabel(lblSupport: lblSupport)
         self.txtFPin1.becomeFirstResponder()
-       
     }
+    
+    
     // MARK: - FUNCTIONS
     override func setupUI() {
-        lblSubTitle.attributedText = Theme.strings.otp_subtitle.attributedString(alignment: .center, lineSpacing: 5)
-        
-        //let strSMSSent = "We've sent SMS with a 4-digit code to +\(selectedCountry.Code)\(strMobile)."
-      //  lblSMSSent.attributedText = strSMSSent.attributedString(alignment: .center, lineSpacing: 5)
+        let strSMSSent = "We've sent SMS with a 6-digit code to +\(countryCode)\(strMobile)."
+        lblSubTitle.attributedText = strSMSSent.attributedString(alignment: .center, lineSpacing: 5)
         
         if signUpFlag == "0" {
             btnDone.setTitle("LOGIN", for: .normal)
@@ -95,7 +102,8 @@ class OTPVC: BaseViewController {
     
     override func buttonEnableDisable() {
         if txtFPin1.text?.trim.count == 0 || txtFPin2.text?.trim.count == 0 ||
-            txtFPin3.text?.trim.count == 0 || txtFPin4.text?.trim.count == 0 {
+            txtFPin3.text?.trim.count == 0 || txtFPin4.text?.trim.count == 0 ||
+            txtFPin5.text?.trim.count == 0 || txtFPin6.text?.trim.count == 0 {
             btnDone.isUserInteractionEnabled = false
             btnDone.backgroundColor = Theme.colors.gray_7E7E7E
             btnDone.removeGradient()
@@ -105,9 +113,8 @@ class OTPVC: BaseViewController {
         }
     }
     
-
     func checkValidation() -> Bool {
-        let strOTP = txtFPin1.text! + txtFPin2.text! + txtFPin3.text! + txtFPin4.text!
+        let strOTP = txtFPin1.text! + txtFPin2.text! + txtFPin3.text! + txtFPin4.text! + txtFPin5.text! + txtFPin6.text!
         
         if strOTP.count < 4 {
             self.lblError.text = Theme.strings.alert_invalid_otp
@@ -127,10 +134,50 @@ class OTPVC: BaseViewController {
             lblLine2.isHidden = true
             lblLine3.isHidden = true
             lblLine4.isHidden = true
-            let aVC = AppStoryBoard.main.viewController(viewControllerClass:SignUpVC.self)
+            lblLine5.isHidden = true
+            lblLine6.isHidden = true
+            
+            let strOTP = txtFPin1.text! + txtFPin2.text! + txtFPin3.text! + txtFPin4.text! + txtFPin5.text! + txtFPin6.text!
+            verifyOTP(verificationCode: strOTP)
+        }
+    }
+    
+    func verifyOTP(verificationCode : String) {
+        showHud()
+        
+        let credential = PhoneAuthProvider.provider().credential(withVerificationID: authVerificationID, verificationCode: verificationCode)
+        
+        Auth.auth().signIn(with: credential) { authResult, error in
+            
+            hideHud()
+            
+            if let error = error {
+                showAlertToast(message: error.localizedDescription)
+                return
+            }
+            
+            // User is signed in
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass:ProfileVC.self)
             self.navigationController?.pushViewController(aVC, animated: true)
-            //let strOTP = txtFPin1.text! + txtFPin2.text! + txtFPin3.text! + txtFPin4.text!
-           // callAuthOTPAPI(otp: strOTP)
+        }
+    }
+    
+    func sendOTP() {
+        showHud()
+        
+        let phoneString = "+" + countryCode + strMobile
+        
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneString, uiDelegate: nil) { verificationID, error in
+            
+            hideHud()
+            
+            if let error = error {
+                showAlertToast(message: error.localizedDescription)
+                return
+            }
+            
+            // Sign in using the verificationID and the code sent to the user
+            authVerificationID = verificationID ?? ""
         }
     }
     
@@ -152,9 +199,11 @@ class OTPVC: BaseViewController {
         txtFPin2.text = ""
         txtFPin3.text = ""
         txtFPin4.text = ""
+        txtFPin5.text = ""
+        txtFPin6.text = ""
         lblError.isHidden = true
         buttonEnableDisable()
-        
+        self.sendOTP()
     }
     
     @IBAction func editNumberClicked(_ sender: UIButton) {
@@ -170,6 +219,10 @@ extension OTPVC : UITextFieldDelegate, BackspaceTextFieldDelegate {
     
     func textFieldDidEnterBackspace(_ textField: BackspaceTextField) {
         switch textField {
+        case txtFPin6:
+            txtFPin5.becomeFirstResponder()
+        case txtFPin5:
+            txtFPin4.becomeFirstResponder()
         case txtFPin4:
             txtFPin3.becomeFirstResponder()
         case txtFPin3:
@@ -187,27 +240,12 @@ extension OTPVC : UITextFieldDelegate, BackspaceTextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
-        if textField == txtFPin1 {
-            lblLine1.isHidden = false
-            lblLine2.isHidden = true
-            lblLine3.isHidden = true
-            lblLine4.isHidden = true
-        } else if textField == txtFPin2 {
-            lblLine1.isHidden = true
-            lblLine2.isHidden = false
-            lblLine3.isHidden = true
-            lblLine4.isHidden = true
-        } else  if textField == txtFPin3 {
-            lblLine1.isHidden = true
-            lblLine2.isHidden = true
-            lblLine3.isHidden = false
-            lblLine4.isHidden = true
-        } else if textField == txtFPin4 {
-            lblLine1.isHidden = true
-            lblLine2.isHidden = true
-            lblLine3.isHidden = true
-            lblLine4.isHidden = false
-        }
+        lblLine1.isHidden = !(textField == txtFPin1)
+        lblLine2.isHidden = !(textField == txtFPin2)
+        lblLine3.isHidden = !(textField == txtFPin3)
+        lblLine4.isHidden = !(textField == txtFPin4)
+        lblLine5.isHidden = !(textField == txtFPin5)
+        lblLine6.isHidden = !(textField == txtFPin6)
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -232,7 +270,11 @@ extension OTPVC : UITextFieldDelegate, BackspaceTextFieldDelegate {
             case txtFPin3:
                 txtFPin4.becomeFirstResponder()
             case txtFPin4:
-                txtFPin4.resignFirstResponder()
+                txtFPin5.becomeFirstResponder()
+            case txtFPin5:
+                txtFPin6.becomeFirstResponder()
+            case txtFPin6:
+                txtFPin6.resignFirstResponder()
                 self.autoVerifyOTP()
             default:
                 break
@@ -242,6 +284,10 @@ extension OTPVC : UITextFieldDelegate, BackspaceTextFieldDelegate {
         } else if updatedText.count == 0 {
             
             switch textField {
+            case txtFPin6:
+                txtFPin5.becomeFirstResponder()
+            case txtFPin5:
+                txtFPin4.becomeFirstResponder()
             case txtFPin4:
                 txtFPin3.becomeFirstResponder()
             case txtFPin3:
@@ -272,6 +318,10 @@ extension OTPVC : UITextFieldDelegate, BackspaceTextFieldDelegate {
             lblLine3.isHidden = true
         } else if textField == txtFPin4 {
             lblLine4.isHidden = true
+        } else if textField == txtFPin5 {
+            lblLine5.isHidden = true
+        } else if textField == txtFPin6 {
+            lblLine6.isHidden = true
         }
         
         buttonEnableDisable()

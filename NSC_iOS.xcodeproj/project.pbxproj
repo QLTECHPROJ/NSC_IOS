@@ -57,6 +57,8 @@
 		28470DAC281C0CC500FE9C66 /* AlertPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28470DAA281C0CC500FE9C66 /* AlertPopUpVC.swift */; };
 		28470DAE281C0ED700FE9C66 /* DescriptionPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28470DAD281C0ED700FE9C66 /* DescriptionPopupVC.swift */; };
 		28470DAF281C0ED700FE9C66 /* DescriptionPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28470DAD281C0ED700FE9C66 /* DescriptionPopupVC.swift */; };
+		2867950A282150B60010892E /* DynamicContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28679509282150B60010892E /* DynamicContents.swift */; };
+		2867950B282150B60010892E /* DynamicContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28679509282150B60010892E /* DynamicContents.swift */; };
 		28A9C40C2817B7C9001B252F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A9C40B2817B7C9001B252F /* AppDelegate.swift */; };
 		28A9C4132817B7C9001B252F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28A9C4112817B7C9001B252F /* Main.storyboard */; };
 		28A9C4162817B7C9001B252F /* NSC_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28A9C4142817B7C9001B252F /* NSC_iOS.xcdatamodeld */; };
@@ -218,6 +220,7 @@
 		282C339128196455009401FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		28470DAA281C0CC500FE9C66 /* AlertPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPopUpVC.swift; sourceTree = "<group>"; };
 		28470DAD281C0ED700FE9C66 /* DescriptionPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionPopupVC.swift; sourceTree = "<group>"; };
+		28679509282150B60010892E /* DynamicContents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicContents.swift; sourceTree = "<group>"; };
 		28A9C4082817B7C9001B252F /* NSC_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSC_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28A9C40B2817B7C9001B252F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28A9C4122817B7C9001B252F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -536,6 +539,7 @@
 				281AAE51281AA8D30070D758 /* APIRouter.swift */,
 				281AAE37281A85B00070D758 /* APIManager.swift */,
 				281AAE3A281A85BA0070D758 /* APIRoute.swift */,
+				28679509282150B60010892E /* DynamicContents.swift */,
 				28F8316628197B8C00CAF99C /* CommonFunctions.swift */,
 				28F8316928197BEA00CAF99C /* DJReachability.swift */,
 			);
@@ -569,11 +573,11 @@
 			isa = PBXGroup;
 			children = (
 				9AE824412817E25B00A29373 /* TableCell */,
-				9AE824332817DF8800A29373 /* OTPVC.swift */,
 				28470DAA281C0CC500FE9C66 /* AlertPopUpVC.swift */,
 				28470DAD281C0ED700FE9C66 /* DescriptionPopupVC.swift */,
 				9AE824342817DF8800A29373 /* SplashVC.swift */,
 				9AE824352817DF8800A29373 /* LoginVC.swift */,
+				9AE824332817DF8800A29373 /* OTPVC.swift */,
 				9AE824362817DF8800A29373 /* SignUpVC.swift */,
 				9AE824372817DF8800A29373 /* CountryListVC.swift */,
 				9A2CFCCE2818139F000A2C1D /* ProfileVC.swift */,
@@ -925,6 +929,7 @@
 				28F83123281977F000CAF99C /* NavigationClass.swift in Sources */,
 				28F83135281977F000CAF99C /* GradientView.swift in Sources */,
 				28F830FF281977F000CAF99C /* TagFlowLayout.swift in Sources */,
+				2867950B282150B60010892E /* DynamicContents.swift in Sources */,
 				28F83103281977F000CAF99C /* ExpandableLabel.swift in Sources */,
 				282C33732819617D009401FD /* NSC_iOS.xcdatamodeld in Sources */,
 				2804E39D2819847D00AF4A62 /* Int+Timepiece.swift in Sources */,
@@ -1011,6 +1016,7 @@
 				28F830FE281977F000CAF99C /* TagFlowLayout.swift in Sources */,
 				28F83102281977F000CAF99C /* ExpandableLabel.swift in Sources */,
 				28A9C4162817B7C9001B252F /* NSC_iOS.xcdatamodeld in Sources */,
+				2867950A282150B60010892E /* DynamicContents.swift in Sources */,
 				28F8316128197B0600CAF99C /* Int+Timepiece.swift in Sources */,
 				28F830DA281977F000CAF99C /* UIImageView+Extension.swift in Sources */,
 				28F830DC281977F000CAF99C /* NSAttributedString+Extension.swift in Sources */,

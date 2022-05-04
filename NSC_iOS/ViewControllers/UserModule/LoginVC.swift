@@ -8,6 +8,7 @@
 
 import UIKit
 import TTTAttributedLabel
+import FirebaseAuth
 
 class LoginVC: BaseViewController {
     
@@ -29,12 +30,13 @@ class LoginVC: BaseViewController {
     //UIStackView
     @IBOutlet weak var stackView: UIStackView!
     
+    
     // MARK: - VARIABLES
     var mobileNo = ""
     var isFromOTP = false
     var isCountrySelected = false
-   // var selectedCountry = CountrylistDataModel(id: "0", name: "Australia", shortName: "AU", code: "61")
-   
+    
+    
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +45,7 @@ class LoginVC: BaseViewController {
         setupSupportLabel(lblSupport: lblSupport)
         setupData()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -50,9 +53,8 @@ class LoginVC: BaseViewController {
             txtFMobileNo.becomeFirstResponder()
         } else {
             txtFMobileNo.text = ""
-           // selectedCountry = CountrylistDataModel(id: "0", name: "Australia", shortName: "AU", code: "61")
-           // let countryText = selectedCountry.ShortName.uppercased() + " +" + selectedCountry.Code
-            btnCountryCode.setTitle("+ 61", for: .normal)
+            let countryText = countryShortName + " " + "+" + countryCode
+            btnCountryCode.setTitle(countryText, for: .normal)
             self.btnCountryCode.setTitleColor(Theme.colors.black_40_opacity, for: .normal)
         }
         
@@ -63,6 +65,7 @@ class LoginVC: BaseViewController {
         super.viewWillDisappear(animated)
         self.view.endEditing(true)
     }
+    
     
     // MARK: - FUNCTIONS
     override func setupUI() {
@@ -124,30 +127,48 @@ class LoginVC: BaseViewController {
         return isValid
     }
     
+    func sendOTP() {
+        showHud()
+        
+        let phoneString = "+" + countryCode + (txtFMobileNo.text ?? "")
+        
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneString, uiDelegate: nil) { verificationID, error in
+            
+            hideHud()
+            
+            if let error = error {
+                showAlertToast(message: error.localizedDescription)
+                return
+            }
+            
+            // Sign in using the verificationID and the code sent to the user
+            authVerificationID = verificationID ?? ""
+            
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass:OTPVC.self)
+            aVC.strMobile = self.txtFMobileNo.text ?? ""
+            self.navigationController?.pushViewController(aVC, animated: true)
+        }
+    }
+    
+    
     // MARK: - ACTIONS
     @IBAction func countryCodeClicked(_ sender: UIButton) {
         self.view.endEditing(true)
         isFromOTP = false
-
+        
         let aVC = AppStoryBoard.main.viewController(viewControllerClass:CountryListVC.self)
-//        aVC.didSelectCountry = { countryData in
-//            self.selectedCountry = countryData
-//            self.isCountrySelected = true
-//            self.setupData()
-//        }
         aVC.modalPresentationStyle = .overFullScreen
         self.navigationController?.present(aVC, animated: true, completion: nil)
-        
-      
     }
     
     @IBAction func loginClicked(_ sender: UIButton) {
         self.view.endEditing(true)
-        if checkValidation(){
+        
+        if checkValidation() {
             lblErrMobileNo.isHidden = true
             isFromOTP = true
-            let aVC = AppStoryBoard.main.viewController(viewControllerClass:OTPVC.self)
-            self.navigationController?.pushViewController(aVC, animated: true)
+            
+            self.sendOTP()
         }
     }
     

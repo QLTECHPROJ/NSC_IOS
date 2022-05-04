@@ -20,6 +20,7 @@ class AppVersionDetailModel: EVObject {
     var supportTitle: String?
     var supportText: String?
     var supportEmail: String?
+    var countryID: String?
     var countryCode: String?
     var countryShortName: String?
 }

@@ -95,7 +95,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Swf-ob-1pC">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="810.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="811.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Login" translatesAutoresizingMaskIntoConstraints="NO" id="V6Z-9J-G7t">
                                                 <rect key="frame" x="136.5" y="20" width="141" height="124"/>
@@ -223,10 +223,10 @@
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="XeI-8u-E1t">
-                                                <rect key="frame" x="16" y="722.5" width="382" height="28"/>
+                                                <rect key="frame" x="16" y="722.5" width="382" height="29"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="By clicking on Register or Sign up you agree to our T&amp;Cs, Privacy Policy &amp; Disclaimer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNU-n2-Zae" customClass="TTTAttributedLabel">
-                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="28"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="29"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -371,16 +371,16 @@
                                                 <rect key="frame" x="31" y="362.5" width="352" height="70"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aE1-fs-UKK" customClass="CardView" customModule="NSC_iOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="77.5" height="70"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="47" height="70"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JYh-ei-Ifh" customClass="BackspaceTextField" customModule="NSC_iOS" customModuleProvider="target">
-                                                                <rect key="frame" x="4" y="8" width="69.5" height="54"/>
+                                                                <rect key="frame" x="4" y="8" width="39" height="54"/>
                                                                 <color key="textColor" name="textColor"/>
-                                                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="50"/>
+                                                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="40"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iST-vy-Pmn">
-                                                                <rect key="frame" x="16" y="62" width="45.5" height="0.0"/>
+                                                                <rect key="frame" x="16" y="62" width="15" height="0.0"/>
                                                                 <color key="backgroundColor" name="textColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" id="wr1-Dj-QDo"/>
@@ -410,16 +410,16 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oJq-6l-bMb" customClass="CardView" customModule="NSC_iOS" customModuleProvider="target">
-                                                        <rect key="frame" x="91.5" y="0.0" width="77.5" height="70"/>
+                                                        <rect key="frame" x="61" y="0.0" width="47" height="70"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hlA-9W-WJm" customClass="BackspaceTextField" customModule="NSC_iOS" customModuleProvider="target">
-                                                                <rect key="frame" x="4" y="8" width="69.5" height="54"/>
+                                                                <rect key="frame" x="4" y="8" width="39" height="54"/>
                                                                 <color key="textColor" name="textColor"/>
-                                                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="50"/>
+                                                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="40"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KHj-5N-XAU">
-                                                                <rect key="frame" x="16" y="62" width="45.5" height="0.0"/>
+                                                                <rect key="frame" x="16" y="62" width="15" height="0.0"/>
                                                                 <color key="backgroundColor" name="textColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" id="p0y-tQ-blY"/>
@@ -449,16 +449,16 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Z1-K4-89Q" customClass="CardView" customModule="NSC_iOS" customModuleProvider="target">
-                                                        <rect key="frame" x="183" y="0.0" width="77.5" height="70"/>
+                                                        <rect key="frame" x="122" y="0.0" width="47" height="70"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L8B-8L-7kL" customClass="BackspaceTextField" customModule="NSC_iOS" customModuleProvider="target">
-                                                                <rect key="frame" x="4" y="8" width="69.5" height="54"/>
+                                                                <rect key="frame" x="4" y="8" width="39" height="54"/>
                                                                 <color key="textColor" name="textColor"/>
-                                                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="50"/>
+                                                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="40"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cn3-0V-O6x">
-                                                                <rect key="frame" x="16" y="62" width="45.5" height="0.0"/>
+                                                                <rect key="frame" x="16" y="62" width="15" height="0.0"/>
                                                                 <color key="backgroundColor" name="textColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" id="6QC-Qz-UOH"/>
@@ -488,16 +488,16 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nki-5c-syE" customClass="CardView" customModule="NSC_iOS" customModuleProvider="target">
-                                                        <rect key="frame" x="274.5" y="0.0" width="77.5" height="70"/>
+                                                        <rect key="frame" x="183" y="0.0" width="47" height="70"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qeL-la-xFq" customClass="BackspaceTextField" customModule="NSC_iOS" customModuleProvider="target">
-                                                                <rect key="frame" x="4" y="8" width="69.5" height="54"/>
+                                                                <rect key="frame" x="4" y="8" width="39" height="54"/>
                                                                 <color key="textColor" name="textColor"/>
-                                                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="50"/>
+                                                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="40"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dnr-zv-WPo">
-                                                                <rect key="frame" x="16" y="62" width="45.5" height="0.0"/>
+                                                                <rect key="frame" x="16" y="62" width="15" height="0.0"/>
                                                                 <color key="backgroundColor" name="textColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" id="8kc-Rh-J2a"/>
@@ -516,6 +516,84 @@
                                                             <constraint firstItem="qeL-la-xFq" firstAttribute="top" secondItem="nki-5c-syE" secondAttribute="top" constant="8" id="hN9-I9-XK4"/>
                                                             <constraint firstAttribute="trailing" secondItem="qeL-la-xFq" secondAttribute="trailing" constant="4" id="lsT-Ib-onk"/>
                                                             <constraint firstItem="Dnr-zv-WPo" firstAttribute="top" secondItem="qeL-la-xFq" secondAttribute="bottom" id="lzA-UB-mZr"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eeL-cA-y4H" customClass="CardView" customModule="NSC_iOS" customModuleProvider="target">
+                                                        <rect key="frame" x="244" y="0.0" width="47" height="70"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qoW-dq-g9U" customClass="BackspaceTextField" customModule="NSC_iOS" customModuleProvider="target">
+                                                                <rect key="frame" x="4" y="8" width="39" height="54"/>
+                                                                <color key="textColor" name="textColor"/>
+                                                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="40"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                            </textField>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VBY-vt-9tc">
+                                                                <rect key="frame" x="16" y="62" width="15" height="0.0"/>
+                                                                <color key="backgroundColor" name="textColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" id="Am1-Jo-HbU"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="qoW-dq-g9U" firstAttribute="top" secondItem="eeL-cA-y4H" secondAttribute="top" constant="8" id="5n8-p4-UTr"/>
+                                                            <constraint firstAttribute="trailing" secondItem="qoW-dq-g9U" secondAttribute="trailing" constant="4" id="8yu-oG-bz0"/>
+                                                            <constraint firstItem="VBY-vt-9tc" firstAttribute="top" secondItem="qoW-dq-g9U" secondAttribute="bottom" id="Hfd-Yy-xfH"/>
+                                                            <constraint firstItem="qoW-dq-g9U" firstAttribute="leading" secondItem="eeL-cA-y4H" secondAttribute="leading" constant="4" id="MAi-hT-jgN"/>
+                                                            <constraint firstItem="VBY-vt-9tc" firstAttribute="leading" secondItem="eeL-cA-y4H" secondAttribute="leading" constant="16" id="d0k-c3-ISX"/>
+                                                            <constraint firstAttribute="bottom" secondItem="VBY-vt-9tc" secondAttribute="bottom" constant="8" id="v8l-wN-0uw"/>
+                                                            <constraint firstAttribute="trailing" secondItem="VBY-vt-9tc" secondAttribute="trailing" constant="16" id="yDE-Cg-gG0"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sha-Hk-fqM" customClass="CardView" customModule="NSC_iOS" customModuleProvider="target">
+                                                        <rect key="frame" x="305" y="0.0" width="47" height="70"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="47z-17-uea" customClass="BackspaceTextField" customModule="NSC_iOS" customModuleProvider="target">
+                                                                <rect key="frame" x="4" y="8" width="39" height="54"/>
+                                                                <color key="textColor" name="textColor"/>
+                                                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="40"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                            </textField>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8YP-Dv-nW3">
+                                                                <rect key="frame" x="16" y="62" width="15" height="0.0"/>
+                                                                <color key="backgroundColor" name="textColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" id="8e4-Dh-Vlu"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="47z-17-uea" firstAttribute="top" secondItem="Sha-Hk-fqM" secondAttribute="top" constant="8" id="3jO-PA-2gE"/>
+                                                            <constraint firstAttribute="trailing" secondItem="47z-17-uea" secondAttribute="trailing" constant="4" id="Cd8-Bh-n0x"/>
+                                                            <constraint firstItem="47z-17-uea" firstAttribute="leading" secondItem="Sha-Hk-fqM" secondAttribute="leading" constant="4" id="DOO-1t-VJd"/>
+                                                            <constraint firstAttribute="bottom" secondItem="8YP-Dv-nW3" secondAttribute="bottom" constant="8" id="JbO-Ax-LgG"/>
+                                                            <constraint firstAttribute="trailing" secondItem="8YP-Dv-nW3" secondAttribute="trailing" constant="16" id="etL-TX-EYa"/>
+                                                            <constraint firstItem="8YP-Dv-nW3" firstAttribute="leading" secondItem="Sha-Hk-fqM" secondAttribute="leading" constant="16" id="uFe-Cp-B69"/>
+                                                            <constraint firstItem="8YP-Dv-nW3" firstAttribute="top" secondItem="47z-17-uea" secondAttribute="bottom" id="zqx-wV-zLn"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -661,6 +739,8 @@
                         <outlet property="lblLine2" destination="KHj-5N-XAU" id="q3Y-2s-5mf"/>
                         <outlet property="lblLine3" destination="Cn3-0V-O6x" id="wPq-r9-Xgs"/>
                         <outlet property="lblLine4" destination="Dnr-zv-WPo" id="f67-CF-o60"/>
+                        <outlet property="lblLine5" destination="VBY-vt-9tc" id="mSK-yd-fQM"/>
+                        <outlet property="lblLine6" destination="8YP-Dv-nW3" id="sDD-Z3-BzV"/>
                         <outlet property="lblSubTitle" destination="NqS-JM-DZa" id="Iig-0n-dCy"/>
                         <outlet property="lblSupport" destination="moW-cP-rqp" id="ctV-jr-9SK"/>
                         <outlet property="lblTitle" destination="Fst-FQ-hlU" id="5Vq-m3-aWl"/>
@@ -668,10 +748,14 @@
                         <outlet property="txtFPin2" destination="hlA-9W-WJm" id="dDV-qG-Sgh"/>
                         <outlet property="txtFPin3" destination="L8B-8L-7kL" id="CX2-NT-kUI"/>
                         <outlet property="txtFPin4" destination="qeL-la-xFq" id="0L5-wE-TUX"/>
+                        <outlet property="txtFPin5" destination="qoW-dq-g9U" id="HOM-D5-LDa"/>
+                        <outlet property="txtFPin6" destination="47z-17-uea" id="7BU-Sw-PvA"/>
                         <outlet property="viewCard1" destination="aE1-fs-UKK" id="GlY-aS-TKh"/>
                         <outlet property="viewCard2" destination="oJq-6l-bMb" id="fdt-Xe-iYT"/>
                         <outlet property="viewCard3" destination="2Z1-K4-89Q" id="yt2-p4-zyZ"/>
                         <outlet property="viewCard4" destination="nki-5c-syE" id="Gqv-hs-zBH"/>
+                        <outlet property="viewCard5" destination="eeL-cA-y4H" id="bcn-aN-ptS"/>
+                        <outlet property="viewCard6" destination="Sha-Hk-fqM" id="f8J-kX-xEa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eNo-yu-9KZ" sceneMemberID="firstResponder"/>
@@ -916,7 +1000,7 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rel-0V-cSp">
-                                                <rect key="frame" x="81" y="699" width="252" height="50"/>
+                                                <rect key="frame" x="81" y="700" width="252" height="50"/>
                                                 <color key="backgroundColor" name="7E7E7E"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="bZe-SO-ZRm"/>
@@ -938,10 +1022,10 @@
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="VA8-8m-HV1">
-                                                <rect key="frame" x="16" y="769" width="382" height="29"/>
+                                                <rect key="frame" x="16" y="770" width="382" height="28"/>
                                                 <subviews>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="By clicking on Register or Sign up you agree to our T&amp;Cs, Privacy Policy &amp; Disclaimer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vvu-It-d1X" customClass="TTTAttributedLabel">
-                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="29"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="28"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
                                                         <color key="textColor" name="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1464,26 +1548,26 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, James William" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xE1-7b-7p4">
-                                <rect key="frame" x="16" y="314" width="382" height="22.5"/>
+                                <rect key="frame" x="16" y="314" width="382" height="19"/>
                                 <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="16"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your status is approved" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hV4-jW-tcy">
-                                <rect key="frame" x="109.5" y="352.5" width="195.5" height="22.5"/>
+                                <rect key="frame" x="123" y="349" width="168.5" height="19"/>
                                 <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="16"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Approve" translatesAutoresizingMaskIntoConstraints="NO" id="04I-C0-RJX">
-                                <rect key="frame" x="313" y="352.5" width="24" height="24"/>
+                                <rect key="frame" x="299.5" y="349" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="04I-C0-RJX" secondAttribute="height" multiplier="1:1" id="Izc-Jb-1eG"/>
                                     <constraint firstAttribute="height" constant="24" id="gGL-mJ-qP4"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGL-tJ-Uaq">
-                                <rect key="frame" x="16" y="383" width="382" height="90"/>
+                                <rect key="frame" x="16" y="376" width="382" height="75"/>
                                 <string key="text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore. At vero eos et accusam et justo duo dolore et ea</string>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                 <color key="textColor" name="textColor"/>
@@ -1879,7 +1963,7 @@
         <!--Description PopupVC-->
         <scene sceneID="CeU-0V-jHT">
             <objects>
-                <viewController storyboardIdentifier="DescriptionPopupVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GHQ-Xx-gCT" customClass="DescriptionPopupVC" customModule="Lobster_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DescriptionPopupVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GHQ-Xx-gCT" customClass="DescriptionPopupVC" customModule="NSC_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8zr-wX-9Or">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1996,7 +2080,7 @@
         <!--Alert Pop UpVC-->
         <scene sceneID="xqE-9H-A91">
             <objects>
-                <viewController storyboardIdentifier="AlertPopUpVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jk3-OB-fZW" customClass="AlertPopUpVC" customModule="Lobster_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AlertPopUpVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jk3-OB-fZW" customClass="AlertPopUpVC" customModule="NSC_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vcD-iv-b7d">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2128,13 +2212,13 @@ QXJlIHlvdSBzdXJlIHlvdSB3YW50IHRvIGRlbGV0ZQtTZWxmLWRldmVsb3BtZW50IHBsYXlsaXN0Pw
             <size key="intrinsicContentSize" width="83" height="14"/>
         </designable>
         <designable name="hKh-Xe-zcD">
-            <size key="intrinsicContentSize" width="74.5" height="12"/>
+            <size key="intrinsicContentSize" width="75" height="12"/>
         </designable>
         <designable name="hNU-n2-Zae">
             <size key="intrinsicContentSize" width="415" height="14"/>
         </designable>
         <designable name="moW-cP-rqp">
-            <size key="intrinsicContentSize" width="74.5" height="12"/>
+            <size key="intrinsicContentSize" width="75" height="12"/>
         </designable>
     </designables>
     <resources>
@@ -2171,7 +2255,7 @@ QXJlIHlvdSBzdXJlIHlvdSB3YW50IHRvIGRlbGV0ZQtTZWxmLWRldmVsb3BtZW50IHBsYXlsaXN0Pw
             <color red="0.94117647058823528" green="0.33333333333333331" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textColor">
-            <color red="0.11400000005960464" green="0.15299999713897705" blue="0.18000000715255737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.11372549019607843" green="0.15294117647058825" blue="0.17647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="theme_dark">
             <color red="0.95300000905990601" green="0.57300001382827759" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
