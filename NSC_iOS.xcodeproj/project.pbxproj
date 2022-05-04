@@ -65,6 +65,10 @@
 		28A9C4182817B7CA001B252F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28A9C4172817B7CA001B252F /* Assets.xcassets */; };
 		28A9C4282817C09A001B252F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28A9C4272817C09A001B252F /* LaunchScreen.storyboard */; };
 		28AEAB49281959D700325C90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28AEAB48281959D700325C90 /* GoogleService-Info.plist */; };
+		28ED596D282260060035402F /* LoginCheckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ED596C282260060035402F /* LoginCheckViewModel.swift */; };
+		28ED596E282260060035402F /* LoginCheckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ED596C282260060035402F /* LoginCheckViewModel.swift */; };
+		28ED59702822601C0035402F /* LoginCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ED596F2822601C0035402F /* LoginCheckModel.swift */; };
+		28ED59712822601C0035402F /* LoginCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ED596F2822601C0035402F /* LoginCheckModel.swift */; };
 		28F3C253281A5CC80092A077 /* KidsAttendenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F3C251281A5CC80092A077 /* KidsAttendenceCell.swift */; };
 		28F3C254281A5CC80092A077 /* KidsAttendenceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F3C252281A5CC80092A077 /* KidsAttendenceCell.xib */; };
 		28F3C256281A5CCF0092A077 /* KidsAttendanceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F3C255281A5CCF0092A077 /* KidsAttendanceVC.swift */; };
@@ -230,6 +234,8 @@
 		28A9C4272817C09A001B252F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		28AEAB48281959D700325C90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		28AEAB4B28195B1100325C90 /* NSC_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NSC_iOS.entitlements; sourceTree = "<group>"; };
+		28ED596C282260060035402F /* LoginCheckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheckViewModel.swift; sourceTree = "<group>"; };
+		28ED596F2822601C0035402F /* LoginCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheckModel.swift; sourceTree = "<group>"; };
 		28F3C251281A5CC80092A077 /* KidsAttendenceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KidsAttendenceCell.swift; sourceTree = "<group>"; };
 		28F3C252281A5CC80092A077 /* KidsAttendenceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KidsAttendenceCell.xib; sourceTree = "<group>"; };
 		28F3C255281A5CCF0092A077 /* KidsAttendanceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KidsAttendanceVC.swift; sourceTree = "<group>"; };
@@ -381,11 +387,9 @@
 			children = (
 				28AEAB4B28195B1100325C90 /* NSC_iOS.entitlements */,
 				28A9C40B2817B7C9001B252F /* AppDelegate.swift */,
-				281AAE3D281AA39D0070D758 /* CountryViewModel.swift */,
-				281AAE40281AA3B40070D758 /* CountryModel.swift */,
-				281AAE48281AA4D20070D758 /* AppVersionViewModel.swift */,
-				281AAE45281AA44D0070D758 /* AppVersionModel.swift */,
 				28A9C4262817BF8D001B252F /* ViewControllers */,
+				9AE824412817E25B00A29373 /* TableCell */,
+				28ED596928225F940035402F /* Models + ViewModels */,
 				28F8316B28197BF500CAF99C /* API Helpers */,
 				28A9C4242817BF49001B252F /* Storyboards */,
 				28F83083281977F000CAF99C /* Helper Classes */,
@@ -419,9 +423,58 @@
 		28A9C4262817BF8D001B252F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9AE824322817DF8800A29373 /* UserModule */,
+				28470DAA281C0CC500FE9C66 /* AlertPopUpVC.swift */,
+				28470DAD281C0ED700FE9C66 /* DescriptionPopupVC.swift */,
+				9AE824342817DF8800A29373 /* SplashVC.swift */,
+				9AE824352817DF8800A29373 /* LoginVC.swift */,
+				9AE824332817DF8800A29373 /* OTPVC.swift */,
+				9AE824362817DF8800A29373 /* SignUpVC.swift */,
+				9AE824372817DF8800A29373 /* CountryListVC.swift */,
+				9A2CFCCE2818139F000A2C1D /* ProfileVC.swift */,
+				9A53D4C9281929B500226853 /* CampListVC.swift */,
+				9A53D4D128193B6D00226853 /* CampDetailVC.swift */,
+				9A53D4D328193C8500226853 /* DailyReportVC.swift */,
+				28F3C255281A5CCF0092A077 /* KidsAttendanceVC.swift */,
+				9A0F6F70281BBB41008CAA4B /* ProfileStatusVC.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		28ED596928225F940035402F /* Models + ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				28ED596B28225FE30035402F /* CountryList */,
+				28ED596A28225FDA0035402F /* AppVersion */,
+				28ED5972282261990035402F /* LoginCheck */,
+			);
+			path = "Models + ViewModels";
+			sourceTree = "<group>";
+		};
+		28ED596A28225FDA0035402F /* AppVersion */ = {
+			isa = PBXGroup;
+			children = (
+				281AAE48281AA4D20070D758 /* AppVersionViewModel.swift */,
+				281AAE45281AA44D0070D758 /* AppVersionModel.swift */,
+			);
+			path = AppVersion;
+			sourceTree = "<group>";
+		};
+		28ED596B28225FE30035402F /* CountryList */ = {
+			isa = PBXGroup;
+			children = (
+				281AAE3D281AA39D0070D758 /* CountryViewModel.swift */,
+				281AAE40281AA3B40070D758 /* CountryModel.swift */,
+			);
+			path = CountryList;
+			sourceTree = "<group>";
+		};
+		28ED5972282261990035402F /* LoginCheck */ = {
+			isa = PBXGroup;
+			children = (
+				28ED596C282260060035402F /* LoginCheckViewModel.swift */,
+				28ED596F2822601C0035402F /* LoginCheckModel.swift */,
+			);
+			path = LoginCheck;
 			sourceTree = "<group>";
 		};
 		28F83083281977F000CAF99C /* Helper Classes */ = {
@@ -567,27 +620,6 @@
 				9A0F6F61281BA15F008CAA4B /* Poppins-Regular.otf */,
 			);
 			path = Font;
-			sourceTree = "<group>";
-		};
-		9AE824322817DF8800A29373 /* UserModule */ = {
-			isa = PBXGroup;
-			children = (
-				9AE824412817E25B00A29373 /* TableCell */,
-				28470DAA281C0CC500FE9C66 /* AlertPopUpVC.swift */,
-				28470DAD281C0ED700FE9C66 /* DescriptionPopupVC.swift */,
-				9AE824342817DF8800A29373 /* SplashVC.swift */,
-				9AE824352817DF8800A29373 /* LoginVC.swift */,
-				9AE824332817DF8800A29373 /* OTPVC.swift */,
-				9AE824362817DF8800A29373 /* SignUpVC.swift */,
-				9AE824372817DF8800A29373 /* CountryListVC.swift */,
-				9A2CFCCE2818139F000A2C1D /* ProfileVC.swift */,
-				9A53D4C9281929B500226853 /* CampListVC.swift */,
-				9A53D4D128193B6D00226853 /* CampDetailVC.swift */,
-				9A53D4D328193C8500226853 /* DailyReportVC.swift */,
-				28F3C255281A5CCF0092A077 /* KidsAttendanceVC.swift */,
-				9A0F6F70281BBB41008CAA4B /* ProfileStatusVC.swift */,
-			);
-			path = UserModule;
 			sourceTree = "<group>";
 		};
 		9AE824412817E25B00A29373 /* TableCell */ = {
@@ -928,6 +960,7 @@
 				281AAE53281AA8D30070D758 /* APIRouter.swift in Sources */,
 				28F83123281977F000CAF99C /* NavigationClass.swift in Sources */,
 				28F83135281977F000CAF99C /* GradientView.swift in Sources */,
+				28ED596E282260060035402F /* LoginCheckViewModel.swift in Sources */,
 				28F830FF281977F000CAF99C /* TagFlowLayout.swift in Sources */,
 				2867950B282150B60010892E /* DynamicContents.swift in Sources */,
 				28F83103281977F000CAF99C /* ExpandableLabel.swift in Sources */,
@@ -941,6 +974,7 @@
 				28F830EF281977F000CAF99C /* String+Extension.swift in Sources */,
 				281AAE39281A85B00070D758 /* APIManager.swift in Sources */,
 				28F8312D281977F000CAF99C /* AnimationFrames.swift in Sources */,
+				28ED59712822601C0035402F /* LoginCheckModel.swift in Sources */,
 				28F830D3281977F000CAF99C /* DJCheckBox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1015,6 +1049,7 @@
 				281AAE52281AA8D30070D758 /* APIRouter.swift in Sources */,
 				28F830FE281977F000CAF99C /* TagFlowLayout.swift in Sources */,
 				28F83102281977F000CAF99C /* ExpandableLabel.swift in Sources */,
+				28ED596D282260060035402F /* LoginCheckViewModel.swift in Sources */,
 				28A9C4162817B7C9001B252F /* NSC_iOS.xcdatamodeld in Sources */,
 				2867950A282150B60010892E /* DynamicContents.swift in Sources */,
 				28F8316128197B0600CAF99C /* Int+Timepiece.swift in Sources */,
@@ -1028,6 +1063,7 @@
 				28F8316728197B8C00CAF99C /* CommonFunctions.swift in Sources */,
 				281AAE38281A85B00070D758 /* APIManager.swift in Sources */,
 				28F8312C281977F000CAF99C /* AnimationFrames.swift in Sources */,
+				28ED59702822601C0035402F /* LoginCheckModel.swift in Sources */,
 				28F830D2281977F000CAF99C /* DJCheckBox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

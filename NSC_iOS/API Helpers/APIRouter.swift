@@ -14,6 +14,7 @@ enum APIRouter : URLRequestConvertible {
     
     case appversion([String:String])
     case countrylist
+    case logincheck([String:String])
     
     
     var route: APIRoute {
@@ -22,6 +23,8 @@ enum APIRouter : URLRequestConvertible {
             return APIRoute(path: "app-version", method: .post, data: data)
         case .countrylist:
             return APIRoute(path: "country-listing", method: .get)
+        case .logincheck(let data):
+            return APIRoute(path: "logincheck", method: .post, data: data)
         }
     }
     
