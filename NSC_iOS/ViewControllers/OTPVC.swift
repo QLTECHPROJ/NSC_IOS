@@ -72,7 +72,7 @@ class OTPVC: BaseViewController {
     
     // MARK: - FUNCTIONS
     override func setupUI() {
-        let strSMSSent = "We've sent SMS with a 6-digit code to +\(AppVersionDetails.countryCode)\(strMobile)."
+        let strSMSSent = "We've sent SMS with a 6-digit code to \n+\(AppVersionDetails.countryCode)\(strMobile)."
         lblSubTitle.attributedText = strSMSSent.attributedString(alignment: .center, lineSpacing: 5)
         
         if isFromSignUp == true {

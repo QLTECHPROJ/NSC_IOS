@@ -19,6 +19,7 @@ enum APIRouter : URLRequestConvertible {
     case login([String:String])
     case coachregister([String:String])
     case coachdetails([String:String])
+    case coachstatus([String:String])
     
     
     var route: APIRoute {
@@ -36,6 +37,8 @@ enum APIRouter : URLRequestConvertible {
             return APIRoute(path: "coachregister", method: .post, data: data)
         case .coachdetails(let data):
             return APIRoute(path: "coachdetails", method: .post, data: data)
+        case .coachstatus(let data):
+            return APIRoute(path: "coachstatus", method: .post, data: data)
         }
     }
     

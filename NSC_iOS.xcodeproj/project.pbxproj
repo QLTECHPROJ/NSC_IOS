@@ -73,6 +73,10 @@
 		28C8DA292822B74F0048A172 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C8DA272822B74F0048A172 /* LoginViewModel.swift */; };
 		28C8DA2B2822B7590048A172 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C8DA2A2822B7590048A172 /* LoginModel.swift */; };
 		28C8DA2C2822B7590048A172 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C8DA2A2822B7590048A172 /* LoginModel.swift */; };
+		28D1A5B32823FBA200B3A179 /* CoachStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D1A5B22823FBA200B3A179 /* CoachStatusViewModel.swift */; };
+		28D1A5B42823FBA200B3A179 /* CoachStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D1A5B22823FBA200B3A179 /* CoachStatusViewModel.swift */; };
+		28D1A5B62823FBB200B3A179 /* CoachStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D1A5B52823FBB200B3A179 /* CoachStatusModel.swift */; };
+		28D1A5B72823FBB200B3A179 /* CoachStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D1A5B52823FBB200B3A179 /* CoachStatusModel.swift */; };
 		28ED596D282260060035402F /* LoginCheckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ED596C282260060035402F /* LoginCheckViewModel.swift */; };
 		28ED596E282260060035402F /* LoginCheckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ED596C282260060035402F /* LoginCheckViewModel.swift */; };
 		28ED59702822601C0035402F /* LoginCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ED596F2822601C0035402F /* LoginCheckModel.swift */; };
@@ -246,6 +250,8 @@
 		28AEAB4B28195B1100325C90 /* NSC_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NSC_iOS.entitlements; sourceTree = "<group>"; };
 		28C8DA272822B74F0048A172 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		28C8DA2A2822B7590048A172 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		28D1A5B22823FBA200B3A179 /* CoachStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachStatusViewModel.swift; sourceTree = "<group>"; };
+		28D1A5B52823FBB200B3A179 /* CoachStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachStatusModel.swift; sourceTree = "<group>"; };
 		28ED596C282260060035402F /* LoginCheckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheckViewModel.swift; sourceTree = "<group>"; };
 		28ED596F2822601C0035402F /* LoginCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheckModel.swift; sourceTree = "<group>"; };
 		28F3C251281A5CC80092A077 /* KidsAttendenceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KidsAttendenceCell.swift; sourceTree = "<group>"; };
@@ -459,11 +465,11 @@
 				9AE824362817DF8800A29373 /* SignUpVC.swift */,
 				9AE824372817DF8800A29373 /* CountryListVC.swift */,
 				9A2CFCCE2818139F000A2C1D /* ProfileVC.swift */,
+				9A0F6F70281BBB41008CAA4B /* ProfileStatusVC.swift */,
 				9A53D4C9281929B500226853 /* CampListVC.swift */,
 				9A53D4D128193B6D00226853 /* CampDetailVC.swift */,
 				9A53D4D328193C8500226853 /* DailyReportVC.swift */,
 				28F3C255281A5CCF0092A077 /* KidsAttendanceVC.swift */,
-				9A0F6F70281BBB41008CAA4B /* ProfileStatusVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -477,6 +483,15 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		28D1A5B82823FBB700B3A179 /* CoachStatus */ = {
+			isa = PBXGroup;
+			children = (
+				28D1A5B22823FBA200B3A179 /* CoachStatusViewModel.swift */,
+				28D1A5B52823FBB200B3A179 /* CoachStatusModel.swift */,
+			);
+			path = CoachStatus;
+			sourceTree = "<group>";
+		};
 		28ED596928225F940035402F /* Models + ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -486,6 +501,7 @@
 				28C8DA2D2822B7A10048A172 /* Login */,
 				284A3EC42823B0A100B511FB /* SignUp */,
 				284A3EC82823EF0700B511FB /* CoachDetail */,
+				28D1A5B82823FBB700B3A179 /* CoachStatus */,
 			);
 			path = "Models + ViewModels";
 			sourceTree = "<group>";
@@ -938,6 +954,7 @@
 				281AAE56281AAA970070D758 /* UICollectionView+Extension.swift in Sources */,
 				281AAE4A281AA4D30070D758 /* AppVersionViewModel.swift in Sources */,
 				28F830DF281977F000CAF99C /* UIColor+Extension.swift in Sources */,
+				28D1A5B72823FBB200B3A179 /* CoachStatusModel.swift in Sources */,
 				281AAE42281AA3B40070D758 /* CountryModel.swift in Sources */,
 				28F830FB281977F000CAF99C /* UITableView+Extension.swift in Sources */,
 				28F83137281977F000CAF99C /* WhereAmIRunning.swift in Sources */,
@@ -960,6 +977,7 @@
 				28F830E1281977F000CAF99C /* DJExtensions.swift in Sources */,
 				28F830F9281977F000CAF99C /* NSDate+Extension.swift in Sources */,
 				28F83105281977F000CAF99C /* CardView.swift in Sources */,
+				28D1A5B42823FBA200B3A179 /* CoachStatusViewModel.swift in Sources */,
 				9A0F6F72281BBB41008CAA4B /* ProfileStatusVC.swift in Sources */,
 				28F3C257281A5D170092A077 /* KidsAttendenceCell.swift in Sources */,
 				281AAE3C281A85BA0070D758 /* APIRoute.swift in Sources */,
@@ -1031,6 +1049,7 @@
 				281AAE55281AAA970070D758 /* UICollectionView+Extension.swift in Sources */,
 				281AAE49281AA4D30070D758 /* AppVersionViewModel.swift in Sources */,
 				28F8316228197B0600CAF99C /* NSDate+Timepiece.swift in Sources */,
+				28D1A5B62823FBB200B3A179 /* CoachStatusModel.swift in Sources */,
 				281AAE41281AA3B40070D758 /* CountryModel.swift in Sources */,
 				28F830DE281977F000CAF99C /* UIColor+Extension.swift in Sources */,
 				28F830FA281977F000CAF99C /* UITableView+Extension.swift in Sources */,
@@ -1053,6 +1072,7 @@
 				9AE8243A2817DF8800A29373 /* LoginVC.swift in Sources */,
 				28F830E0281977F000CAF99C /* DJExtensions.swift in Sources */,
 				28F830F8281977F000CAF99C /* NSDate+Extension.swift in Sources */,
+				28D1A5B32823FBA200B3A179 /* CoachStatusViewModel.swift in Sources */,
 				9A0F6F71281BBB41008CAA4B /* ProfileStatusVC.swift in Sources */,
 				28F83104281977F000CAF99C /* CardView.swift in Sources */,
 				281AAE3B281A85BA0070D758 /* APIRoute.swift in Sources */,

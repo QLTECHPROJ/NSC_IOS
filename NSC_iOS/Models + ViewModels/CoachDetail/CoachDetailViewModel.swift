@@ -13,6 +13,7 @@ class CoachDetailViewModel {
     
     func callCoachDetailsAPI(completion: @escaping (Bool) -> Void) {
         let parameters = ["coachId":LoginDataModel.currentUser?.ID ?? ""]
+        
         APIManager.shared.callAPI(router: APIRouter.coachdetails(parameters)) { [weak self] (response : LoginModel?) in
             if let responseData = response?.ResponseData {
                 self?.userData = responseData

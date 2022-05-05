@@ -26,7 +26,6 @@ class SignUpVC: BaseViewController {
     @IBOutlet weak var btnGetSMSCode: UIButton!
     
     // UILabel
-    @IBOutlet weak var lblTitleHeightConst: NSLayoutConstraint!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblSubTitle: UILabel!
     @IBOutlet weak var lblPrivacy: TTTAttributedLabel!
