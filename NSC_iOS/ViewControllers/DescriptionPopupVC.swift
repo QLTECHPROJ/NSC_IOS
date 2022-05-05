@@ -60,7 +60,4 @@ class DescriptionPopupVC: BaseViewController {
         self.dismiss(animated: false, completion: nil)
     }
     
-    @IBAction func onTappedDisclaimer(_ sender: UIButton) {
-        
-    }
 }

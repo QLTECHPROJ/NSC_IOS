@@ -7,17 +7,15 @@
 
 import UIKit
 
-class SplashVC: UIViewController {
+class SplashVC: BaseViewController {
     
-    // MARK: - VARIABLES
-    let appVersionVM = AppVersionViewModel()
     
     // MARK: - VIEW LIFE CYCLE
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        let appVersionVM = AppVersionViewModel()
         appVersionVM.callAppVersionAPI(completion: { success in
             if success {
                 self.handleAppUpdatePopup()
@@ -25,9 +23,10 @@ class SplashVC: UIViewController {
         })
     }
     
+    
     // MARK: - FUNCTIONS
     func handleAppUpdatePopup() {
-        if appVersionVM.appVersionData?.IsForce == "1" {
+        if AppVersionDetails.IsForce == "1" {
             let aVC = AppStoryBoard.main.viewController(viewControllerClass: AlertPopUpVC.self)
             aVC.titleText = Theme.strings.force_update_title
             aVC.detailText = Theme.strings.force_update_subtitle
@@ -36,7 +35,7 @@ class SplashVC: UIViewController {
             aVC.modalPresentationStyle = .overFullScreen
             aVC.delegate = self
             self.present(aVC, animated: false, completion: nil)
-        } else if appVersionVM.appVersionData?.IsForce == "0" {
+        } else if AppVersionDetails.IsForce == "0" {
             let aVC = AppStoryBoard.main.viewController(viewControllerClass: AlertPopUpVC.self)
             aVC.titleText = Theme.strings.normal_update_title
             aVC.detailText = Theme.strings.normal_update_subtitle
@@ -46,8 +45,43 @@ class SplashVC: UIViewController {
             aVC.delegate = self
             self.present(aVC, animated: false, completion: nil)
         } else {
+            self.handleRedirection()
+        }
+    }
+    
+    func handleRedirection() {
+        if LoginDataModel.currentUser != nil {
+            if checkInternet() {
+                let coachDetailVM = CoachDetailViewModel()
+                coachDetailVM.callCoachDetailsAPI { success in
+                    if success {
+                        self.handleLoginUserRedirection()
+                    } else {
+                        self.handleRedirection()
+                    }
+                }
+            }
+        } else {
             let aVC = AppStoryBoard.main.viewController(viewControllerClass: LoginVC.self)
             self.navigationController?.pushViewController(aVC, animated: true)
+        }
+    }
+    
+    override func handleLoginUserRedirection() {
+        guard let userData = LoginDataModel.currentUser else {
+            return
+        }
+        
+        if userData.Status == CoachStatus.Hired.rawValue {
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass: CampListVC.self)
+            let navVC = UINavigationController(rootViewController: aVC)
+            navVC.navigationBar.isHidden = true
+            APPDELEGATE.window?.rootViewController = navVC
+        } else {
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass: ProfileStatusVC.self)
+            let navVC = UINavigationController(rootViewController: aVC)
+            navVC.navigationBar.isHidden = true
+            APPDELEGATE.window?.rootViewController = navVC
         }
     }
     
@@ -59,7 +93,7 @@ extension SplashVC : AlertPopUpVCDelegate {
     
     func handleAction(sender: UIButton, popUpTag: Int) {
         if sender.tag == 0 {
-            if appVersionVM.appVersionData?.IsForce == "1" {
+            if AppVersionDetails.IsForce == "1" {
                 self.openUrl(urlString: APP_APPSTORE_URL)
             } else {
                 self.openUrl(urlString: APP_APPSTORE_URL)

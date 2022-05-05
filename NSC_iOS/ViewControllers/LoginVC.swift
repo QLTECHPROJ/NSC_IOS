@@ -71,7 +71,7 @@ class LoginVC: BaseViewController {
     }
     
     override func setupData() {
-        let countryText = countryShortName + " " + "+" + countryCode
+        let countryText = AppVersionDetails.countryShortName + " " + "+" + AppVersionDetails.countryCode
         btnCountryCode.setTitle(countryText, for: .normal)
         
         buttonEnableDisable()
@@ -123,7 +123,7 @@ class LoginVC: BaseViewController {
     func sendOTP() {
         showHud()
         
-        let phoneString = "+" + countryCode + (txtFMobileNo.text ?? "")
+        let phoneString = "+" + AppVersionDetails.countryCode + (txtFMobileNo.text ?? "")
         
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneString, uiDelegate: nil) { verificationID, error in
             
@@ -152,8 +152,8 @@ class LoginVC: BaseViewController {
             lblErrMobileNo.isHidden = true
             isFromOTP = true
             
-            let parameters = ["mobileNumber":txtFMobileNo.text ?? "",
-                              "countryCode":countryCode]
+            let parameters = ["mobile":txtFMobileNo.text ?? "",
+                              "countryCode":AppVersionDetails.countryCode]
             
             loginCheckVM = LoginCheckViewModel()
             loginCheckVM?.callLoginCheckAPI(parameters: parameters, completion: { success in

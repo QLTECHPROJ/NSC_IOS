@@ -6,68 +6,80 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: - Dynamic Contents
 
-var countryID : String {
-    get {
-        return UserDefaults.standard.string(forKey: "countryID") ?? "101"
-    }
-    set {
-        UserDefaults.standard.set(newValue, forKey: "countryID")
-        UserDefaults.standard.synchronize()
-    }
+enum CoachStatus : String {
+    case Pending
+    case Approved
+    case Rejected
+    case Hired
 }
 
-var countryCode : String {
-    get {
-        return UserDefaults.standard.string(forKey: "countryCode") ?? "91"
+extension LoginDataModel {
+    
+    static var profileImage : UIImage?
+    
+    class var currentUser : LoginDataModel? {
+        get {
+            if let userData = UserDefaults.standard.data(forKey: "LoginData") {
+                return LoginDataModel(data: userData)
+            }
+            return nil
+        }
+        set {
+            LoginDataModel.profileImage = nil
+            if let newData = newValue {
+                UserDefaults.standard.setValue(newData.toJsonData(), forKey: "LoginData")
+            }
+            else {
+                UserDefaults.standard.setValue(nil, forKey: "LoginData")
+            }
+            UserDefaults.standard.synchronize()
+        }
     }
-    set {
-        UserDefaults.standard.set(newValue, forKey: "countryCode")
-        UserDefaults.standard.synchronize()
-    }
+    
 }
 
-var countryShortName : String {
-    get {
-        return UserDefaults.standard.string(forKey: "countryShortName") ?? "IN"
+
+class AppVersionDetails {
+    
+    static var IsForce = AppVersionDetails.current.IsForce
+    static var countryID = AppVersionDetails.current.countryID
+    static var countryCode = AppVersionDetails.current.countryCode
+    static var countryShortName = AppVersionDetails.current.countryShortName
+    static var supportTitle = AppVersionDetails.current.supportTitle
+    static var supportText = AppVersionDetails.current.supportText
+    static var supportEmail = AppVersionDetails.current.supportEmail
+    
+    class func defaultDetails() -> AppVersionDetailModel {
+        let details = AppVersionDetailModel ()
+        details.IsForce = ""
+        details.countryID = "101"
+        details.countryCode = "91"
+        details.countryShortName = "IN"
+        details.supportTitle = "Support"
+        details.supportText = "Please contact support at "
+        details.supportEmail = "support@nsc.com.in"
+        return details
     }
-    set {
-        UserDefaults.standard.set(newValue, forKey: "countryShortName")
-        UserDefaults.standard.synchronize()
+    
+    class var current : AppVersionDetailModel {
+        get {
+            if let userData = UserDefaults.standard.data(forKey: "AppVerionDetail") {
+                return AppVersionDetailModel(data: userData)
+            }
+            return self.defaultDetails()
+        }
+        set {
+            UserDefaults.standard.setValue(newValue.toJsonData(), forKey: "AppVerionDetail")
+            UserDefaults.standard.synchronize()
+        }
     }
+    
 }
 
-var supportTitle : String {
-    get {
-        return UserDefaults.standard.string(forKey: "supportTitle") ?? "Support"
-    }
-    set {
-        UserDefaults.standard.set(newValue, forKey: "supportTitle")
-        UserDefaults.standard.synchronize()
-    }
-}
-
-var supportText : String {
-    get {
-        return UserDefaults.standard.string(forKey: "supportText") ?? "Please contact support at "
-    }
-    set {
-        UserDefaults.standard.set(newValue, forKey: "supportText")
-        UserDefaults.standard.synchronize()
-    }
-}
-
-var supportEmail : String {
-    get {
-        return UserDefaults.standard.string(forKey: "supportEmail") ?? "serotonin@lobsterapp.com.au"
-    }
-    set {
-        UserDefaults.standard.set(newValue, forKey: "supportEmail")
-        UserDefaults.standard.synchronize()
-    }
-}
 
 var authVerificationID : String {
     get {

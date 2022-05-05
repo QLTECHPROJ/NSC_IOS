@@ -16,11 +16,11 @@ class AppVersionModel: EVObject {
 }
 
 class AppVersionDetailModel: EVObject {
-    var IsForce: String?
-    var supportTitle: String?
-    var supportText: String?
-    var supportEmail: String?
-    var countryID: String?
-    var countryCode: String?
-    var countryShortName: String?
+    var IsForce = ""
+    var supportTitle = ""
+    var supportText = ""
+    var supportEmail = ""
+    var countryID = ""
+    var countryCode = ""
+    var countryShortName = ""
 }

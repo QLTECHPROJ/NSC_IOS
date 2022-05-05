@@ -60,6 +60,13 @@ class BaseViewController: UIViewController {
     }
     
     /**
+     Redirect Logged In User
+    */
+    func handleLoginUserRedirection() {
+        // Redirect Logged In User
+    }
+    
+    /**
     Enable / Disable Buttons
     */
     func buttonEnableDisable() {

@@ -55,7 +55,7 @@ class OTPVC: BaseViewController {
         return [lblLine1, lblLine2, lblLine3, lblLine4, lblLine5, lblLine6]
     }
     
-    var signUpFlag = ""
+    var isFromSignUp = false
     var strName = ""
     var strMobile = ""
     var strEmail = ""
@@ -72,13 +72,13 @@ class OTPVC: BaseViewController {
     
     // MARK: - FUNCTIONS
     override func setupUI() {
-        let strSMSSent = "We've sent SMS with a 6-digit code to +\(countryCode)\(strMobile)."
+        let strSMSSent = "We've sent SMS with a 6-digit code to +\(AppVersionDetails.countryCode)\(strMobile)."
         lblSubTitle.attributedText = strSMSSent.attributedString(alignment: .center, lineSpacing: 5)
         
-        if signUpFlag == "0" {
-            btnDone.setTitle("LOGIN", for: .normal)
-        } else {
+        if isFromSignUp == true {
             btnDone.setTitle("CREATE ACCOUNT", for: .normal)
+        } else {
+            btnDone.setTitle("LOGIN", for: .normal)
         }
         
         for textfield in textFields {
@@ -128,6 +128,25 @@ class OTPVC: BaseViewController {
         return string.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
     }
     
+    func sendOTP() {
+        showHud()
+        
+        let phoneString = "+" + AppVersionDetails.countryCode + strMobile
+        
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneString, uiDelegate: nil) { verificationID, error in
+            
+            hideHud()
+            
+            if let error = error {
+                showAlertToast(message: error.localizedDescription)
+                return
+            }
+            
+            // Sign in using the verificationID and the code sent to the user
+            authVerificationID = verificationID ?? ""
+        }
+    }
+    
     func autoVerifyOTP() {
         if checkValidation() {
             lblLine1.isHidden = true
@@ -156,28 +175,64 @@ class OTPVC: BaseViewController {
                 return
             }
             
-            // User is signed in
-            let aVC = AppStoryBoard.main.viewController(viewControllerClass:ProfileVC.self)
-            self.navigationController?.pushViewController(aVC, animated: true)
+            // OTP Verification Successful
+            self.goNext()
         }
     }
     
-    func sendOTP() {
-        showHud()
+    override func goNext() {
+        if isFromSignUp {
+            handleSignUp()
+        } else {
+            handleLogin()
+        }
+    }
+    
+    func handleSignUp() {
+        // Call Coach Register API
+        let parameters = ["mobile":strMobile,
+                          "countryCode":AppVersionDetails.countryCode,
+                          "deviceType":APP_TYPE,
+                          "deviceToken":FCM_TOKEN]
         
-        let phoneString = "+" + countryCode + strMobile
-        
-        PhoneAuthProvider.provider().verifyPhoneNumber(phoneString, uiDelegate: nil) { verificationID, error in
-            
-            hideHud()
-            
-            if let error = error {
-                showAlertToast(message: error.localizedDescription)
-                return
+        let signUpVM = SignUpViewModel()
+        signUpVM.callCoachRegisterAPI(parameters: parameters) { success in
+            if success {
+                self.handleLoginUserRedirection()
             }
-            
-            // Sign in using the verificationID and the code sent to the user
-            authVerificationID = verificationID ?? ""
+        }
+    }
+    
+    func handleLogin() {
+        // Call Coach Login API
+        let parameters = ["mobile":strMobile,
+                          "countryCode":AppVersionDetails.countryCode,
+                          "deviceType":APP_TYPE,
+                          "deviceToken":FCM_TOKEN]
+        
+        let loginVM = LoginViewModel()
+        loginVM.callLoginAPI(parameters: parameters) { success in
+            if success {
+                self.handleLoginUserRedirection()
+            }
+        }
+    }
+    
+    override func handleLoginUserRedirection() {
+        guard let userData = LoginDataModel.currentUser else {
+            return
+        }
+        
+        if userData.Status == CoachStatus.Hired.rawValue {
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass: CampListVC.self)
+            let navVC = UINavigationController(rootViewController: aVC)
+            navVC.navigationBar.isHidden = true
+            APPDELEGATE.window?.rootViewController = navVC
+        } else {
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass: ProfileStatusVC.self)
+            let navVC = UINavigationController(rootViewController: aVC)
+            navVC.navigationBar.isHidden = true
+            APPDELEGATE.window?.rootViewController = navVC
         }
     }
     

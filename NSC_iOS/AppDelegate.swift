@@ -108,6 +108,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 
+// MARK: - UIApplication Life Cycle Events
+extension AppDelegate {
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        // Set App Notification Count to "0" on App Launch
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        
+        if AppVersionDetails.IsForce == "1" {
+            window?.rootViewController = AppStoryBoard.main.intialViewController()
+        }
+    }
+    
+}
+
+
 // MARK: - Push Notification SetUp
 extension AppDelegate : UNUserNotificationCenterDelegate {
     

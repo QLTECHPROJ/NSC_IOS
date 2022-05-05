@@ -15,18 +15,13 @@ class AppVersionViewModel {
         let parameters = ["version":APP_VERSION,
                           "deviceType":APP_TYPE,
                           "deviceToken":FCM_TOKEN,
-                          "coachId":"1"]
+                          "coachId":LoginDataModel.currentUser?.ID ?? ""]
         
         APIManager.shared.callAPI(router: APIRouter.appversion(parameters)) { [weak self] (response : AppVersionModel?) in
-            if let countryResponse = response {
-                self?.appVersionData = countryResponse.ResponseData
+            if let responseData = response?.ResponseData {
+                self?.appVersionData = responseData
                 
-                countryID = countryResponse.ResponseData?.countryID ?? ""
-                countryCode = countryResponse.ResponseData?.countryCode ?? ""
-                countryShortName = countryResponse.ResponseData?.countryShortName ?? ""
-                supportTitle = countryResponse.ResponseData?.supportTitle ?? ""
-                supportText = countryResponse.ResponseData?.supportText ?? ""
-                supportEmail = countryResponse.ResponseData?.supportEmail ?? ""
+                AppVersionDetails.current = responseData
                 
                 completion(true)
             } else {
