@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "DownArrow.png",
+      "filename" : "down_orange.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "DownArrow@2x.png",
+      "filename" : "down_orange@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "DownArrow@3x.png",
+      "filename" : "down_orange@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

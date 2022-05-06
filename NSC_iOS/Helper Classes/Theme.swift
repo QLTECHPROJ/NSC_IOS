@@ -445,7 +445,8 @@ struct AppStrings {
     let alert_invalid_mobile_error = "Please provide a valid mobile number"
     let alert_invalid_otp = "Please use a valid PIN to access your account"
     
-    let alert_blank_fullname_error = "Please provide a Name"
+    let alert_blank_firstname_error = "Please provide a First Name"
+    let alert_blank_lastname_error = "Please provide a Last Name"
     let alert_blank_dob_error = "Date of Birth should not be blank"
     let alert_dob_error = "Please confirm whether you are above 1 day"
     let alert_invalid_fullname_error = "Please enter valid Name"

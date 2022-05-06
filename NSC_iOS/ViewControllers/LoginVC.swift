@@ -25,7 +25,7 @@ class LoginVC: BaseViewController {
     @IBOutlet weak var btnGetSMSCode: UIButton!
     
     //UITextfield
-    @IBOutlet weak var txtFMobileNo: UITextField!
+    @IBOutlet weak var txtMobile: UITextField!
     
     //UIStackView
     @IBOutlet weak var stackView: UIStackView!
@@ -49,9 +49,9 @@ class LoginVC: BaseViewController {
         super.viewWillAppear(animated)
         
         if isFromOTP {
-            txtFMobileNo.becomeFirstResponder()
+            txtMobile.becomeFirstResponder()
         } else {
-            txtFMobileNo.text = ""
+            txtMobile.text = ""
         }
         
         buttonEnableDisable()
@@ -65,7 +65,7 @@ class LoginVC: BaseViewController {
     
     // MARK: - FUNCTIONS
     override func setupUI() {
-        txtFMobileNo.delegate = self
+        txtMobile.delegate = self
         lblTitle.text = Theme.strings.login_title
         lblSubTitle.attributedText = Theme.strings.login_subtitle.attributedString(alignment: .center, lineSpacing: 5)
     }
@@ -78,7 +78,7 @@ class LoginVC: BaseViewController {
     }
     
     override func buttonEnableDisable() {
-        let mobile = txtFMobileNo.text?.trim
+        let mobile = txtMobile.text?.trim
         
         if mobile?.count == 0 {
             btnGetSMSCode.isUserInteractionEnabled = false
@@ -92,7 +92,7 @@ class LoginVC: BaseViewController {
     
     func checkValidation() -> Bool {
         var isValid = true
-        let strMobile = txtFMobileNo.text?.trim ?? ""
+        let strMobile = txtMobile.text?.trim ?? ""
         if strMobile.count == 0 {
             isValid = false
             self.lblErrMobileNo.isHidden = false
@@ -113,7 +113,7 @@ class LoginVC: BaseViewController {
     override func goNext() {
         if loginCheckVM?.loginFlag == "0" {
             let aVC = AppStoryBoard.main.viewController(viewControllerClass: SignUpVC.self)
-            aVC.strMobile = txtFMobileNo.text ?? ""
+            aVC.strMobile = txtMobile.text ?? ""
             self.navigationController?.pushViewController(aVC, animated: true)
         } else {
             sendOTP()
@@ -123,7 +123,7 @@ class LoginVC: BaseViewController {
     func sendOTP() {
         showHud()
         
-        let phoneString = "+" + AppVersionDetails.countryCode + (txtFMobileNo.text ?? "")
+        let phoneString = "+" + AppVersionDetails.countryCode + (txtMobile.text ?? "")
         
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneString, uiDelegate: nil) { verificationID, error in
             
@@ -138,7 +138,7 @@ class LoginVC: BaseViewController {
             authVerificationID = verificationID ?? ""
             
             let aVC = AppStoryBoard.main.viewController(viewControllerClass:OTPVC.self)
-            aVC.strMobile = self.txtFMobileNo.text ?? ""
+            aVC.strMobile = self.txtMobile.text ?? ""
             self.navigationController?.pushViewController(aVC, animated: true)
         }
     }
@@ -152,7 +152,7 @@ class LoginVC: BaseViewController {
             lblErrMobileNo.isHidden = true
             isFromOTP = true
             
-            let parameters = ["mobile":txtFMobileNo.text ?? "",
+            let parameters = ["mobile":txtMobile.text ?? "",
                               "countryCode":AppVersionDetails.countryCode]
             
             loginCheckVM = LoginCheckViewModel()

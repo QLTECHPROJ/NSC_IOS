@@ -38,5 +38,7 @@ class LoginDataModel: EVObject {
     var IFSC_Code = ""
     var Account_Number = ""
     var Status = ""
+    var BankDetailFilled = ""
+    var PersonalDetailFilled = ""
     var Profile_Image = ""
 }

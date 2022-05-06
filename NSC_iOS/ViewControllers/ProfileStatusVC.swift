@@ -27,11 +27,7 @@ class ProfileStatusVC: BaseViewController {
         // Do any additional setup after loading the view.
         
         setupUI()
-        
-        coachStatusVM = CoachStatusViewModel()
-        coachStatusVM?.callCoachStatusAPI(completion: { success in
-            self.setupData()
-        })
+        fetchCoachSatusData()
     }
     
     
@@ -61,11 +57,22 @@ class ProfileStatusVC: BaseViewController {
         }
     }
     
+    func fetchCoachSatusData() {
+        coachStatusVM = CoachStatusViewModel()
+        coachStatusVM?.callCoachStatusAPI(completion: { success in
+            self.setupData()
+        })
+    }
+    
     
     // MARK: - ACTIONS
-    @IBAction func onTappedContinue(_ sender: UIButton) {
+    @IBAction func continueCliked(_ sender: UIButton) {
         let aVC = AppStoryBoard.main.viewController(viewControllerClass:CampListVC.self)
         self.navigationController?.pushViewController(aVC, animated: true)
+    }
+    
+    @IBAction func refreshCliked(_ sender: UIButton) {
+        fetchCoachSatusData()
     }
     
 }

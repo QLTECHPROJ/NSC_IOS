@@ -50,12 +50,12 @@ class DescriptionPopupVC: BaseViewController {
     
     
     // MARK: - ACTIONS
-    @IBAction func onTappedOK(_ sender: UIButton) {
+    @IBAction func okClicked(_ sender: UIButton) {
         self.clickedOk?()
         self.dismiss(animated: false, completion: nil)
     }
     
-    @IBAction func onTappedClose(_ sender: UIButton) {
+    @IBAction func closeClicked(_ sender: UIButton) {
         self.clickedClose?()
         self.dismiss(animated: false, completion: nil)
     }

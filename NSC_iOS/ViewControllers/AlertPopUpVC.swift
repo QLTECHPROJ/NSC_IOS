@@ -95,7 +95,7 @@ class AlertPopUpVC: BaseViewController {
     
     
     // MARK: - ACTIONS
-    @IBAction func buttonClicked(sender : UIButton) {
+    @IBAction func buttonClicked(_ sender : UIButton) {
         self.dismiss(animated: false) {
             self.delegate?.handleAction(sender: sender, popUpTag: self.popUpTag)
         }

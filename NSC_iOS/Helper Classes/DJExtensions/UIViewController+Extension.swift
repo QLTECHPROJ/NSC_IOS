@@ -13,6 +13,12 @@ extension UIViewController {
         return "\(self)"
     }
     
+    func makeRootController(hideNavigationBar: Bool = true) {
+        let navVC = UINavigationController(rootViewController: self)
+        navVC.navigationBar.isHidden = hideNavigationBar
+        APPDELEGATE.window?.rootViewController = navVC
+    }
+    
     func canOpenUrl(urlString : String) -> Bool {
         if let url = URL(string: urlString) {
             if UIApplication.shared.canOpenURL(url) {

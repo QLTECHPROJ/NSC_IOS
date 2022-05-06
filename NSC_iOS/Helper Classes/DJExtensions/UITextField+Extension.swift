@@ -99,17 +99,17 @@ extension UITextField {
     
     func addPaddingLeftIcon(_ image: UIImage, padding: CGFloat) {
         let imageView = UIImageView(image: image)
-        imageView.contentMode = .center
+        imageView.contentMode = .scaleAspectFit
+        imageView.frame = CGRect(x: 0, y: 0, width: padding, height: frame.height)
         leftView = imageView
-        leftView?.frame.size = CGSize(width: image.size.width + padding, height: image.size.height)
         leftViewMode = .always
     }
     
     func addPaddingRightIcon(_ image: UIImage, padding: CGFloat) {
         let imageView = UIImageView(image: image)
-        imageView.contentMode = .center
+        imageView.contentMode = .scaleAspectFit
+        imageView.frame = CGRect(x: 0, y: 0, width: padding, height: frame.height)
         rightView = imageView
-        rightView?.frame.size = CGSize(width: image.size.width + padding, height: image.size.height)
         rightViewMode = .always
     }
     

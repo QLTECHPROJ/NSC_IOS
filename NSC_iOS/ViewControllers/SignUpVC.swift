@@ -17,9 +17,10 @@ class SignUpVC: BaseViewController {
     @IBOutlet weak var stackView: UIStackView!
     
     //UITextfield
+    @IBOutlet weak var txtMobile: UITextField!
     @IBOutlet weak var txtFName: UITextField!
-    @IBOutlet weak var txtFMobileNo: UITextField!
-    @IBOutlet weak var txtFEmailAdd: UITextField!
+    @IBOutlet weak var txtLName: UITextField!
+    @IBOutlet weak var txtEmail: UITextField!
     
     // UIButton
     @IBOutlet weak var btnCountryCode: UIButton!
@@ -30,7 +31,9 @@ class SignUpVC: BaseViewController {
     @IBOutlet weak var lblSubTitle: UILabel!
     @IBOutlet weak var lblPrivacy: TTTAttributedLabel!
     @IBOutlet weak var lblSupport: TTTAttributedLabel!
-    @IBOutlet weak var lblErrName: UILabel!
+    
+    @IBOutlet weak var lblErrFName: UILabel!
+    @IBOutlet weak var lblErrLName: UILabel!
     @IBOutlet weak var lblErrMobileNo: UILabel!
     @IBOutlet weak var lblErrEmail: UILabel!
     
@@ -52,7 +55,7 @@ class SignUpVC: BaseViewController {
         setupData()
         
         if strMobile != "" {
-            txtFMobileNo.text = strMobile
+            txtMobile.text = strMobile
         }
     }
     
@@ -60,7 +63,7 @@ class SignUpVC: BaseViewController {
         super.viewWillAppear(animated)
         
         if isFromOTP {
-            txtFMobileNo.becomeFirstResponder()
+            txtMobile.becomeFirstResponder()
         }
     }
     
@@ -75,14 +78,16 @@ class SignUpVC: BaseViewController {
         lblTitle.text = Theme.strings.register_title
         lblSubTitle.attributedText = Theme.strings.register_subtitle.attributedString(alignment: .center, lineSpacing: 5)
         
-        lblErrName.isHidden = true
+        lblErrFName.isHidden = true
+        lblErrLName.isHidden = true
         
         lblErrMobileNo.isHidden = true
         lblErrEmail.isHidden = true
         
         txtFName.delegate = self
-        txtFMobileNo.delegate = self
-        txtFEmailAdd.delegate = self
+        txtLName.delegate = self
+        txtMobile.delegate = self
+        txtEmail.delegate = self
         
         buttonEnableDisable()
     }
@@ -95,12 +100,13 @@ class SignUpVC: BaseViewController {
     }
     
     override func buttonEnableDisable() {
-        let name = txtFName.text?.trim
-        let mobile = txtFMobileNo.text?.trim
-        let email = txtFEmailAdd.text?.trim
+        let fname = txtFName.text?.trim
+        let lname = txtLName.text?.trim
+        let mobile = txtMobile.text?.trim
+        let email = txtEmail.text?.trim
         
         
-        if name?.count == 0 || mobile?.count == 0 || email?.count == 0 {
+        if fname?.count == 0 || lname?.count == 0 || mobile?.count == 0 || email?.count == 0 {
             btnGetSMSCode.isUserInteractionEnabled = false
             btnGetSMSCode.backgroundColor = Theme.colors.gray_7E7E7E
             btnGetSMSCode.removeGradient()
@@ -112,12 +118,18 @@ class SignUpVC: BaseViewController {
     
     func checkValidation() -> Bool {
         var isValid = true
-        let strMobile = txtFMobileNo.text?.trim ?? ""
+        let strMobile = txtMobile.text?.trim ?? ""
         
         if txtFName.text?.trim.count == 0 {
             isValid = false
-            lblErrName.isHidden = false
-            lblErrName.text = Theme.strings.alert_blank_fullname_error
+            lblErrFName.isHidden = false
+            lblErrFName.text = Theme.strings.alert_blank_firstname_error
+        }
+        
+        if txtLName.text?.trim.count == 0 {
+            isValid = false
+            lblErrLName.isHidden = false
+            lblErrLName.text = Theme.strings.alert_blank_lastname_error
         }
         
         if strMobile.count == 0 {
@@ -134,11 +146,11 @@ class SignUpVC: BaseViewController {
             lblErrMobileNo.text = Theme.strings.alert_invalid_mobile_error
         }
         
-        if txtFEmailAdd.text?.trim.count == 0 {
+        if txtEmail.text?.trim.count == 0 {
             isValid = false
             lblErrEmail.isHidden = false
             lblErrEmail.text = Theme.strings.alert_invalid_email_error
-        } else if !txtFEmailAdd.text!.isValidEmail {
+        } else if !txtEmail.text!.isValidEmail {
             isValid = false
             lblErrEmail.isHidden = false
             lblErrEmail.text = Theme.strings.alert_invalid_email_error
@@ -158,7 +170,7 @@ class SignUpVC: BaseViewController {
     func sendOTP() {
         showHud()
         
-        let phoneString = "+" + AppVersionDetails.countryCode + (txtFMobileNo.text ?? "")
+        let phoneString = "+" + AppVersionDetails.countryCode + (txtMobile.text ?? "")
         
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneString, uiDelegate: nil) { verificationID, error in
             
@@ -173,9 +185,10 @@ class SignUpVC: BaseViewController {
             authVerificationID = verificationID ?? ""
             
             let aVC = AppStoryBoard.main.viewController(viewControllerClass:OTPVC.self)
-            aVC.strMobile = self.txtFMobileNo.text ?? ""
-            aVC.strName = self.txtFName.text ?? ""
-            aVC.strEmail = self.txtFEmailAdd.text ?? ""
+            aVC.strMobile = self.txtMobile.text ?? ""
+            aVC.strFName = self.txtFName.text ?? ""
+            aVC.strLName = self.txtLName.text ?? ""
+            aVC.strEmail = self.txtEmail.text ?? ""
             aVC.isFromSignUp = true
             self.navigationController?.pushViewController(aVC, animated: true)
         }
@@ -183,16 +196,22 @@ class SignUpVC: BaseViewController {
     
     
     // MARK: - ACTIONS
-    @IBAction func onTappedCreateAccount(_ sender: UIButton) {
+    @IBAction func backClicked(_ sender: UIButton) {
+        self.view.endEditing(true)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func signUpClicked(_ sender: UIButton) {
         self.view.endEditing(true)
         
         if checkValidation() {
-            lblErrName.isHidden = true
+            lblErrFName.isHidden = true
+            lblErrLName.isHidden = true
             lblErrMobileNo.isHidden = true
             lblErrEmail.isHidden = true
             isFromOTP = true
             
-            let parameters = ["mobile":txtFMobileNo.text ?? "",
+            let parameters = ["mobile":txtMobile.text ?? "",
                               "countryCode":AppVersionDetails.countryCode]
             
             loginCheckVM = LoginCheckViewModel()
@@ -204,11 +223,6 @@ class SignUpVC: BaseViewController {
         }
     }
     
-    @IBAction func onTappedBack(_ sender: UIButton) {
-        self.view.endEditing(true)
-        self.navigationController?.popViewController(animated: true)
-    }
-    
 }
 
 
@@ -216,7 +230,8 @@ class SignUpVC: BaseViewController {
 extension SignUpVC : UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        lblErrName.isHidden = true
+        lblErrFName.isHidden = true
+        lblErrLName.isHidden = true
         lblErrMobileNo.isHidden = true
         lblErrEmail.isHidden = true
     }
@@ -235,7 +250,7 @@ extension SignUpVC : UITextFieldDelegate {
         
         if textField == txtFName && updatedText.count > 16 {
             return false
-        } else if textField == txtFMobileNo && updatedText.count > 13 {
+        } else if textField == txtMobile && updatedText.count > 13 {
             return false
         }
         

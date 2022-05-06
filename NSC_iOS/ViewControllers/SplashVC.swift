@@ -72,16 +72,18 @@ class SplashVC: BaseViewController {
             return
         }
         
-        if userData.Status == CoachStatus.Hired.rawValue {
+        if userData.PersonalDetailFilled == "0" {
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass: PersonalDetailsVC.self)
+            aVC.makeRootController()
+        } else if userData.BankDetailFilled == "0" {
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass: BankDetailsVC.self)
+            aVC.makeRootController()
+        } else if userData.Status == CoachStatus.Hired.rawValue {
             let aVC = AppStoryBoard.main.viewController(viewControllerClass: CampListVC.self)
-            let navVC = UINavigationController(rootViewController: aVC)
-            navVC.navigationBar.isHidden = true
-            APPDELEGATE.window?.rootViewController = navVC
+            aVC.makeRootController()
         } else {
             let aVC = AppStoryBoard.main.viewController(viewControllerClass: ProfileStatusVC.self)
-            let navVC = UINavigationController(rootViewController: aVC)
-            navVC.navigationBar.isHidden = true
-            APPDELEGATE.window?.rootViewController = navVC
+            aVC.makeRootController()
         }
     }
     

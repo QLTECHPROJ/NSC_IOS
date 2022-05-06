@@ -129,7 +129,8 @@ class BaseViewController: UIViewController {
         let strDisclaimer = "Disclaimer"
         
         // By clicking on Register or Sign up you agree to our T&Cs, Privacy Policy & Disclaimer
-        let string = "By clicking on Register or Sign up you \nagree to our \(strTC), \(strPrivacy) and \(strDisclaimer)"
+        // let string = "By clicking on Register or Sign up you \nagree to our \(strTC), \(strPrivacy) and \(strDisclaimer)"
+        let string = "By clicking on Register or Sign up you \nagree to our \(strTC) and \(strPrivacy)"
         
         let nsString = string as NSString
         

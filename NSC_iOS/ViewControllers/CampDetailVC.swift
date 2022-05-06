@@ -21,7 +21,7 @@ class CampDetailVC: BaseViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
-    @IBAction func onTappedContinue(_ sender: UIButton) {
+    @IBAction func kidsClicked(_ sender: UIButton) {
         let aVC = AppStoryBoard.main.viewController(viewControllerClass:KidsAttendanceVC.self)
         self.navigationController?.pushViewController(aVC, animated: true)
     }

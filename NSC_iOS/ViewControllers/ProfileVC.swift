@@ -232,25 +232,12 @@ class ProfileVC: BaseViewController {
     }
     
     // MARK: - ACTION
-    @IBAction func onTappedCountryCode(_ sender: UIButton) {
-        self.view.endEditing(true)
-       
-       let aVC = AppStoryBoard.main.viewController(viewControllerClass:CountryListVC.self)
-//        aVC.didSelectCountry = { countryData in
-//            self.selectedCountry = countryData
-//            self.isCountrySelected = true
-//            self.setupData()
-//        }
-        aVC.modalPresentationStyle = .overFullScreen
-        self.navigationController?.present(aVC, animated: true, completion: nil)
-    }
-    
     @IBAction func backClicked(_ sender: UIButton) {
         self.view.endEditing(true)
         self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func onTappeConfirm(_ sender: UIButton) {
+    @IBAction func confirmClicked(_ sender: UIButton) {
         self.view.endEditing(true)
         
         if checkValidation() {
@@ -263,20 +250,20 @@ class ProfileVC: BaseViewController {
         }
     }
     
-    @IBAction func onTappeUpdate(_ sender: UIButton) {
+    @IBAction func updateClicked(_ sender: UIButton) {
         
     }
     
-    @IBAction func onTappedCamera(_ sender: UIButton) {
+    @IBAction func editClicked(_ sender: UIButton) {
         if checkInternet(showToast: true) == false {
             return
         }
         
         self.view.endEditing(true)
-        let arrayTitles = [Theme.strings.take_a_photo, Theme.strings.choose_from_gallary]
-        //if let imageStr = CoUserDataModel.currentUser?.Image, imageStr.trim.count > 0 {
-         //   arrayTitles.append(Theme.strings.remove_photo)
-        //}
+        var arrayTitles = [Theme.strings.take_a_photo, Theme.strings.choose_from_gallary]
+        if let imageStr = LoginDataModel.currentUser?.Profile_Image, imageStr.trim.count > 0 {
+            arrayTitles.append(Theme.strings.remove_photo)
+        }
         
         showActionSheet(title: "", message: Theme.strings.profile_image_options, titles: arrayTitles, cancelButtonTitle: Theme.strings.cancel_small) { (buttonTitle) in
             DispatchQueue.main.async {
