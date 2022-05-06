@@ -25,8 +25,12 @@ class CampListVC: UIViewController {
     
     //MARK:- ACTION
     @IBAction func backClicked(_ sender: UIButton) {
-        self.view.endEditing(true)
-        self.navigationController?.popViewController(animated: true)
+        
+        let aVC = AppStoryBoard.main.viewController(viewControllerClass:UserListPopUpVC.self)
+        let navVC = UINavigationController(rootViewController: aVC)
+        navVC.navigationBar.isHidden = true
+        navVC.modalPresentationStyle = .overFullScreen
+        self.present(navVC, animated: true, completion: nil)
     }
     
 }

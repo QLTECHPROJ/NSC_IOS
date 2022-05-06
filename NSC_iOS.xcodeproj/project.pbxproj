@@ -208,6 +208,12 @@
 		9A53D4CE28192BE400226853 /* CampListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A53D4CC28192BE400226853 /* CampListCell.xib */; };
 		9A53D4D228193B6D00226853 /* CampDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A53D4D128193B6D00226853 /* CampDetailVC.swift */; };
 		9A53D4D428193C8500226853 /* DailyReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A53D4D328193C8500226853 /* DailyReportVC.swift */; };
+		9AD5ED9B2824EBDE00E0A11F /* UserListPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD5ED9A2824EBDD00E0A11F /* UserListPopUpVC.swift */; };
+		9AD5ED9C2824EBDE00E0A11F /* UserListPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD5ED9A2824EBDD00E0A11F /* UserListPopUpVC.swift */; };
+		9AD5ED9F2824EC1400E0A11F /* UserListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AD5ED9D2824EC1300E0A11F /* UserListCell.xib */; };
+		9AD5EDA02824EC1400E0A11F /* UserListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AD5ED9D2824EC1300E0A11F /* UserListCell.xib */; };
+		9AD5EDA12824EC1400E0A11F /* UserListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD5ED9E2824EC1400E0A11F /* UserListCell.swift */; };
+		9AD5EDA22824EC1400E0A11F /* UserListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD5ED9E2824EC1400E0A11F /* UserListCell.swift */; };
 		9AE824382817DF8800A29373 /* OTPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE824332817DF8800A29373 /* OTPVC.swift */; };
 		9AE824392817DF8800A29373 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE824342817DF8800A29373 /* SplashVC.swift */; };
 		9AE8243A2817DF8800A29373 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE824352817DF8800A29373 /* LoginVC.swift */; };
@@ -329,6 +335,9 @@
 		9A53D4CC28192BE400226853 /* CampListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CampListCell.xib; sourceTree = "<group>"; };
 		9A53D4D128193B6D00226853 /* CampDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampDetailVC.swift; sourceTree = "<group>"; };
 		9A53D4D328193C8500226853 /* DailyReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReportVC.swift; sourceTree = "<group>"; };
+		9AD5ED9A2824EBDD00E0A11F /* UserListPopUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListPopUpVC.swift; sourceTree = "<group>"; };
+		9AD5ED9D2824EC1300E0A11F /* UserListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserListCell.xib; sourceTree = "<group>"; };
+		9AD5ED9E2824EC1400E0A11F /* UserListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListCell.swift; sourceTree = "<group>"; };
 		9AE824332817DF8800A29373 /* OTPVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPVC.swift; sourceTree = "<group>"; };
 		9AE824342817DF8800A29373 /* SplashVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		9AE824352817DF8800A29373 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -470,6 +479,7 @@
 				9A53D4D128193B6D00226853 /* CampDetailVC.swift */,
 				9A53D4D328193C8500226853 /* DailyReportVC.swift */,
 				28F3C255281A5CCF0092A077 /* KidsAttendanceVC.swift */,
+				9AD5ED9A2824EBDD00E0A11F /* UserListPopUpVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -681,6 +691,8 @@
 		9AE824412817E25B00A29373 /* TableCell */ = {
 			isa = PBXGroup;
 			children = (
+				9AD5ED9E2824EC1400E0A11F /* UserListCell.swift */,
+				9AD5ED9D2824EC1300E0A11F /* UserListCell.xib */,
 				9AE8243E2817E25200A29373 /* CountryCell.swift */,
 				9AE8243D2817E25200A29373 /* CountryCell.xib */,
 				9A53D4CB28192BE400226853 /* CampListCell.swift */,
@@ -796,6 +808,7 @@
 				9A0F6F6F281BA15F008CAA4B /* Poppins-Regular.otf in Resources */,
 				282C33812819617D009401FD /* Assets.xcassets in Resources */,
 				9A0F6F6B281BA15F008CAA4B /* receipt.ttf in Resources */,
+				9AD5EDA02824EC1400E0A11F /* UserListCell.xib in Resources */,
 				2804E39C2819847400AF4A62 /* WWCalendarTimeSelector.storyboard in Resources */,
 				9A0F6F6D281BA15F008CAA4B /* Poppins-Bold.otf in Resources */,
 				282C33852819617D009401FD /* Main.storyboard in Resources */,
@@ -818,6 +831,7 @@
 				9A0F6F6E281BA15F008CAA4B /* Poppins-Regular.otf in Resources */,
 				28F3C254281A5CC80092A077 /* KidsAttendenceCell.xib in Resources */,
 				9A0F6F6A281BA15F008CAA4B /* receipt.ttf in Resources */,
+				9AD5ED9F2824EC1400E0A11F /* UserListCell.xib in Resources */,
 				28F8315E28197B0600CAF99C /* WWCalendarTimeSelector.storyboard in Resources */,
 				9A0F6F6C281BA15F008CAA4B /* Poppins-Bold.otf in Resources */,
 				28A9C4132817B7C9001B252F /* Main.storyboard in Resources */,
@@ -950,6 +964,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AD5EDA22824EC1400E0A11F /* UserListCell.swift in Sources */,
 				28F830F7281977F000CAF99C /* UISearchBar+Extension.swift in Sources */,
 				281AAE56281AAA970070D758 /* UICollectionView+Extension.swift in Sources */,
 				281AAE4A281AA4D30070D758 /* AppVersionViewModel.swift in Sources */,
@@ -1010,6 +1025,7 @@
 				28F830E7281977F000CAF99C /* UIImage+Extension.swift in Sources */,
 				28F830E3281977F000CAF99C /* Int+Extension.swift in Sources */,
 				28F830E5281977F000CAF99C /* UIView+Extension.swift in Sources */,
+				9AD5ED9C2824EBDE00E0A11F /* UserListPopUpVC.swift in Sources */,
 				28F83133281977F000CAF99C /* Theme.swift in Sources */,
 				28F830F1281977F000CAF99C /* UINavigationBar+Extension.swift in Sources */,
 				2804E3A12819847D00AF4A62 /* NSCalendar+Timepiece.swift in Sources */,
@@ -1045,6 +1061,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AD5EDA12824EC1400E0A11F /* UserListCell.swift in Sources */,
 				28F830F6281977F000CAF99C /* UISearchBar+Extension.swift in Sources */,
 				281AAE55281AAA970070D758 /* UICollectionView+Extension.swift in Sources */,
 				281AAE49281AA4D30070D758 /* AppVersionViewModel.swift in Sources */,
@@ -1105,6 +1122,7 @@
 				28F830E6281977F000CAF99C /* UIImage+Extension.swift in Sources */,
 				28F830E2281977F000CAF99C /* Int+Extension.swift in Sources */,
 				28F830E4281977F000CAF99C /* UIView+Extension.swift in Sources */,
+				9AD5ED9B2824EBDE00E0A11F /* UserListPopUpVC.swift in Sources */,
 				28F83132281977F000CAF99C /* Theme.swift in Sources */,
 				28F830F0281977F000CAF99C /* UINavigationBar+Extension.swift in Sources */,
 				28F83130281977F000CAF99C /* AppConstants.swift in Sources */,
