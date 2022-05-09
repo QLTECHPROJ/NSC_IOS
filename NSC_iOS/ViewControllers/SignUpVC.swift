@@ -168,13 +168,15 @@ class SignUpVC: BaseViewController {
     }
     
     func sendOTP() {
-        showHud()
+        // showHud()
+        self.view.isUserInteractionEnabled = false
         
         let phoneString = "+" + AppVersionDetails.countryCode + (txtMobile.text ?? "")
         
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneString, uiDelegate: nil) { verificationID, error in
             
-            hideHud()
+            // hideHud()
+            self.view.isUserInteractionEnabled = true
             
             if let error = error {
                 showAlertToast(message: error.localizedDescription)

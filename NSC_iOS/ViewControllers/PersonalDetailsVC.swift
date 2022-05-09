@@ -95,6 +95,10 @@ class PersonalDetailsVC: BaseViewController {
             txtCity.text = strName
         }
         
+        if let strName = selectedCamps?.Name {
+            txtCamps.text = strName
+        }
+        
         if let strName = selectedRole?.Name {
             txtRole.text = strName
         }
@@ -187,51 +191,51 @@ class PersonalDetailsVC: BaseViewController {
         if strStreet.count == 0 {
             isValid = false
             lblErrStreet.isHidden = false
-            lblErrStreet.text = Theme.strings.alert_blank_lastname_error
+            lblErrStreet.text = Theme.strings.alert_blank_street_error
         }
         
         if selectedState == nil {
             isValid = false
             lblErrState.isHidden = false
-            lblErrState.text = Theme.strings.alert_blank_lastname_error
+            lblErrState.text = Theme.strings.alert_select_state
         }
         
         if selectedCity == nil {
             isValid = false
             lblErrCity.isHidden = false
-            lblErrCity.text = Theme.strings.alert_blank_lastname_error
+            lblErrCity.text = Theme.strings.alert_select_city
         }
         
         if strPostCode.count == 0 {
             isValid = false
             lblErrPostCode.isHidden = false
-            lblErrPostCode.text = Theme.strings.alert_blank_lastname_error
-        } else if strPostCode.count > 8 {
+            lblErrPostCode.text = Theme.strings.alert_blank_postcode_error
+        } else if strPostCode.count < 4 || strPostCode.count > 8 {
             isValid = false
             lblErrPostCode.isHidden = false
-            lblErrPostCode.text = Theme.strings.alert_invalid_mobile_error
+            lblErrPostCode.text = Theme.strings.alert_invalid_postcode_error
         } else if strPostCode.isNumber == false {
             isValid = false
             lblErrPostCode.isHidden = false
-            lblErrPostCode.text = Theme.strings.alert_invalid_mobile_error
+            lblErrPostCode.text = Theme.strings.alert_invalid_postcode_error
         }
         
         if selectedCamps == nil {
             isValid = false
             lblErrCamps.isHidden = false
-            lblErrCamps.text = Theme.strings.alert_blank_lastname_error
+            lblErrCamps.text = Theme.strings.alert_select_camp
         }
         
         if selectedRole == nil {
             isValid = false
             lblErrRole.isHidden = false
-            lblErrRole.text = Theme.strings.alert_blank_lastname_error
+            lblErrRole.text = Theme.strings.alert_select_role
         }
         
         if vaccinated.trim.count == 0 {
             isValid = false
             lblErrVaccinated.isHidden = false
-            lblErrVaccinated.text = Theme.strings.alert_blank_lastname_error
+            lblErrVaccinated.text = Theme.strings.alert_blank_vaccination_error
         }
         
         return isValid
@@ -241,7 +245,7 @@ class PersonalDetailsVC: BaseViewController {
     @IBAction func listViewClicked(_ sender: UIButton) {
         self.view.endEditing(true)
         
-        var listType = ListItemType(rawValue: sender.tag) ?? .state
+        let listType = ListItemType(rawValue: sender.tag) ?? .state
         var strID = ""
         
         switch listType {
@@ -256,9 +260,7 @@ class PersonalDetailsVC: BaseViewController {
             }
             strID = selectedState?.ID ?? ""
         case .camp:
-            listType = .role
-            // showAlertToast(message: Theme.strings.alert_something_went_wrong)
-            // return
+            break
         case .role:
             break
         }
@@ -290,6 +292,10 @@ class PersonalDetailsVC: BaseViewController {
             }
             
             print("Call API")
+            
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass: BankDetailsVC.self)
+            aVC.isFromEdit = true
+            self.navigationController?.pushViewController(aVC, animated: true)
         }
     }
     

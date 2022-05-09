@@ -25,7 +25,7 @@ class ListDataViewModel {
             parameters = ["stateId":strID]
             apiRequest = APIRouter.citylist(parameters)
         case .camp:
-            // apiRequest = APIRouter.citylist(parameters)
+            apiRequest = APIRouter.categorylist
             break
         case .role:
             apiRequest = APIRouter.coachrole

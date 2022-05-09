@@ -17,6 +17,7 @@ enum APIRouter : URLRequestConvertible {
     case statelist([String:String])
     case citylist([String:String])
     case coachrole
+    case categorylist
     case logincheck([String:String])
     
     case login([String:String])
@@ -40,6 +41,8 @@ enum APIRouter : URLRequestConvertible {
             return APIRoute(path: "city-listing", method: .post, data: data)
         case .coachrole:
             return APIRoute(path: "coachrole", method: .get)
+        case .categorylist:
+            return APIRoute(path: "category-listing", method: .get)
         case .logincheck(let data):
             return APIRoute(path: "logincheck", method: .post, data: data)
         
