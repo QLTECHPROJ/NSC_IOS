@@ -25,11 +25,11 @@ class AlertPopUpVC: BaseViewController {
     
     
     // MARK: - VARIABLES
-    var titleText = Theme.strings.delete_playlist
-    var detailText = "Are you sure you want to delete Self-development playlist?"
+    var titleText = Theme.strings.normal_update_title
+    var detailText = Theme.strings.normal_update_subtitle
     
-    var firstButtonTitle = Theme.strings.delete
-    var secondButtonTitle = Theme.strings.close
+    var firstButtonTitle = Theme.strings.update
+    var secondButtonTitle = Theme.strings.not_now
     
     var firstButtonBackgroundColor = Theme.colors.theme_dark
     var secondButtonBackgroundColor = UIColor.clear

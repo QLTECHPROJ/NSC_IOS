@@ -113,6 +113,8 @@ class OTPVC: BaseViewController {
     }
     
     func autoVerifyOTP() {
+        self.view.endEditing(true)
+        
         if checkValidation() {
             let strOTP = txtOTP.text ?? ""
             verifyOTP(verificationCode: strOTP)
@@ -244,9 +246,15 @@ extension OTPVC : UITextFieldDelegate {
         
         if updatedText.count < 6 {
             return true
+        } else if updatedText.count > 6 {
+            return false
         }
         
-        textField.text = updatedText
+        let attributedString = NSMutableAttributedString(string: updatedText)
+        attributedString.addAttribute(NSAttributedString.Key.kern, value: CGFloat(8.0), range: NSRange(location: 0, length: attributedString.length))
+        textField.attributedText = attributedString
+        
+        // textField.text = updatedText
         buttonEnableDisable()
         self.autoVerifyOTP()
         return false
