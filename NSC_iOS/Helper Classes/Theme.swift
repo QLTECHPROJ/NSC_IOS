@@ -279,6 +279,7 @@ struct AppStrings {
     let confirm = "CONFIRM"
     let goBack = "GO BACK"
     let settings = "Settings"
+    let deleteCoach = "Delete Coach"
     
     let Edit_Sleep_Time = "Edit Sleep Time"
     let Edit_Area_of_Focus = "Edit Area of Focus"

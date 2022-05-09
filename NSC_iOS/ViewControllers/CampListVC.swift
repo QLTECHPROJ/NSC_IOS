@@ -7,12 +7,14 @@
 
 import UIKit
 
-class CampListVC: UIViewController {
+class CampListVC: BaseViewController {
     
     //MARK:- UIOutlet
     @IBOutlet weak var tableView: UITableView!
     
     //MARK:- Variables
+    var campListVM : CampListViewModel?
+    var arrayCampList = [CampListDataModel]()
     
     //MARK:- View Life Cycle
     override func viewDidLoad() {
@@ -20,7 +22,21 @@ class CampListVC: UIViewController {
         tableView.register(nibWithCellClass: CampListCell.self)
         tableView.dataSource = self
         tableView.delegate = self
+        let campListViewModel = CampListViewModel()
+        campListViewModel.callCampListAPI(completion: { success in
+            self.arrayCampList = campListViewModel.campListData
+            self.setupData()
+        })
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+       
+    }
+    
+    //MARK:- FUNCTION
+    override func setupData() {
         
+        tableView.reloadData()
     }
     
     //MARK:- ACTION
@@ -47,7 +63,7 @@ extension CampListVC: UITableViewDelegate , UITableViewDataSource {
         if section == 0 {
             return 2
         }else {
-            return 8
+            return arrayCampList.count
         }
     }
     
@@ -58,15 +74,14 @@ extension CampListVC: UITableViewDelegate , UITableViewDataSource {
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withClass: CampListCell.self)
-            
+            cell.configureCell(data: arrayCampList[indexPath.row])
             return cell
         }
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return UITableView.automaticDimension
+        return 120
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

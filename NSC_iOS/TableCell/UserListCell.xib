@@ -26,7 +26,7 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ivw-oR-6dF">
                         <rect key="frame" x="16" y="10" width="288" height="66"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BLD-xq-Mlj">
+                            <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile" translatesAutoresizingMaskIntoConstraints="NO" id="BLD-xq-Mlj">
                                 <rect key="frame" x="15" y="13" width="40" height="40"/>
                                 <color key="backgroundColor" red="0.95294117649999999" green="0.57254901960000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -91,6 +91,7 @@
     </objects>
     <resources>
         <image name="OrangeArrow" width="7" height="12"/>
+        <image name="Profile" width="21" height="21"/>
         <namedColor name="F9F9F9">
             <color red="0.97600001096725464" green="0.97600001096725464" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
