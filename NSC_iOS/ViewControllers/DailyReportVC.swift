@@ -17,7 +17,7 @@ class DailyReportVC: UIViewController {
     //MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(nibWithCellClass: CountryCell.self)
+        tableView.register(nibWithCellClass: ListItemCell.self)
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -45,9 +45,9 @@ extension DailyReportVC: UITableViewDelegate , UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withClass: CountryCell.self)
-        cell.lblCountryName.text = "  DAY - 1"
-        cell.lblCountryName.font = UIFont(name: "Poppins-SemiBold", size: 14)
+        let cell = tableView.dequeueReusableCell(withClass: ListItemCell.self)
+        cell.lblName.text = "  DAY - 1"
+        cell.lblName.font = UIFont(name: "Poppins-SemiBold", size: 14)
         cell.btnSelect.setImage(UIImage(named: "OrangeArrow"), for: .selected)
         cell.backgroundColor = .clear
         return cell

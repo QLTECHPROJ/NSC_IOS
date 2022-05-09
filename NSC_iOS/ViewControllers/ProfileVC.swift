@@ -122,7 +122,7 @@ class ProfileVC: BaseViewController {
             isValid = false
             self.lblErrMobileNo.isHidden = false
             self.lblErrMobileNo.text = Theme.strings.alert_invalid_mobile_error
-        } else if strMobile.count < 8 || strMobile.count > 13 {
+        } else if strMobile.count < 4 || strMobile.count > 15 {
             isValid = false
             self.lblErrMobileNo.isHidden = false
             self.lblErrMobileNo.text = Theme.strings.alert_invalid_mobile_error
@@ -307,7 +307,7 @@ extension ProfileVC : UITextFieldDelegate {
         
         if textField == txtFDOB && updatedText.count > 16 {
             return false
-        } else if textField == txtFMobileNo && updatedText.count > 13 {
+        } else if textField == txtFMobileNo && updatedText.count > 15 {
             return false
         }
         
