@@ -241,6 +241,16 @@ class PersonalDetailsVC: BaseViewController {
         return isValid
     }
     
+    override func goNext() {
+        let coachDetailVM = CoachDetailViewModel()
+        coachDetailVM.callCoachDetailsAPI { success in
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass: BankDetailsVC.self)
+            aVC.isFromEdit = true
+            self.navigationController?.pushViewController(aVC, animated: true)
+        }
+    }
+    
+    
     // MARK: - ACTIONS
     @IBAction func backClicked(_ sender: UIButton) {
         self.view.endEditing(true)
@@ -296,11 +306,23 @@ class PersonalDetailsVC: BaseViewController {
                 label.isHidden = true
             }
             
-            print("Call API")
+            let parameters = ["coachId":LoginDataModel.currentUser?.ID ?? "",
+                              "dob":txtDOB.text ?? "",
+                              "country":AppVersionDetails.countryCode,
+                              "state":selectedState?.ID ?? "",
+                              "city":selectedCity?.ID ?? "",
+                              "address":txtStreet.text ?? "",
+                              "postCode":txtPostCode.text ?? "",
+                              "role":selectedRole?.ID ?? "",
+                              "vaccinated":vaccinated,
+                              "sport_id":selectedCamps?.ID ?? ""]
             
-            let aVC = AppStoryBoard.main.viewController(viewControllerClass: BankDetailsVC.self)
-            aVC.isFromEdit = true
-            self.navigationController?.pushViewController(aVC, animated: true)
+            let personalDetailVM = PersonalDetailViewModel()
+            personalDetailVM.callUpdatePersonalDetailsAPI(parameters: parameters) { success in
+                if success {
+                    self.goNext()
+                }
+            }
         }
     }
     
