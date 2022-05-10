@@ -9,8 +9,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Montserrat-Medium.ttf">
-            <string>Montserrat-Medium</string>
+        <array key="Poppins-Medium.otf">
+            <string>Poppins-Medium</string>
         </array>
     </customFonts>
     <objects>
@@ -40,18 +40,18 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="john" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ued-aF-5ZE">
-                                <rect key="frame" x="68" y="23.5" width="172" height="19"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="16"/>
+                                <rect key="frame" x="68" y="22" width="178" height="22.5"/>
+                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDa-Jw-RSE">
-                                <rect key="frame" x="248" y="23" width="20" height="20"/>
+                            <button opaque="NO" contentMode="redraw" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDa-Jw-RSE">
+                                <rect key="frame" x="254" y="24" width="14" height="18"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="Jam-cN-E8y"/>
-                                    <constraint firstAttribute="width" secondItem="SDa-Jw-RSE" secondAttribute="height" multiplier="1:1" id="xuo-Gq-p9V"/>
+                                    <constraint firstAttribute="width" constant="14" id="2St-Ir-ct4"/>
+                                    <constraint firstAttribute="height" constant="18" id="azi-0t-FYx"/>
                                 </constraints>
-                                <state key="normal" image="OrangeArrow"/>
+                                <state key="normal" backgroundImage="OrangeArrow"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" name="F9F9F9"/>

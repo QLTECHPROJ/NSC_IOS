@@ -95,8 +95,8 @@ extension CampListVC: UITableViewDelegate , UITableViewDataSource {
             label.text = "Upcoming Camps"
         }
         label.textColor = .black
-        label.font = .boldSystemFont(ofSize: 16)
-        headerView.backgroundColor = .white
+        label.font = Theme.fonts.appFont(ofSize: 14, weight: .bold)
+        headerView.backgroundColor = .clear
         headerView.addSubview(label)
         
         return headerView

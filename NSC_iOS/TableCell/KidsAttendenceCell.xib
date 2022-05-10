@@ -87,6 +87,7 @@
                                                     <constraint firstAttribute="height" constant="20" id="hTB-bn-jPw"/>
                                                     <constraint firstAttribute="width" secondItem="qLk-ZV-Hwk" secondAttribute="height" multiplier="1:1" id="ngN-2C-RLW"/>
                                                 </constraints>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="CheckSelect"/>
                                             </button>
@@ -119,6 +120,7 @@
                                                     <constraint firstAttribute="width" secondItem="nVt-a4-aBS" secondAttribute="height" multiplier="1:1" id="bTR-W6-f56"/>
                                                     <constraint firstAttribute="height" constant="20" id="djP-y1-qtD"/>
                                                 </constraints>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="CheckDeselect"/>
                                             </button>
@@ -159,6 +161,7 @@
                                                     <constraint firstAttribute="width" secondItem="d8S-Ps-vst" secondAttribute="height" multiplier="1:1" id="3ee-Ot-T5R"/>
                                                     <constraint firstAttribute="height" constant="20" id="JsO-oc-g7N"/>
                                                 </constraints>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="CheckSelect"/>
                                             </button>
@@ -191,6 +194,7 @@
                                                     <constraint firstAttribute="width" secondItem="L19-eb-gYU" secondAttribute="height" multiplier="1:1" id="ZmJ-kA-vGy"/>
                                                     <constraint firstAttribute="height" constant="20" id="eqO-pW-700"/>
                                                 </constraints>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="CheckDeselect"/>
                                             </button>
