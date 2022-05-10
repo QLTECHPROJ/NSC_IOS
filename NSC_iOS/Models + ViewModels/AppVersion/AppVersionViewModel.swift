@@ -13,6 +13,7 @@ class AppVersionViewModel {
     
     func callAppVersionAPI(completion: @escaping (Bool) -> Void) {
         let parameters = ["version":APP_VERSION,
+                          "timeZone":TimeZone.current.identifier,
                           "deviceType":APP_TYPE,
                           "deviceToken":FCM_TOKEN,
                           "coachId":LoginDataModel.currentUser?.ID ?? ""]
