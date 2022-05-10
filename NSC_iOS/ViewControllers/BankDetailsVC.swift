@@ -141,6 +141,11 @@ class BankDetailsVC: BaseViewController {
     
     
     // MARK: - ACTIONS
+    @IBAction func backClicked(_ sender: UIButton) {
+        self.view.endEditing(true)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @IBAction func confirmClicked(_ sender: UIButton) {
         if checkValidation() {
             for label in arrayErrorLabels {

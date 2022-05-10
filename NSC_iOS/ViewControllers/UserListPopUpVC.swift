@@ -119,13 +119,15 @@ extension UserListPopUpVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             let aVC = AppStoryBoard.main.viewController(viewControllerClass: ProfileVC.self)
-            navigationController?.pushViewController(aVC, animated: true)
+            self.navigationController?.pushViewController(aVC, animated: true)
         }else if indexPath.row == 1 {
             let aVC = AppStoryBoard.main.viewController(viewControllerClass: BankDetailsVC.self)
-            navigationController?.pushViewController(aVC, animated: true)
+            aVC.isFromEdit = true
+            self.navigationController?.pushViewController(aVC, animated: true)
         }else if indexPath.row == 2 {
             let aVC = AppStoryBoard.main.viewController(viewControllerClass: PersonalDetailsVC.self)
-            navigationController?.pushViewController(aVC, animated: true)
+            aVC.isFromEdit = true
+            self.navigationController?.pushViewController(aVC, animated: true)
         }else if indexPath.row == 3 {
             if checkInternet(showToast: true) == false {
                 return

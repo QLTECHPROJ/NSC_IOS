@@ -242,6 +242,11 @@ class PersonalDetailsVC: BaseViewController {
     }
     
     // MARK: - ACTIONS
+    @IBAction func backClicked(_ sender: UIButton) {
+        self.view.endEditing(true)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @IBAction func listViewClicked(_ sender: UIButton) {
         self.view.endEditing(true)
         
