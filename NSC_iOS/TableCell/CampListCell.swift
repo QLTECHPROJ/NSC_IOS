@@ -19,22 +19,16 @@ class CampListCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
     // Configure Cell
-    func configureCell(data : CampListDataModel) {
+    func configureCell(data : CampDetailModel) {
         lblCampTitle.text = data.CampName
         lblCampDesc.text = data.CampDetail
         lblCampLocation.text = data.CampAddress
-        if let strUrl = data.CampImage?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let imgUrl = URL(string: strUrl) {
+        
+        if let strUrl = data.CampImage.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let imgUrl = URL(string: strUrl) {
             imgCamp.sd_setImage(with: imgUrl, completed: nil)
         }
-        
     }
     
 }
