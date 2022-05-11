@@ -72,6 +72,8 @@
 		2854362B2825450B009BBEDA /* BankDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285436292825450B009BBEDA /* BankDetailsVC.swift */; };
 		2867950A282150B60010892E /* DynamicContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28679509282150B60010892E /* DynamicContents.swift */; };
 		2867950B282150B60010892E /* DynamicContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28679509282150B60010892E /* DynamicContents.swift */; };
+		28961237282A85C200BC2AC7 /* BankDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28961236282A85C200BC2AC7 /* BankDetailViewModel.swift */; };
+		28961238282A85C200BC2AC7 /* BankDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28961236282A85C200BC2AC7 /* BankDetailViewModel.swift */; };
 		28A9C40C2817B7C9001B252F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A9C40B2817B7C9001B252F /* AppDelegate.swift */; };
 		28A9C4132817B7C9001B252F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28A9C4112817B7C9001B252F /* Main.storyboard */; };
 		28A9C4162817B7C9001B252F /* NSC_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28A9C4142817B7C9001B252F /* NSC_iOS.xcdatamodeld */; };
@@ -268,6 +270,7 @@
 		28543626282544F8009BBEDA /* PersonalDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDetailsVC.swift; sourceTree = "<group>"; };
 		285436292825450B009BBEDA /* BankDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankDetailsVC.swift; sourceTree = "<group>"; };
 		28679509282150B60010892E /* DynamicContents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicContents.swift; sourceTree = "<group>"; };
+		28961236282A85C200BC2AC7 /* BankDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankDetailViewModel.swift; sourceTree = "<group>"; };
 		28A9C4082817B7C9001B252F /* NSC_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSC_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28A9C40B2817B7C9001B252F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28A9C4122817B7C9001B252F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -442,6 +445,14 @@
 			path = CoachDetail;
 			sourceTree = "<group>";
 		};
+		28961239282A85F600BC2AC7 /* BankDetail */ = {
+			isa = PBXGroup;
+			children = (
+				28961236282A85C200BC2AC7 /* BankDetailViewModel.swift */,
+			);
+			path = BankDetail;
+			sourceTree = "<group>";
+		};
 		28A9C3FF2817B7C9001B252F = {
 			isa = PBXGroup;
 			children = (
@@ -554,6 +565,7 @@
 				284A3EC82823EF0700B511FB /* CoachDetail */,
 				28D1A5B82823FBB700B3A179 /* CoachStatus */,
 				28300C45282A62F800695E7B /* PersonalDetail */,
+				28961239282A85F600BC2AC7 /* BankDetail */,
 			);
 			path = "Models + ViewModels";
 			sourceTree = "<group>";
@@ -1063,6 +1075,7 @@
 				284A3EC72823EDD600B511FB /* CoachDetailViewModel.swift in Sources */,
 				28F8311F281977F000CAF99C /* MimeType.swift in Sources */,
 				282C336B2819617D009401FD /* LoginVC.swift in Sources */,
+				28961238282A85C200BC2AC7 /* BankDetailViewModel.swift in Sources */,
 				28F830E1281977F000CAF99C /* DJExtensions.swift in Sources */,
 				28300C44282A62DF00695E7B /* PersonalDetailModel.swift in Sources */,
 				28F830F9281977F000CAF99C /* NSDate+Extension.swift in Sources */,
@@ -1169,6 +1182,7 @@
 				284A3EC62823EDD600B511FB /* CoachDetailViewModel.swift in Sources */,
 				9AE824402817E25200A29373 /* ListItemCell.swift in Sources */,
 				28F8311E281977F000CAF99C /* MimeType.swift in Sources */,
+				28961237282A85C200BC2AC7 /* BankDetailViewModel.swift in Sources */,
 				9AE8243A2817DF8800A29373 /* LoginVC.swift in Sources */,
 				28300C43282A62DF00695E7B /* PersonalDetailModel.swift in Sources */,
 				28F830E0281977F000CAF99C /* DJExtensions.swift in Sources */,

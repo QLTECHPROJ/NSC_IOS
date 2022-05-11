@@ -306,16 +306,17 @@ class PersonalDetailsVC: BaseViewController {
                 label.isHidden = true
             }
             
-            let parameters = ["coachId":LoginDataModel.currentUser?.ID ?? "",
+            var parameters = ["coachId":LoginDataModel.currentUser?.ID ?? "",
                               "dob":txtDOB.text ?? "",
                               "country":AppVersionDetails.countryCode,
                               "state":selectedState?.ID ?? "",
-                              "city":selectedCity?.ID ?? "",
-                              "address":txtStreet.text ?? "",
-                              "postCode":txtPostCode.text ?? "",
-                              "role":selectedRole?.ID ?? "",
-                              "vaccinated":vaccinated,
-                              "sport_id":selectedCamps?.ID ?? ""]
+                              "city":selectedCity?.ID ?? ""]
+            
+            parameters["address"] = txtStreet.text ?? ""
+            parameters["postCode"] = txtPostCode.text ?? ""
+            parameters["role"] = selectedRole?.ID ?? ""
+            parameters["vaccinated"] = vaccinated
+            parameters["sport_id"] = selectedCamps?.ID ?? ""
             
             let personalDetailVM = PersonalDetailViewModel()
             personalDetailVM.callUpdatePersonalDetailsAPI(parameters: parameters) { success in

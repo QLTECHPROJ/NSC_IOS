@@ -139,6 +139,14 @@ class BankDetailsVC: BaseViewController {
         return isValid
     }
     
+    override func goNext() {
+        let coachDetailVM = CoachDetailViewModel()
+        coachDetailVM.callCoachDetailsAPI { success in
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass: ProfileVC.self)
+            aVC.makeRootController()
+        }
+    }
+    
     
     // MARK: - ACTIONS
     @IBAction func backClicked(_ sender: UIButton) {
@@ -152,10 +160,18 @@ class BankDetailsVC: BaseViewController {
                 label.isHidden = true
             }
             
-            print("Call API")
+            let parameters = ["coachId":LoginDataModel.currentUser?.ID ?? "",
+                              "bankName":txtBankName.text ?? "",
+                              "accountNumber":txtAccountNumber.text ?? "",
+                              "accountName":txtAccountName.text ?? "",
+                              "IFSCCode":txtIFSCCode.text ?? ""]
             
-            let aVC = AppStoryBoard.main.viewController(viewControllerClass: ProfileVC.self)
-            aVC.makeRootController()
+            let bankDetailVM = BankDetailViewModel()
+            bankDetailVM.callUpdateBankDetailsAPI(parameters: parameters) { success in
+                if success {
+                    self.goNext()
+                }
+            }
         }
     }
     
