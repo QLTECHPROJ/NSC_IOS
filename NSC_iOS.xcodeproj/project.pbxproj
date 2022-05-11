@@ -34,6 +34,10 @@
 		281AAE53281AA8D30070D758 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AAE51281AA8D30070D758 /* APIRouter.swift */; };
 		281AAE55281AAA970070D758 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AAE54281AAA970070D758 /* UICollectionView+Extension.swift */; };
 		281AAE56281AAA970070D758 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281AAE54281AAA970070D758 /* UICollectionView+Extension.swift */; };
+		282ACD66282BB898005A8634 /* CampDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282ACD65282BB898005A8634 /* CampDetailViewModel.swift */; };
+		282ACD68282BB8FC005A8634 /* CampDetailDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282ACD67282BB8FC005A8634 /* CampDetailDataModel.swift */; };
+		282ACD69282BB8FC005A8634 /* CampDetailDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282ACD67282BB8FC005A8634 /* CampDetailDataModel.swift */; };
+		282ACD6A282BBB91005A8634 /* CampDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282ACD65282BB898005A8634 /* CampDetailViewModel.swift */; };
 		282C33632819617D009401FD /* DailyReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A53D4D328193C8500226853 /* DailyReportVC.swift */; };
 		282C33642819617D009401FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A9C40B2817B7C9001B252F /* AppDelegate.swift */; };
 		282C33682819617D009401FD /* OTPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE824332817DF8800A29373 /* OTPVC.swift */; };
@@ -261,6 +265,8 @@
 		281AAE51281AA8D30070D758 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		281AAE54281AAA970070D758 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		281AAE57281AAEAE0070D758 /* NSC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSC-Bridging-Header.h"; sourceTree = "<group>"; };
+		282ACD65282BB898005A8634 /* CampDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampDetailViewModel.swift; sourceTree = "<group>"; };
+		282ACD67282BB8FC005A8634 /* CampDetailDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampDetailDataModel.swift; sourceTree = "<group>"; };
 		282C338B2819617D009401FD /* NSC_iOS_Staging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSC_iOS_Staging.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		282C338F281962D1009401FD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		282C339128196455009401FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -406,6 +412,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		282ACD6B282BD8B0005A8634 /* CampDetail */ = {
+			isa = PBXGroup;
+			children = (
+				282ACD65282BB898005A8634 /* CampDetailViewModel.swift */,
+				282ACD67282BB8FC005A8634 /* CampDetailDataModel.swift */,
+			);
+			path = CampDetail;
+			sourceTree = "<group>";
+		};
 		282C338D281961F6009401FD /* Live */ = {
 			isa = PBXGroup;
 			children = (
@@ -560,7 +575,9 @@
 		28ED596928225F940035402F /* Models + ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+
 				9A7740B4282B87FF000BDC8C /* Profile */,
+				282ACD6B282BD8B0005A8634 /* CampDetail */,
 				9A48A74A28290A5F00D0A728 /* DeleteCoach */,
 				9A48A74628290A3400D0A728 /* LogOut */,
 				9A48A73F282903EB00D0A728 /* Camp */,
@@ -1061,6 +1078,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AD5EDA22824EC1400E0A11F /* UserListCell.swift in Sources */,
+				282ACD69282BB8FC005A8634 /* CampDetailDataModel.swift in Sources */,
 				28F830F7281977F000CAF99C /* UISearchBar+Extension.swift in Sources */,
 				281AAE56281AAA970070D758 /* UICollectionView+Extension.swift in Sources */,
 				281AAE4A281AA4D30070D758 /* AppVersionViewModel.swift in Sources */,
@@ -1118,6 +1136,7 @@
 				2804E3A3281984B400AF4A62 /* DJReachability.swift in Sources */,
 				28F8312B281977F000CAF99C /* BackspaceTextField.swift in Sources */,
 				28F83139281977F000CAF99C /* CryptLib.m in Sources */,
+				282ACD6A282BBB91005A8634 /* CampDetailViewModel.swift in Sources */,
 				28F83153281977F000CAF99C /* TabBarController.swift in Sources */,
 				282C33702819617D009401FD /* CampListCell.swift in Sources */,
 				28F83101281977F000CAF99C /* BaseViewController.swift in Sources */,
@@ -1194,6 +1213,7 @@
 				28F830F4281977F000CAF99C /* UITextField+Extension.swift in Sources */,
 				28F83120281977F000CAF99C /* UIImageView+Letters.m in Sources */,
 				28543627282544F8009BBEDA /* PersonalDetailsVC.swift in Sources */,
+				282ACD68282BB8FC005A8634 /* CampDetailDataModel.swift in Sources */,
 				28F8311C281977F000CAF99C /* MediaType.swift in Sources */,
 				28F8316528197B0600CAF99C /* WWCalendarTimeSelector.swift in Sources */,
 				9AE824382817DF8800A29373 /* OTPVC.swift in Sources */,
@@ -1248,6 +1268,7 @@
 				28F83130281977F000CAF99C /* AppConstants.swift in Sources */,
 				28470DAB281C0CC500FE9C66 /* AlertPopUpVC.swift in Sources */,
 				28F83142281977F000CAF99C /* ReadMore_Helper.swift in Sources */,
+				282ACD66282BB898005A8634 /* CampDetailViewModel.swift in Sources */,
 				28F83122281977F000CAF99C /* NavigationClass.swift in Sources */,
 				281AAE46281AA44D0070D758 /* AppVersionModel.swift in Sources */,
 				28F83134281977F000CAF99C /* GradientView.swift in Sources */,

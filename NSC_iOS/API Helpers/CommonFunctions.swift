@@ -307,3 +307,52 @@ extension UIButton {
     }
     
 }
+
+
+extension UIImageView {
+    
+    func loadUserProfileImage(fontSize : CGFloat) {
+        self.image = nil
+        
+        if let userImage = LoginDataModel.profileImage {
+            self.image = userImage
+            return
+        }
+        
+        if let userData = LoginDataModel.currentUser {
+            DispatchQueue.global().async {
+                if let imgUrl = URL(string: userData.Profile_Image.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) {
+                    do {
+                        let imageData = try Data(contentsOf: imgUrl)
+                        let profileImage = UIImage(data: imageData)
+                        DispatchQueue.main.async {
+                            LoginDataModel.profileImage = profileImage
+                            self.image = profileImage
+                            if profileImage == nil {
+                                self.setUserInitialProfileImage(user: LoginDataModel.currentUser, fontSize: fontSize)
+                            }
+                        }
+                    } catch {
+                        print("Image Download Error : \(error.localizedDescription)")
+                        self.setUserInitialProfileImage(user: LoginDataModel.currentUser, fontSize: fontSize)
+                    }
+                } else {
+                    self.setUserInitialProfileImage(user: LoginDataModel.currentUser, fontSize: fontSize)
+                }
+            }
+        }
+    }
+    
+    func setUserInitialProfileImage(user : LoginDataModel?, fontSize : CGFloat) {
+        let userName = (user?.Name ?? "").trim.count > 0 ? (user?.Name ?? "") : "Guest"
+        let nameInitial : String = "\(userName.first ?? "G")"
+        self.setInitialProfileImage(initial: nameInitial, fontSize: fontSize)
+    }
+    
+    func setInitialProfileImage(initial : String, fontSize : CGFloat) {
+        DispatchQueue.main.async {
+            self.setImageWith(initial, color: Theme.colors.theme_dark, circular: false, textAttributes: [NSAttributedString.Key.font : UIFont(name: Theme.fonts.bold, size: fontSize) as Any, NSAttributedString.Key.foregroundColor : Theme.colors.theme_light])
+        }
+    }
+    
+}

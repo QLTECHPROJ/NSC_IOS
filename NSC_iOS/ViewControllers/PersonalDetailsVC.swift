@@ -108,7 +108,7 @@ class PersonalDetailsVC: BaseViewController {
     }
     
     private func initDOBPickerView() {
-        let prevDate = Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()
+        let prevDate = Calendar.current.date(byAdding: .year, value: -18, to: Date()) ?? Date()
         var dob : Date?
         
         txtDOB.type = .date
@@ -182,7 +182,7 @@ class PersonalDetailsVC: BaseViewController {
         let strStreet = txtStreet.text?.trim ?? ""
         let strPostCode = txtPostCode.text?.trim ?? ""
         
-        if txtDOB.text?.trim.count != 0 && selectedDOB.differenceWith(Date(), inUnit: NSCalendar.Unit.day) < 1 {
+        if txtDOB.text?.trim.count != 0 && selectedDOB.differenceWith(Date(), inUnit: NSCalendar.Unit.year) < 18 {
             isValid = false
             lblErrDOB.isHidden = false
             lblErrDOB.text = Theme.strings.alert_dob_error

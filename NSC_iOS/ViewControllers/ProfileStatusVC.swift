@@ -50,7 +50,7 @@ class ProfileStatusVC: BaseViewController {
         lblStatus.text = statusData.Title
         lblSubTitle.text = statusData.SubTitle
         
-        if statusData.Status == CoachStatus.Approved.rawValue {
+        if statusData.Status == CoachStatus.Hired.rawValue {
             imgViewStatus.isHidden = false
         } else {
             imgViewStatus.isHidden = true

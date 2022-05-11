@@ -52,8 +52,7 @@ extension KidsAttendanceVC : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let aVC = AppStoryBoard.main.viewController(viewControllerClass:DailyReportVC.self)
-        self.navigationController?.pushViewController(aVC, animated: true)
+        
     }
 
 }

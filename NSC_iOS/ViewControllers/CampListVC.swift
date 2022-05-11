@@ -9,38 +9,68 @@ import UIKit
 
 class CampListVC: BaseViewController {
     
-    //MARK:- UIOutlet
+    // MARK: - OUTLETS
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var lblNoData: UILabel!
     
-    //MARK:- Variables
+    @IBOutlet weak var imgUser: UIImageView!
+    @IBOutlet weak var lblName: UILabel!
+    
+    
+    // MARK: - VARIABLES
     var campListVM : CampListViewModel?
-    var arrayCampList = [CampListDataModel]()
+    var arrayCurrentCampList = [CampDetailModel]()
+    var arrayUpcomingCampList = [CampDetailModel]()
     
-    //MARK:- View Life Cycle
+    
+    // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        
+        lblNoData.isHidden = true
+        
         tableView.register(nibWithCellClass: CampListCell.self)
-        tableView.dataSource = self
-        tableView.delegate = self
+        tableView.refreshControl = self.refreshControl
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupUI()
+        self.refreshData()
+    }
+    
+    // MARK: - FUNCTIONS
+    override func setupUI() {
+        imgUser.loadUserProfileImage(fontSize: 20)
+        lblName.text = (LoginDataModel.currentUser?.Fname ?? "") + " " + (LoginDataModel.currentUser?.Lname ?? "")
+    }
+    
+    override func setupData() {
+        if arrayCurrentCampList.count > 0 || arrayUpcomingCampList.count > 0 {
+            lblNoData.isHidden = true
+        } else {
+            lblNoData.isHidden = false
+        }
+        
+        tableView.reloadData()
+    }
+    
+    override func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.refreshData()
+        refreshControl.endRefreshing()
+    }
+    
+    override func refreshData() {
         let campListViewModel = CampListViewModel()
         campListViewModel.callCampListAPI(completion: { success in
-            self.arrayCampList = campListViewModel.campListData
+            self.arrayCurrentCampList = campListViewModel.arrayCurrentCampList
+            self.arrayUpcomingCampList = campListViewModel.arrayUpcomingCampList
             self.setupData()
         })
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-       
-    }
-    
-    //MARK:- FUNCTION
-    override func setupData() {
-        tableView.reloadData()
-    }
-    
     //MARK:- ACTION
-    @IBAction func backClicked(_ sender: UIButton) {
-        
+    @IBAction func userMenuClicked(_ sender: UIButton) {
         let aVC = AppStoryBoard.main.viewController(viewControllerClass:UserListPopUpVC.self)
         let navVC = UINavigationController(rootViewController: aVC)
         navVC.navigationBar.isHidden = true
@@ -50,36 +80,35 @@ class CampListVC: BaseViewController {
     
 }
 
-extension CampListVC: UITableViewDelegate , UITableViewDataSource {
-    
-    // MARK - UITableView Delegates
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+extension CampListVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         if section == 0 {
-            return 2
-        }else {
-            return arrayCampList.count
+            return arrayCurrentCampList.count
+        } else {
+            return arrayUpcomingCampList.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withClass: CampListCell.self)
-            
+            cell.configureCell(data: arrayCurrentCampList[indexPath.row])
             return cell
-        }else {
+        } else {
             let cell = tableView.dequeueReusableCell(withClass: CampListCell.self)
-            cell.configureCell(data: arrayCampList[indexPath.row])
+            cell.configureCell(data: arrayUpcomingCampList[indexPath.row])
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         return 120
     }
     
@@ -90,7 +119,7 @@ extension CampListVC: UITableViewDelegate , UITableViewDataSource {
         label.frame = CGRect.init(x: 16, y: 5, width: headerView.frame.width-10, height: headerView.frame.height-10)
         if section == 0 {
             label.text = "Current Camp"
-        }else {
+        } else {
             label.text = "Upcoming Camps"
         }
         label.textColor = .black
@@ -102,12 +131,31 @@ extension CampListVC: UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        if section == 0 {
+            if arrayCurrentCampList.count > 0 {
+                return 30
+            }
+        } else {
+            if arrayUpcomingCampList.count > 0 {
+                return 30
+            }
+        }
+        
+        return 0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let aVC = AppStoryBoard.main.viewController(viewControllerClass:CampDetailVC.self)
-        self.navigationController?.pushViewController(aVC, animated: true)
+        if indexPath.section == 0 {
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass:CampDetailVC.self)
+            aVC.strCampID = arrayCurrentCampList[indexPath.row].CampId
+            aVC.campDetails = arrayCurrentCampList[indexPath.row]
+            self.navigationController?.pushViewController(aVC, animated: true)
+        } else {
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass:CampDetailVC.self)
+            aVC.strCampID = arrayUpcomingCampList[indexPath.row].CampId
+            aVC.campDetails = arrayUpcomingCampList[indexPath.row]
+            self.navigationController?.pushViewController(aVC, animated: true)
+        }
     }
     
 }

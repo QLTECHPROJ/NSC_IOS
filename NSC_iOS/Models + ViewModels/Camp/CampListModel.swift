@@ -9,17 +9,22 @@ import Foundation
 import EVReflection
 
 class CampListModel: EVObject {
-    var ResponseData = [CampListDataModel]()
+    var ResponseData: CampListDataModel?
     var ResponseCode: String?
     var ResponseMessage: String?
     var ResponseStatus: String?
 }
 
 class CampListDataModel: EVObject {
-    var CampId: String?
-    var CampName: String?
-    var CampDetail: String?
-    var CampAddress: String?
-    var CampImage: String?
-    var CampStatus: String?
+    var current = [CampDetailModel]()
+    var upcoming = [CampDetailModel]()
+}
+
+class CampDetailModel: EVObject {
+    var CampId = ""
+    var CampName = ""
+    var CampDetail = ""
+    var CampAddress = ""
+    var CampImage = ""
+    var CampStatus = ""
 }

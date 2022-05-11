@@ -76,7 +76,7 @@ class BaseViewController: UIViewController {
     /**
      Refresh data
      */
-    func refreshDownloadData() {
+    func refreshData() {
         // Refresh data
     }
     
