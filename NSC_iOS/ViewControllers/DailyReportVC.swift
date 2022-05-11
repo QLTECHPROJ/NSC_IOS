@@ -75,14 +75,12 @@ extension DailyReportVC: UITableViewDelegate , UITableViewDataSource {
             headerView.addSubview(label)
             
             return headerView
-        }else {
+        } else {
             let header = UIView()
             header.isUserInteractionEnabled = false
             header.backgroundColor = UIColor.clear
             return header
         }
-        
-        
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -92,6 +90,11 @@ extension DailyReportVC: UITableViewDelegate , UITableViewDataSource {
             return 30
         }
        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let aVC = AppStoryBoard.main.viewController(viewControllerClass:KidsAttendanceVC.self)
+        self.navigationController?.pushViewController(aVC, animated: true)
     }
     
 }
