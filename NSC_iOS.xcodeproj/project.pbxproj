@@ -229,6 +229,10 @@
 		9A53D4CE28192BE400226853 /* CampListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A53D4CC28192BE400226853 /* CampListCell.xib */; };
 		9A53D4D228193B6D00226853 /* CampDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A53D4D128193B6D00226853 /* CampDetailVC.swift */; };
 		9A53D4D428193C8500226853 /* DailyReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A53D4D328193C8500226853 /* DailyReportVC.swift */; };
+		9A7740B6282B8927000BDC8C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7740B5282B8927000BDC8C /* ProfileViewModel.swift */; };
+		9A7740B7282B8927000BDC8C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7740B5282B8927000BDC8C /* ProfileViewModel.swift */; };
+		9A7740B9282BB7A1000BDC8C /* UploaddataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7740B8282BB7A1000BDC8C /* UploaddataModel.swift */; };
+		9A7740BA282BB7A1000BDC8C /* UploaddataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7740B8282BB7A1000BDC8C /* UploaddataModel.swift */; };
 		9AD5ED9B2824EBDE00E0A11F /* UserListPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD5ED9A2824EBDD00E0A11F /* UserListPopUpVC.swift */; };
 		9AD5ED9C2824EBDE00E0A11F /* UserListPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD5ED9A2824EBDD00E0A11F /* UserListPopUpVC.swift */; };
 		9AD5ED9F2824EC1400E0A11F /* UserListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AD5ED9D2824EC1300E0A11F /* UserListCell.xib */; };
@@ -366,6 +370,8 @@
 		9A53D4CC28192BE400226853 /* CampListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CampListCell.xib; sourceTree = "<group>"; };
 		9A53D4D128193B6D00226853 /* CampDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampDetailVC.swift; sourceTree = "<group>"; };
 		9A53D4D328193C8500226853 /* DailyReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReportVC.swift; sourceTree = "<group>"; };
+		9A7740B5282B8927000BDC8C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		9A7740B8282BB7A1000BDC8C /* UploaddataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploaddataModel.swift; sourceTree = "<group>"; };
 		9AD5ED9A2824EBDD00E0A11F /* UserListPopUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListPopUpVC.swift; sourceTree = "<group>"; };
 		9AD5ED9D2824EC1300E0A11F /* UserListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserListCell.xib; sourceTree = "<group>"; };
 		9AD5ED9E2824EC1400E0A11F /* UserListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListCell.swift; sourceTree = "<group>"; };
@@ -554,6 +560,7 @@
 		28ED596928225F940035402F /* Models + ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				9A7740B4282B87FF000BDC8C /* Profile */,
 				9A48A74A28290A5F00D0A728 /* DeleteCoach */,
 				9A48A74628290A3400D0A728 /* LogOut */,
 				9A48A73F282903EB00D0A728 /* Camp */,
@@ -766,6 +773,15 @@
 				9A48A74B28290A8500D0A728 /* DeleteCoachViewModel.swift */,
 			);
 			path = DeleteCoach;
+			sourceTree = "<group>";
+		};
+		9A7740B4282B87FF000BDC8C /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				9A7740B5282B8927000BDC8C /* ProfileViewModel.swift */,
+				9A7740B8282BB7A1000BDC8C /* UploaddataModel.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		9AE824412817E25B00A29373 /* TableCell */ = {
@@ -1089,6 +1105,7 @@
 				28F8316828197BDD00CAF99C /* CommonFunctions.swift in Sources */,
 				282C336E2819617D009401FD /* CampDetailVC.swift in Sources */,
 				28F83125281977F000CAF99C /* NotificationName+Extention.swift in Sources */,
+				9A7740B7282B8927000BDC8C /* ProfileViewModel.swift in Sources */,
 				28F830D9281977F000CAF99C /* DJPickerView.swift in Sources */,
 				9A48A7502829384000D0A728 /* LogoutModel.swift in Sources */,
 				282C336F2819617D009401FD /* ProfileVC.swift in Sources */,
@@ -1115,6 +1132,7 @@
 				9A48A7422829045A00D0A728 /* CampListViewModel.swift in Sources */,
 				28F830E3281977F000CAF99C /* Int+Extension.swift in Sources */,
 				28F830E5281977F000CAF99C /* UIView+Extension.swift in Sources */,
+				9A7740BA282BB7A1000BDC8C /* UploaddataModel.swift in Sources */,
 				9AD5ED9C2824EBDE00E0A11F /* UserListPopUpVC.swift in Sources */,
 				28F83133281977F000CAF99C /* Theme.swift in Sources */,
 				28F830F1281977F000CAF99C /* UINavigationBar+Extension.swift in Sources */,
@@ -1196,6 +1214,7 @@
 				9A53D4D228193B6D00226853 /* CampDetailVC.swift in Sources */,
 				28F83124281977F000CAF99C /* NotificationName+Extention.swift in Sources */,
 				28F830D8281977F000CAF99C /* DJPickerView.swift in Sources */,
+				9A7740B6282B8927000BDC8C /* ProfileViewModel.swift in Sources */,
 				9A2CFCCF2818139F000A2C1D /* ProfileVC.swift in Sources */,
 				9A48A74F2829384000D0A728 /* LogoutModel.swift in Sources */,
 				28F830D6281977F000CAF99C /* DJTextField.swift in Sources */,
@@ -1222,6 +1241,7 @@
 				9A48A7412829045A00D0A728 /* CampListViewModel.swift in Sources */,
 				28F830E2281977F000CAF99C /* Int+Extension.swift in Sources */,
 				28F830E4281977F000CAF99C /* UIView+Extension.swift in Sources */,
+				9A7740B9282BB7A1000BDC8C /* UploaddataModel.swift in Sources */,
 				9AD5ED9B2824EBDE00E0A11F /* UserListPopUpVC.swift in Sources */,
 				28F83132281977F000CAF99C /* Theme.swift in Sources */,
 				28F830F0281977F000CAF99C /* UINavigationBar+Extension.swift in Sources */,

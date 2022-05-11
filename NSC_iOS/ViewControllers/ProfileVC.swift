@@ -35,9 +35,11 @@ class ProfileVC: BaseViewController {
     
     // MARK: - VARIABLES
     var isCountrySelected = false
-    //var selectedCountry = CountrylistDataModel(id: "0", name: "Australia", shortName: "AU", code: "61")
     var strMobile:String?
-   
+    var coachData: LoginDataModel?
+    var strImage:String?
+    var imageData = UploadDataModel()
+    
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,8 +48,9 @@ class ProfileVC: BaseViewController {
         if strMobile != "" {
             txtFMobileNo.text = strMobile
         }
-        setupUI()
         setupData()
+        setupUI()
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,10 +72,9 @@ class ProfileVC: BaseViewController {
         
         txtFMobileNo.delegate = self
         txtFEmailAdd.delegate = self
+        txtFName.delegate = self
+        txtLName.delegate = self
         
-        //lblDOB.text = Theme.strings.date_of_birth
-        //lblDOB.numberOfLines = 0
-        buttonEnableDisable()
     }
     
     override func setupData() {
@@ -81,6 +83,7 @@ class ProfileVC: BaseViewController {
         
         let coachDetailVM = CoachDetailViewModel()
         coachDetailVM.callCoachDetailsAPI { success in
+            
             self.txtFMobileNo.text = coachDetailVM.userData?.Mobile
             self.txtFName.text = coachDetailVM.userData?.Fname
             self.txtLName.text = coachDetailVM.userData?.Lname
@@ -88,10 +91,12 @@ class ProfileVC: BaseViewController {
             self.lblUser.text = coachDetailVM.userData?.Name
             if let strUrl = coachDetailVM.userData?.Profile_Image.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let imgUrl = URL(string: strUrl) {
                 self.imgUser.sd_setImage(with: imgUrl, completed: nil)
+                self.strImage = coachDetailVM.userData?.Profile_Image
             }
-            
+            self.coachData = coachDetailVM.userData
             self.txtFMobileNo.isEnabled = false
             self.txtFEmailAdd.isEnabled = false
+            self.buttonEnableDisable()
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -102,28 +107,42 @@ class ProfileVC: BaseViewController {
             }
         }
         
-        buttonEnableDisable()
     }
     
     override func buttonEnableDisable() {
-        let name = txtFName.text?.trim
-        let mobile = txtFMobileNo.text?.trim
-        let email = txtFEmailAdd.text?.trim
-        let lastName = txtLName.text?.trim
-        
-        if name?.count == 0 || mobile?.count == 0 || email?.count == 0 || lastName?.count == 0 {
-            btnConfirm.isUserInteractionEnabled = false
-            btnConfirm.backgroundColor = Theme.colors.gray_7E7E7E
-            btnConfirm.removeGradient()
-        } else {
+        if coachData?.Fname == txtFName.text && coachData?.Lname == txtLName.text && coachData?.Profile_Image == strImage {
             btnConfirm.isUserInteractionEnabled = true
             btnConfirm.backgroundColor = Theme.colors.theme_dark
+            btnConfirm.setTitleColor(.white, for: .normal)
+            btnUpdate.isUserInteractionEnabled = false
+            btnUpdate.backgroundColor = Theme.colors.white
+            btnUpdate.removeGradient()
+            btnUpdate.setTitleColor(Theme.colors.theme_dark, for: .normal)
+        }else {
+            btnConfirm.isUserInteractionEnabled = false
+            btnConfirm.backgroundColor = Theme.colors.white
+            btnConfirm.setTitleColor(Theme.colors.theme_dark, for: .normal)
+            btnConfirm.removeGradient()
+            btnUpdate.isUserInteractionEnabled = true
+            btnUpdate.backgroundColor = Theme.colors.theme_dark
+            btnUpdate.setTitleColor(.white, for: .normal)
         }
     }
     
     func checkValidation() -> Bool {
         var isValid = true
         let strMobile = txtFMobileNo.text?.trim ?? ""
+        if txtFName.text?.trim.count == 0 {
+            isValid = false
+            lblErrName.isHidden = false
+            lblErrName.text = Theme.strings.alert_blank_firstname_error
+        }
+        
+        if txtLName.text?.trim.count == 0 {
+            isValid = false
+            lblErrLastName.isHidden = false
+            lblErrLastName.text = Theme.strings.alert_blank_lastname_error
+        }
         
         if strMobile.count == 0 {
             isValid = false
@@ -151,6 +170,7 @@ class ProfileVC: BaseViewController {
         
         return isValid
     }
+    
    
     //MARK:- IMAGE UPLOAD
     func handleImageOptions(buttonTitle : String) {
@@ -178,7 +198,7 @@ class ProfileVC: BaseViewController {
             }
         case Theme.strings.remove_photo:
             print("Remove photo")
-            //self.callRemoveProfileImageAPI()
+            LoginDataModel.currentUser?.Profile_Image = ""
         default:
             break
         }
@@ -192,6 +212,10 @@ class ProfileVC: BaseViewController {
     }
     
     @IBAction func confirmClicked(_ sender: UIButton) {
+        self.setupData()
+    }
+    
+    @IBAction func updateClicked(_ sender: UIButton) {
         self.view.endEditing(true)
         
         if checkValidation() {
@@ -200,13 +224,18 @@ class ProfileVC: BaseViewController {
             lblErrEmail.isHidden = true
             lblErrLastName.isHidden = true
             
-            let aVC = AppStoryBoard.main.viewController(viewControllerClass:ProfileStatusVC.self)
-            self.navigationController?.pushViewController(aVC, animated: true)
+            let parameters = ["coachId":LoginDataModel.currentUser?.ID ?? "",
+                              "fname":txtFName.text ?? "",
+                              "lname":txtLName.text ?? "",
+                              "profileImage":strImage ?? ""]
+            
+            let profileVM = ProfileViewModel()
+            profileVM.callProfileUpdateAPI(parameters: parameters, completion: { success in
+                if success {
+                    self.setupData()
+                }
+            })
         }
-    }
-    
-    @IBAction func updateClicked(_ sender: UIButton) {
-        
     }
     
     @IBAction func editClicked(_ sender: UIButton) {
@@ -240,6 +269,7 @@ extension ProfileVC : UITextFieldDelegate {
         lblErrName.isHidden = true
         lblErrMobileNo.isHidden = true
         lblErrEmail.isHidden = true
+        lblErrLastName.isHidden = true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -248,8 +278,15 @@ extension ProfileVC : UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        guard let text = textField.text,
-              let textRange = Range(range, in: text) else {
+        guard let text = textField.text, let textRange = Range(range, in: text) else {
+            return false
+        }
+        
+        let updatedText = text.replacingCharacters(in: textRange, with: string).trim
+        
+        if textField == txtFName && updatedText.count > 16 {
+            return false
+        } else if textField == txtFMobileNo && updatedText.count > 15 {
             return false
         }
         
@@ -260,8 +297,8 @@ extension ProfileVC : UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         
-        buttonEnableDisable()
-        
+        self.buttonEnableDisable()
+     
     }
     
 }
@@ -272,20 +309,23 @@ extension ProfileVC : UIImagePickerControllerDelegate, UINavigationControllerDel
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.editedImage] as? UIImage {
             imgUser.image = image
-            //imageData = UploadDataModel(name: "image.jpeg", key: "ProfileImage", data: image.jpegData(compressionQuality: 0.5), extention: "jpeg", mimeType: "image/jpeg")
-            //self.callAddProfileImageAPI()
+           
+            imageData = UploadDataModel(name: "image.jpeg", key: "ProfileImage", data: image.jpegData(compressionQuality: 0.5), extention: "jpeg", mimeType: "image/jpeg")
+            self.strImage = imageData.name
+            self.buttonEnableDisable()
+            
         }
         else if let image = info[.originalImage] as? UIImage {
             imgUser.image = image
-            //imageData = UploadDataModel(name: "image.jpeg", key: "ProfileImage", data: image.jpegData(compressionQuality: 0.5), extention: "jpeg", mimeType: "image/jpeg")
-            //self.callAddProfileImageAPI()
+            imageData = UploadDataModel(name: "image.jpeg", key: "ProfileImage", data: image.jpegData(compressionQuality: 0.5), extention: "jpeg", mimeType: "image/jpeg")
+            self.strImage = imageData.name
+            self.buttonEnableDisable()
         }
         
         picker.dismiss(animated: true)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-       
         picker.dismiss(animated: true, completion: nil)
     }
     

@@ -32,6 +32,8 @@ enum APIRouter : URLRequestConvertible {
     case coachupdatepersonaldetails([String:String])
     case coachupdatebankdetails([String:String])
     
+    case profileUpdate([String:String])
+    
     var route: APIRoute {
         switch self {
         case .appversion(let data):
@@ -69,6 +71,8 @@ enum APIRouter : URLRequestConvertible {
             return APIRoute(path: "coachupdatepersonaldetails", method: .post, data: data)
         case .coachupdatebankdetails(let data):
             return APIRoute(path: "coachupdatebankdetails", method: .post, data: data)
+        case .profileUpdate(let data):
+            return APIRoute(path: "profileUpdate", method: .post, data: data)
         }
     }
     

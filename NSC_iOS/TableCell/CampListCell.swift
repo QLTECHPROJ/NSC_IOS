@@ -31,7 +31,7 @@ class CampListCell: UITableViewCell {
         lblCampTitle.text = data.CampName
         lblCampDesc.text = data.CampDetail
         lblCampLocation.text = data.CampAddress
-        if let strUrl = data.CampImage.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let imgUrl = URL(string: strUrl) {
+        if let strUrl = data.CampImage?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let imgUrl = URL(string: strUrl) {
             imgCamp.sd_setImage(with: imgUrl, completed: nil)
         }
         
