@@ -35,7 +35,6 @@ class CampListVC: BaseViewController {
     
     //MARK:- FUNCTION
     override func setupData() {
-        
         tableView.reloadData()
     }
     
