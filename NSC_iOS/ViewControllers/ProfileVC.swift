@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ProfileVC: BaseViewController {
     
@@ -14,7 +15,9 @@ class ProfileVC: BaseViewController {
     @IBOutlet weak var imgUser: UIImageView!
     
     // UITextfield
-    @IBOutlet weak var txtFDOB: DJPickerView!
+    @IBOutlet weak var txtFName: UITextField!
+    @IBOutlet weak var txtLName: UITextField!
+    
     @IBOutlet weak var txtFMobileNo: UITextField!
     @IBOutlet weak var txtFEmailAdd: UITextField!
     
@@ -24,6 +27,7 @@ class ProfileVC: BaseViewController {
     @IBOutlet weak var btnUpdate: UIButton!
     
     // UILabel
+    @IBOutlet weak var lblErrLastName: UILabel!
     @IBOutlet weak var lblUser: UILabel!
     @IBOutlet weak var lblErrName: UILabel!
     @IBOutlet weak var lblErrMobileNo: UILabel!
@@ -33,8 +37,6 @@ class ProfileVC: BaseViewController {
     var isCountrySelected = false
     //var selectedCountry = CountrylistDataModel(id: "0", name: "Australia", shortName: "AU", code: "61")
     var strMobile:String?
-    var selectedDOB = Date()
-    var showDOBPopUp = true
    
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
@@ -63,10 +65,10 @@ class ProfileVC: BaseViewController {
         lblErrName.isHidden = true
         lblErrMobileNo.isHidden = true
         lblErrEmail.isHidden = true
-        txtFDOB.delegate = self
+        lblErrLastName.isHidden = true
+        
         txtFMobileNo.delegate = self
         txtFEmailAdd.delegate = self
-        txtFDOB.addTarget(self, action: #selector(textFieldValueChanged(textField:)), for: .editingChanged)
         
         //lblDOB.text = Theme.strings.date_of_birth
         //lblDOB.numberOfLines = 0
@@ -74,9 +76,23 @@ class ProfileVC: BaseViewController {
     }
     
     override func setupData() {
-        showDOBPopUp = true
-       // let countryText = selectedCountry.ShortName.uppercased() + " +" + selectedCountry.Code
-        btnCountryCode.setTitle("+ 16", for: .normal)
+        let countryText = AppVersionDetails.countryShortName + " " + "+" + AppVersionDetails.countryCode
+        btnCountryCode.setTitle(countryText, for: .normal)
+        
+        let coachDetailVM = CoachDetailViewModel()
+        coachDetailVM.callCoachDetailsAPI { success in
+            self.txtFMobileNo.text = coachDetailVM.userData?.Mobile
+            self.txtFName.text = coachDetailVM.userData?.Fname
+            self.txtLName.text = coachDetailVM.userData?.Lname
+            self.txtFEmailAdd.text = coachDetailVM.userData?.Email
+            self.lblUser.text = coachDetailVM.userData?.Name
+            if let strUrl = coachDetailVM.userData?.Profile_Image.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let imgUrl = URL(string: strUrl) {
+                self.imgUser.sd_setImage(with: imgUrl, completed: nil)
+            }
+            
+            self.txtFMobileNo.isEnabled = false
+            self.txtFEmailAdd.isEnabled = false
+        }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             if self.isCountrySelected {
@@ -86,18 +102,16 @@ class ProfileVC: BaseViewController {
             }
         }
         
-        initDOBPickerView()
-        
         buttonEnableDisable()
     }
     
     override func buttonEnableDisable() {
-        let name = txtFDOB.text?.trim
+        let name = txtFName.text?.trim
         let mobile = txtFMobileNo.text?.trim
         let email = txtFEmailAdd.text?.trim
+        let lastName = txtLName.text?.trim
         
-        
-        if name?.count == 0 || mobile?.count == 0 || email?.count == 0 {
+        if name?.count == 0 || mobile?.count == 0 || email?.count == 0 || lastName?.count == 0 {
             btnConfirm.isUserInteractionEnabled = false
             btnConfirm.backgroundColor = Theme.colors.gray_7E7E7E
             btnConfirm.removeGradient()
@@ -110,13 +124,6 @@ class ProfileVC: BaseViewController {
     func checkValidation() -> Bool {
         var isValid = true
         let strMobile = txtFMobileNo.text?.trim ?? ""
-        
-        if txtFDOB.text?.trim.count != 0 && selectedDOB.differenceWith(Date(), inUnit: NSCalendar.Unit.day) < 1 {
-            isValid = false
-            lblErrName.isHidden = false
-            lblErrName.text = Theme.strings.alert_dob_error
-            return false
-        }
         
         if strMobile.count == 0 {
             isValid = false
@@ -145,59 +152,6 @@ class ProfileVC: BaseViewController {
         return isValid
     }
    
-    private func initDOBPickerView() {
-        
-        let date = Date()
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.year, .month, .day], from: date)
-        let currentDate = calendar.date(from: components)!
-        
-        let dateComponents = DateComponents()
-        //        dateComponents.year = -4
-        
-        var tenYearsAgo = Calendar.current.date(byAdding: dateComponents, to: currentDate)
-        
-        txtFDOB.type = .date
-        txtFDOB.pickerDelegate = self
-        txtFDOB.datePicker?.datePickerMode = .date
-        txtFDOB.datePicker?.maximumDate = tenYearsAgo
-        txtFDOB.dateFormatter.dateFormat = Theme.dateFormats.DOB_App
-        
-       // if let userData = CoUserDataModel.currentUser {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = Theme.dateFormats.DOB_App
-        let dateValue = dateFormatter.string(from:currentDate)
-        tenYearsAgo = dateFormatter.date(from:dateValue)
-      //  }
-        
-        //let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = Theme.dateFormats.DOB_App
-        dateFormatter.timeZone = TimeZone.current
-        if tenYearsAgo != nil {
-            txtFDOB.text = dateFormatter.string(from: tenYearsAgo!)
-            txtFDOB.datePicker?.date = tenYearsAgo!
-            selectedDOB = tenYearsAgo!
-           // lblDOB.isHidden = txtFDOB.text?.count == 0
-           // CoUserDataModel.currentUser?.DOB = txtFDOB.text ?? ""
-        }
-        
-        //txtDOBTopConst.constant = (txtFDOB.text?.count == 0) ? 0 : 10
-    }
-    @objc func textFieldValueChanged(textField : UITextField ) {
-       // lblDOB.text = (txtFDOB.text?.count == 0) ? "" : Theme.strings.date_of_birth
-        self.view.layoutIfNeeded()
-    }
-    
-    func showAlertForDOB() {
-//        let aVC = AppStoryBoard.manage.viewController(viewControllerClass: AlertPopUpVC.self)
-//        aVC.titleText = ""
-//        aVC.detailText = Theme.strings.alert_dob_slab_change
-//        aVC.firstButtonTitle = Theme.strings.ok
-//        aVC.hideSecondButton = true
-//        aVC.modalPresentationStyle = .overFullScreen
-//        aVC.delegate = self
-//        self.present(aVC, animated: true, completion: nil)
-    }
     //MARK:- IMAGE UPLOAD
     func handleImageOptions(buttonTitle : String) {
         switch buttonTitle {
@@ -244,6 +198,7 @@ class ProfileVC: BaseViewController {
             lblErrName.isHidden = true
             lblErrMobileNo.isHidden = true
             lblErrEmail.isHidden = true
+            lblErrLastName.isHidden = true
             
             let aVC = AppStoryBoard.main.viewController(viewControllerClass:ProfileStatusVC.self)
             self.navigationController?.pushViewController(aVC, animated: true)
@@ -278,11 +233,6 @@ class ProfileVC: BaseViewController {
 extension ProfileVC : UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if textField == txtFDOB && showDOBPopUp {
-            showDOBPopUp = false
-            showAlertForDOB()
-            return false
-        }
         return true
     }
     
@@ -303,14 +253,6 @@ extension ProfileVC : UITextFieldDelegate {
             return false
         }
         
-        let updatedText = text.replacingCharacters(in: textRange, with: string).trim
-        
-        if textField == txtFDOB && updatedText.count > 16 {
-            return false
-        } else if textField == txtFMobileNo && updatedText.count > 15 {
-            return false
-        }
-        
         buttonEnableDisable()
         
         return true
@@ -323,31 +265,6 @@ extension ProfileVC : UITextFieldDelegate {
     }
     
 }
-// MARK: - DJPickerViewDelegate
-extension ProfileVC : DJPickerViewDelegate {
-    
-    func textPickerView(_ textPickerView: DJPickerView, didSelectDate date: Date) {
-        print("Date :- ",date)
-        selectedDOB = date
-        //lblDOB.text = (txtFDOB.text?.count == 0) ? "" : Theme.strings.date_of_birth
-        self.view.layoutIfNeeded()
-        
-        buttonEnableDisable()
-    }
-    
-}
-
-
-// MARK: - AlertPopUpVCDelegate
-//extension ProfileVC : AlertPopUpVCDelegate {
-//
-//    func handleAction(sender: UIButton, popUpTag: Int) {
-//        if sender.tag == 0 {
-//            txtFDOB.becomeFirstResponder()
-//        }
-//    }
-//
-//}
 
 // MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
 extension ProfileVC : UIImagePickerControllerDelegate, UINavigationControllerDelegate {

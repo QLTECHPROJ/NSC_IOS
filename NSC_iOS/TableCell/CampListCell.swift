@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CampListCell: UITableViewCell {
     
@@ -30,9 +31,9 @@ class CampListCell: UITableViewCell {
         lblCampTitle.text = data.CampName
         lblCampDesc.text = data.CampDetail
         lblCampLocation.text = data.CampAddress
-//        let url = URL(string: data.CampImage ?? "")
-//        let data = try? Data(contentsOf: url!) //make sure your image in this url
-//        imgCamp.image = UIImage(data: data!)
+        if let strUrl = data.CampImage.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let imgUrl = URL(string: strUrl) {
+            imgCamp.sd_setImage(with: imgUrl, completed: nil)
+        }
         
     }
     
