@@ -46,7 +46,7 @@ class APIManager {
                         let dict = value.toDictionary()
                         if (dict["ResponseCode"] as? String) != "200" {
                             if (dict["ResponseCode"] as? String) == "403" {
-                                // BaseViewController.shared.handleLogout()
+                                APPDELEGATE.logout()
                             } else if let message = dict["ResponseMessage"] as? String, message.trim.count > 0 , message != "Reminder not Available for any playlist!" {
                                 if showToast { showAlertToast(message: message) }
                             }
@@ -61,6 +61,84 @@ class APIManager {
         //        .responseJSON { (resp) in
         //            print("responseJSON :- ", resp)
         //        }
+    }
+    
+    func callUploadWebService<M : EVObject>(apiUrl : String, includeHeader : Bool, parameters : [String:Any]?, uploadParameters : [UploadDataModel], httpMethod : Alamofire.HTTPMethod, displayHud : Bool = true, showToast : Bool = true, responseModel : @escaping (M) -> Void) {
+        
+        if checkInternet() == false {
+            showAlertToast(message: Theme.strings.alert_check_internet)
+            responseModel(M())
+            return
+        }
+        
+        if displayHud {
+            showHud()
+        }
+        
+        var headers : HTTPHeaders?
+        if includeHeader {
+            headers = ["Accept":"application/json",
+                       "Oauth":APIManager.shared.generateToken(),
+                       "Yaccess":DEVICE_UUID]
+        }
+        
+        if parameters != nil {
+            print("parameters :- ",parameters!)
+        }
+        
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            if parameters != nil {
+                for (key, value) in parameters! {
+                    multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key)
+                }
+            }
+            
+            if uploadParameters.count > 0 {
+                for uploadDict in uploadParameters {
+                    multipartFormData.append(uploadDict.data!, withName: uploadDict.key, fileName: uploadDict.name, mimeType: uploadDict.mimeType)
+                }
+            }
+            
+        }, usingThreshold: UInt64.init(), to: apiUrl, method: httpMethod, headers: headers) { (result) in
+            
+            switch result {
+            case .success(let upload, _, _):
+                upload.responseObject { (response : DataResponse<M>) in
+                    
+                    hideHud()
+                    
+                    if let error = response.result.error {
+                        if checkErrorTypeNetworkLost(error: error) {
+                            self.callUploadWebService(apiUrl: apiUrl, includeHeader: includeHeader, parameters: parameters, uploadParameters: uploadParameters, httpMethod: httpMethod, displayHud: displayHud, showToast: showToast, responseModel: responseModel)
+                        }
+                    }
+                    
+                    self.handleError(data: response, showToast: showToast, response: { (success) in
+                        if success {
+                            if let value = response.result.value {
+                                responseModel(value)
+                                let dict = value.toDictionary()
+                                if (dict["ResponseCode"] as? String) != "200" {
+                                    if (dict["ResponseCode"] as? String) == "403" {
+                                        APPDELEGATE.logout()
+                                    } else if let message = dict["ResponseMessage"] as? String, message.trim.count > 0 {
+                                        if showToast { showAlertToast(message: message) }
+                                    }
+                                }
+                            }
+                        }
+                    })
+                }
+                .responseString { (resp) in
+                    print(resp)
+                }
+            case .failure(let error):
+                hideHud()
+                print("Error in upload: \(error.localizedDescription)")
+                showAlertToast(message: error.localizedDescription)
+            }
+        }
+        
     }
     
     func handleError<D : EVObject>(data : DataResponse<D>, showToast : Bool = true, response : @escaping (Bool) -> Void) {

@@ -53,6 +53,11 @@ class AppVersionDetails {
     static var supportText = AppVersionDetails.current.supportText
     static var supportEmail = AppVersionDetails.current.supportEmail
     
+    static var mobileMinDigits = Int(AppVersionDetails.current.mobileMinDigits) ?? 10
+    static var mobileMaxDigits = Int(AppVersionDetails.current.mobileMaxDigits) ?? 10
+    static var postCodeMinDigits = Int(AppVersionDetails.current.postCodeMinDigits) ?? 6
+    static var postCodeMaxDigits = Int(AppVersionDetails.current.postCodeMaxDigits) ?? 6
+    
     class func defaultDetails() -> AppVersionDetailModel {
         let details = AppVersionDetailModel ()
         details.IsForce = ""
@@ -62,6 +67,10 @@ class AppVersionDetails {
         details.supportTitle = "Support"
         details.supportText = "Please contact support at "
         details.supportEmail = "support@nsc.com.in"
+        details.mobileMinDigits = "10"
+        details.mobileMaxDigits = "10"
+        details.postCodeMinDigits = "6"
+        details.postCodeMaxDigits = "6"
         return details
     }
     

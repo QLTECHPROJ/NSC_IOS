@@ -15,10 +15,9 @@ class ProfileVC: BaseViewController {
     @IBOutlet weak var imgUser: UIImageView!
     
     // UITextfield
+    @IBOutlet weak var txtFMobileNo: UITextField!
     @IBOutlet weak var txtFName: UITextField!
     @IBOutlet weak var txtLName: UITextField!
-    
-    @IBOutlet weak var txtFMobileNo: UITextField!
     @IBOutlet weak var txtFEmailAdd: UITextField!
     
     // UIButton
@@ -28,104 +27,96 @@ class ProfileVC: BaseViewController {
     
     // UILabel
     @IBOutlet weak var lblErrLastName: UILabel!
-    @IBOutlet weak var lblUser: UILabel!
     @IBOutlet weak var lblErrName: UILabel!
     @IBOutlet weak var lblErrMobileNo: UILabel!
     @IBOutlet weak var lblErrEmail: UILabel!
     
+    
     // MARK: - VARIABLES
-    var isCountrySelected = false
-    var strMobile:String?
-    var coachData: LoginDataModel?
-    var strImage:String?
+    var strImage : String?
     var imageData = UploadDataModel()
+    
     
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         
         imgUser.contentMode = .scaleAspectFill
-        if strMobile != "" {
-            txtFMobileNo.text = strMobile
-        }
-        setupData()
+        
         setupUI()
-       
+        setupData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        let coachDetailVM = CoachDetailViewModel()
+        coachDetailVM.callCoachDetailsAPI { success in
+            self.setupData()
+        }
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.view.endEditing(true)
-    }
+    
     
     // MARK: - FUNCTIONS
     override func setupUI() {
-       
         lblErrName.isHidden = true
         lblErrMobileNo.isHidden = true
         lblErrEmail.isHidden = true
         lblErrLastName.isHidden = true
         
-        txtFMobileNo.delegate = self
-        txtFEmailAdd.delegate = self
-        txtFName.delegate = self
-        txtLName.delegate = self
-        
+        txtFMobileNo.isEnabled = false
+        txtFEmailAdd.isEnabled = false
     }
     
     override func setupData() {
         let countryText = AppVersionDetails.countryShortName + " " + "+" + AppVersionDetails.countryCode
         btnCountryCode.setTitle(countryText, for: .normal)
         
-        let coachDetailVM = CoachDetailViewModel()
-        coachDetailVM.callCoachDetailsAPI { success in
+        if let userData = LoginDataModel.currentUser {
+            txtFMobileNo.text = userData.Mobile
+            txtFName.text = userData.Fname
+            txtLName.text = userData.Lname
+            txtFEmailAdd.text = userData.Email
             
-            self.txtFMobileNo.text = coachDetailVM.userData?.Mobile
-            self.txtFName.text = coachDetailVM.userData?.Fname
-            self.txtLName.text = coachDetailVM.userData?.Lname
-            self.txtFEmailAdd.text = coachDetailVM.userData?.Email
-            self.lblUser.text = coachDetailVM.userData?.Name
-            if let strUrl = coachDetailVM.userData?.Profile_Image.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let imgUrl = URL(string: strUrl) {
-                self.imgUser.sd_setImage(with: imgUrl, completed: nil)
-                self.strImage = coachDetailVM.userData?.Profile_Image
-            }
-            self.coachData = coachDetailVM.userData
-            self.txtFMobileNo.isEnabled = false
-            self.txtFEmailAdd.isEnabled = false
-            self.buttonEnableDisable()
+            imgUser.loadUserProfileImage(fontSize: 50)
+            strImage = userData.Profile_Image
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            if self.isCountrySelected {
-                self.btnCountryCode.setTitleColor(Theme.colors.textColor, for: .normal)
-            } else {
-                self.btnCountryCode.setTitleColor(Theme.colors.black_40_opacity, for: .normal)
-            }
-        }
-        
+        buttonEnableDisable()
     }
     
     override func buttonEnableDisable() {
-        if coachData?.Fname == txtFName.text && coachData?.Lname == txtLName.text && coachData?.Profile_Image == strImage {
+        var shouldEnable = false
+        
+        if LoginDataModel.currentUser?.Fname != txtFName.text && txtFName.text?.trim.count != 0 {
+            shouldEnable = true
+        }
+        
+        if LoginDataModel.currentUser?.Lname != txtLName.text && txtLName.text?.trim.count != 0 {
+            shouldEnable = true
+        }
+        
+        if LoginDataModel.currentUser?.Profile_Image != strImage && strImage?.trim.count != 0 {
+            shouldEnable = true
+        }
+        
+        
+        if shouldEnable {
+            btnConfirm.isUserInteractionEnabled = false
+            btnConfirm.backgroundColor = Theme.colors.gray_7E7E7E
+            
+            btnUpdate.isUserInteractionEnabled = true
+            btnUpdate.backgroundColor = Theme.colors.white
+            btnUpdate.borderColor = Theme.colors.theme_dark
+            btnUpdate.setTitleColor(Theme.colors.theme_dark, for: .normal)
+        } else {
             btnConfirm.isUserInteractionEnabled = true
             btnConfirm.backgroundColor = Theme.colors.theme_dark
-            btnConfirm.setTitleColor(.white, for: .normal)
+            
             btnUpdate.isUserInteractionEnabled = false
-            btnUpdate.backgroundColor = Theme.colors.white
-            btnUpdate.removeGradient()
-            btnUpdate.setTitleColor(Theme.colors.theme_dark, for: .normal)
-        }else {
-            btnConfirm.isUserInteractionEnabled = false
-            btnConfirm.backgroundColor = Theme.colors.white
-            btnConfirm.setTitleColor(Theme.colors.theme_dark, for: .normal)
-            btnConfirm.removeGradient()
-            btnUpdate.isUserInteractionEnabled = true
-            btnUpdate.backgroundColor = Theme.colors.theme_dark
-            btnUpdate.setTitleColor(.white, for: .normal)
+            btnUpdate.backgroundColor = Theme.colors.gray_7E7E7E
+            btnUpdate.borderColor = Theme.colors.gray_7E7E7E
+            btnUpdate.setTitleColor(Theme.colors.white, for: .normal)
         }
     }
     
@@ -148,7 +139,7 @@ class ProfileVC: BaseViewController {
             isValid = false
             self.lblErrMobileNo.isHidden = false
             self.lblErrMobileNo.text = Theme.strings.alert_invalid_mobile_error
-        } else if strMobile.count < 4 || strMobile.count > 15 {
+        } else if strMobile.count < AppVersionDetails.mobileMinDigits || strMobile.count > AppVersionDetails.mobileMaxDigits {
             isValid = false
             self.lblErrMobileNo.isHidden = false
             self.lblErrMobileNo.text = Theme.strings.alert_invalid_mobile_error
@@ -171,7 +162,7 @@ class ProfileVC: BaseViewController {
         return isValid
     }
     
-   
+    
     //MARK:- IMAGE UPLOAD
     func handleImageOptions(buttonTitle : String) {
         switch buttonTitle {
@@ -183,8 +174,7 @@ class ProfileVC: BaseViewController {
                     picker.delegate = self
                     picker.allowsEditing = true
                     self.present(picker, animated: true, completion: nil)
-                }
-                else {
+                } else {
                     showAlertToast(message: Theme.strings.alert_camera_not_available)
                 }
             }
@@ -212,7 +202,7 @@ class ProfileVC: BaseViewController {
     }
     
     @IBAction func confirmClicked(_ sender: UIButton) {
-        self.setupData()
+        self.handleLoginUserRedirection()
     }
     
     @IBAction func updateClicked(_ sender: UIButton) {
@@ -226,15 +216,14 @@ class ProfileVC: BaseViewController {
             
             let parameters = ["coachId":LoginDataModel.currentUser?.ID ?? "",
                               "fname":txtFName.text ?? "",
-                              "lname":txtLName.text ?? "",
-                              "profileImage":strImage ?? ""]
+                              "lname":txtLName.text ?? ""]
             
             let profileVM = ProfileViewModel()
-            profileVM.callProfileUpdateAPI(parameters: parameters, completion: { success in
+            profileVM.callProfileUpdateAPI(parameters: parameters, uploadParameters: [imageData]) { success in
                 if success {
                     self.setupData()
                 }
-            })
+            }
         }
     }
     
@@ -244,10 +233,10 @@ class ProfileVC: BaseViewController {
         }
         
         self.view.endEditing(true)
-        var arrayTitles = [Theme.strings.take_a_photo, Theme.strings.choose_from_gallary]
-        if let imageStr = LoginDataModel.currentUser?.Profile_Image, imageStr.trim.count > 0 {
-            arrayTitles.append(Theme.strings.remove_photo)
-        }
+        let arrayTitles = [Theme.strings.take_a_photo, Theme.strings.choose_from_gallary]
+        //        if let imageStr = LoginDataModel.currentUser?.Profile_Image, imageStr.trim.count > 0 {
+        //            arrayTitles.append(Theme.strings.remove_photo)
+        //        }
         
         showActionSheet(title: "", message: Theme.strings.profile_image_options, titles: arrayTitles, cancelButtonTitle: Theme.strings.cancel_small) { (buttonTitle) in
             DispatchQueue.main.async {
@@ -286,7 +275,7 @@ extension ProfileVC : UITextFieldDelegate {
         
         if textField == txtFName && updatedText.count > 16 {
             return false
-        } else if textField == txtFMobileNo && updatedText.count > 15 {
+        } else if textField == txtFMobileNo && updatedText.count > AppVersionDetails.mobileMaxDigits {
             return false
         }
         
@@ -296,9 +285,7 @@ extension ProfileVC : UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
         self.buttonEnableDisable()
-     
     }
     
 }
@@ -309,16 +296,17 @@ extension ProfileVC : UIImagePickerControllerDelegate, UINavigationControllerDel
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.editedImage] as? UIImage {
             imgUser.image = image
-           
-            imageData = UploadDataModel(name: "image.jpeg", key: "ProfileImage", data: image.jpegData(compressionQuality: 0.5), extention: "jpeg", mimeType: "image/jpeg")
+            
+            imageData = UploadDataModel(name: "image.jpeg", key: "profileImage", data: image.jpegData(compressionQuality: 0.5), extention: "jpeg", mimeType: "image/jpeg")
             self.strImage = imageData.name
+            
             self.buttonEnableDisable()
             
-        }
-        else if let image = info[.originalImage] as? UIImage {
+        } else if let image = info[.originalImage] as? UIImage {
             imgUser.image = image
-            imageData = UploadDataModel(name: "image.jpeg", key: "ProfileImage", data: image.jpegData(compressionQuality: 0.5), extention: "jpeg", mimeType: "image/jpeg")
+            imageData = UploadDataModel(name: "image.jpeg", key: "profileImage", data: image.jpegData(compressionQuality: 0.5), extention: "jpeg", mimeType: "image/jpeg")
             self.strImage = imageData.name
+            
             self.buttonEnableDisable()
         }
         

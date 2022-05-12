@@ -42,7 +42,8 @@ class CampListVC: BaseViewController {
     // MARK: - FUNCTIONS
     override func setupUI() {
         imgUser.loadUserProfileImage(fontSize: 20)
-        lblName.text = (LoginDataModel.currentUser?.Fname ?? "") + " " + (LoginDataModel.currentUser?.Lname ?? "")
+        let strName = (LoginDataModel.currentUser?.Fname ?? "") + " " + (LoginDataModel.currentUser?.Lname ?? "")
+        lblName.text = strName.trim.count > 0 ? strName : "Guest"
     }
     
     override func setupData() {

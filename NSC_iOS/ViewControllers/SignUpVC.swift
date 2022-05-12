@@ -136,7 +136,7 @@ class SignUpVC: BaseViewController {
             isValid = false
             self.lblErrMobileNo.isHidden = false
             self.lblErrMobileNo.text = Theme.strings.alert_invalid_mobile_error
-        } else if strMobile.count < 4 || strMobile.count > 15 {
+        } else if strMobile.count < AppVersionDetails.mobileMinDigits || strMobile.count > AppVersionDetails.mobileMaxDigits {
             isValid = false
             self.lblErrMobileNo.isHidden = false
             self.lblErrMobileNo.text = Theme.strings.alert_invalid_mobile_error
@@ -252,7 +252,7 @@ extension SignUpVC : UITextFieldDelegate {
         
         if textField == txtFName && updatedText.count > 16 {
             return false
-        } else if textField == txtMobile && updatedText.count > 15 {
+        } else if textField == txtMobile && updatedText.count > AppVersionDetails.mobileMaxDigits {
             return false
         }
         

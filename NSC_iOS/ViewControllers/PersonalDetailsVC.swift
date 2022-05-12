@@ -79,6 +79,36 @@ class PersonalDetailsVC: BaseViewController {
     }
     
     override func setupData() {
+        if let userData = LoginDataModel.currentUser {
+            if userData.Address.trim.count > 0 {
+                txtStreet.text = userData.Address
+            }
+            
+            if userData.State.trim.count > 0 && userData.StateName.trim.count > 0 {
+                selectedState = ListItem(id: userData.State, name: userData.StateName)
+            }
+            
+            if userData.City.trim.count > 0 && userData.CityName.trim.count > 0 {
+                selectedCity = ListItem(id: userData.City, name: userData.CityName)
+            }
+            
+            if userData.SportId.trim.count > 0 && userData.SportName.trim.count > 0 {
+                selectedCamps = ListItem(id: userData.SportId, name: userData.SportName)
+            }
+            
+            if userData.RoleId.trim.count > 0 && userData.Role.trim.count > 0 {
+                selectedRole = ListItem(id: userData.RoleId, name: userData.Role)
+            }
+            
+            if userData.PostCode.trim.count > 0 {
+                txtPostCode.text = userData.PostCode
+            }
+            
+            if self.vaccinated.trim.count == 0 {
+                vaccinated = userData.Vaccinated
+            }
+        }
+        
         if vaccinated == "1" {
             btnYes.setImage(UIImage(named: "CheckSelect"), for: .normal)
             btnNo.setImage(UIImage(named: "CheckDeselect"), for: .normal)
@@ -210,7 +240,7 @@ class PersonalDetailsVC: BaseViewController {
             isValid = false
             lblErrPostCode.isHidden = false
             lblErrPostCode.text = Theme.strings.alert_blank_postcode_error
-        } else if strPostCode.count < 4 || strPostCode.count > 8 {
+        } else if strPostCode.count < AppVersionDetails.postCodeMinDigits || strPostCode.count > AppVersionDetails.postCodeMaxDigits {
             isValid = false
             lblErrPostCode.isHidden = false
             lblErrPostCode.text = Theme.strings.alert_invalid_postcode_error
@@ -244,9 +274,12 @@ class PersonalDetailsVC: BaseViewController {
     override func goNext() {
         let coachDetailVM = CoachDetailViewModel()
         coachDetailVM.callCoachDetailsAPI { success in
-            let aVC = AppStoryBoard.main.viewController(viewControllerClass: BankDetailsVC.self)
-            aVC.isFromEdit = true
-            self.navigationController?.pushViewController(aVC, animated: true)
+            
+            if self.isFromEdit {
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                self.handleLoginUserRedirection()
+            }
         }
     }
     
@@ -350,7 +383,7 @@ extension PersonalDetailsVC : UITextFieldDelegate {
         if textField == txtStreet && updatedText.count > 100 {
             return false
         } else if textField == txtPostCode {
-            if !updatedText.isNumber || updatedText.count > 8 {
+            if !updatedText.isNumber || updatedText.count > AppVersionDetails.postCodeMaxDigits {
                 return false
             }
         }

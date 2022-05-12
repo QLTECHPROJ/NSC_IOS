@@ -23,4 +23,8 @@ class AppVersionDetailModel: EVObject {
     var countryID = ""
     var countryCode = ""
     var countryShortName = ""
+    var mobileMinDigits = "10" // default value
+    var mobileMaxDigits = "10" // default value
+    var postCodeMinDigits = "6" // default value
+    var postCodeMaxDigits = "6" // default value
 }

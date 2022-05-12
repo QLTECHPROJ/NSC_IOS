@@ -14,7 +14,7 @@ class LogoutViewModel {
                           "deviceToken":FCM_TOKEN,
                           "coachId":LoginDataModel.currentUser?.ID ?? ""]
         
-        APIManager.shared.callAPI(router: APIRouter.logout(parameters)) { [weak self] (response : LogoutModel?) in
+        APIManager.shared.callAPI(router: APIRouter.logout(parameters)) { (response : LogoutModel?) in
             if response?.ResponseCode == "200" {
                 showAlertToast(message: response?.ResponseMessage ?? "")
               

@@ -26,4 +26,14 @@ class ListItem: EVObject {
     
     // For City Listing
     var StateId = ""
+    
+    init(id : String, name : String) {
+        self.ID = id
+        self.Name = name
+    }
+    
+    required init() {
+        
+    }
+    
 }

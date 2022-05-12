@@ -142,8 +142,12 @@ class BankDetailsVC: BaseViewController {
     override func goNext() {
         let coachDetailVM = CoachDetailViewModel()
         coachDetailVM.callCoachDetailsAPI { success in
-            let aVC = AppStoryBoard.main.viewController(viewControllerClass: ProfileVC.self)
-            aVC.makeRootController()
+            
+            if self.isFromEdit {
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                self.handleLoginUserRedirection()
+            }
         }
     }
     

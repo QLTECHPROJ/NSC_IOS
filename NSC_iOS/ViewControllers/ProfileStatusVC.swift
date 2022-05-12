@@ -16,6 +16,8 @@ class ProfileStatusVC: BaseViewController {
     
     @IBOutlet weak var imgViewStatus: UIImageView!
     
+    @IBOutlet weak var btnContinue: UIButton!
+    
     
     // MARK: - VARIABLES
     var coachStatusVM : CoachStatusViewModel?
@@ -38,6 +40,8 @@ class ProfileStatusVC: BaseViewController {
         lblStatus.text = ""
         lblSubTitle.text = ""
         imgViewStatus.isHidden = true
+        btnContinue.isUserInteractionEnabled = false
+        btnContinue.backgroundColor = Theme.colors.gray_7E7E7E
     }
     
     override func setupData() {
@@ -50,10 +54,14 @@ class ProfileStatusVC: BaseViewController {
         lblStatus.text = statusData.Title
         lblSubTitle.text = statusData.SubTitle
         
-        if statusData.Status == CoachStatus.Hired.rawValue {
-            imgViewStatus.isHidden = false
-        } else {
+        if statusData.Status == CoachStatus.Pending.rawValue || statusData.Status == CoachStatus.Rejected.rawValue {
             imgViewStatus.isHidden = true
+            btnContinue.isUserInteractionEnabled = false
+            btnContinue.backgroundColor = Theme.colors.gray_7E7E7E
+        } else {
+            imgViewStatus.isHidden = false
+            btnContinue.isUserInteractionEnabled = false
+            btnContinue.backgroundColor = Theme.colors.theme_dark
         }
     }
     

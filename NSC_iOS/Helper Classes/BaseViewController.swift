@@ -64,6 +64,23 @@ class BaseViewController: UIViewController {
     */
     func handleLoginUserRedirection() {
         // Redirect Logged In User
+        guard let userData = LoginDataModel.currentUser else {
+            return
+        }
+        
+        if userData.PersonalDetailFilled == "0" {
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass: PersonalDetailsVC.self)
+            aVC.makeRootController()
+        } else if userData.BankDetailFilled == "0" {
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass: BankDetailsVC.self)
+            aVC.makeRootController()
+        } else if userData.Status == CoachStatus.Pending.rawValue || userData.Status == CoachStatus.Rejected.rawValue {
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass: ProfileStatusVC.self)
+            aVC.makeRootController()
+        } else {
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass: CampListVC.self)
+            aVC.makeRootController()
+        }
     }
     
     /**

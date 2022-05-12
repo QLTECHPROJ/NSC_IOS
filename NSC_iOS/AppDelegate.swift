@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Messaging.messaging().delegate = self // Firebase Cloud Messaging
         
         // UIFont setup for
-        
+        UIFont.overrideInitialize()
         
         window?.makeKeyAndVisible()
         window?.rootViewController = AppStoryBoard.main.intialViewController()
@@ -43,6 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func logout() {
+        LoginDataModel.currentUser = nil
+        
         let aVC = AppStoryBoard.main.viewController(viewControllerClass: LoginVC.self)
         aVC.makeRootController()
     }

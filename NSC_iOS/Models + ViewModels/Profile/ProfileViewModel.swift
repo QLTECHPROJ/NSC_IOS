@@ -11,8 +11,8 @@ class ProfileViewModel {
     
     var profileData: LoginDataModel?
     
-    func callProfileUpdateAPI(parameters : [String:String], completion: @escaping (Bool) -> Void) {
-        APIManager.shared.callAPI(router: APIRouter.profileUpdate(parameters)) { [weak self] (response : LoginModel?) in
+    func callProfileUpdateAPI(parameters : [String:String], uploadParameters : [UploadDataModel], completion: @escaping (Bool) -> Void) {
+        APIManager.shared.callUploadWebService(apiUrl: APIRouter.profileUpdate(parameters).urlRequest!.url!.absoluteString, includeHeader: true, parameters: parameters, uploadParameters: uploadParameters, httpMethod: .post) { [weak self] (response : LoginModel?) in
             if let responseData = response?.ResponseData {
                 self?.profileData = responseData
                 completion(true)

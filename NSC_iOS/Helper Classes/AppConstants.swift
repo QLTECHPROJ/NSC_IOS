@@ -8,8 +8,16 @@
 
 import Foundation
 
-var refreshAudioData = true
-var refreshPlaylistData = true
-var canPlayFirstTime = false
-var lockDownloads = ""
-var isAudioPlayerClosed = false
+class AppConstants {
+    
+    static let shared = AppConstants()
+    
+    var maxDigits : Int {
+        if AppVersionDetails.countryCode == "61" {
+            return 10
+        } else {
+            return 10
+        }
+    }
+    
+}

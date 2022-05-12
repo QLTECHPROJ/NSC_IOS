@@ -181,25 +181,6 @@ class OTPVC: BaseViewController {
         }
     }
     
-    override func handleLoginUserRedirection() {
-        guard let userData = LoginDataModel.currentUser else {
-            return
-        }
-        
-        if userData.PersonalDetailFilled == "0" {
-            let aVC = AppStoryBoard.main.viewController(viewControllerClass: PersonalDetailsVC.self)
-            aVC.makeRootController()
-        } else if userData.BankDetailFilled == "0" {
-            let aVC = AppStoryBoard.main.viewController(viewControllerClass: BankDetailsVC.self)
-            aVC.makeRootController()
-        } else if userData.Status == CoachStatus.Hired.rawValue {
-            let aVC = AppStoryBoard.main.viewController(viewControllerClass: CampListVC.self)
-            aVC.makeRootController()
-        } else {
-            let aVC = AppStoryBoard.main.viewController(viewControllerClass: ProfileStatusVC.self)
-            aVC.makeRootController()
-        }
-    }
     
     // MARK: - ACTIONS
     @IBAction func backClicked(_ sender: UIButton) {
