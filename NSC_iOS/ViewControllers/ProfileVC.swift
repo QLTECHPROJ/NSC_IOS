@@ -244,6 +244,22 @@ class ProfileVC: BaseViewController {
             }
         }
     }
+    @IBAction func onTappedDeleteAccount(_ sender: UIButton) {
+        
+        if checkInternet(showToast: true) == false {
+            return
+        }
+        
+        let aVC = AppStoryBoard.main.viewController(viewControllerClass: AlertPopUpVC.self)
+        aVC.titleText = Theme.strings.deleteCoach
+        aVC.detailText = Theme.strings.delete_user_alert_title
+        aVC.firstButtonTitle = Theme.strings.ok
+        aVC.secondButtonTitle = Theme.strings.close
+        aVC.modalPresentationStyle = .overFullScreen
+        aVC.delegate = self
+        self.present(aVC, animated: false, completion: nil)
+        
+    }
     
 }
 
@@ -315,6 +331,24 @@ extension ProfileVC : UIImagePickerControllerDelegate, UINavigationControllerDel
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+}
+// MARK: - AlertPopUpVCDelegate
+extension ProfileVC : AlertPopUpVCDelegate {
+    
+    func handleAction(sender: UIButton, popUpTag: Int) {
+        if sender.tag == 0 {
+            if checkInternet(showToast: true) == false {
+                return
+            }
+            
+            let deleteCoachVM = DeleteCoachViewModel()
+            deleteCoachVM.callDeleteCoachAPI(completion: { success in
+                APPDELEGATE.logout()
+            })
+            
+        }
     }
     
 }

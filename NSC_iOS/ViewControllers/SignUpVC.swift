@@ -36,6 +36,7 @@ class SignUpVC: BaseViewController {
     @IBOutlet weak var lblErrLName: UILabel!
     @IBOutlet weak var lblErrMobileNo: UILabel!
     @IBOutlet weak var lblErrEmail: UILabel!
+    @IBOutlet weak var viewApply: UIView!
     
     
     // MARK: - VARIABLES
@@ -57,6 +58,7 @@ class SignUpVC: BaseViewController {
         if strMobile != "" {
             txtMobile.text = strMobile
         }
+        viewApply.addDashedBorder()
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -20,8 +20,8 @@ class UserListPopUpVC: BaseViewController {
     
     // MARK: - VARIABLES
     var tapGesture = UITapGestureRecognizer()
-    var arrMenu = ["Edit Profile", "Bank Details" ,"Personal Details" ,"Delete Account" , "Logout"]
-    var arrImage = ["Profile", "BankDetails" ,"PersonalDetails","DeleteCoach" ,"Logout"]
+    var arrMenu = ["Edit Profile", "Bank Details" ,"Personal Details" ,"My Earnings","Apply For a Camp","Refer a Coach" , "Logout"]
+    var arrImage = ["Profile", "BankDetails" ,"PersonalDetails","Earnings","ApplyCamp","ReferCoach" ,"Logout"]
     
     
     // MARK: - VIEW LIFE CYCLE
@@ -29,7 +29,6 @@ class UserListPopUpVC: BaseViewController {
         super.viewDidLoad()
         tableView.register(nibWithCellClass: UserListCell.self)
         viewUserList.isHidden = true
-        viewUserListTopConst.constant = 0
         self.view.layoutIfNeeded()
         setupData()
     }
@@ -58,15 +57,7 @@ class UserListPopUpVC: BaseViewController {
     }
     
     override func setupData() {
-        var heightConst = CGFloat(arrMenu.count * 86) + CGFloat(70)
-        
-        heightConst = heightConst + 90
-        if heightConst > SCREEN_HEIGHT - 200 {
-            heightConst = SCREEN_HEIGHT - 200
-        }
-        
-        viewUserListTopConst.constant = (SCREEN_HEIGHT) - heightConst
-        self.view.layoutIfNeeded()
+       
         
         viewUserList.backgroundColor = .white
         self.viewUserList.isHidden = false
@@ -80,6 +71,10 @@ class UserListPopUpVC: BaseViewController {
     
     @objc func viewTappedback(_ sender: UITapGestureRecognizer) {
         self.dismiss(animated: true, completion: nil)
+    }
+    @IBAction func onTappedBack(_ sender: Any) {
+        self.view.endEditing(true)
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
@@ -112,20 +107,14 @@ extension UserListPopUpVC : UITableViewDelegate, UITableViewDataSource {
             aVC.isFromEdit = true
             self.navigationController?.pushViewController(aVC, animated: true)
         } else if indexPath.row == 3 {
-            if checkInternet(showToast: true) == false {
-                return
-            }
-            
-            let aVC = AppStoryBoard.main.viewController(viewControllerClass: AlertPopUpVC.self)
-            aVC.titleText = Theme.strings.deleteCoach
-            aVC.detailText = Theme.strings.delete_user_alert_title
-            aVC.firstButtonTitle = Theme.strings.ok
-            aVC.secondButtonTitle = Theme.strings.close
-            aVC.modalPresentationStyle = .overFullScreen
-            aVC.popUpTag = 1
-            aVC.delegate = self
-            self.present(aVC, animated: false, completion: nil)
+
         } else if indexPath.row == 4 {
+            
+            
+        } else if indexPath.row == 5 {
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass: ReferVC.self)
+            self.navigationController?.pushViewController(aVC, animated: true)
+        } else if indexPath.row == 6 {
             if checkInternet(showToast: true) == false {
                 return
             }
@@ -136,10 +125,10 @@ extension UserListPopUpVC : UITableViewDelegate, UITableViewDataSource {
             aVC.firstButtonTitle = Theme.strings.ok
             aVC.secondButtonTitle = Theme.strings.close
             aVC.modalPresentationStyle = .overFullScreen
-            aVC.popUpTag = 0
             aVC.delegate = self
             self.present(aVC, animated: false, completion: nil)
         }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -158,17 +147,11 @@ extension UserListPopUpVC : AlertPopUpVCDelegate {
                 return
             }
             
-            if popUpTag == 0 {
-                let logoutVM = LogoutViewModel()
-                logoutVM.callLogoutAPI(completion: { success in
-                    APPDELEGATE.logout()
-                })
-            } else {
-                let deleteCoachVM = DeleteCoachViewModel()
-                deleteCoachVM.callDeleteCoachAPI(completion: { success in
-                    APPDELEGATE.logout()
-                })
-            }
+            let logoutVM = LogoutViewModel()
+            logoutVM.callLogoutAPI(completion: { success in
+                APPDELEGATE.logout()
+            })
+            
         }
     }
     

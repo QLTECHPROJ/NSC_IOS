@@ -73,10 +73,7 @@ class CampListVC: BaseViewController {
     //MARK:- ACTION
     @IBAction func userMenuClicked(_ sender: UIButton) {
         let aVC = AppStoryBoard.main.viewController(viewControllerClass:UserListPopUpVC.self)
-        let navVC = UINavigationController(rootViewController: aVC)
-        navVC.navigationBar.isHidden = true
-        navVC.modalPresentationStyle = .overFullScreen
-        self.present(navVC, animated: true, completion: nil)
+        navigationController?.pushViewController(aVC, animated: true)
     }
     
 }

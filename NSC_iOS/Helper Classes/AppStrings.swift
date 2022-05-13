@@ -29,7 +29,7 @@ struct AppStrings {
     let confirm = "CONFIRM"
     let goBack = "GO BACK"
     let settings = "Settings"
-    let deleteCoach = "Delete Coach"
+    let deleteCoach = "Delete Account"
     
     
     /* App Update Popup */
