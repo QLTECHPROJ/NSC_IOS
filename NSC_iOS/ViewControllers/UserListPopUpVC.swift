@@ -13,7 +13,6 @@ class UserListPopUpVC: BaseViewController {
     // MARK: - OUTLETS
     @IBOutlet weak var viewBack: UIView!
     @IBOutlet weak var viewUserList: UIView!
-    @IBOutlet weak var viewUserListTopConst: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var viewFooter: UIView!
     

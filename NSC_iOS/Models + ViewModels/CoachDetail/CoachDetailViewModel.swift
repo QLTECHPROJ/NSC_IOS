@@ -15,7 +15,7 @@ class CoachDetailViewModel {
         let parameters = ["coachId":LoginDataModel.currentUser?.ID ?? ""]
         
         APIManager.shared.callAPI(router: APIRouter.coachdetails(parameters)) { [weak self] (response : LoginModel?) in
-            if let responseData = response?.ResponseData {
+            if response?.ResponseCode == "200", let responseData = response?.ResponseData {
                 self?.userData = responseData
                 
                 LoginDataModel.currentUser = responseData

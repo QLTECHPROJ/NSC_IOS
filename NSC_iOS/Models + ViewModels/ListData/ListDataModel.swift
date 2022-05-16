@@ -27,6 +27,8 @@ class ListItem: EVObject {
     // For City Listing
     var StateId = ""
     
+    var isSelected = false
+    
     init(id : String, name : String) {
         self.ID = id
         self.Name = name

@@ -11,28 +11,32 @@ class ReferVC: BaseViewController {
     
     // MARK: - OUTLETS
     @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblStatus: UILabel!
     @IBOutlet weak var lblSubTitle: UILabel!
-    @IBOutlet weak var imgViewStatus: UIImageView!
     @IBOutlet weak var btnRefer: UIButton!
     @IBOutlet weak var viewRefer: UIView!
     
-    // MARK: - VARIABLES
     
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
         viewRefer.addDashedBorder()
     }
     
     
     // MARK: - ACTION
-    @IBAction func onTappedBack(_ sender: UIButton) {
-        self.view.endEditing(true)
+    @IBAction func backClicked(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func onTappedRefer(_ sender: Any) {
+    @IBAction func copyCodeClicked(_ sender: UIButton) {
+        
     }
+    
+    @IBAction func referClicked(_ sender: UIButton) {
+        let aVC = AppStoryBoard.main.viewController(viewControllerClass: ContactVC.self)
+        self.navigationController?.pushViewController(aVC, animated: true)
+    }
+    
 }

@@ -70,6 +70,12 @@
 		284A3EC72823EDD600B511FB /* CoachDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284A3EC52823EDD600B511FB /* CoachDetailViewModel.swift */; };
 		284C3193282681B300F8A63B /* ListItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284C3192282681B300F8A63B /* ListItemVC.swift */; };
 		284C3194282681B300F8A63B /* ListItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284C3192282681B300F8A63B /* ListItemVC.swift */; };
+		28515AA2282E8187004C7229 /* ContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28515AA1282E8187004C7229 /* ContactVC.swift */; };
+		28515AA3282E8187004C7229 /* ContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28515AA1282E8187004C7229 /* ContactVC.swift */; };
+		28515AA6282E81F4004C7229 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28515AA4282E81F4004C7229 /* ContactCell.swift */; };
+		28515AA7282E81F4004C7229 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28515AA4282E81F4004C7229 /* ContactCell.swift */; };
+		28515AA8282E81F4004C7229 /* ContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28515AA5282E81F4004C7229 /* ContactCell.xib */; };
+		28515AA9282E81F4004C7229 /* ContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28515AA5282E81F4004C7229 /* ContactCell.xib */; };
 		28543627282544F8009BBEDA /* PersonalDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28543626282544F8009BBEDA /* PersonalDetailsVC.swift */; };
 		28543628282544F8009BBEDA /* PersonalDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28543626282544F8009BBEDA /* PersonalDetailsVC.swift */; };
 		2854362A2825450B009BBEDA /* BankDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285436292825450B009BBEDA /* BankDetailsVC.swift */; };
@@ -92,6 +98,8 @@
 		28AE722A282CDFF5000845D0 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AE7229282CDFF5000845D0 /* AppFonts.swift */; };
 		28AE722B282CDFF5000845D0 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AE7229282CDFF5000845D0 /* AppFonts.swift */; };
 		28AEAB49281959D700325C90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28AEAB48281959D700325C90 /* GoogleService-Info.plist */; };
+		28C3807E282E922C00676EAF /* ApplyForCampVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C3807D282E922C00676EAF /* ApplyForCampVC.swift */; };
+		28C3807F282E922C00676EAF /* ApplyForCampVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C3807D282E922C00676EAF /* ApplyForCampVC.swift */; };
 		28C8DA282822B74F0048A172 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C8DA272822B74F0048A172 /* LoginViewModel.swift */; };
 		28C8DA292822B74F0048A172 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C8DA272822B74F0048A172 /* LoginViewModel.swift */; };
 		28C8DA2B2822B7590048A172 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C8DA2A2822B7590048A172 /* LoginModel.swift */; };
@@ -287,6 +295,9 @@
 		284A3EC12823B09400B511FB /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		284A3EC52823EDD600B511FB /* CoachDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachDetailViewModel.swift; sourceTree = "<group>"; };
 		284C3192282681B300F8A63B /* ListItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemVC.swift; sourceTree = "<group>"; };
+		28515AA1282E8187004C7229 /* ContactVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactVC.swift; sourceTree = "<group>"; };
+		28515AA4282E81F4004C7229 /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		28515AA5282E81F4004C7229 /* ContactCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactCell.xib; sourceTree = "<group>"; };
 		28543626282544F8009BBEDA /* PersonalDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDetailsVC.swift; sourceTree = "<group>"; };
 		285436292825450B009BBEDA /* BankDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankDetailsVC.swift; sourceTree = "<group>"; };
 		28679509282150B60010892E /* DynamicContents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicContents.swift; sourceTree = "<group>"; };
@@ -304,6 +315,7 @@
 		28AE7229282CDFF5000845D0 /* AppFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
 		28AEAB48281959D700325C90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		28AEAB4B28195B1100325C90 /* NSC_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NSC_iOS.entitlements; sourceTree = "<group>"; };
+		28C3807D282E922C00676EAF /* ApplyForCampVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyForCampVC.swift; sourceTree = "<group>"; };
 		28C8DA272822B74F0048A172 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		28C8DA2A2822B7590048A172 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		28D1A5B22823FBA200B3A179 /* CoachStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachStatusViewModel.swift; sourceTree = "<group>"; };
@@ -566,6 +578,8 @@
 				28F3C255281A5CCF0092A077 /* KidsAttendanceVC.swift */,
 				9AD5ED9A2824EBDD00E0A11F /* UserListPopUpVC.swift */,
 				9A2DBD76282E141C0057FBDD /* ReferVC.swift */,
+				28515AA1282E8187004C7229 /* ContactVC.swift */,
+				28C3807D282E922C00676EAF /* ApplyForCampVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -831,6 +845,8 @@
 				9A53D4CC28192BE400226853 /* CampListCell.xib */,
 				28F3C251281A5CC80092A077 /* KidsAttendenceCell.swift */,
 				28F3C252281A5CC80092A077 /* KidsAttendenceCell.xib */,
+				28515AA4282E81F4004C7229 /* ContactCell.swift */,
+				28515AA5282E81F4004C7229 /* ContactCell.xib */,
 			);
 			path = TableCell;
 			sourceTree = "<group>";
@@ -929,6 +945,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				282C33932819645F009401FD /* GoogleService-Info.plist in Resources */,
+				28515AA9282E81F4004C7229 /* ContactCell.xib in Resources */,
 				9A0F6F67281BA15F008CAA4B /* Poppins-Medium.otf in Resources */,
 				282C337B2819617D009401FD /* ListItemCell.xib in Resources */,
 				9A0F6F63281BA15F008CAA4B /* Poppins-ExtraLight.otf in Resources */,
@@ -952,6 +969,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AEAB49281959D700325C90 /* GoogleService-Info.plist in Resources */,
+				28515AA8282E81F4004C7229 /* ContactCell.xib in Resources */,
 				9A0F6F66281BA15F008CAA4B /* Poppins-Medium.otf in Resources */,
 				9AE8243F2817E25200A29373 /* ListItemCell.xib in Resources */,
 				9A0F6F62281BA15F008CAA4B /* Poppins-ExtraLight.otf in Resources */,
@@ -1111,6 +1129,7 @@
 				2804E39F2819847D00AF4A62 /* String+Timepiece.swift in Sources */,
 				28F83119281977F000CAF99C /* Config.swift in Sources */,
 				282C33632819617D009401FD /* DailyReportVC.swift in Sources */,
+				28515AA7282E81F4004C7229 /* ContactCell.swift in Sources */,
 				2804E3A02819847D00AF4A62 /* NSDateComponents+Timepiece.swift in Sources */,
 				282C33642819617D009401FD /* AppDelegate.swift in Sources */,
 				28F830EB281977F000CAF99C /* ImagePicker.swift in Sources */,
@@ -1175,11 +1194,13 @@
 				28F830E3281977F000CAF99C /* Int+Extension.swift in Sources */,
 				28F830E5281977F000CAF99C /* UIView+Extension.swift in Sources */,
 				9A7740BA282BB7A1000BDC8C /* UploaddataModel.swift in Sources */,
+				28515AA3282E8187004C7229 /* ContactVC.swift in Sources */,
 				9AD5ED9C2824EBDE00E0A11F /* UserListPopUpVC.swift in Sources */,
 				28F83133281977F000CAF99C /* Theme.swift in Sources */,
 				28F830F1281977F000CAF99C /* UINavigationBar+Extension.swift in Sources */,
 				2804E3A12819847D00AF4A62 /* NSCalendar+Timepiece.swift in Sources */,
 				28470DAC281C0CC500FE9C66 /* AlertPopUpVC.swift in Sources */,
+				28C3807F282E922C00676EAF /* ApplyForCampVC.swift in Sources */,
 				28F3C259281A5D260092A077 /* KidsAttendanceVC.swift in Sources */,
 				28AE722B282CDFF5000845D0 /* AppFonts.swift in Sources */,
 				28F83131281977F000CAF99C /* AppConstants.swift in Sources */,
@@ -1227,6 +1248,7 @@
 				28F83136281977F000CAF99C /* WhereAmIRunning.swift in Sources */,
 				28F83118281977F000CAF99C /* Config.swift in Sources */,
 				28F3C256281A5CCF0092A077 /* KidsAttendanceVC.swift in Sources */,
+				28515AA6282E81F4004C7229 /* ContactCell.swift in Sources */,
 				9A53D4D428193C8500226853 /* DailyReportVC.swift in Sources */,
 				28A9C40C2817B7C9001B252F /* AppDelegate.swift in Sources */,
 				9A48A7442829047600D0A728 /* CampListModel.swift in Sources */,
@@ -1291,11 +1313,13 @@
 				28F830E4281977F000CAF99C /* UIView+Extension.swift in Sources */,
 				9A7740B9282BB7A1000BDC8C /* UploaddataModel.swift in Sources */,
 				9AD5ED9B2824EBDE00E0A11F /* UserListPopUpVC.swift in Sources */,
+				28515AA2282E8187004C7229 /* ContactVC.swift in Sources */,
 				28F83132281977F000CAF99C /* Theme.swift in Sources */,
 				28F830F0281977F000CAF99C /* UINavigationBar+Extension.swift in Sources */,
 				28F83130281977F000CAF99C /* AppConstants.swift in Sources */,
 				28470DAB281C0CC500FE9C66 /* AlertPopUpVC.swift in Sources */,
 				28F83142281977F000CAF99C /* ReadMore_Helper.swift in Sources */,
+				28C3807E282E922C00676EAF /* ApplyForCampVC.swift in Sources */,
 				282ACD66282BB898005A8634 /* CampDetailViewModel.swift in Sources */,
 				28AE722A282CDFF5000845D0 /* AppFonts.swift in Sources */,
 				28F83122281977F000CAF99C /* NavigationClass.swift in Sources */,
@@ -1354,6 +1378,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/NSC_iOS/Supporting Files/Staging/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "NSC Coach Staging";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow NSC App to Take Photo for Profile Photo.";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Allow NSC App to access your contacts list.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow NSC App to Choose Photo From Gallery for Profile Photo.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1393,6 +1418,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/NSC_iOS/Supporting Files/Staging/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "NSC Coach Staging";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow NSC App to Take Photo for Profile Photo.";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Allow NSC App to access your contacts list.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow NSC App to Choose Photo From Gallery for Profile Photo.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1548,6 +1574,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/NSC_iOS/Supporting Files/Live/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "NSC Coach";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow NSC App to Take Photo for Profile Photo.";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Allow NSC App to access your contacts list.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow NSC App to Choose Photo From Gallery for Profile Photo.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1587,6 +1614,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/NSC_iOS/Supporting Files/Live/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "NSC Coach";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow NSC App to Take Photo for Profile Photo.";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Allow NSC App to access your contacts list.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow NSC App to Choose Photo From Gallery for Profile Photo.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

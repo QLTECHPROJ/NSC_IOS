@@ -13,7 +13,7 @@ class SignUpViewModel {
     
     func callCoachRegisterAPI(parameters : [String:String], completion: @escaping (Bool) -> Void) {
         APIManager.shared.callAPI(router: APIRouter.coachregister(parameters)) { [weak self] (response : LoginModel?) in
-            if let responseData = response?.ResponseData {
+            if response?.ResponseCode == "200", let responseData = response?.ResponseData {
                 self?.userData = responseData
                 
                 LoginDataModel.currentUser = responseData

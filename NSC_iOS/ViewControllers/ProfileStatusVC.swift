@@ -60,7 +60,7 @@ class ProfileStatusVC: BaseViewController {
             btnContinue.backgroundColor = Theme.colors.gray_7E7E7E
         } else {
             imgViewStatus.isHidden = false
-            btnContinue.isUserInteractionEnabled = false
+            btnContinue.isUserInteractionEnabled = true
             btnContinue.backgroundColor = Theme.colors.theme_dark
         }
     }
