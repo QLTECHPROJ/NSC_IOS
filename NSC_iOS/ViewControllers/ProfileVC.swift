@@ -33,6 +33,7 @@ class ProfileVC: BaseViewController {
     
     
     // MARK: - VARIABLES
+    var isFromEdit = false
     var strImage : String?
     var imageData = UploadDataModel()
     
@@ -45,13 +46,8 @@ class ProfileVC: BaseViewController {
         
         setupUI()
         setupData()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
-        let coachDetailVM = CoachDetailViewModel()
-        coachDetailVM.callCoachDetailsAPI { success in
+        self.fetchCoachDetails {
             self.setupData()
         }
     }
@@ -66,6 +62,10 @@ class ProfileVC: BaseViewController {
         
         txtFMobileNo.isEnabled = false
         txtFEmailAdd.isEnabled = false
+        
+        btnCountryCode.setTitleColor(Theme.colors.gray_7E7E7E, for: .normal)
+        txtFMobileNo.textColor = Theme.colors.gray_7E7E7E
+        txtFEmailAdd.textColor = Theme.colors.gray_7E7E7E
     }
     
     override func setupData() {
@@ -195,6 +195,7 @@ class ProfileVC: BaseViewController {
         
     }
     
+    
     // MARK: - ACTION
     @IBAction func backClicked(_ sender: UIButton) {
         self.view.endEditing(true)
@@ -202,7 +203,8 @@ class ProfileVC: BaseViewController {
     }
     
     @IBAction func confirmClicked(_ sender: UIButton) {
-        self.handleLoginUserRedirection()
+        self.view.endEditing(true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func updateClicked(_ sender: UIButton) {
@@ -221,7 +223,8 @@ class ProfileVC: BaseViewController {
             let profileVM = ProfileViewModel()
             profileVM.callProfileUpdateAPI(parameters: parameters, uploadParameters: [imageData]) { success in
                 if success {
-                    self.setupData()
+                    self.fetchCoachDetails()
+                    self.navigationController?.popViewController(animated: true)
                 }
             }
         }

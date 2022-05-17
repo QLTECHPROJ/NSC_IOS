@@ -13,7 +13,7 @@ class CampListViewModel {
     var arrayUpcomingCampList = [CampDetailModel]()
     
     func callCampListAPI(completion: @escaping (Bool) -> Void) {
-        let parameters = ["coachId":"11"]
+        let parameters = ["coachId":LoginDataModel.currentUser?.ID ?? ""]
         
         APIManager.shared.callAPI(router: APIRouter.camplisting(parameters)) { [weak self] (response : CampListModel?) in
             if let responseData = response?.ResponseData {

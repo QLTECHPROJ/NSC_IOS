@@ -95,7 +95,9 @@ class APIManager {
             
             if uploadParameters.count > 0 {
                 for uploadDict in uploadParameters {
-                    multipartFormData.append(uploadDict.data!, withName: uploadDict.key, fileName: uploadDict.name, mimeType: uploadDict.mimeType)
+                    if let fileData = uploadDict.data {
+                        multipartFormData.append(fileData, withName: uploadDict.key, fileName: uploadDict.name, mimeType: uploadDict.mimeType)
+                    }
                 }
             }
             

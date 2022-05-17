@@ -58,6 +58,11 @@ class PersonalDetailsVC: BaseViewController {
         
         setupUI()
         setupData()
+        setupInitialData()
+        
+        self.fetchCoachDetails {
+            self.setupInitialData()
+        }
     }
     
     
@@ -79,6 +84,35 @@ class PersonalDetailsVC: BaseViewController {
     }
     
     override func setupData() {
+        if vaccinated == "1" {
+            btnYes.setImage(UIImage(named: "CheckSelect"), for: .normal)
+            btnNo.setImage(UIImage(named: "CheckDeselect"), for: .normal)
+        } else if vaccinated == "0" {
+            btnYes.setImage(UIImage(named: "CheckDeselect"), for: .normal)
+            btnNo.setImage(UIImage(named: "CheckSelect"), for: .normal)
+        }
+        
+        if let strName = selectedState?.Name {
+            txtState.text = strName
+        }
+        
+        if let strName = selectedCity?.Name {
+            txtCity.text = strName
+        }
+        
+        if let strName = selectedCamps?.Name {
+            txtCamps.text = strName
+        }
+        
+        if let strName = selectedRole?.Name {
+            txtRole.text = strName
+        }
+        
+        initDOBPickerView()
+        buttonEnableDisable()
+    }
+    
+    func setupInitialData() {
         if let userData = LoginDataModel.currentUser {
             if userData.Address.trim.count > 0 {
                 txtStreet.text = userData.Address
@@ -109,32 +143,7 @@ class PersonalDetailsVC: BaseViewController {
             }
         }
         
-        if vaccinated == "1" {
-            btnYes.setImage(UIImage(named: "CheckSelect"), for: .normal)
-            btnNo.setImage(UIImage(named: "CheckDeselect"), for: .normal)
-        } else if vaccinated == "0" {
-            btnYes.setImage(UIImage(named: "CheckDeselect"), for: .normal)
-            btnNo.setImage(UIImage(named: "CheckSelect"), for: .normal)
-        }
-        
-        if let strName = selectedState?.Name {
-            txtState.text = strName
-        }
-        
-        if let strName = selectedCity?.Name {
-            txtCity.text = strName
-        }
-        
-        if let strName = selectedCamps?.Name {
-            txtCamps.text = strName
-        }
-        
-        if let strName = selectedRole?.Name {
-            txtRole.text = strName
-        }
-        
-        initDOBPickerView()
-        buttonEnableDisable()
+        setupData()
     }
     
     private func initDOBPickerView() {
@@ -274,6 +283,8 @@ class PersonalDetailsVC: BaseViewController {
     override func goNext() {
         let coachDetailVM = CoachDetailViewModel()
         coachDetailVM.callCoachDetailsAPI { success in
+            
+            self.fetchCoachDetails()
             
             if self.isFromEdit {
                 self.navigationController?.popViewController(animated: true)

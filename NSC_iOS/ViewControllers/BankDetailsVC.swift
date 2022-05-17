@@ -39,6 +39,10 @@ class BankDetailsVC: BaseViewController {
         setupUI()
         setupData()
         buttonEnableDisable()
+        
+        self.fetchCoachDetails {
+            self.setupData()
+        }
     }
     
     
@@ -142,6 +146,8 @@ class BankDetailsVC: BaseViewController {
     override func goNext() {
         let coachDetailVM = CoachDetailViewModel()
         coachDetailVM.callCoachDetailsAPI { success in
+            
+            self.fetchCoachDetails()
             
             if self.isFromEdit {
                 self.navigationController?.popViewController(animated: true)

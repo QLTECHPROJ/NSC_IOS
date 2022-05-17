@@ -101,6 +101,20 @@ class BaseViewController: UIViewController {
         refreshControl.endRefreshing()
     }
     
+    /**
+     Fetch Coach Details
+     */
+    func fetchCoachDetails(completion : (() -> Void)? = nil) {
+        let coachDetailVM = CoachDetailViewModel()
+        coachDetailVM.callCoachDetailsAPI { success in
+            self.setupData()
+        }
+    }
+    
+    
+    /**
+     Setup Support Label
+     */
     func setupSupportLabel(lblSupport : TTTAttributedLabel) {
         let strSupport = "Contact Support"
         let string = "\(strSupport)"
