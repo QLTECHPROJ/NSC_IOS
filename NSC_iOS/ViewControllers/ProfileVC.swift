@@ -290,15 +290,15 @@ extension ProfileVC : UITextFieldDelegate {
             return false
         }
         
-        let updatedText = text.replacingCharacters(in: textRange, with: string).trim
+        let updatedText = text.replacingCharacters(in: textRange, with: string)
         
         if textField == txtFName && updatedText.count > 16 {
             return false
-        } else if textField == txtFMobileNo && updatedText.count > AppVersionDetails.mobileMaxDigits {
-            return false
+        } else if textField == txtFMobileNo {
+            if !updatedText.isNumber || updatedText.count > AppVersionDetails.mobileMaxDigits {
+                return false
+            }
         }
-        
-        buttonEnableDisable()
         
         return true
     }

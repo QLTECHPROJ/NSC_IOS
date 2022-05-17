@@ -235,7 +235,7 @@ class SignUpVC: BaseViewController {
     @IBAction func applyClicked(_ sender: UIButton) {
         self.view.endEditing(true)
         
-        if (txtPromoCode.text?.trim.count ?? 0) > 0 {
+        if (txtPromoCode.text?.trim.count ?? 0) == 5 {
             let verifyReferCodeVM = VerifyReferCodeViewModel()
             verifyReferCodeVM.callVerifyReferCodeAPI(referCode: txtPromoCode.text ?? "") { success in
                 if success {
@@ -303,15 +303,17 @@ extension SignUpVC : UITextFieldDelegate {
             return false
         }
         
-        let updatedText = text.replacingCharacters(in: textRange, with: string).trim
+        let updatedText = text.replacingCharacters(in: textRange, with: string)
         
         if textField == txtFName && updatedText.count > 16 {
             return false
-        } else if textField == txtMobile && updatedText.count > AppVersionDetails.mobileMaxDigits {
+        } else if textField == txtMobile {
+            if !updatedText.isNumber || updatedText.count > AppVersionDetails.mobileMaxDigits {
+                return false
+            }
+        } else if textField == txtPromoCode && updatedText.count > 5 {
             return false
         }
-        
-        buttonEnableDisable()
         
         return true
     }

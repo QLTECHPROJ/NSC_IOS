@@ -192,7 +192,7 @@ class PersonalDetailsVC: BaseViewController {
             self.selectedCity = nil
         case .city:
             self.selectedCity = selectedItem
-        case .camp:
+        case .sport:
             self.selectedCamps = selectedItem
         case .role:
             self.selectedRole = selectedItem
@@ -270,7 +270,7 @@ class PersonalDetailsVC: BaseViewController {
         if selectedCamps == nil {
             isValid = false
             lblErrCamps.isHidden = false
-            lblErrCamps.text = Theme.strings.alert_select_camp
+            lblErrCamps.text = Theme.strings.alert_select_sport
         }
         
         if selectedRole == nil {
@@ -326,7 +326,7 @@ class PersonalDetailsVC: BaseViewController {
                 return
             }
             strID = selectedState?.ID ?? ""
-        case .camp:
+        case .sport:
             break
         case .role:
             break
@@ -397,7 +397,7 @@ extension PersonalDetailsVC : UITextFieldDelegate {
             return false
         }
         
-        let updatedText = text.replacingCharacters(in: textRange, with: string).trim
+        let updatedText = text.replacingCharacters(in: textRange, with: string)
         
         if textField == txtStreet && updatedText.count > 100 {
             return false
@@ -406,8 +406,6 @@ extension PersonalDetailsVC : UITextFieldDelegate {
                 return false
             }
         }
-        
-        buttonEnableDisable()
         
         return true
     }

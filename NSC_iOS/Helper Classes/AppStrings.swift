@@ -124,7 +124,7 @@ struct AppStrings {
     let alert_blank_dob_error = "Date of Birth should not be blank"
     let alert_dob_error = "Please confirm whether you are above 18 years"
     let alert_invalid_fullname_error = "Please enter valid Name"
-    let alert_blank_promocode_error = "Please enter promo code"
+    let alert_blank_promocode_error = "Please enter valid promo code"
     
     /* Personal Details */
     let alert_blank_street_error = "Please provide Street Address"
@@ -132,7 +132,7 @@ struct AppStrings {
     let alert_select_city = "Please select City"
     let alert_blank_postcode_error = "Please provide Post Code"
     let alert_invalid_postcode_error = "Please provide a valid Post Code"
-    let alert_select_camp = "Please select Camp"
+    let alert_select_sport = "Please select sport"
     let alert_select_role = "Please select Role"
     let alert_blank_vaccination_error = "Please provide Vaccination Status"
     

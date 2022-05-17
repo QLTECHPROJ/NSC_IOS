@@ -187,7 +187,7 @@ extension ContactVC: UITextFieldDelegate {
         
         if let text = textField.text,
            let textRange = Range(range, in: text) {
-            let updatedText = text.replacingCharacters(in: textRange, with: string).trim
+            let updatedText = text.replacingCharacters(in: textRange, with: string)
             print("Search text :- ",updatedText)
             
             arrayContactsSearch = arrayContacts.filter({ (model:ContactModel) -> Bool in

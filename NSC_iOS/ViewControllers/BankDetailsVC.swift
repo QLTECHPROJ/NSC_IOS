@@ -216,7 +216,7 @@ extension BankDetailsVC : UITextFieldDelegate {
             return false
         }
         
-        let updatedText = text.replacingCharacters(in: textRange, with: string).trim
+        let updatedText = text.replacingCharacters(in: textRange, with: string)
         
         if textField == txtIFSCCode && updatedText.count > 10 {
             return false

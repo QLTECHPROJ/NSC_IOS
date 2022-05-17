@@ -11,7 +11,7 @@ enum ListItemType : Int {
     case country = 0
     case state
     case city
-    case camp
+    case sport
     case role
 }
 
@@ -71,9 +71,9 @@ class ListItemVC: BaseViewController {
         case .city:
             lblTitle.text = "Choose your city"
             txtSearch.placeholder = "Search for city"
-        case .camp:
-            lblTitle.text = "Choose your camp"
-            txtSearch.placeholder = "Search for camp"
+        case .sport:
+            lblTitle.text = "Choose your sport"
+            txtSearch.placeholder = "Search for sport"
         case .role:
             lblTitle.text = "Choose your role"
             txtSearch.placeholder = "Search for role"

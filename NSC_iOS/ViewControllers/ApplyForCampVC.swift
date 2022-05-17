@@ -35,7 +35,7 @@ class ApplyForCampVC: BaseViewController {
         super.viewDidAppear(animated)
         
         let listDataVM = ListDataViewModel()
-        listDataVM.callItemListAPI(strID: "", listType: ListItemType.camp) { success in
+        listDataVM.callItemListAPI(strID: "", listType: ListItemType.sport) { success in
             if success {
                 self.arrayCamp = listDataVM.listItemData ?? [ListItem]()
                 self.setupData()
@@ -123,7 +123,7 @@ extension ApplyForCampVC: UITextFieldDelegate {
         
         if let text = textField.text,
            let textRange = Range(range, in: text) {
-            let updatedText = text.replacingCharacters(in: textRange, with: string).trim
+            let updatedText = text.replacingCharacters(in: textRange, with: string)
             print("Search text :- ",updatedText)
             
             arrayCampSearch = arrayCamp.filter({ (model:ListItem) -> Bool in

@@ -74,7 +74,8 @@ class CampDetailVC: BaseViewController {
     }
     
     @IBAction func kidsClicked(_ sender: UIButton) {
-        let aVC = AppStoryBoard.main.viewController(viewControllerClass:DailyReportVC.self)
+        let aVC = AppStoryBoard.main.viewController(viewControllerClass:CampDaysVC.self)
+        aVC.campDetails = self.campDetails
         self.navigationController?.pushViewController(aVC, animated: true)
     }
     

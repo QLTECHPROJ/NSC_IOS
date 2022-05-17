@@ -30,6 +30,7 @@ class CampListVC: BaseViewController {
         
         lblNoData.isHidden = true
         
+        tableView.register(nibWithCellClass: TitleLabelCell.self)
         tableView.register(nibWithCellClass: CampListCell.self)
         tableView.refreshControl = self.refreshControl
     }
@@ -107,35 +108,29 @@ extension CampListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 112
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 30))
+        let cell = tableView.dequeueReusableCell(withClass: TitleLabelCell.self)
         
-        let label = UILabel()
-        label.frame = CGRect.init(x: 16, y: 5, width: headerView.frame.width-10, height: headerView.frame.height-10)
         if section == 0 {
-            label.text = "Current Camp"
+            cell.lblTitle.text = "Current Camp"
         } else {
-            label.text = "Upcoming Camps"
+            cell.lblTitle.text = "Upcoming Camps"
         }
-        label.textColor = .black
-        label.font = Theme.fonts.appFont(ofSize: 14, weight: .bold)
-        headerView.backgroundColor = .clear
-        headerView.addSubview(label)
         
-        return headerView
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             if arrayCurrentCampList.count > 0 {
-                return 30
+                return UITableView.automaticDimension
             }
         } else {
             if arrayUpcomingCampList.count > 0 {
-                return 30
+                return UITableView.automaticDimension
             }
         }
         

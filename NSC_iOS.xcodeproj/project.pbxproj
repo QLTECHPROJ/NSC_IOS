@@ -38,7 +38,7 @@
 		282ACD68282BB8FC005A8634 /* CampDetailDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282ACD67282BB8FC005A8634 /* CampDetailDataModel.swift */; };
 		282ACD69282BB8FC005A8634 /* CampDetailDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282ACD67282BB8FC005A8634 /* CampDetailDataModel.swift */; };
 		282ACD6A282BBB91005A8634 /* CampDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282ACD65282BB898005A8634 /* CampDetailViewModel.swift */; };
-		282C33632819617D009401FD /* DailyReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A53D4D328193C8500226853 /* DailyReportVC.swift */; };
+		282C33632819617D009401FD /* CampDaysVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A53D4D328193C8500226853 /* CampDaysVC.swift */; };
 		282C33642819617D009401FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A9C40B2817B7C9001B252F /* AppDelegate.swift */; };
 		282C33682819617D009401FD /* OTPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE824332817DF8800A29373 /* OTPVC.swift */; };
 		282C336A2819617D009401FD /* ListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8243E2817E25200A29373 /* ListItemCell.swift */; };
@@ -93,6 +93,18 @@
 		28A9C4162817B7C9001B252F /* NSC_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28A9C4142817B7C9001B252F /* NSC_iOS.xcdatamodeld */; };
 		28A9C4182817B7CA001B252F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28A9C4172817B7CA001B252F /* Assets.xcassets */; };
 		28A9C4282817C09A001B252F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28A9C4272817C09A001B252F /* LaunchScreen.storyboard */; };
+		28ABEDAD2833B987001C3911 /* CampDaysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ABEDAC2833B987001C3911 /* CampDaysViewModel.swift */; };
+		28ABEDAE2833B987001C3911 /* CampDaysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ABEDAC2833B987001C3911 /* CampDaysViewModel.swift */; };
+		28ABEDB02833B9CB001C3911 /* CampDaysModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ABEDAF2833B9CB001C3911 /* CampDaysModel.swift */; };
+		28ABEDB12833B9CB001C3911 /* CampDaysModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ABEDAF2833B9CB001C3911 /* CampDaysModel.swift */; };
+		28ABEDB52833C0D0001C3911 /* DayListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ABEDB32833C0D0001C3911 /* DayListCell.swift */; };
+		28ABEDB62833C0D0001C3911 /* DayListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ABEDB32833C0D0001C3911 /* DayListCell.swift */; };
+		28ABEDB72833C0D0001C3911 /* DayListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28ABEDB42833C0D0001C3911 /* DayListCell.xib */; };
+		28ABEDB82833C0D0001C3911 /* DayListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28ABEDB42833C0D0001C3911 /* DayListCell.xib */; };
+		28ABEDBB2833C6DD001C3911 /* TitleLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ABEDB92833C6DD001C3911 /* TitleLabelCell.swift */; };
+		28ABEDBC2833C6DD001C3911 /* TitleLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ABEDB92833C6DD001C3911 /* TitleLabelCell.swift */; };
+		28ABEDBD2833C6DD001C3911 /* TitleLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28ABEDBA2833C6DD001C3911 /* TitleLabelCell.xib */; };
+		28ABEDBE2833C6DD001C3911 /* TitleLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28ABEDBA2833C6DD001C3911 /* TitleLabelCell.xib */; };
 		28AE7221282CD93E000845D0 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AE7220282CD93E000845D0 /* Font.swift */; };
 		28AE7222282CD987000845D0 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AE7220282CD93E000845D0 /* Font.swift */; };
 		28AE7224282CDF0F000845D0 /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AE7223282CDF0F000845D0 /* AppStrings.swift */; };
@@ -254,7 +266,7 @@
 		9A53D4CD28192BE400226853 /* CampListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A53D4CB28192BE400226853 /* CampListCell.swift */; };
 		9A53D4CE28192BE400226853 /* CampListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A53D4CC28192BE400226853 /* CampListCell.xib */; };
 		9A53D4D228193B6D00226853 /* CampDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A53D4D128193B6D00226853 /* CampDetailVC.swift */; };
-		9A53D4D428193C8500226853 /* DailyReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A53D4D328193C8500226853 /* DailyReportVC.swift */; };
+		9A53D4D428193C8500226853 /* CampDaysVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A53D4D328193C8500226853 /* CampDaysVC.swift */; };
 		9A7740B6282B8927000BDC8C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7740B5282B8927000BDC8C /* ProfileViewModel.swift */; };
 		9A7740B7282B8927000BDC8C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7740B5282B8927000BDC8C /* ProfileViewModel.swift */; };
 		9A7740B9282BB7A1000BDC8C /* UploaddataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7740B8282BB7A1000BDC8C /* UploaddataModel.swift */; };
@@ -315,6 +327,12 @@
 		28A9C4172817B7CA001B252F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		28A9C41C2817B7CA001B252F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28A9C4272817C09A001B252F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		28ABEDAC2833B987001C3911 /* CampDaysViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampDaysViewModel.swift; sourceTree = "<group>"; };
+		28ABEDAF2833B9CB001C3911 /* CampDaysModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampDaysModel.swift; sourceTree = "<group>"; };
+		28ABEDB32833C0D0001C3911 /* DayListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayListCell.swift; sourceTree = "<group>"; };
+		28ABEDB42833C0D0001C3911 /* DayListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DayListCell.xib; sourceTree = "<group>"; };
+		28ABEDB92833C6DD001C3911 /* TitleLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLabelCell.swift; sourceTree = "<group>"; };
+		28ABEDBA2833C6DD001C3911 /* TitleLabelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleLabelCell.xib; sourceTree = "<group>"; };
 		28AE7220282CD93E000845D0 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		28AE7223282CDF0F000845D0 /* AppStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
 		28AE7226282CDF3A000845D0 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
@@ -408,7 +426,7 @@
 		9A53D4CB28192BE400226853 /* CampListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampListCell.swift; sourceTree = "<group>"; };
 		9A53D4CC28192BE400226853 /* CampListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CampListCell.xib; sourceTree = "<group>"; };
 		9A53D4D128193B6D00226853 /* CampDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampDetailVC.swift; sourceTree = "<group>"; };
-		9A53D4D328193C8500226853 /* DailyReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReportVC.swift; sourceTree = "<group>"; };
+		9A53D4D328193C8500226853 /* CampDaysVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampDaysVC.swift; sourceTree = "<group>"; };
 		9A7740B5282B8927000BDC8C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		9A7740B8282BB7A1000BDC8C /* UploaddataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploaddataModel.swift; sourceTree = "<group>"; };
 		9AD5ED9A2824EBDD00E0A11F /* UserListPopUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListPopUpVC.swift; sourceTree = "<group>"; };
@@ -588,7 +606,7 @@
 				9A0F6F70281BBB41008CAA4B /* ProfileStatusVC.swift */,
 				9A53D4C9281929B500226853 /* CampListVC.swift */,
 				9A53D4D128193B6D00226853 /* CampDetailVC.swift */,
-				9A53D4D328193C8500226853 /* DailyReportVC.swift */,
+				9A53D4D328193C8500226853 /* CampDaysVC.swift */,
 				28F3C255281A5CCF0092A077 /* KidsAttendanceVC.swift */,
 				9AD5ED9A2824EBDD00E0A11F /* UserListPopUpVC.swift */,
 				9A2DBD76282E141C0057FBDD /* ReferVC.swift */,
@@ -597,6 +615,15 @@
 				2875547928339118002FC9BD /* EarningVC.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		28ABEDB22833BAC6001C3911 /* CampDays */ = {
+			isa = PBXGroup;
+			children = (
+				28ABEDAC2833B987001C3911 /* CampDaysViewModel.swift */,
+				28ABEDAF2833B9CB001C3911 /* CampDaysModel.swift */,
+			);
+			path = CampDays;
 			sourceTree = "<group>";
 		};
 		28C8DA2D2822B7A10048A172 /* Login */ = {
@@ -620,6 +647,7 @@
 		28ED596928225F940035402F /* Models + ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				28ABEDB22833BAC6001C3911 /* CampDays */,
 				9A7740B4282B87FF000BDC8C /* Profile */,
 				282ACD6B282BD8B0005A8634 /* CampDetail */,
 				9A48A74A28290A5F00D0A728 /* DeleteCoach */,
@@ -863,6 +891,10 @@
 				28F3C252281A5CC80092A077 /* KidsAttendenceCell.xib */,
 				28515AA4282E81F4004C7229 /* ContactCell.swift */,
 				28515AA5282E81F4004C7229 /* ContactCell.xib */,
+				28ABEDB32833C0D0001C3911 /* DayListCell.swift */,
+				28ABEDB42833C0D0001C3911 /* DayListCell.xib */,
+				28ABEDB92833C6DD001C3911 /* TitleLabelCell.swift */,
+				28ABEDBA2833C6DD001C3911 /* TitleLabelCell.xib */,
 			);
 			path = TableCell;
 			sourceTree = "<group>";
@@ -970,10 +1002,12 @@
 				282C337F2819617D009401FD /* LaunchScreen.storyboard in Resources */,
 				9A0F6F65281BA15F008CAA4B /* Poppins-Light.otf in Resources */,
 				9A0F6F69281BA15F008CAA4B /* Poppins-SemiBold.otf in Resources */,
+				28ABEDB82833C0D0001C3911 /* DayListCell.xib in Resources */,
 				9A0F6F6F281BA15F008CAA4B /* Poppins-Regular.otf in Resources */,
 				282C33812819617D009401FD /* Assets.xcassets in Resources */,
 				9A0F6F6B281BA15F008CAA4B /* receipt.ttf in Resources */,
 				9AD5EDA02824EC1400E0A11F /* UserListCell.xib in Resources */,
+				28ABEDBE2833C6DD001C3911 /* TitleLabelCell.xib in Resources */,
 				2804E39C2819847400AF4A62 /* WWCalendarTimeSelector.storyboard in Resources */,
 				9A0F6F6D281BA15F008CAA4B /* Poppins-Bold.otf in Resources */,
 				282C33852819617D009401FD /* Main.storyboard in Resources */,
@@ -994,10 +1028,12 @@
 				28A9C4182817B7CA001B252F /* Assets.xcassets in Resources */,
 				9A0F6F64281BA15F008CAA4B /* Poppins-Light.otf in Resources */,
 				9A0F6F68281BA15F008CAA4B /* Poppins-SemiBold.otf in Resources */,
+				28ABEDB72833C0D0001C3911 /* DayListCell.xib in Resources */,
 				9A0F6F6E281BA15F008CAA4B /* Poppins-Regular.otf in Resources */,
 				28F3C254281A5CC80092A077 /* KidsAttendenceCell.xib in Resources */,
 				9A0F6F6A281BA15F008CAA4B /* receipt.ttf in Resources */,
 				9AD5ED9F2824EC1400E0A11F /* UserListCell.xib in Resources */,
+				28ABEDBD2833C6DD001C3911 /* TitleLabelCell.xib in Resources */,
 				28F8315E28197B0600CAF99C /* WWCalendarTimeSelector.storyboard in Resources */,
 				9A0F6F6C281BA15F008CAA4B /* Poppins-Bold.otf in Resources */,
 				28A9C4132817B7C9001B252F /* Main.storyboard in Resources */,
@@ -1144,7 +1180,7 @@
 				28F83137281977F000CAF99C /* WhereAmIRunning.swift in Sources */,
 				2804E39F2819847D00AF4A62 /* String+Timepiece.swift in Sources */,
 				28F83119281977F000CAF99C /* Config.swift in Sources */,
-				282C33632819617D009401FD /* DailyReportVC.swift in Sources */,
+				282C33632819617D009401FD /* CampDaysVC.swift in Sources */,
 				28515AA7282E81F4004C7229 /* ContactCell.swift in Sources */,
 				2804E3A02819847D00AF4A62 /* NSDateComponents+Timepiece.swift in Sources */,
 				282C33642819617D009401FD /* AppDelegate.swift in Sources */,
@@ -1201,6 +1237,7 @@
 				2804E39B2819846B00AF4A62 /* NSDate+Timepiece.swift in Sources */,
 				28F83127281977F000CAF99C /* JSONSerializable+Helper.swift in Sources */,
 				28F830F3281977F000CAF99C /* DJValidation.swift in Sources */,
+				28ABEDAE2833B987001C3911 /* CampDaysViewModel.swift in Sources */,
 				282C33712819617D009401FD /* CampListVC.swift in Sources */,
 				284A3EC32823B09400B511FB /* SignUpViewModel.swift in Sources */,
 				282C33722819617D009401FD /* SplashVC.swift in Sources */,
@@ -1208,12 +1245,14 @@
 				2875547B28339118002FC9BD /* EarningVC.swift in Sources */,
 				28F830E7281977F000CAF99C /* UIImage+Extension.swift in Sources */,
 				9A48A7422829045A00D0A728 /* CampListViewModel.swift in Sources */,
+				28ABEDBC2833C6DD001C3911 /* TitleLabelCell.swift in Sources */,
 				28F830E3281977F000CAF99C /* Int+Extension.swift in Sources */,
 				28F830E5281977F000CAF99C /* UIView+Extension.swift in Sources */,
 				9A7740BA282BB7A1000BDC8C /* UploaddataModel.swift in Sources */,
 				28515AA3282E8187004C7229 /* ContactVC.swift in Sources */,
 				9AD5ED9C2824EBDE00E0A11F /* UserListPopUpVC.swift in Sources */,
 				28F83133281977F000CAF99C /* Theme.swift in Sources */,
+				28ABEDB62833C0D0001C3911 /* DayListCell.swift in Sources */,
 				28F830F1281977F000CAF99C /* UINavigationBar+Extension.swift in Sources */,
 				2804E3A12819847D00AF4A62 /* NSCalendar+Timepiece.swift in Sources */,
 				28470DAC281C0CC500FE9C66 /* AlertPopUpVC.swift in Sources */,
@@ -1230,6 +1269,7 @@
 				28F830FF281977F000CAF99C /* TagFlowLayout.swift in Sources */,
 				2867950B282150B60010892E /* DynamicContents.swift in Sources */,
 				28F83103281977F000CAF99C /* ExpandableLabel.swift in Sources */,
+				28ABEDB12833B9CB001C3911 /* CampDaysModel.swift in Sources */,
 				282C33732819617D009401FD /* NSC_iOS.xcdatamodeld in Sources */,
 				2804E39D2819847D00AF4A62 /* Int+Timepiece.swift in Sources */,
 				28470DAF281C0ED700FE9C66 /* DescriptionPopupVC.swift in Sources */,
@@ -1267,7 +1307,7 @@
 				28F83118281977F000CAF99C /* Config.swift in Sources */,
 				28F3C256281A5CCF0092A077 /* KidsAttendanceVC.swift in Sources */,
 				28515AA6282E81F4004C7229 /* ContactCell.swift in Sources */,
-				9A53D4D428193C8500226853 /* DailyReportVC.swift in Sources */,
+				9A53D4D428193C8500226853 /* CampDaysVC.swift in Sources */,
 				28A9C40C2817B7C9001B252F /* AppDelegate.swift in Sources */,
 				9A48A7442829047600D0A728 /* CampListModel.swift in Sources */,
 				28F830EA281977F000CAF99C /* ImagePicker.swift in Sources */,
@@ -1322,6 +1362,7 @@
 				28F830F2281977F000CAF99C /* DJValidation.swift in Sources */,
 				9A53D4CA281929B500226853 /* CampListVC.swift in Sources */,
 				9AE824392817DF8800A29373 /* SplashVC.swift in Sources */,
+				28ABEDAD2833B987001C3911 /* CampDaysViewModel.swift in Sources */,
 				284A3EC22823B09400B511FB /* SignUpViewModel.swift in Sources */,
 				281AAE4C281AA7800070D758 /* Constants.swift in Sources */,
 				9A48A74828290A5800D0A728 /* LogoutViewModel.swift in Sources */,
@@ -1329,12 +1370,14 @@
 				2875547A28339118002FC9BD /* EarningVC.swift in Sources */,
 				9A48A7412829045A00D0A728 /* CampListViewModel.swift in Sources */,
 				28F830E2281977F000CAF99C /* Int+Extension.swift in Sources */,
+				28ABEDBB2833C6DD001C3911 /* TitleLabelCell.swift in Sources */,
 				28F830E4281977F000CAF99C /* UIView+Extension.swift in Sources */,
 				9A7740B9282BB7A1000BDC8C /* UploaddataModel.swift in Sources */,
 				9AD5ED9B2824EBDE00E0A11F /* UserListPopUpVC.swift in Sources */,
 				28515AA2282E8187004C7229 /* ContactVC.swift in Sources */,
 				28F83132281977F000CAF99C /* Theme.swift in Sources */,
 				28F830F0281977F000CAF99C /* UINavigationBar+Extension.swift in Sources */,
+				28ABEDB52833C0D0001C3911 /* DayListCell.swift in Sources */,
 				28F83130281977F000CAF99C /* AppConstants.swift in Sources */,
 				28470DAB281C0CC500FE9C66 /* AlertPopUpVC.swift in Sources */,
 				28F83142281977F000CAF99C /* ReadMore_Helper.swift in Sources */,
@@ -1351,6 +1394,7 @@
 				28A9C4162817B7C9001B252F /* NSC_iOS.xcdatamodeld in Sources */,
 				2867950A282150B60010892E /* DynamicContents.swift in Sources */,
 				28F8316128197B0600CAF99C /* Int+Timepiece.swift in Sources */,
+				28ABEDB02833B9CB001C3911 /* CampDaysModel.swift in Sources */,
 				28F830DA281977F000CAF99C /* UIImageView+Extension.swift in Sources */,
 				28F830DC281977F000CAF99C /* NSAttributedString+Extension.swift in Sources */,
 				28470DAE281C0ED700FE9C66 /* DescriptionPopupVC.swift in Sources */,
