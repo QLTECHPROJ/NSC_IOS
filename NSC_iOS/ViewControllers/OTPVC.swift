@@ -28,6 +28,7 @@ class OTPVC: BaseViewController {
     var strLName = ""
     var strMobile = ""
     var strEmail = ""
+    var strPromoCode = ""
     
     
     // MARK: - VIEW LIFE CYCLE
@@ -155,6 +156,7 @@ class OTPVC: BaseViewController {
                           "countryCode":AppVersionDetails.countryCode,
                           "mobile":strMobile,
                           "email":strEmail,
+                          "referCode":strPromoCode,
                           "deviceType":APP_TYPE,
                           "deviceToken":FCM_TOKEN]
         

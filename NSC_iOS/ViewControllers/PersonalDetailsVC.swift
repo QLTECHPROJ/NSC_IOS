@@ -52,7 +52,6 @@ class PersonalDetailsVC: BaseViewController {
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         btnBack.isHidden = !isFromEdit
         
@@ -94,18 +93,26 @@ class PersonalDetailsVC: BaseViewController {
         
         if let strName = selectedState?.Name {
             txtState.text = strName
+        } else {
+            txtState.text = ""
         }
         
         if let strName = selectedCity?.Name {
             txtCity.text = strName
+        } else {
+            txtCity.text = ""
         }
         
         if let strName = selectedCamps?.Name {
             txtCamps.text = strName
+        } else {
+            txtCamps.text = ""
         }
         
         if let strName = selectedRole?.Name {
             txtRole.text = strName
+        } else {
+            txtRole.text = ""
         }
         
         initDOBPickerView()
@@ -182,6 +189,7 @@ class PersonalDetailsVC: BaseViewController {
         switch listType {
         case .state:
             self.selectedState = selectedItem
+            self.selectedCity = nil
         case .city:
             self.selectedCity = selectedItem
         case .camp:

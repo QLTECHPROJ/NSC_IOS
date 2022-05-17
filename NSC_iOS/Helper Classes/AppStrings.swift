@@ -124,6 +124,7 @@ struct AppStrings {
     let alert_blank_dob_error = "Date of Birth should not be blank"
     let alert_dob_error = "Please confirm whether you are above 18 years"
     let alert_invalid_fullname_error = "Please enter valid Name"
+    let alert_blank_promocode_error = "Please enter promo code"
     
     /* Personal Details */
     let alert_blank_street_error = "Please provide Street Address"

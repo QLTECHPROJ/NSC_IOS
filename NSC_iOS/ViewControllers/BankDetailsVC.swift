@@ -32,13 +32,11 @@ class BankDetailsVC: BaseViewController {
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         btnBack.isHidden = !isFromEdit
         
         setupUI()
         setupData()
-        buttonEnableDisable()
         
         self.fetchCoachDetails {
             self.setupData()
@@ -82,8 +80,23 @@ class BankDetailsVC: BaseViewController {
     override func buttonEnableDisable() {
         var shouldEnable = true
         
-        if txtBankName.text?.trim.count == 0 || txtAccountNumber.text?.trim.count == 0 ||
-            txtAccountName.text?.trim.count == 0 || txtIFSCCode.text?.trim.count == 0 {
+        let userData = LoginDataModel.currentUser
+        
+        let strBankName = txtBankName.text?.trim
+        let strAccountNumber = txtAccountNumber.text?.trim
+        let strAccountName = txtAccountName.text?.trim
+        let strIFSCCode = txtIFSCCode.text?.trim
+        
+        
+        if strBankName?.count == 0 || strAccountNumber?.count == 0 ||
+            strAccountName?.count == 0 || strIFSCCode?.count == 0 {
+            shouldEnable = false
+        }
+        
+        if strBankName == userData?.Bank_Name &&
+            strAccountNumber == userData?.Account_Number &&
+            strAccountName == userData?.Account_Name &&
+            strIFSCCode == userData?.IFSC_Code {
             shouldEnable = false
         }
         
@@ -212,8 +225,6 @@ extension BankDetailsVC : UITextFieldDelegate {
                 return false
             }
         }
-        
-        buttonEnableDisable()
         
         return true
     }

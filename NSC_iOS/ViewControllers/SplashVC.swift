@@ -13,7 +13,6 @@ class SplashVC: BaseViewController {
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         let appVersionVM = AppVersionViewModel()
         appVersionVM.callAppVersionAPI(completion: { success in
@@ -57,7 +56,7 @@ class SplashVC: BaseViewController {
                     if success {
                         self.handleLoginUserRedirection()
                     } else {
-                        self.handleRedirection()
+                        APPDELEGATE.logout()
                     }
                 }
             }

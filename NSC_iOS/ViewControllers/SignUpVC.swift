@@ -21,9 +21,11 @@ class SignUpVC: BaseViewController {
     @IBOutlet weak var txtFName: UITextField!
     @IBOutlet weak var txtLName: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
+    @IBOutlet weak var txtPromoCode: UITextField!
     
     // UIButton
     @IBOutlet weak var btnCountryCode: UIButton!
+    @IBOutlet weak var btnApply: UIButton!
     @IBOutlet weak var btnGetSMSCode: UIButton!
     
     // UILabel
@@ -36,6 +38,7 @@ class SignUpVC: BaseViewController {
     @IBOutlet weak var lblErrLName: UILabel!
     @IBOutlet weak var lblErrMobileNo: UILabel!
     @IBOutlet weak var lblErrEmail: UILabel!
+    @IBOutlet weak var lblErrPromoCode: UILabel!
     @IBOutlet weak var viewApply: UIView!
     
     
@@ -45,11 +48,13 @@ class SignUpVC: BaseViewController {
     var isFromOTP = false
     var isCountrySelected = false
     var strMobile:String?
+    var promoCode = ""
     
     
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupUI()
         setupPrivacyLabel(lblPrivacy: lblPrivacy)
         setupSupportLabel(lblSupport: lblSupport)
@@ -80,11 +85,11 @@ class SignUpVC: BaseViewController {
         lblTitle.text = Theme.strings.register_title
         lblSubTitle.attributedText = Theme.strings.register_subtitle.attributedString(alignment: .center, lineSpacing: 5)
         
+        lblErrMobileNo.isHidden = true
         lblErrFName.isHidden = true
         lblErrLName.isHidden = true
-        
-        lblErrMobileNo.isHidden = true
         lblErrEmail.isHidden = true
+        lblErrPromoCode.isHidden = true
         
         txtFName.delegate = self
         txtLName.delegate = self
@@ -111,10 +116,19 @@ class SignUpVC: BaseViewController {
         if fname?.count == 0 || lname?.count == 0 || mobile?.count == 0 || email?.count == 0 {
             btnGetSMSCode.isUserInteractionEnabled = false
             btnGetSMSCode.backgroundColor = Theme.colors.gray_7E7E7E
-            btnGetSMSCode.removeGradient()
         } else {
             btnGetSMSCode.isUserInteractionEnabled = true
             btnGetSMSCode.backgroundColor = Theme.colors.theme_dark
+        }
+        
+        DispatchQueue.main.async {
+            if self.txtPromoCode.text?.trim.count == 0 {
+                self.btnApply.isUserInteractionEnabled = false
+                self.btnApply.setTitleColor(Theme.colors.gray_7E7E7E, for: .normal)
+            } else {
+                self.btnApply.isUserInteractionEnabled = true
+                self.btnApply.setTitleColor(Theme.colors.theme_dark, for: .normal)
+            }
         }
     }
     
@@ -193,9 +207,22 @@ class SignUpVC: BaseViewController {
             aVC.strFName = self.txtFName.text ?? ""
             aVC.strLName = self.txtLName.text ?? ""
             aVC.strEmail = self.txtEmail.text ?? ""
+            aVC.strPromoCode = self.txtPromoCode.text ?? ""
             aVC.isFromSignUp = true
             self.navigationController?.pushViewController(aVC, animated: true)
         }
+    }
+    
+    func checkLogin() {
+        let parameters = ["mobile":txtMobile.text ?? "",
+                          "countryCode":AppVersionDetails.countryCode]
+        
+        loginCheckVM = LoginCheckViewModel()
+        loginCheckVM?.callLoginCheckAPI(parameters: parameters, completion: { success in
+            if success {
+                self.goNext()
+            }
+        })
     }
     
     
@@ -203,6 +230,23 @@ class SignUpVC: BaseViewController {
     @IBAction func backClicked(_ sender: UIButton) {
         self.view.endEditing(true)
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func applyClicked(_ sender: UIButton) {
+        self.view.endEditing(true)
+        
+        if (txtPromoCode.text?.trim.count ?? 0) > 0 {
+            let verifyReferCodeVM = VerifyReferCodeViewModel()
+            verifyReferCodeVM.callVerifyReferCodeAPI(referCode: txtPromoCode.text ?? "") { success in
+                if success {
+                    print("promocode applied")
+                    self.promoCode = self.txtPromoCode.text ?? ""
+                }
+            }
+        } else {
+            lblErrPromoCode.isHidden = false
+            lblErrPromoCode.text = Theme.strings.alert_blank_promocode_error
+        }
     }
     
     @IBAction func signUpClicked(_ sender: UIButton) {
@@ -213,17 +257,25 @@ class SignUpVC: BaseViewController {
             lblErrLName.isHidden = true
             lblErrMobileNo.isHidden = true
             lblErrEmail.isHidden = true
+            lblErrPromoCode.isHidden = true
             isFromOTP = true
             
-            let parameters = ["mobile":txtMobile.text ?? "",
-                              "countryCode":AppVersionDetails.countryCode]
-            
-            loginCheckVM = LoginCheckViewModel()
-            loginCheckVM?.callLoginCheckAPI(parameters: parameters, completion: { success in
-                if success {
-                    self.goNext()
+            if (txtPromoCode.text?.trim.count ?? 0) > 0 {
+                if promoCode == txtPromoCode.text {
+                    self.checkLogin()
+                } else {
+                    let verifyReferCodeVM = VerifyReferCodeViewModel()
+                    verifyReferCodeVM.callVerifyReferCodeAPI(referCode: txtPromoCode.text ?? "") { success in
+                        if success {
+                            print("promocode applied")
+                            self.promoCode = self.txtPromoCode.text ?? ""
+                            self.checkLogin()
+                        }
+                    }
                 }
-            })
+            } else {
+                self.checkLogin()
+            }
         }
     }
     
@@ -238,6 +290,7 @@ extension SignUpVC : UITextFieldDelegate {
         lblErrLName.isHidden = true
         lblErrMobileNo.isHidden = true
         lblErrEmail.isHidden = true
+        lblErrPromoCode.isHidden = true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
