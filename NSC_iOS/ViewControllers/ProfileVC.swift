@@ -43,6 +43,7 @@ class ProfileVC: BaseViewController {
         super.viewDidLoad()
         
         imgUser.contentMode = .scaleAspectFill
+        btnConfirm.isHidden = true
         
         setupUI()
         setupData()
@@ -66,6 +67,11 @@ class ProfileVC: BaseViewController {
         btnCountryCode.setTitleColor(Theme.colors.gray_7E7E7E, for: .normal)
         txtFMobileNo.textColor = Theme.colors.gray_7E7E7E
         txtFEmailAdd.textColor = Theme.colors.gray_7E7E7E
+        
+        DispatchQueue.main.async {
+            self.btnUpdate.borderColor = UIColor.clear
+            self.btnUpdate.setTitleColor(.white, for: .normal)
+        }
     }
     
     override func setupData() {
@@ -106,17 +112,13 @@ class ProfileVC: BaseViewController {
             btnConfirm.backgroundColor = Theme.colors.gray_7E7E7E
             
             btnUpdate.isUserInteractionEnabled = true
-            btnUpdate.backgroundColor = Theme.colors.white
-            btnUpdate.borderColor = Theme.colors.theme_dark
-            btnUpdate.setTitleColor(Theme.colors.theme_dark, for: .normal)
+            btnUpdate.backgroundColor = Theme.colors.theme_dark
         } else {
             btnConfirm.isUserInteractionEnabled = true
             btnConfirm.backgroundColor = Theme.colors.theme_dark
             
             btnUpdate.isUserInteractionEnabled = false
             btnUpdate.backgroundColor = Theme.colors.gray_7E7E7E
-            btnUpdate.borderColor = Theme.colors.gray_7E7E7E
-            btnUpdate.setTitleColor(Theme.colors.white, for: .normal)
         }
     }
     
@@ -292,8 +294,10 @@ extension ProfileVC : UITextFieldDelegate {
         
         let updatedText = text.replacingCharacters(in: textRange, with: string)
         
-        if textField == txtFName && updatedText.count > 16 {
-            return false
+        if textField == txtFName || textField == txtLName {
+            if updatedText.count > 16 {
+                return false
+            }
         } else if textField == txtFMobileNo {
             if !updatedText.isNumber || updatedText.count > AppVersionDetails.mobileMaxDigits {
                 return false

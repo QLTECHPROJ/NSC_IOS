@@ -29,6 +29,7 @@ class CampListVC: BaseViewController {
         // Do any additional setup after loading the view.
         
         lblNoData.isHidden = true
+        lblNoData.text = Theme.strings.no_camps_to_display
         
         tableView.register(nibWithCellClass: TitleLabelCell.self)
         tableView.register(nibWithCellClass: CampListCell.self)

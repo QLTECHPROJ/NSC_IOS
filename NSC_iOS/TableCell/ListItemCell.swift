@@ -40,7 +40,7 @@ class ListItemCell: UITableViewCell {
         
         btnSelect.isHidden = false
         
-        if data.isSelected {
+        if data.Selected == "1" {
             btnSelect.setImage(UIImage(named: "CheckSelect"), for: .normal)
         } else {
             btnSelect.setImage(UIImage(named: "CheckDeselect"), for: .normal)

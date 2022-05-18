@@ -67,7 +67,10 @@ struct AppStrings {
     
     let date_of_birth = "Date of Birth"
     
-    let no_contacts_to_display = "No contacts to display."
+    let no_camps_to_display = "No camps to display"
+    let no_contacts_to_display = "No contacts to display"
+    let no_transactions_to_display = "No transactions to display"
+    let no_data_found = "No data found"
     
     let take_a_photo = "Take a Photo"
     let choose_from_gallary = "Choose from Gallary"
@@ -160,7 +163,7 @@ struct AppStrings {
     let alert_cannot_send_message = "Cannot send the message"
     
     let alert_blank_search = "Please enter search text"
-    let alert_select_category = "Please select a category"
+    let alert_select_camp = "Please select a camp"
     
     /* Membership Plan */
     let alert_reactivate_plan = "Please activate your membership plan"

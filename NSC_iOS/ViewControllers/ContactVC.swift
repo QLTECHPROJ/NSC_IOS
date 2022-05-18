@@ -32,7 +32,7 @@ class ContactVC: BaseViewController {
     var arrayContactList = [CNContact]()
     var arrayContacts = [ContactModel]()
     var arrayContactsSearch = [ContactModel]()
-    var isFromRefer = false
+    
     var referCode = ""
     var referLink = ""
     
@@ -121,25 +121,11 @@ class ContactVC: BaseViewController {
     func sendSMS(contact : ContactModel) {
         self.view.endEditing(true)
         
-        if isFromRefer {
-            // callAddNewReferUserAPI(contact: contact)
-        } else {
-            // callInviteUserAPI(contact: contact)
-        }
-    }
-    
-    func sendMessage(contact : ContactModel, inviteUrl : String) {
-        if (MFMessageComposeViewController.canSendText()) {
-            
-            let shareText = "Hi! 🙂" + "\n\n" + "You’re invited to start your journey to discover your inner potential. \n\nStart now for FREE!" + "\n" + "\(inviteUrl)"
-            
-            let controller = MFMessageComposeViewController()
-            controller.body = shareText
-            controller.recipients = [contact.contactNumber]
-            controller.messageComposeDelegate = self
-            self.present(controller, animated: true, completion: nil)
-        } else {
-            showAlertToast(message: Theme.strings.alert_cannot_send_message)
+        let inviteVM = InviteViewModel()
+        inviteVM.callInviteUserAPI(contact: contact) { success in
+            if success {
+                self.sendReferralMessage(contact: contact)
+            }
         }
     }
     

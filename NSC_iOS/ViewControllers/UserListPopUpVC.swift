@@ -106,10 +106,11 @@ extension UserListPopUpVC : UITableViewDelegate, UITableViewDataSource {
             aVC.isFromEdit = true
             self.navigationController?.pushViewController(aVC, animated: true)
         } else if indexPath.row == 3 {
-
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass: EarningVC.self)
+            self.navigationController?.pushViewController(aVC, animated: true)
         } else if indexPath.row == 4 {
-            
-            
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass: ApplyForCampVC.self)
+            self.navigationController?.pushViewController(aVC, animated: true)
         } else if indexPath.row == 5 {
             let aVC = AppStoryBoard.main.viewController(viewControllerClass: ReferVC.self)
             self.navigationController?.pushViewController(aVC, animated: true)

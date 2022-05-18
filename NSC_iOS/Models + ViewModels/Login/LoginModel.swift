@@ -47,7 +47,6 @@ class LoginDataModel: EVObject {
     var Profile_Image = ""
     var SportId = ""
     var SportName = ""
-    var referTitle = ""
-    var referDesc = ""
     var Refer_Code = ""
+    var referLink = ""
 }

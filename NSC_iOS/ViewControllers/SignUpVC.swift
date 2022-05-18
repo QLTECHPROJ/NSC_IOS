@@ -305,8 +305,10 @@ extension SignUpVC : UITextFieldDelegate {
         
         let updatedText = text.replacingCharacters(in: textRange, with: string)
         
-        if textField == txtFName && updatedText.count > 16 {
-            return false
+        if textField == txtFName || textField == txtLName {
+            if updatedText.count > 16 {
+                return false
+            }
         } else if textField == txtMobile {
             if !updatedText.isNumber || updatedText.count > AppVersionDetails.mobileMaxDigits {
                 return false

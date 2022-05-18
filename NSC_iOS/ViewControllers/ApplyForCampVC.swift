@@ -19,6 +19,7 @@ class ApplyForCampVC: BaseViewController {
     
     
     // MARK: - VARIABLES
+    var maxCount = 3
     var arrayCamp = [ListItem]()
     var arrayCampSearch = [ListItem]()
     
@@ -34,10 +35,11 @@ class ApplyForCampVC: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let listDataVM = ListDataViewModel()
-        listDataVM.callItemListAPI(strID: "", listType: ListItemType.sport) { success in
+        let applyForACampVM = ApplyForACampViewModel()
+        applyForACampVM.callItemListAPI { success in
             if success {
-                self.arrayCamp = listDataVM.listItemData ?? [ListItem]()
+                self.maxCount = applyForACampVM.maxCount
+                self.arrayCamp = applyForACampVM.listItemData ?? [ListItem]()
                 self.setupData()
             }
         }
@@ -52,7 +54,7 @@ class ApplyForCampVC: BaseViewController {
         lblNoData.isHidden = true
         
         lblNoData.isHidden = true
-        lblNoData.text = Theme.strings.alert_search_term_not_found
+        lblNoData.text = Theme.strings.no_camps_to_display
         lblNoData.textColor = Theme.colors.textColor
         
         txtSearch.delegate = self
@@ -76,7 +78,7 @@ class ApplyForCampVC: BaseViewController {
     }
     
     override func buttonEnableDisable() {
-        let count = arrayCamp.filter({ $0.isSelected == true }).count
+        let count = arrayCamp.filter({ $0.Selected == "1" }).count
         
         DispatchQueue.main.async {
             if count > 0 {
@@ -107,6 +109,15 @@ class ApplyForCampVC: BaseViewController {
     
     @IBAction func applyClicked(_ sender : UIButton) {
         self.view.endEditing(true)
+        
+        let selectedCamps = arrayCamp.filter({ $0.Selected == "1" })
+        let selectedIDs = selectedCamps.map({ $0.ID })
+        
+        if selectedIDs.count > 0 {
+            print("selectedIDs - \(selectedIDs.joined(separator: ","))")
+        } else {
+            showAlertToast(message: Theme.strings.alert_select_camp)
+        }
     }
     
 }
@@ -166,7 +177,19 @@ extension ApplyForCampVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        arrayCampSearch[indexPath.row].isSelected.toggle()
+        
+        if arrayCampSearch[indexPath.row].Selected == "1" {
+            arrayCampSearch[indexPath.row].Selected = "0"
+        } else {
+            let count = arrayCamp.filter({ $0.Selected == "1" }).count
+            
+            if count < maxCount {
+                arrayCampSearch[indexPath.row].Selected = "1"
+            } else {
+                showAlertToast(message: "You can pick up to \(self.maxCount) camps. They can be changed anytime.")
+            }
+        }
+        
         tableView.reloadData()
         buttonEnableDisable()
     }
