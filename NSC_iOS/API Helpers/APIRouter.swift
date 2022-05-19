@@ -40,6 +40,9 @@ enum APIRouter : URLRequestConvertible {
     case inviteuser([String:String])
     
     case applyForACampListing([String:String])
+    case applycampdatasave([String:String])
+    
+    case kidsattendanceshow([String:String])
     
     var route: APIRoute {
         switch self {
@@ -94,6 +97,11 @@ enum APIRouter : URLRequestConvertible {
             
         case .applyForACampListing(let data):
             return APIRoute(path: "applyfor-a-camplisting", method: .post, data: data)
+        case .applycampdatasave(let data):
+            return APIRoute(path: "applycampdatasave", method: .post, data: data)
+            
+        case .kidsattendanceshow(let data):
+            return APIRoute(path: "kids-attendance-show", method: .post, data: data)
         }
     }
     

@@ -102,6 +102,12 @@
 		2875547B28339118002FC9BD /* EarningVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2875547928339118002FC9BD /* EarningVC.swift */; };
 		28961237282A85C200BC2AC7 /* BankDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28961236282A85C200BC2AC7 /* BankDetailViewModel.swift */; };
 		28961238282A85C200BC2AC7 /* BankDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28961236282A85C200BC2AC7 /* BankDetailViewModel.swift */; };
+		2898FA8B28360FFF006DF4B8 /* SaveAppliedCampsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2898FA8A28360FFF006DF4B8 /* SaveAppliedCampsViewModel.swift */; };
+		2898FA8C28360FFF006DF4B8 /* SaveAppliedCampsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2898FA8A28360FFF006DF4B8 /* SaveAppliedCampsViewModel.swift */; };
+		2898FA8F283671F7006DF4B8 /* KidsAttendanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2898FA8E283671F7006DF4B8 /* KidsAttendanceViewModel.swift */; };
+		2898FA90283671F7006DF4B8 /* KidsAttendanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2898FA8E283671F7006DF4B8 /* KidsAttendanceViewModel.swift */; };
+		2898FA922836720F006DF4B8 /* KidsAttendanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2898FA912836720F006DF4B8 /* KidsAttendanceModel.swift */; };
+		2898FA932836720F006DF4B8 /* KidsAttendanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2898FA912836720F006DF4B8 /* KidsAttendanceModel.swift */; };
 		28A9C40C2817B7C9001B252F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A9C40B2817B7C9001B252F /* AppDelegate.swift */; };
 		28A9C4132817B7C9001B252F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28A9C4112817B7C9001B252F /* Main.storyboard */; };
 		28A9C4162817B7C9001B252F /* NSC_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28A9C4142817B7C9001B252F /* NSC_iOS.xcdatamodeld */; };
@@ -341,6 +347,9 @@
 		287554752833907E002FC9BD /* VerifyReferCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyReferCodeViewModel.swift; sourceTree = "<group>"; };
 		2875547928339118002FC9BD /* EarningVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningVC.swift; sourceTree = "<group>"; };
 		28961236282A85C200BC2AC7 /* BankDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankDetailViewModel.swift; sourceTree = "<group>"; };
+		2898FA8A28360FFF006DF4B8 /* SaveAppliedCampsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveAppliedCampsViewModel.swift; sourceTree = "<group>"; };
+		2898FA8E283671F7006DF4B8 /* KidsAttendanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidsAttendanceViewModel.swift; sourceTree = "<group>"; };
+		2898FA912836720F006DF4B8 /* KidsAttendanceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidsAttendanceModel.swift; sourceTree = "<group>"; };
 		28A9C4082817B7C9001B252F /* NSC_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSC_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28A9C40B2817B7C9001B252F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28A9C4122817B7C9001B252F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -580,6 +589,23 @@
 			path = BankDetail;
 			sourceTree = "<group>";
 		};
+		2898FA8D283626C1006DF4B8 /* SaveAppliedCamps */ = {
+			isa = PBXGroup;
+			children = (
+				2898FA8A28360FFF006DF4B8 /* SaveAppliedCampsViewModel.swift */,
+			);
+			path = SaveAppliedCamps;
+			sourceTree = "<group>";
+		};
+		2898FA9428367219006DF4B8 /* ShowKidsAttendance */ = {
+			isa = PBXGroup;
+			children = (
+				2898FA8E283671F7006DF4B8 /* KidsAttendanceViewModel.swift */,
+				2898FA912836720F006DF4B8 /* KidsAttendanceModel.swift */,
+			);
+			path = ShowKidsAttendance;
+			sourceTree = "<group>";
+		};
 		28A9C3FF2817B7C9001B252F = {
 			isa = PBXGroup;
 			children = (
@@ -713,6 +739,8 @@
 				2813A0122834DBC200E6194D /* Earning */,
 				2813A01C2835048000E6194D /* InviteUser */,
 				2813A0202835062E00E6194D /* ApplyForACamp */,
+				2898FA8D283626C1006DF4B8 /* SaveAppliedCamps */,
+				2898FA9428367219006DF4B8 /* ShowKidsAttendance */,
 			);
 			path = "Models + ViewModels";
 			sourceTree = "<group>";
@@ -1232,6 +1260,7 @@
 				284C3194282681B300F8A63B /* ListItemVC.swift in Sources */,
 				28F830FB281977F000CAF99C /* UITableView+Extension.swift in Sources */,
 				28F83137281977F000CAF99C /* WhereAmIRunning.swift in Sources */,
+				2898FA8C28360FFF006DF4B8 /* SaveAppliedCampsViewModel.swift in Sources */,
 				2804E39F2819847D00AF4A62 /* String+Timepiece.swift in Sources */,
 				28F83119281977F000CAF99C /* Config.swift in Sources */,
 				282C33632819617D009401FD /* CampDaysVC.swift in Sources */,
@@ -1246,6 +1275,7 @@
 				28F830F5281977F000CAF99C /* UITextField+Extension.swift in Sources */,
 				2854362B2825450B009BBEDA /* BankDetailsVC.swift in Sources */,
 				2804E3A22819847D00AF4A62 /* WWCalendarTimeSelector.swift in Sources */,
+				2898FA932836720F006DF4B8 /* KidsAttendanceModel.swift in Sources */,
 				28F83121281977F000CAF99C /* UIImageView+Letters.m in Sources */,
 				28543628282544F8009BBEDA /* PersonalDetailsVC.swift in Sources */,
 				28F8311D281977F000CAF99C /* MediaType.swift in Sources */,
@@ -1307,6 +1337,7 @@
 				28F830E5281977F000CAF99C /* UIView+Extension.swift in Sources */,
 				9A7740BA282BB7A1000BDC8C /* UploaddataModel.swift in Sources */,
 				28515AA3282E8187004C7229 /* ContactVC.swift in Sources */,
+				2898FA90283671F7006DF4B8 /* KidsAttendanceViewModel.swift in Sources */,
 				9AD5ED9C2824EBDE00E0A11F /* UserListPopUpVC.swift in Sources */,
 				28F83133281977F000CAF99C /* Theme.swift in Sources */,
 				2813A01F2835058800E6194D /* ApplyForACampViewModel.swift in Sources */,
@@ -1363,6 +1394,7 @@
 				28F830DE281977F000CAF99C /* UIColor+Extension.swift in Sources */,
 				28F830FA281977F000CAF99C /* UITableView+Extension.swift in Sources */,
 				28F8316328197B0600CAF99C /* String+Timepiece.swift in Sources */,
+				2898FA8B28360FFF006DF4B8 /* SaveAppliedCampsViewModel.swift in Sources */,
 				28F83136281977F000CAF99C /* WhereAmIRunning.swift in Sources */,
 				28F83118281977F000CAF99C /* Config.swift in Sources */,
 				28F3C256281A5CCF0092A077 /* KidsAttendanceVC.swift in Sources */,
@@ -1377,6 +1409,7 @@
 				2854362A2825450B009BBEDA /* BankDetailsVC.swift in Sources */,
 				28F830F4281977F000CAF99C /* UITextField+Extension.swift in Sources */,
 				28F83120281977F000CAF99C /* UIImageView+Letters.m in Sources */,
+				2898FA922836720F006DF4B8 /* KidsAttendanceModel.swift in Sources */,
 				28543627282544F8009BBEDA /* PersonalDetailsVC.swift in Sources */,
 				282ACD68282BB8FC005A8634 /* CampDetailDataModel.swift in Sources */,
 				28F8311C281977F000CAF99C /* MediaType.swift in Sources */,
@@ -1438,6 +1471,7 @@
 				9A7740B9282BB7A1000BDC8C /* UploaddataModel.swift in Sources */,
 				9AD5ED9B2824EBDE00E0A11F /* UserListPopUpVC.swift in Sources */,
 				28515AA2282E8187004C7229 /* ContactVC.swift in Sources */,
+				2898FA8F283671F7006DF4B8 /* KidsAttendanceViewModel.swift in Sources */,
 				28F83132281977F000CAF99C /* Theme.swift in Sources */,
 				28F830F0281977F000CAF99C /* UINavigationBar+Extension.swift in Sources */,
 				2813A01E2835058800E6194D /* ApplyForACampViewModel.swift in Sources */,

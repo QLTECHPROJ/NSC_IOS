@@ -114,7 +114,15 @@ class ApplyForCampVC: BaseViewController {
         let selectedIDs = selectedCamps.map({ $0.ID })
         
         if selectedIDs.count > 0 {
-            print("selectedIDs - \(selectedIDs.joined(separator: ","))")
+            let strCampIDs = selectedIDs.joined(separator: ",")
+            print("selectedIDs - \(strCampIDs)")
+            
+            let saveAppliedCampsVM = SaveAppliedCampsViewModel()
+            saveAppliedCampsVM.callSaveAppliedCampsAPI(campIds: strCampIDs) { success in
+                if success {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
         } else {
             showAlertToast(message: Theme.strings.alert_select_camp)
         }

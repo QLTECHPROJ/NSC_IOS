@@ -16,7 +16,8 @@ class CampDaysVC: BaseViewController {
     
     
     // MARK: - VARIABLES
-    var campDetails: CampDetailModel?
+    var campID = ""
+    var campName = ""
     var totalDays = ""
     var arrayDays = [CampDaysDetailModel]()
     
@@ -31,10 +32,6 @@ class CampDaysVC: BaseViewController {
         tableView.register(nibWithCellClass: TitleLabelCell.self)
         tableView.register(nibWithCellClass: DayListCell.self)
         tableView.refreshControl = self.refreshControl
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
         self.refreshData()
     }
@@ -42,11 +39,8 @@ class CampDaysVC: BaseViewController {
     
     // MARK: - FUNCTIONS
     override func setupData() {
-        if arrayDays.count > 0 {
-            lblNoData.isHidden = true
-        } else {
-            lblNoData.isHidden = false
-        }
+        lblNoData.isHidden = arrayDays.count > 0
+        tableView.isHidden = arrayDays.count == 0
         
         tableView.reloadData()
     }
@@ -57,10 +51,6 @@ class CampDaysVC: BaseViewController {
     }
     
     override func refreshData() {
-        guard let campID = self.campDetails?.CampId else {
-            return
-        }
-        
         let campDaysViewModel = CampDaysViewModel()
         campDaysViewModel.callDayListingAPI(campId: campID) { success in
             if success {
@@ -98,7 +88,7 @@ extension CampDaysVC: UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withClass: TitleLabelCell.self)
-        cell.lblTitle.text = campDetails?.CampName
+        cell.lblTitle.text = campName
         return cell
     }
     
@@ -108,6 +98,9 @@ extension CampDaysVC: UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let aVC = AppStoryBoard.main.viewController(viewControllerClass:KidsAttendanceVC.self)
+        aVC.campID = self.campID
+        aVC.campName = self.campName
+        aVC.dayID = arrayDays[indexPath.row].dayId
         self.navigationController?.pushViewController(aVC, animated: true)
     }
     

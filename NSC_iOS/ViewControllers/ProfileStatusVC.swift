@@ -40,8 +40,11 @@ class ProfileStatusVC: BaseViewController {
         lblStatus.text = ""
         lblSubTitle.text = ""
         imgViewStatus.isHidden = true
-        btnContinue.isUserInteractionEnabled = false
-        btnContinue.backgroundColor = Theme.colors.gray_7E7E7E
+        
+        DispatchQueue.main.async {
+            self.btnContinue.isUserInteractionEnabled = false
+            self.btnContinue.backgroundColor = Theme.colors.gray_7E7E7E
+        }
     }
     
     override func setupData() {

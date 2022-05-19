@@ -34,12 +34,11 @@ class CampListVC: BaseViewController {
         tableView.register(nibWithCellClass: TitleLabelCell.self)
         tableView.register(nibWithCellClass: CampListCell.self)
         tableView.refreshControl = self.refreshControl
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        
         setupUI()
         self.refreshData()
     }
+    
     
     // MARK: - FUNCTIONS
     override func setupUI() {
@@ -51,8 +50,10 @@ class CampListVC: BaseViewController {
     override func setupData() {
         if arrayCurrentCampList.count > 0 || arrayUpcomingCampList.count > 0 {
             lblNoData.isHidden = true
+            tableView.isHidden = false
         } else {
             lblNoData.isHidden = false
+            tableView.isHidden = true
         }
         
         tableView.reloadData()
@@ -66,8 +67,10 @@ class CampListVC: BaseViewController {
     override func refreshData() {
         let campListViewModel = CampListViewModel()
         campListViewModel.callCampListAPI(completion: { success in
-            self.arrayCurrentCampList = campListViewModel.arrayCurrentCampList
-            self.arrayUpcomingCampList = campListViewModel.arrayUpcomingCampList
+            if success {
+                self.arrayCurrentCampList = campListViewModel.arrayCurrentCampList
+                self.arrayUpcomingCampList = campListViewModel.arrayUpcomingCampList
+            }
             self.setupData()
         })
     }

@@ -10,7 +10,7 @@ import Foundation
 class InviteViewModel {
     
     func callInviteUserAPI(contact : ContactModel, completion: @escaping (Bool) -> Void) {
-        let parameters = ["coachId":"12",
+        let parameters = ["coachId":LoginDataModel.currentUser?.ID ?? "",
                           "name":contact.contactName,
                           "mobile":contact.contactNumber]
         

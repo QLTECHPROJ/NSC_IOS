@@ -16,7 +16,7 @@ class CampListViewModel {
         let parameters = ["coachId":"11"]
         
         APIManager.shared.callAPI(router: APIRouter.camplisting(parameters)) { [weak self] (response : CampListModel?) in
-            if let responseData = response?.ResponseData {
+            if response?.ResponseCode == "200", let responseData = response?.ResponseData {
                 self?.arrayCurrentCampList = responseData.current
                 self?.arrayUpcomingCampList = responseData.upcoming
                 
