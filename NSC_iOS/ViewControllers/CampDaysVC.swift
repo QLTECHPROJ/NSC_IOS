@@ -78,7 +78,7 @@ extension CampDaysVC: UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withClass: DayListCell.self)
-        cell.lblTitle.text = "Day \(arrayDays[indexPath.row].dayId)"
+        cell.configureCell(data: arrayDays[indexPath.row])
         return cell
     }
     
@@ -97,11 +97,13 @@ extension CampDaysVC: UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let aVC = AppStoryBoard.main.viewController(viewControllerClass:KidsAttendanceVC.self)
-        aVC.campID = self.campID
-        aVC.campName = self.campName
-        aVC.dayID = arrayDays[indexPath.row].dayId
-        self.navigationController?.pushViewController(aVC, animated: true)
+        if arrayDays[indexPath.row].currentDay == "1" {
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass:KidsAttendanceVC.self)
+            aVC.campID = self.campID
+            aVC.campName = self.campName
+            aVC.dayID = arrayDays[indexPath.row].dayId
+            self.navigationController?.pushViewController(aVC, animated: true)
+        }
     }
     
 }

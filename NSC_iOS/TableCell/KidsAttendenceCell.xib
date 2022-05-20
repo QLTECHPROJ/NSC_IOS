@@ -36,12 +36,25 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MP4-0C-JzH">
                         <rect key="frame" x="22.5" y="8" width="330" height="156"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Kid 1 name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdi-TJ-5Pi">
-                                <rect key="frame" x="16" y="8" width="223.5" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Kid 1 name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdi-TJ-5Pi">
+                                <rect key="frame" x="16" y="8" width="77" height="20"/>
                                 <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="14"/>
                                 <color key="textColor" name="BlackDark"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aS1-RA-seb">
+                                <rect key="frame" x="109" y="13" width="10" height="10"/>
+                                <color key="backgroundColor" name="008D36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="10" id="7Qu-v0-YUd"/>
+                                    <constraint firstAttribute="height" constant="10" id="LWH-br-NzQ"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="First timer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvO-xX-T08">
                                 <rect key="frame" x="255.5" y="9.5" width="60.5" height="17"/>
                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
@@ -63,7 +76,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vWd-n5-zZY">
                                 <rect key="frame" x="148" y="53" width="168" height="20"/>
                                 <subviews>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qLk-ZV-Hwk">
+                                    <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qLk-ZV-Hwk">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="20"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -76,8 +89,11 @@
                                         <state key="normal" title="Present" image="CheckSelect">
                                             <color key="titleColor" name="textColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="morningAttendanceChanged:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="wcm-Vy-5Zr"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nVt-a4-aBS">
+                                    <button opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nVt-a4-aBS">
                                         <rect key="frame" x="88" y="0.0" width="80" height="20"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -89,6 +105,9 @@
                                         <state key="normal" title="Absent" image="CheckDeselect">
                                             <color key="titleColor" name="textColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="morningAttendanceChanged:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WFb-Wy-jGb"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -104,7 +123,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9az-LE-TxZ">
                                 <rect key="frame" x="148" y="81" width="168" height="20"/>
                                 <subviews>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DQ0-0V-nwR">
+                                    <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DQ0-0V-nwR">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="20"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -117,8 +136,11 @@
                                         <state key="normal" title="Present" image="CheckSelect">
                                             <color key="titleColor" name="textColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="postLunchAttendanceChanged:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WdZ-PE-UuZ"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nM2-3t-WnH">
+                                    <button opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nM2-3t-WnH">
                                         <rect key="frame" x="88" y="0.0" width="80" height="20"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -130,6 +152,9 @@
                                         <state key="normal" title="Absent" image="CheckDeselect">
                                             <color key="titleColor" name="textColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="postLunchAttendanceChanged:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kKZ-gW-nhe"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -143,13 +168,18 @@
                                     <constraint firstAttribute="height" constant="37" id="UyF-6s-899"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="CheckIn"/>
+                                <state key="normal" image="CheckOut"/>
+                                <connections>
+                                    <action selector="checkoutClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hfI-X2-39m"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="9az-LE-TxZ" firstAttribute="leading" secondItem="zgb-GU-pkA" secondAttribute="trailing" constant="10" id="0Dh-l6-icS"/>
+                            <constraint firstItem="ZvO-xX-T08" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aS1-RA-seb" secondAttribute="trailing" constant="16" id="1lq-4R-89K"/>
                             <constraint firstItem="jvK-oE-JE4" firstAttribute="leading" secondItem="bnn-ds-wkO" secondAttribute="leading" id="2W0-st-Ymf"/>
+                            <constraint firstItem="aS1-RA-seb" firstAttribute="centerY" secondItem="mdi-TJ-5Pi" secondAttribute="centerY" id="2nW-ZP-43N"/>
                             <constraint firstItem="zgb-GU-pkA" firstAttribute="centerY" secondItem="9az-LE-TxZ" secondAttribute="centerY" id="5Np-23-Hv3"/>
                             <constraint firstAttribute="bottom" secondItem="Q1u-AZ-00p" secondAttribute="bottom" id="5XQ-6x-WeI"/>
                             <constraint firstItem="vWd-n5-zZY" firstAttribute="leading" secondItem="jvK-oE-JE4" secondAttribute="trailing" constant="10" id="98a-y2-ciz"/>
@@ -162,11 +192,11 @@
                             <constraint firstItem="zgb-GU-pkA" firstAttribute="leading" secondItem="jvK-oE-JE4" secondAttribute="leading" id="RVD-mK-O77"/>
                             <constraint firstItem="vWd-n5-zZY" firstAttribute="top" secondItem="bnn-ds-wkO" secondAttribute="bottom" constant="8" id="SEg-NN-xzz"/>
                             <constraint firstItem="9az-LE-TxZ" firstAttribute="leading" secondItem="vWd-n5-zZY" secondAttribute="leading" id="UMy-iP-1E4"/>
-                            <constraint firstItem="ZvO-xX-T08" firstAttribute="leading" secondItem="mdi-TJ-5Pi" secondAttribute="trailing" constant="16" id="V6T-eg-xfY"/>
                             <constraint firstItem="jvK-oE-JE4" firstAttribute="centerY" secondItem="vWd-n5-zZY" secondAttribute="centerY" id="eRe-Al-gIh"/>
                             <constraint firstItem="ZvO-xX-T08" firstAttribute="centerY" secondItem="mdi-TJ-5Pi" secondAttribute="centerY" id="qOU-MU-XGU"/>
                             <constraint firstItem="bnn-ds-wkO" firstAttribute="trailing" secondItem="ZvO-xX-T08" secondAttribute="trailing" id="uGL-wc-6cH"/>
                             <constraint firstItem="9az-LE-TxZ" firstAttribute="trailing" secondItem="vWd-n5-zZY" secondAttribute="trailing" id="vlJ-ye-3tL"/>
+                            <constraint firstItem="aS1-RA-seb" firstAttribute="leading" secondItem="mdi-TJ-5Pi" secondAttribute="trailing" constant="16" id="xME-lp-SWV"/>
                             <constraint firstAttribute="trailing" secondItem="ZvO-xX-T08" secondAttribute="trailing" constant="14" id="y5A-A5-Ppp"/>
                             <constraint firstItem="9az-LE-TxZ" firstAttribute="top" secondItem="vWd-n5-zZY" secondAttribute="bottom" constant="8" id="zAU-o9-sEh"/>
                             <constraint firstItem="mdi-TJ-5Pi" firstAttribute="leading" secondItem="MP4-0C-JzH" secondAttribute="leading" constant="16" id="zWH-s5-L8r"/>
@@ -198,14 +228,18 @@
                 <outlet property="lblKidName" destination="mdi-TJ-5Pi" id="ziV-Hh-ydZ"/>
                 <outlet property="lblStatus" destination="ZvO-xX-T08" id="AaP-rQ-XSd"/>
                 <outlet property="viewBack" destination="MP4-0C-JzH" id="k1Q-pf-Te7"/>
+                <outlet property="viewStatus" destination="aS1-RA-seb" id="pag-vd-EUF"/>
             </connections>
-            <point key="canvasLocation" x="131.8840579710145" y="105.80357142857143"/>
+            <point key="canvasLocation" x="131.15942028985509" y="105.80357142857143"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="CheckDeselect" width="18" height="18"/>
-        <image name="CheckIn" width="131" height="37"/>
+        <image name="CheckOut" width="131" height="37"/>
         <image name="CheckSelect" width="18" height="18"/>
+        <namedColor name="008D36">
+            <color red="0.0" green="0.55294117647058827" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="BlackDark">
             <color red="0.11372549019607843" green="0.15294117647058825" blue="0.1803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

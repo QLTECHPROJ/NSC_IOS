@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct AppColors {
     
@@ -27,6 +28,9 @@ struct AppColors {
     let white_40_opacity = UIColor.black.withAlphaComponent(0.4)
     
     let off_white_F9F9F9 = UIColor(hex: "F9F9F9")
+    
+    let green_008D36 = UIColor(hex: "008D36")
+    let yellow_F3DE29 = UIColor(hex: "F3DE29")
     
     let gray_7E7E7E = UIColor(hex: "7E7E7E")
     let gray_666666 = UIColor(hex: "666666")

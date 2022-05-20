@@ -30,7 +30,6 @@ class KidsAttendanceVC: BaseViewController {
         lblNoData.text = Theme.strings.no_data_found
         
         tableView.register(nibWithCellClass: KidsAttendenceCell.self)
-        tableView.refreshControl = self.refreshControl
         
         DispatchQueue.main.async {
             self.btnSubmit.isUserInteractionEnabled = false
@@ -47,11 +46,6 @@ class KidsAttendanceVC: BaseViewController {
         tableView.isHidden = arrayKids.count == 0
         
         tableView.reloadData()
-    }
-    
-    override func handleRefresh(_ refreshControl: UIRefreshControl) {
-        self.refreshData()
-        refreshControl.endRefreshing()
     }
     
     override func refreshData() {
@@ -73,6 +67,8 @@ class KidsAttendanceVC: BaseViewController {
     
     @IBAction func submitClicked(_ sender: UIButton) {
         self.view.endEditing(true)
+        
+        print("Kids Data :- ",arrayKids)
     }
     
 }
@@ -88,6 +84,15 @@ extension KidsAttendanceVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withClass: KidsAttendenceCell.self)
         cell.configureCell(data: arrayKids[indexPath.row])
+        
+        cell.didChangeAttendance = {
+            tableView.reloadData()
+        }
+        
+        cell.didClickCheckOut = {
+            print("Check Out Clicked")
+        }
+        
         return cell
     }
     

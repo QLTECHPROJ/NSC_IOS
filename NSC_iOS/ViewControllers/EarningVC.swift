@@ -25,6 +25,8 @@ class EarningVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        lblBalance.text = "₹ 0"
+        
         lblNoData.isHidden = true
         lblNoData.text = Theme.strings.no_transactions_to_display
         

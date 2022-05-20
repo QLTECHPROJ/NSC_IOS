@@ -10,6 +10,7 @@ import UIKit
 class KidsAttendenceCell: UITableViewCell {
     
     @IBOutlet weak var viewBack: UIView!
+    @IBOutlet weak var viewStatus: UIView!
     
     @IBOutlet weak var lblKidName: UILabel!
     @IBOutlet weak var lblStatus: UILabel!
@@ -23,6 +24,10 @@ class KidsAttendenceCell: UITableViewCell {
     
     @IBOutlet weak var btnCheckIn: UIButton!
     
+    var didChangeAttendance: (() -> Void)?
+    var didClickCheckOut: (() -> Void)?
+    
+    var kidsData: KidsAttendanceDataModel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,14 +46,36 @@ class KidsAttendenceCell: UITableViewCell {
 
     // Configure Cell
     func configureCell(data : KidsAttendanceDataModel) {
+        self.kidsData = data
+        
         lblKidName.text = data.Name
-        lblStatus.text = data.CheckIn
         lblGroupName.text = data.Group_Name
         
-        if data.Morning_Attendance == "1" {
+        lblStatus.text = data.isFirstTimer == "0" ? "First timer" : ""
+        
+        DispatchQueue.main.async {
+            if data.CheckIn == CheckInStatus.checkIn.rawValue {
+                self.viewStatus.backgroundColor = Theme.colors.green_008D36
+            } else if data.CheckIn == CheckInStatus.checkOut.rawValue {
+                self.viewStatus.backgroundColor = Theme.colors.theme_dark
+            } else {
+                self.viewStatus.backgroundColor = Theme.colors.yellow_F3DE29
+            }
+        }
+        
+        btnPresentM.isUserInteractionEnabled = data.CheckIn == CheckInStatus.checkIn.rawValue
+        btnPresentPL.isUserInteractionEnabled = data.CheckIn == CheckInStatus.checkIn.rawValue
+        
+        btnAbsentM.isUserInteractionEnabled = data.CheckIn == CheckInStatus.checkIn.rawValue
+        btnAbsentPL.isUserInteractionEnabled = data.CheckIn == CheckInStatus.checkIn.rawValue
+        
+        btnCheckIn.isHidden = data.CheckIn != CheckInStatus.checkIn.rawValue
+        btnCheckIn.isUserInteractionEnabled = data.CheckIn == CheckInStatus.checkIn.rawValue
+        
+        if data.Morning_Attendance == AttendanceStatus.present.rawValue {
             btnPresentM.setImage(UIImage(named: "CheckSelect"), for: .normal)
             btnAbsentM.setImage(UIImage(named: "CheckDeselect"), for: .normal)
-        } else if data.Morning_Attendance == "0" {
+        } else if data.Morning_Attendance == AttendanceStatus.absent.rawValue {
             btnPresentM.setImage(UIImage(named: "CheckDeselect"), for: .normal)
             btnAbsentM.setImage(UIImage(named: "CheckSelect"), for: .normal)
         } else {
@@ -56,16 +83,36 @@ class KidsAttendenceCell: UITableViewCell {
             btnAbsentM.setImage(UIImage(named: "CheckDeselect"), for: .normal)
         }
         
-        if data.Lunch_Attendance == "1" {
+        if data.Lunch_Attendance == AttendanceStatus.present.rawValue {
             btnPresentPL.setImage(UIImage(named: "CheckSelect"), for: .normal)
             btnAbsentPL.setImage(UIImage(named: "CheckDeselect"), for: .normal)
-        } else if data.Lunch_Attendance == "0" {
+        } else if data.Lunch_Attendance == AttendanceStatus.absent.rawValue {
             btnPresentPL.setImage(UIImage(named: "CheckDeselect"), for: .normal)
             btnAbsentPL.setImage(UIImage(named: "CheckSelect"), for: .normal)
         } else {
             btnPresentPL.setImage(UIImage(named: "CheckDeselect"), for: .normal)
             btnAbsentPL.setImage(UIImage(named: "CheckDeselect"), for: .normal)
         }
+    }
+    
+    @IBAction func morningAttendanceChanged(_ sender: UIButton) {
+        if let kidsData = kidsData {
+            kidsData.Morning_Attendance = "\(sender.tag)"
+        }
+        
+        self.didChangeAttendance?()
+    }
+    
+    @IBAction func postLunchAttendanceChanged(_ sender: UIButton) {
+        if let kidsData = kidsData {
+            kidsData.Lunch_Attendance = "\(sender.tag)"
+        }
+        
+        self.didChangeAttendance?()
+    }
+    
+    @IBAction func checkoutClicked(_ sender: UIButton) {
+        self.didClickCheckOut?()
     }
     
 }
