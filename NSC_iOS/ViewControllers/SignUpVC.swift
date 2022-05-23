@@ -45,6 +45,8 @@ class SignUpVC: BaseViewController {
     // MARK: - VARIABLES
     var loginCheckVM : LoginCheckViewModel?
     
+    var mobileNoDidChange : ((String?) -> Void)?
+    
     var isFromOTP = false
     var isCountrySelected = false
     var strMobile:String?
@@ -179,6 +181,9 @@ class SignUpVC: BaseViewController {
         if loginCheckVM?.loginFlag == "0" {
             sendOTP()
         } else {
+            if strMobile != txtMobile.text {
+                self.mobileNoDidChange?(txtMobile.text)
+            }
             self.navigationController?.popViewController(animated: true)
         }
     }

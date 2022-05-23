@@ -144,6 +144,8 @@
 		28D1A5B42823FBA200B3A179 /* CoachStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D1A5B22823FBA200B3A179 /* CoachStatusViewModel.swift */; };
 		28D1A5B62823FBB200B3A179 /* CoachStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D1A5B52823FBB200B3A179 /* CoachStatusModel.swift */; };
 		28D1A5B72823FBB200B3A179 /* CoachStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D1A5B52823FBB200B3A179 /* CoachStatusModel.swift */; };
+		28DA2108283BA4DA00EAA0B9 /* SaveKidsAttendanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DA2107283BA4DA00EAA0B9 /* SaveKidsAttendanceViewModel.swift */; };
+		28DA2109283BA4DA00EAA0B9 /* SaveKidsAttendanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DA2107283BA4DA00EAA0B9 /* SaveKidsAttendanceViewModel.swift */; };
 		28ED596D282260060035402F /* LoginCheckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ED596C282260060035402F /* LoginCheckViewModel.swift */; };
 		28ED596E282260060035402F /* LoginCheckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ED596C282260060035402F /* LoginCheckViewModel.swift */; };
 		28ED59702822601C0035402F /* LoginCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ED596F2822601C0035402F /* LoginCheckModel.swift */; };
@@ -374,6 +376,7 @@
 		28C8DA2A2822B7590048A172 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		28D1A5B22823FBA200B3A179 /* CoachStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachStatusViewModel.swift; sourceTree = "<group>"; };
 		28D1A5B52823FBB200B3A179 /* CoachStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachStatusModel.swift; sourceTree = "<group>"; };
+		28DA2107283BA4DA00EAA0B9 /* SaveKidsAttendanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveKidsAttendanceViewModel.swift; sourceTree = "<group>"; };
 		28ED596C282260060035402F /* LoginCheckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheckViewModel.swift; sourceTree = "<group>"; };
 		28ED596F2822601C0035402F /* LoginCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheckModel.swift; sourceTree = "<group>"; };
 		28F3C251281A5CC80092A077 /* KidsAttendenceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KidsAttendenceCell.swift; sourceTree = "<group>"; };
@@ -717,6 +720,14 @@
 			path = CoachStatus;
 			sourceTree = "<group>";
 		};
+		28DA210A283BA4E100EAA0B9 /* SaveKidsAttendance */ = {
+			isa = PBXGroup;
+			children = (
+				28DA2107283BA4DA00EAA0B9 /* SaveKidsAttendanceViewModel.swift */,
+			);
+			path = SaveKidsAttendance;
+			sourceTree = "<group>";
+		};
 		28ED596928225F940035402F /* Models + ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -741,6 +752,7 @@
 				2813A0202835062E00E6194D /* ApplyForACamp */,
 				2898FA8D283626C1006DF4B8 /* SaveAppliedCamps */,
 				2898FA9428367219006DF4B8 /* ShowKidsAttendance */,
+				28DA210A283BA4E100EAA0B9 /* SaveKidsAttendance */,
 			);
 			path = "Models + ViewModels";
 			sourceTree = "<group>";
@@ -1323,6 +1335,7 @@
 				28F83101281977F000CAF99C /* BaseViewController.swift in Sources */,
 				2804E39B2819846B00AF4A62 /* NSDate+Timepiece.swift in Sources */,
 				28F83127281977F000CAF99C /* JSONSerializable+Helper.swift in Sources */,
+				28DA2109283BA4DA00EAA0B9 /* SaveKidsAttendanceViewModel.swift in Sources */,
 				28F830F3281977F000CAF99C /* DJValidation.swift in Sources */,
 				28ABEDAE2833B987001C3911 /* CampDaysViewModel.swift in Sources */,
 				282C33712819617D009401FD /* CampListVC.swift in Sources */,
@@ -1457,6 +1470,7 @@
 				28F83126281977F000CAF99C /* JSONSerializable+Helper.swift in Sources */,
 				28F830F2281977F000CAF99C /* DJValidation.swift in Sources */,
 				9A53D4CA281929B500226853 /* CampListVC.swift in Sources */,
+				28DA2108283BA4DA00EAA0B9 /* SaveKidsAttendanceViewModel.swift in Sources */,
 				9AE824392817DF8800A29373 /* SplashVC.swift in Sources */,
 				28ABEDAD2833B987001C3911 /* CampDaysViewModel.swift in Sources */,
 				284A3EC22823B09400B511FB /* SignUpViewModel.swift in Sources */,

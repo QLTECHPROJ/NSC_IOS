@@ -64,9 +64,11 @@ class ProfileVC: BaseViewController {
         txtFMobileNo.isEnabled = false
         txtFEmailAdd.isEnabled = false
         
-        btnCountryCode.setTitleColor(Theme.colors.gray_7E7E7E, for: .normal)
-        txtFMobileNo.textColor = Theme.colors.gray_7E7E7E
-        txtFEmailAdd.textColor = Theme.colors.gray_7E7E7E
+        DispatchQueue.main.async {
+            self.btnCountryCode.setTitleColor(Theme.colors.gray_7E7E7E, for: .normal)
+            self.txtFMobileNo.textColor = Theme.colors.gray_7E7E7E
+            self.txtFEmailAdd.textColor = Theme.colors.gray_7E7E7E
+        }
         
         DispatchQueue.main.async {
             self.btnUpdate.borderColor = UIColor.clear

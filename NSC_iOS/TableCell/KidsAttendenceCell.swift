@@ -112,6 +112,10 @@ class KidsAttendenceCell: UITableViewCell {
     }
     
     @IBAction func checkoutClicked(_ sender: UIButton) {
+        if let kidsData = kidsData {
+            kidsData.CheckIn = CheckInStatus.checkOut.rawValue
+        }
+        
         self.didClickCheckOut?()
     }
     

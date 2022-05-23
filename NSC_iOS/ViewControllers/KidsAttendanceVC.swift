@@ -31,11 +31,6 @@ class KidsAttendanceVC: BaseViewController {
         
         tableView.register(nibWithCellClass: KidsAttendenceCell.self)
         
-        DispatchQueue.main.async {
-            self.btnSubmit.isUserInteractionEnabled = false
-            self.btnSubmit.backgroundColor = Theme.colors.gray_7E7E7E
-        }
-        
         self.refreshData()
     }
     
@@ -68,7 +63,29 @@ class KidsAttendanceVC: BaseViewController {
     @IBAction func submitClicked(_ sender: UIButton) {
         self.view.endEditing(true)
         
-        print("Kids Data :- ",arrayKids)
+        if arrayKids.count > 0 {
+            var arrayKidsData = [[String:Any]]()
+            
+            for kid in arrayKids {
+                var dictKidData = [String:Any]()
+                dictKidData["KidId"] = kid.ID
+                dictKidData["Morning_Attendance"] = kid.Morning_Attendance
+                dictKidData["Lunch_Attendance"] = kid.Lunch_Attendance
+                dictKidData["CheckIn"] = kid.CheckIn
+                arrayKidsData.append(dictKidData)
+            }
+            
+            print("arrayKidsData - \(arrayKidsData)")
+            
+            let saveKidsAttendanceVM = SaveKidsAttendanceViewModel()
+            saveKidsAttendanceVM.callSaveKidsAttendanceAPI(campId: campID, dayId: dayID, arrayAttendance: arrayKidsData) { success in
+                if success {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+        } else {
+            showAlertToast(message: Theme.strings.alert_something_went_wrong)
+        }
     }
     
 }
@@ -86,11 +103,19 @@ extension KidsAttendanceVC: UITableViewDelegate, UITableViewDataSource {
         cell.configureCell(data: arrayKids[indexPath.row])
         
         cell.didChangeAttendance = {
-            tableView.reloadData()
+            UIView.performWithoutAnimation {
+                let loc = tableView.contentOffset
+                tableView.reloadRows(at: [indexPath], with: .none)
+                tableView.contentOffset = loc
+            }
         }
         
         cell.didClickCheckOut = {
-            print("Check Out Clicked")
+            UIView.performWithoutAnimation {
+                let loc = tableView.contentOffset
+                tableView.reloadRows(at: [indexPath], with: .none)
+                tableView.contentOffset = loc
+            }
         }
         
         return cell

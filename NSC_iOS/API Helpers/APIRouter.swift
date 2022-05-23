@@ -43,6 +43,7 @@ enum APIRouter : URLRequestConvertible {
     case applycampdatasave([String:String])
     
     case kidsattendanceshow([String:String])
+    case kidsattendancesave([String:Any])
     
     var route: APIRoute {
         switch self {
@@ -102,6 +103,8 @@ enum APIRouter : URLRequestConvertible {
             
         case .kidsattendanceshow(let data):
             return APIRoute(path: "kids-attendance-show", method: .post, data: data)
+        case .kidsattendancesave(let data):
+            return APIRoute(path: "kids-attendance-save", method: .post, data: data)
         }
     }
     

@@ -114,6 +114,9 @@ class LoginVC: BaseViewController {
         if loginCheckVM?.loginFlag == "0" {
             let aVC = AppStoryBoard.main.viewController(viewControllerClass: SignUpVC.self)
             aVC.strMobile = txtMobile.text ?? ""
+            aVC.mobileNoDidChange = { mobileNo in
+                self.txtMobile.text = mobileNo
+            }
             self.navigationController?.pushViewController(aVC, animated: true)
         } else {
             sendOTP()

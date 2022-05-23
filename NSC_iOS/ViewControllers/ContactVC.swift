@@ -229,17 +229,18 @@ extension ContactVC: UITableViewDelegate, UITableViewDataSource {
 extension ContactVC : MFMessageComposeViewControllerDelegate {
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-        controller.dismiss(animated: true, completion: nil)
         switch result {
         case .cancelled:
             showAlertToast(message: "Message Sending Cancelled")
         case .sent:
-            self.navigationController?.popToViewController(controller, animated: true)
+            print("Message Sent")
         case .failed:
             showAlertToast(message: "Message Sening Failed")
         default:
             showAlertToast(message: "Message Sening Failed")
         }
+        
+        controller.dismiss(animated: true, completion: nil)
     }
     
 }
