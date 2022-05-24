@@ -34,6 +34,10 @@ class CampListVC: BaseViewController {
         tableView.register(nibWithCellClass: TitleLabelCell.self)
         tableView.register(nibWithCellClass: CampListCell.self)
         tableView.refreshControl = self.refreshControl
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         setupUI()
         self.refreshData()
