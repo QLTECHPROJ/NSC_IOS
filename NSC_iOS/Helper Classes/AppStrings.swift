@@ -50,7 +50,7 @@ struct AppStrings {
     let delete_account_alert_title = "Are you sure you want to permanently delete this account?"
     let delete_account_alert_subtitle = "You can't undo this action"
     
-    let delete_user_alert_title = "Are you sure you want to remove user?"
+    let delete_user_alert_title = "Are you sure you want to delete your account?"
     let delete_user_alert_subtitle = "You can't undo this action"
     
     /* Common Strings */
@@ -58,6 +58,9 @@ struct AppStrings {
     
     let request_sent = "Request sent"
     let request_expired = "Request expired"
+    
+    let welcome_message = "Welcome to NSC app!!"
+    let sms_sent = "SMS code has been sent successfully to your given mobile number."
     
     let alert_title_allow_notifications = "We're unable to reach out!"
     let alert_subtitle_allow_notifications = "Please enable notifications, so we can pass on important info, as well as messages that lift you up."
@@ -69,7 +72,7 @@ struct AppStrings {
     
     let no_camps_to_display = "No camps to display"
     let no_contacts_to_display = "No contacts to display"
-    let no_transactions_to_display = "No transactions to display"
+    let no_earnings = "There are no earnings as of now. You can refer others to earn more."
     let no_data_found = "No data found"
     
     let take_a_photo = "Take a Photo"
@@ -78,9 +81,6 @@ struct AppStrings {
     let profile_image_options = "Profile Image Options"
     
     /* Screen Contents */
-    let welcome_title = "NSC Coach App"
-    let welcome_subtitle = "Your one-stop solution for mental & emotional health challenges"
-    
     let register_title = "Sign Up"
     let register_subtitle = "We just need few details to get you started!!"
     
@@ -91,11 +91,6 @@ struct AppStrings {
     
     let forgot_password_title = "Forgot your password"
     let forgot_password_subtitle = "Give us your registered email ID and we'll send you everything that you'll need to change your password"
-    
-    let couser_listing_title = "Welcome to NSC Coach App"
-    let couser_listing_subtitle = "Simply sign-in to your account and continue your journey towards mental & emotional transformation"
-    
-    let couser_welcome_subtitle = "It's good to have you here..."
     
     let tap_anywhere_to_continue = "TAP anywhere to continue"
     
@@ -112,7 +107,7 @@ struct AppStrings {
     let alert_logout_message = "Are you sure you want to log out \nNSC Coach App??"
     let alert_blank_inputField_error = "Please fill required details"
     
-    let alert_search_term_not_found = "Please try again with another search term."
+    let alert_search_term_not_found = "Please try another search criteria"
     let alert_country_search = "Sorry we are not available in this country yet"
     
     /* Auth & Profile */
@@ -120,12 +115,12 @@ struct AppStrings {
     let alert_invalid_mobile_error = "Please provide a valid mobile number"
     let alert_blank_email_error = "Email address is required"
     let alert_invalid_email_error = "Please provide a valid email address"
-    let alert_invalid_otp = "Please use a valid PIN to access your account"
+    let alert_invalid_otp = "Please provide a valid SMS code"
     
     let alert_blank_firstname_error = "Please provide First Name"
     let alert_blank_lastname_error = "Please provide Last Name"
     let alert_blank_dob_error = "Date of Birth should not be blank"
-    let alert_dob_error = "Please confirm whether you are above 18 years"
+    let alert_dob_error = "Please confirm whether you are above 18 years old"
     let alert_invalid_fullname_error = "Please enter valid Name"
     let alert_blank_promocode_error = "Please enter valid promo code"
     
@@ -133,19 +128,18 @@ struct AppStrings {
     let alert_blank_street_error = "Please provide Street Address"
     let alert_select_state = "Please select State"
     let alert_select_city = "Please select City"
-    let alert_blank_postcode_error = "Please provide Post Code"
-    let alert_invalid_postcode_error = "Please provide a valid Post Code"
+    let alert_invalid_postcode_error = "Please provide a valid postcode"
     let alert_select_sport = "Please select sport"
     let alert_select_role = "Please select Role"
     let alert_blank_vaccination_error = "Please provide Vaccination Status"
     
     /* Bank Details */
-    let alert_blank_bankname_error = "Please provide Bank Name"
-    let alert_blank_accountnumber_error = "Please provide Account Number"
-    let alert_invalid_accountnumber_error = "Please provide a valid Account Number"
-    let alert_blank_accountname_error = "Please provide Account Name"
-    let alert_blank_ifsccode_error = "Please provide IFSC Code"
-    let alert_invalid_ifsccode_error = "Please provide a valid IFSC Code"
+    let alert_blank_bankname_error = "Please provide a valid Bank Name"
+    let alert_invalid_accountnumber_error = "Please provide a valid account number"
+    let alert_blank_accountname_error = "Please provide a valid Account Name"
+    let alert_invalid_ifsccode_error = "Please provide a valid IFSC code"
+    
+    let alert_promo_code_copied = "Promocode has been copied"
     
     /* Alert Popup */
     let alert_camera_not_available = "Camera is not available on this device."

@@ -132,7 +132,7 @@ class ContactVC: BaseViewController {
     func sendReferralMessage(contact : ContactModel) {
         if (MFMessageComposeViewController.canSendText()) {
             
-            let shareText = "You’re invited to start your journey to discover your inner potential. \n\nDownload the NSC app now and use referral code \(referCode)!! \n\nGet the app now \(referLink)"
+            let shareText = "You’re invited  for the position of coach in our sports camp. Apply Now!! \n\nDownload the NSC app now and use referral code \(referCode)!! \n\nGet the app now \(referLink)"
             
             let controller = MFMessageComposeViewController()
             controller.body = shareText

@@ -61,7 +61,7 @@ class ReferVC: BaseViewController {
         
         let pasteboard = UIPasteboard.general
         pasteboard.string = referCode
-        showAlertToast(message: "Referral code copied")
+        showAlertToast(message: Theme.strings.alert_promo_code_copied)
     }
     
     @IBAction func referClicked(_ sender: UIButton) {

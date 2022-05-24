@@ -204,6 +204,8 @@ class SignUpVC: BaseViewController {
                 return
             }
             
+            showAlertToast(message: Theme.strings.sms_sent)
+            
             // Sign in using the verificationID and the code sent to the user
             authVerificationID = verificationID ?? ""
             

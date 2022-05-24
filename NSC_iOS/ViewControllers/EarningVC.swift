@@ -28,7 +28,7 @@ class EarningVC: BaseViewController {
         lblBalance.text = "₹ 0"
         
         lblNoData.isHidden = true
-        lblNoData.text = Theme.strings.no_transactions_to_display
+        lblNoData.text = Theme.strings.no_earnings
         
         tableView.register(nibWithCellClass: TransationsCell.self)
         

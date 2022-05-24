@@ -18,6 +18,7 @@ class LoginViewModel {
                 
                 LoginDataModel.currentUser = responseData
                 
+                showAlertToast(message: Theme.strings.welcome_message)
                 completion(true)
             } else {
                 completion(false)

@@ -256,7 +256,7 @@ class PersonalDetailsVC: BaseViewController {
         if strPostCode.count == 0 {
             isValid = false
             lblErrPostCode.isHidden = false
-            lblErrPostCode.text = Theme.strings.alert_blank_postcode_error
+            lblErrPostCode.text = Theme.strings.alert_invalid_postcode_error
         } else if strPostCode.count < AppVersionDetails.postCodeMinDigits || strPostCode.count > AppVersionDetails.postCodeMaxDigits {
             isValid = false
             lblErrPostCode.isHidden = false

@@ -126,7 +126,7 @@ class BankDetailsVC: BaseViewController {
         if strAccountNumber.count == 0 {
             isValid = false
             lblErrAccountNumber.isHidden = false
-            lblErrAccountNumber.text = Theme.strings.alert_blank_accountnumber_error
+            lblErrAccountNumber.text = Theme.strings.alert_invalid_accountnumber_error
         } else if strAccountNumber.count < 10 || strAccountNumber.count > 20 {
             isValid = false
             lblErrAccountNumber.isHidden = false
@@ -146,7 +146,7 @@ class BankDetailsVC: BaseViewController {
         if strIFSCCode.count == 0 {
             isValid = false
             lblErrIFSCCode.isHidden = false
-            lblErrIFSCCode.text = Theme.strings.alert_blank_ifsccode_error
+            lblErrIFSCCode.text = Theme.strings.alert_invalid_ifsccode_error
         } else if strIFSCCode.count < 6 || strIFSCCode.count > 10 {
             isValid = false
             lblErrIFSCCode.isHidden = false
