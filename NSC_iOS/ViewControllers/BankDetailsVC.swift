@@ -147,7 +147,7 @@ class BankDetailsVC: BaseViewController {
             isValid = false
             lblErrIFSCCode.isHidden = false
             lblErrIFSCCode.text = Theme.strings.alert_invalid_ifsccode_error
-        } else if strIFSCCode.count < 6 || strIFSCCode.count > 10 {
+        } else if strIFSCCode.count < 6 || strIFSCCode.count > 20 {
             isValid = false
             lblErrIFSCCode.isHidden = false
             lblErrIFSCCode.text = Theme.strings.alert_invalid_ifsccode_error
@@ -218,7 +218,7 @@ extension BankDetailsVC : UITextFieldDelegate {
         
         let updatedText = text.replacingCharacters(in: textRange, with: string)
         
-        if textField == txtIFSCCode && updatedText.count > 10 {
+        if textField == txtIFSCCode && updatedText.count > 20 {
             return false
         } else if textField == txtAccountNumber {
             if !updatedText.isNumber || updatedText.count > 20 {

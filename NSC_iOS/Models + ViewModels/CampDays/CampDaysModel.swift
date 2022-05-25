@@ -8,6 +8,12 @@
 import Foundation
 import EVReflection
 
+enum DayShiftStatus : String {
+    case morning = "0"
+    case lunch = "1"
+    case checkout = "2"
+}
+
 class CampDaysModel: EVObject {
     var ResponseData: CampDaysDataModel?
     var ResponseCode: String?
@@ -23,4 +29,5 @@ class CampDaysDataModel: EVObject {
 class CampDaysDetailModel: EVObject {
     var dayId = ""
     var currentDay = ""
+    var dayshift = ""
 }

@@ -12,6 +12,7 @@ class CampListVC: BaseViewController {
     // MARK: - OUTLETS
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lblNoData: UILabel!
+    @IBOutlet weak var btnApplyNow: UIButton!
     
     @IBOutlet weak var imgUser: UIImageView!
     @IBOutlet weak var lblName: UILabel!
@@ -28,6 +29,7 @@ class CampListVC: BaseViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        btnApplyNow.isHidden = true
         lblNoData.isHidden = true
         lblNoData.text = Theme.strings.no_camps_to_display
         
@@ -53,9 +55,11 @@ class CampListVC: BaseViewController {
     
     override func setupData() {
         if arrayCurrentCampList.count > 0 || arrayUpcomingCampList.count > 0 {
+            btnApplyNow.isHidden = true
             lblNoData.isHidden = true
             tableView.isHidden = false
         } else {
+            btnApplyNow.isHidden = false
             lblNoData.isHidden = false
             tableView.isHidden = true
         }
@@ -83,6 +87,11 @@ class CampListVC: BaseViewController {
     @IBAction func userMenuClicked(_ sender: UIButton) {
         let aVC = AppStoryBoard.main.viewController(viewControllerClass:UserListPopUpVC.self)
         navigationController?.pushViewController(aVC, animated: true)
+    }
+    
+    @IBAction func applyNowClicked(_ sender: UIButton) {
+        let aVC = AppStoryBoard.main.viewController(viewControllerClass: ApplyForCampVC.self)
+        self.navigationController?.pushViewController(aVC, animated: true)
     }
     
 }

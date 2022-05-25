@@ -71,7 +71,7 @@ struct AppStrings {
     let date_of_birth = "Date of Birth"
     
     let no_camps_to_display = "No camps to display"
-    let no_contacts_to_display = "No contacts to display"
+    let no_contacts_to_display = "No contacts found"
     let no_earnings = "There are no earnings as of now. You can refer others to earn more."
     let no_data_found = "No data found"
     

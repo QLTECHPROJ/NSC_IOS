@@ -50,8 +50,8 @@ class ListItemVC: BaseViewController {
         listDataVM.callItemListAPI(strID: self.strID, listType: self.listType) { success in
             if success {
                 self.arrayItem = listDataVM.listItemData ?? [ListItem]()
-                self.setupData()
             }
+            self.setupData()
         }
     }
     

@@ -45,12 +45,6 @@ class OTPVC: BaseViewController {
         let strSMSSent = "We've sent SMS with a 6-digit code to \n+\(AppVersionDetails.countryCode)\(strMobile)."
         lblSubTitle.attributedText = strSMSSent.attributedString(alignment: .center, lineSpacing: 5)
         
-        if isFromSignUp == true {
-            btnDone.setTitle("CREATE ACCOUNT", for: .normal)
-        } else {
-            btnDone.setTitle("LOGIN", for: .normal)
-        }
-        
         // txtOTP.tintColor = UIColor.clear
         txtOTP.delegate = self
         txtOTP.addTarget(self, action: #selector(textFieldEdidtingDidChange(_ :)), for: .editingChanged)
