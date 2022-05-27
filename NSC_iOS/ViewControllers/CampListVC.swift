@@ -10,6 +10,9 @@ import UIKit
 class CampListVC: BaseViewController {
     
     // MARK: - OUTLETS
+    @IBOutlet weak var tableHeaderView: UIView!
+    @IBOutlet weak var imgBanner: UIImageView!
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lblNoData: UILabel!
     @IBOutlet weak var btnApplyNow: UIButton!
@@ -20,6 +23,8 @@ class CampListVC: BaseViewController {
     
     // MARK: - VARIABLES
     var campListVM : CampListViewModel?
+    
+    var BannerImage = ""
     var arrayCurrentCampList = [CampDetailModel]()
     var arrayUpcomingCampList = [CampDetailModel]()
     
@@ -35,6 +40,7 @@ class CampListVC: BaseViewController {
         
         tableView.register(nibWithCellClass: TitleLabelCell.self)
         tableView.register(nibWithCellClass: CampListCell.self)
+        tableView.tableHeaderView = UIView()
         tableView.refreshControl = self.refreshControl
     }
     
@@ -51,9 +57,30 @@ class CampListVC: BaseViewController {
         imgUser.loadUserProfileImage(fontSize: 20)
         let strName = (LoginDataModel.currentUser?.Fname ?? "") + " " + (LoginDataModel.currentUser?.Lname ?? "")
         lblName.text = strName.trim.count > 0 ? strName : "Guest"
+        
+        let stringAttributes: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.foregroundColor: Theme.colors.theme_dark,
+            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
+        ]
+        
+        let strTitle = "Apply Now"
+        let titleRange = (strTitle as NSString).range(of: strTitle)
+        
+        let attributedString = NSMutableAttributedString.getAttributedString(fromString: strTitle)
+        attributedString.addAttributes(stringAttributes, range: titleRange)
+        btnApplyNow.setAttributedTitle(attributedString, for: .normal)
     }
     
     override func setupData() {
+        
+        if BannerImage.trim.count > 0, let strUrl = BannerImage.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let imgUrl = URL(string: strUrl) {
+            imgBanner.sd_setImage(with: imgUrl, completed: nil)
+            tableView.tableHeaderView = tableHeaderView
+            tableView.reloadData()
+        } else {
+            tableView.tableHeaderView = UIView()
+        }
+        
         if arrayCurrentCampList.count > 0 || arrayUpcomingCampList.count > 0 {
             btnApplyNow.isHidden = true
             lblNoData.isHidden = true
@@ -76,6 +103,7 @@ class CampListVC: BaseViewController {
         let campListViewModel = CampListViewModel()
         campListViewModel.callCampListAPI(completion: { success in
             if success {
+                self.BannerImage = campListViewModel.BannerImage
                 self.arrayCurrentCampList = campListViewModel.arrayCurrentCampList
                 self.arrayUpcomingCampList = campListViewModel.arrayUpcomingCampList
             }
@@ -91,6 +119,11 @@ class CampListVC: BaseViewController {
     
     @IBAction func applyNowClicked(_ sender: UIButton) {
         let aVC = AppStoryBoard.main.viewController(viewControllerClass: ApplyForCampVC.self)
+        self.navigationController?.pushViewController(aVC, animated: true)
+    }
+    
+    @IBAction func bannerClicked(_ sender: UIButton) {
+        let aVC = AppStoryBoard.main.viewController(viewControllerClass: ReferVC.self)
         self.navigationController?.pushViewController(aVC, animated: true)
     }
     

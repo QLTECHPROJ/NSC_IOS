@@ -20,8 +20,8 @@ class ApplyForCampVC: BaseViewController {
     
     // MARK: - VARIABLES
     var maxCount = 3
-    var arrayCamp = [ListItem]()
-    var arrayCampSearch = [ListItem]()
+    var arrayCamp = [ApplyCampModel]()
+    var arrayCampSearch = [ApplyCampModel]()
     
     
     // MARK: - VIEW LIFE CYCLE
@@ -39,7 +39,7 @@ class ApplyForCampVC: BaseViewController {
         applyForACampVM.callItemListAPI { success in
             if success {
                 self.maxCount = applyForACampVM.maxCount
-                self.arrayCamp = applyForACampVM.listItemData ?? [ListItem]()
+                self.arrayCamp = applyForACampVM.arrayCamps ?? [ApplyCampModel]()
                 self.setupData()
             }
         }
@@ -48,7 +48,7 @@ class ApplyForCampVC: BaseViewController {
     
     // MARK: - FUNCTIONS
     override func setupUI() {
-        tableView.register(nibWithCellClass: ListItemCell.self)
+        tableView.register(nibWithCellClass: ApplyForCampCell.self)
         
         btnClear.isHidden = true
         lblNoData.isHidden = true
@@ -145,7 +145,7 @@ extension ApplyForCampVC: UITextFieldDelegate {
             let updatedText = text.replacingCharacters(in: textRange, with: string)
             print("Search text :- ",updatedText)
             
-            arrayCampSearch = arrayCamp.filter({ (model:ListItem) -> Bool in
+            arrayCampSearch = arrayCamp.filter({ (model:ApplyCampModel) -> Bool in
                 return model.Name.lowercased().contains(updatedText.lowercased())
             })
             
@@ -179,7 +179,7 @@ extension ApplyForCampVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withClass: ListItemCell.self)
+        let cell = tableView.dequeueReusableCell(withClass: ApplyForCampCell.self)
         cell.configureSelectionCell(data: arrayCampSearch[indexPath.row])
         return cell
     }
@@ -203,7 +203,7 @@ extension ApplyForCampVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 68
+        return 85
     }
     
 }

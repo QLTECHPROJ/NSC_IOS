@@ -17,5 +17,15 @@ class ApplyForACampModel : EVObject {
 
 class ApplyForACampDataModel : EVObject {
     var maxCount: String?
-    var campList: [ListItem]?
+    var campList: [ApplyCampModel]?
 }
+
+class ApplyCampModel: EVObject {
+    var ID = ""
+    var Name = ""
+    var CampDates = ""
+    var Address = ""
+    var Venue = ""
+    var Selected = ""
+}
+

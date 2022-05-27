@@ -9,6 +9,7 @@ import Foundation
 
 class CampListViewModel {
     
+    var BannerImage = ""
     var arrayCurrentCampList = [CampDetailModel]()
     var arrayUpcomingCampList = [CampDetailModel]()
     
@@ -17,6 +18,7 @@ class CampListViewModel {
         
         APIManager.shared.callAPI(router: APIRouter.camplisting(parameters)) { [weak self] (response : CampListModel?) in
             if response?.ResponseCode == "200", let responseData = response?.ResponseData {
+                self?.BannerImage = responseData.BannerImage
                 self?.arrayCurrentCampList = responseData.current
                 self?.arrayUpcomingCampList = responseData.upcoming
                 

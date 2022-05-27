@@ -16,6 +16,7 @@ class CampListModel: EVObject {
 }
 
 class CampListDataModel: EVObject {
+    var BannerImage = ""
     var current = [CampDetailModel]()
     var upcoming = [CampDetailModel]()
 }

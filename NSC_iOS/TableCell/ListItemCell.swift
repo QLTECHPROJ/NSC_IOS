@@ -31,20 +31,4 @@ class ListItemCell: UITableViewCell {
         btnSelect.isHidden = true
     }
     
-    // Configure Cell
-    func configureSelectionCell(data : ListItem) {
-        lblName.text = data.Name
-        lblCode.text = "+" + data.Code
-        
-        lblCode.isHidden = data.Code.trim.count == 0
-        
-        btnSelect.isHidden = false
-        
-        if data.Selected == "1" {
-            btnSelect.setImage(UIImage(named: "CheckSelect"), for: .normal)
-        } else {
-            btnSelect.setImage(UIImage(named: "CheckDeselect"), for: .normal)
-        }
-    }
-    
 }

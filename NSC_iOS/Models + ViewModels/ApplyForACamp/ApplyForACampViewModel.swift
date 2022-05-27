@@ -10,7 +10,7 @@ import Foundation
 class ApplyForACampViewModel {
     
     var maxCount = 3
-    var listItemData: [ListItem]?
+    var arrayCamps: [ApplyCampModel]?
     
     func callItemListAPI(completion: @escaping (Bool) -> Void) {
         let parameters = ["coachId":LoginDataModel.currentUser?.ID ?? ""]
@@ -18,7 +18,7 @@ class ApplyForACampViewModel {
         APIManager.shared.callAPI(router: APIRouter.applyForACampListing(parameters)) { (response : ApplyForACampModel) in
             if response.ResponseCode == "200", let responseData = response.ResponseData {
                 self.maxCount = Int(responseData.maxCount ?? "") ?? 3
-                self.listItemData = responseData.campList
+                self.arrayCamps = responseData.campList
                 completion(true)
             } else {
                 completion(false)

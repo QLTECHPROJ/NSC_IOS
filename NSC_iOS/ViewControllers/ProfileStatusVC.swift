@@ -17,6 +17,7 @@ class ProfileStatusVC: BaseViewController {
     @IBOutlet weak var imgViewStatus: UIImageView!
     
     @IBOutlet weak var btnContinue: UIButton!
+    @IBOutlet weak var btnRefer: UIButton!
     
     
     // MARK: - VARIABLES
@@ -36,6 +37,18 @@ class ProfileStatusVC: BaseViewController {
     // MARK: - FUNCTIONS
     override func setupUI() {
         lblName.text = "Hello, \(LoginDataModel.currentUser?.Name ?? "")"
+        
+        let stringAttributes: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.foregroundColor: Theme.colors.theme_dark,
+            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
+        ]
+        
+        let strTitle = "Refer a Coach"
+        let titleRange = (strTitle as NSString).range(of: strTitle)
+        
+        let attributedString = NSMutableAttributedString.getAttributedString(fromString: strTitle)
+        attributedString.addAttributes(stringAttributes, range: titleRange)
+        btnRefer.setAttributedTitle(attributedString, for: .normal)
         
         lblStatus.text = ""
         lblSubTitle.text = ""
@@ -84,6 +97,11 @@ class ProfileStatusVC: BaseViewController {
     
     @IBAction func refreshCliked(_ sender: UIButton) {
         fetchCoachSatusData()
+    }
+    
+    @IBAction func referCliked(_ sender: UIButton) {
+        let aVC = AppStoryBoard.main.viewController(viewControllerClass: ReferVC.self)
+        self.navigationController?.pushViewController(aVC, animated: true)
     }
     
 }

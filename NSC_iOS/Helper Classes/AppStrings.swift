@@ -70,7 +70,8 @@ struct AppStrings {
     
     let date_of_birth = "Date of Birth"
     
-    let no_camps_to_display = "No camps to display"
+    let no_camps_assigned = "No camps available for this coach"
+    let no_camps_to_display = "No camps available"
     let no_contacts_to_display = "No contacts found"
     let no_earnings = "There are no earnings as of now. You can refer others to earn more."
     let no_data_found = "No data found"
@@ -117,12 +118,11 @@ struct AppStrings {
     let alert_invalid_email_error = "Please provide a valid email address"
     let alert_invalid_otp = "Please provide a valid SMS code"
     
-    let alert_blank_firstname_error = "Please provide First Name"
-    let alert_blank_lastname_error = "Please provide Last Name"
+    let alert_blank_firstname_error = "Please provide a valid First Name"
+    let alert_blank_lastname_error = "Please provide a valid Last Name"
     let alert_blank_dob_error = "Date of Birth should not be blank"
-    let alert_dob_error = "Please confirm whether you are above 18 years old"
-    let alert_invalid_fullname_error = "Please enter valid Name"
-    let alert_blank_promocode_error = "Please enter valid promo code"
+    let alert_dob_error = "Please confirm whether you are above 14 years old"
+    let alert_invalid_promocode_error = "Please provide a valid promo code"
     
     /* Personal Details */
     let alert_blank_street_error = "Please provide Street Address"

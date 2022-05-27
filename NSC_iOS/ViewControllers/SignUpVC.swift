@@ -252,7 +252,7 @@ class SignUpVC: BaseViewController {
             }
         } else {
             lblErrPromoCode.isHidden = false
-            lblErrPromoCode.text = Theme.strings.alert_blank_promocode_error
+            lblErrPromoCode.text = Theme.strings.alert_invalid_promocode_error
         }
     }
     
