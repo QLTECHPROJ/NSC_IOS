@@ -53,7 +53,7 @@ class CampDetailVC: BaseViewController {
         
         lblName.text = campDetails.CampName
         lblAddress.text = campDetails.CampAddress
-        lblDescription.text = campDetails.CampDetail
+        lblDescription.attributedText = campDetails.CampDetail.attributedString(alignment: .center, lineSpacing: 5)
     }
     
     override func refreshData() {

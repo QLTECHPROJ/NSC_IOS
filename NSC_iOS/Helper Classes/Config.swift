@@ -16,8 +16,8 @@ let APP_NAME = "NSC Coach"
 let DEVICE_UUID = UIDevice.current.identifierForVendor!.uuidString
 
 let APP_APPSTORE_URL = ""
-let TERMS_AND_CONDITION_URL = ""
-let PRIVACY_POLICY_URL = ""
+let TERMS_AND_CONDITION_URL = "https://shop.nationalsportscamps.in/terms-conditions/"
+let PRIVACY_POLICY_URL = "https://shop.nationalsportscamps.in/nsc-privacy-policy/"
 let HOW_REFER_WORKS_URL = ""
 
 // In App Purchase

@@ -27,7 +27,7 @@ class CampDaysVC: BaseViewController {
         super.viewDidLoad()
         
         lblNoData.isHidden = true
-        lblNoData.text = Theme.strings.no_data_found
+        lblNoData.text = Theme.strings.alert_something_went_wrong
         
         tableView.register(nibWithCellClass: TitleLabelCell.self)
         tableView.register(nibWithCellClass: DayListCell.self)

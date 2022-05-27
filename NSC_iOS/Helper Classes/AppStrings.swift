@@ -70,12 +70,7 @@ struct AppStrings {
     
     let date_of_birth = "Date of Birth"
     
-    let no_camps_assigned = "No camps available for this coach"
-    let no_camps_to_display = "No camps available"
-    let no_contacts_to_display = "No contacts found"
-    let no_earnings = "There are no earnings as of now. You can refer others to earn more."
-    let no_data_found = "No data found"
-    
+    let search_camps = "You can search camps near you"
     let take_a_photo = "Take a Photo"
     let choose_from_gallary = "Choose from Gallary"
     let remove_photo = "Remove Photo"
@@ -83,27 +78,26 @@ struct AppStrings {
     
     /* Screen Contents */
     let register_title = "Sign Up"
-    let register_subtitle = "We just need few details to get you started!!"
+    let register_subtitle = "Start your career as coach with National Sports Camps"
     
     let otp_subtitle = "Please enter the OTP to begin your journey towards better mental health."
     
     let login_title = "Log In"
-    let login_subtitle = "Hope you're feeling much better than you felt before!!"
-    
-    let forgot_password_title = "Forgot your password"
-    let forgot_password_subtitle = "Give us your registered email ID and we'll send you everything that you'll need to change your password"
+    let login_subtitle = "Passion for Sports!!"
     
     let tap_anywhere_to_continue = "TAP anywhere to continue"
     
     let thank_you_subtitle = "Congratulations on joining NSC Coach App Family."
     
-    /* Billing order */
-    let Last_Renewed = "Last Renewed"
-    let upgradePlan_subtitle = "Get the most out of NSC Coach App. Now you can add additional accounts get your loved ones started on their journey towards mental & emotional transformation. Upgrade your subscription plan right now!!"
+    let no_camps_assigned = "No camps available for this coach"
+    let no_camps_to_display = "We'll be back with more camp very soon!!"
+    let no_contacts_to_display = "No contacts found"
+    let no_earnings = "There are no earnings as of now. You can refer others to earn more."
+    let no_data_found = "No data found"
     
     /* Alert Strings */
     let alert_check_internet = "Internet connection seems to be offline."
-    let alert_something_went_wrong = "Something went wrong"
+    let alert_something_went_wrong = "Oops something went wrong please try again"
     
     let alert_logout_message = "Are you sure you want to log out \nNSC Coach App??"
     let alert_blank_inputField_error = "Please fill required details"

@@ -68,7 +68,7 @@ class ProfileStatusVC: BaseViewController {
         }
         
         lblStatus.text = statusData.Title
-        lblSubTitle.text = statusData.SubTitle
+        lblSubTitle.attributedText = statusData.SubTitle.attributedString(alignment: .center, lineSpacing: 5)
         
         if statusData.Status == CoachStatus.Pending.rawValue || statusData.Status == CoachStatus.Rejected.rawValue {
             imgViewStatus.isHidden = true

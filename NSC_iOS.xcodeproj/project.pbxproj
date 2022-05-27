@@ -94,6 +94,10 @@
 		28515AA7282E81F4004C7229 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28515AA4282E81F4004C7229 /* ContactCell.swift */; };
 		28515AA8282E81F4004C7229 /* ContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28515AA5282E81F4004C7229 /* ContactCell.xib */; };
 		28515AA9282E81F4004C7229 /* ContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28515AA5282E81F4004C7229 /* ContactCell.xib */; };
+		2851D2532840F27C00D9D9F9 /* ReferDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2851D2522840F27C00D9D9F9 /* ReferDataViewModel.swift */; };
+		2851D2542840F27C00D9D9F9 /* ReferDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2851D2522840F27C00D9D9F9 /* ReferDataViewModel.swift */; };
+		2851D2562840F28A00D9D9F9 /* ReferDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2851D2552840F28A00D9D9F9 /* ReferDataModel.swift */; };
+		2851D2572840F28A00D9D9F9 /* ReferDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2851D2552840F28A00D9D9F9 /* ReferDataModel.swift */; };
 		28543627282544F8009BBEDA /* PersonalDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28543626282544F8009BBEDA /* PersonalDetailsVC.swift */; };
 		28543628282544F8009BBEDA /* PersonalDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28543626282544F8009BBEDA /* PersonalDetailsVC.swift */; };
 		2854362A2825450B009BBEDA /* BankDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285436292825450B009BBEDA /* BankDetailsVC.swift */; };
@@ -349,6 +353,8 @@
 		28515AA1282E8187004C7229 /* ContactVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactVC.swift; sourceTree = "<group>"; };
 		28515AA4282E81F4004C7229 /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		28515AA5282E81F4004C7229 /* ContactCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactCell.xib; sourceTree = "<group>"; };
+		2851D2522840F27C00D9D9F9 /* ReferDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferDataViewModel.swift; sourceTree = "<group>"; };
+		2851D2552840F28A00D9D9F9 /* ReferDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferDataModel.swift; sourceTree = "<group>"; };
 		28543626282544F8009BBEDA /* PersonalDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDetailsVC.swift; sourceTree = "<group>"; };
 		285436292825450B009BBEDA /* BankDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankDetailsVC.swift; sourceTree = "<group>"; };
 		28679509282150B60010892E /* DynamicContents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicContents.swift; sourceTree = "<group>"; };
@@ -582,6 +588,15 @@
 			path = CoachDetail;
 			sourceTree = "<group>";
 		};
+		2851D2582840FBA200D9D9F9 /* ReferData */ = {
+			isa = PBXGroup;
+			children = (
+				2851D2522840F27C00D9D9F9 /* ReferDataViewModel.swift */,
+				2851D2552840F28A00D9D9F9 /* ReferDataModel.swift */,
+			);
+			path = ReferData;
+			sourceTree = "<group>";
+		};
 		2875547828339087002FC9BD /* VerifyReferCode */ = {
 			isa = PBXGroup;
 			children = (
@@ -759,6 +774,7 @@
 				2898FA8D283626C1006DF4B8 /* SaveAppliedCamps */,
 				2898FA9428367219006DF4B8 /* ShowKidsAttendance */,
 				28DA210A283BA4E100EAA0B9 /* SaveKidsAttendance */,
+				2851D2582840FBA200D9D9F9 /* ReferData */,
 			);
 			path = "Models + ViewModels";
 			sourceTree = "<group>";
@@ -1313,6 +1329,7 @@
 				28300C44282A62DF00695E7B /* PersonalDetailModel.swift in Sources */,
 				28AE7225282CDF0F000845D0 /* AppStrings.swift in Sources */,
 				28F830F9281977F000CAF99C /* NSDate+Extension.swift in Sources */,
+				2851D2542840F27C00D9D9F9 /* ReferDataViewModel.swift in Sources */,
 				28F83105281977F000CAF99C /* CardView.swift in Sources */,
 				28D1A5B42823FBA200B3A179 /* CoachStatusViewModel.swift in Sources */,
 				9A0F6F72281BBB41008CAA4B /* ProfileStatusVC.swift in Sources */,
@@ -1379,6 +1396,7 @@
 				28F83143281977F000CAF99C /* ReadMore_Helper.swift in Sources */,
 				281AAE53281AA8D30070D758 /* APIRouter.swift in Sources */,
 				28F83123281977F000CAF99C /* NavigationClass.swift in Sources */,
+				2851D2572840F28A00D9D9F9 /* ReferDataModel.swift in Sources */,
 				28F83135281977F000CAF99C /* GradientView.swift in Sources */,
 				28ED596E282260060035402F /* LoginCheckViewModel.swift in Sources */,
 				28F830FF281977F000CAF99C /* TagFlowLayout.swift in Sources */,
@@ -1449,6 +1467,7 @@
 				28300C43282A62DF00695E7B /* PersonalDetailModel.swift in Sources */,
 				28AE7224282CDF0F000845D0 /* AppStrings.swift in Sources */,
 				28F830E0281977F000CAF99C /* DJExtensions.swift in Sources */,
+				2851D2532840F27C00D9D9F9 /* ReferDataViewModel.swift in Sources */,
 				28F830F8281977F000CAF99C /* NSDate+Extension.swift in Sources */,
 				28D1A5B32823FBA200B3A179 /* CoachStatusViewModel.swift in Sources */,
 				9A0F6F71281BBB41008CAA4B /* ProfileStatusVC.swift in Sources */,
@@ -1515,6 +1534,7 @@
 				28F83134281977F000CAF99C /* GradientView.swift in Sources */,
 				281AAE52281AA8D30070D758 /* APIRouter.swift in Sources */,
 				28F830FE281977F000CAF99C /* TagFlowLayout.swift in Sources */,
+				2851D2562840F28A00D9D9F9 /* ReferDataModel.swift in Sources */,
 				28F83102281977F000CAF99C /* ExpandableLabel.swift in Sources */,
 				28ED596D282260060035402F /* LoginCheckViewModel.swift in Sources */,
 				28A9C4162817B7C9001B252F /* NSC_iOS.xcdatamodeld in Sources */,

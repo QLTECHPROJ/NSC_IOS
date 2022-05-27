@@ -10,7 +10,7 @@ import UIKit
 class ReferVC: BaseViewController {
     
     // MARK: - OUTLETS
-    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblSubTitle: UILabel!
     @IBOutlet weak var lblReferralCode: UILabel!
     
@@ -19,6 +19,7 @@ class ReferVC: BaseViewController {
     
     
     // MARK: - VARIABLES
+    var referDataVM : ReferDataViewModel?
     var referCode = ""
     var referLink = ""
     
@@ -32,9 +33,20 @@ class ReferVC: BaseViewController {
         referLink = LoginDataModel.currentUser?.referLink ?? ""
         
         setupUI()
+        fetchReferData()
     }
     
+    
+    // MARK: - FUNCTIONS
     override func setupUI() {
+        if let referDetail = referDataVM?.referDetail {
+            referCode = referDetail.ReferCode
+            referLink = referDetail.ReferLink
+            
+            lblTitle.text = referDetail.Title
+            lblSubTitle.attributedText = referDetail.Subtitle.attributedString(alignment: .center, lineSpacing: 5)
+        }
+        
         lblReferralCode.text = referCode
         
         if referCode.trim.count > 0 && referLink.trim.count > 0 {
@@ -47,6 +59,14 @@ class ReferVC: BaseViewController {
         
         viewRefer.addDashedBorder()
     }
+    
+    func fetchReferData() {
+        referDataVM = ReferDataViewModel()
+        referDataVM?.callReferDataAPI(completion: { success in
+            self.setupUI()
+        })
+    }
+    
     
     // MARK: - ACTION
     @IBAction func backClicked(_ sender: UIButton) {

@@ -11,10 +11,7 @@ import UIKit
 class UserListPopUpVC: BaseViewController {
     
     // MARK: - OUTLETS
-    @IBOutlet weak var viewBack: UIView!
-    @IBOutlet weak var viewUserList: UIView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet var viewFooter: UIView!
     
     
     // MARK: - VARIABLES
@@ -26,51 +23,13 @@ class UserListPopUpVC: BaseViewController {
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.register(nibWithCellClass: UserListCell.self)
-        viewUserList.isHidden = true
-        self.view.layoutIfNeeded()
-        setupData()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupUI()
+        tableView.reloadData()
     }
     
     
-    // MARK:- FUNCTIONS
-    override func setupUI() {
-        //viewUserList.roundCorners([.topLeft, .topRight], radius: 10)
-        
-        tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.viewTapped(_:)))
-        tapGesture.numberOfTapsRequired = 1
-        tapGesture.numberOfTouchesRequired = 1
-        viewFooter.addGestureRecognizer(tapGesture)
-        viewFooter.isUserInteractionEnabled = true
-        
-        tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.viewTappedback(_:)))
-        tapGesture.numberOfTapsRequired = 1
-        tapGesture.numberOfTouchesRequired = 1
-        viewBack.addGestureRecognizer(tapGesture)
-        viewBack.isUserInteractionEnabled = true
-    }
-    
-    override func setupData() {
-       
-        
-        viewUserList.backgroundColor = .white
-        self.viewUserList.isHidden = false
-        
-        self.tableView.reloadData()
-    }
-    
-    @objc func viewTapped(_ sender: UITapGestureRecognizer) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @objc func viewTappedback(_ sender: UITapGestureRecognizer) {
-        self.dismiss(animated: true, completion: nil)
-    }
+    // MARK: - ACTIONS
     @IBAction func onTappedBack(_ sender: Any) {
         self.view.endEditing(true)
         self.navigationController?.popViewController(animated: true)

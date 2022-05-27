@@ -57,6 +57,7 @@ class ApplyForCampVC: BaseViewController {
         lblNoData.text = Theme.strings.no_camps_to_display
         lblNoData.textColor = Theme.colors.textColor
         
+        txtSearch.placeholder = Theme.strings.search_camps
         txtSearch.delegate = self
         txtSearch.addTarget(self, action: #selector(textFieldValueChanged(textField:)), for: UIControl.Event.editingChanged)
         
