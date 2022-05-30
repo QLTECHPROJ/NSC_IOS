@@ -9,6 +9,7 @@ import UIKit
 
 class KidsAttendenceCell: UITableViewCell {
     
+    // MARK: - OUTLETS
     @IBOutlet weak var viewBack: UIView!
     @IBOutlet weak var viewStatus: UIView!
     
@@ -16,14 +17,27 @@ class KidsAttendenceCell: UITableViewCell {
     @IBOutlet weak var lblStatus: UILabel!
     @IBOutlet weak var lblGroupName: UILabel!
     
-    @IBOutlet weak var btnPresentM: UIButton!
-    @IBOutlet weak var btnPresentPL: UIButton!
+    @IBOutlet weak var viewMorning: UIView!
+    @IBOutlet weak var viewLunch: UIView!
+    @IBOutlet weak var viewCheckout: UIView!
     
+    @IBOutlet weak var lblMorningStatus: UILabel!
+    @IBOutlet weak var lblLunchStatus: UILabel!
+    @IBOutlet weak var lblCheckOutStatus: UILabel!
+    
+    @IBOutlet weak var viewMorningAttendance: UIView!
+    @IBOutlet weak var viewLunchAttendance: UIView!
+    
+    @IBOutlet weak var btnPresentM: UIButton!
     @IBOutlet weak var btnAbsentM: UIButton!
+    
+    @IBOutlet weak var btnPresentPL: UIButton!
     @IBOutlet weak var btnAbsentPL: UIButton!
     
-    @IBOutlet weak var btnCheckIn: UIButton!
+    @IBOutlet weak var btnCheckOut: UIButton!
     
+    
+    // MARK: - VARIABLES
     var didChangeAttendance: (() -> Void)?
     var didClickCheckOut: (() -> Void)?
     
@@ -45,7 +59,7 @@ class KidsAttendenceCell: UITableViewCell {
     }
 
     // Configure Cell
-    func configureCell(data : KidsAttendanceDataModel) {
+    func configureCell(data : KidsAttendanceDataModel, dayshift : String) {
         self.kidsData = data
         
         lblKidName.text = data.Name
@@ -63,38 +77,107 @@ class KidsAttendenceCell: UITableViewCell {
             }
         }
         
-        btnPresentM.isUserInteractionEnabled = data.CheckIn == CheckInStatus.checkIn.rawValue
-        btnPresentPL.isUserInteractionEnabled = data.CheckIn == CheckInStatus.checkIn.rawValue
+        let shiftStatus = DayShiftStatus(rawValue: dayshift) ?? .none
+        switch shiftStatus {
+        case .morning:
+            viewMorning.isHidden = false
+            viewLunch.isHidden = true
+            viewCheckout.isHidden = true
+        case .lunch:
+            viewMorning.isHidden = false
+            viewLunch.isHidden = false
+            viewCheckout.isHidden = true
+        case .checkout:
+            viewMorning.isHidden = false
+            viewLunch.isHidden = false
+            viewCheckout.isHidden = false
+        default:
+            viewMorning.isHidden = false
+            viewLunch.isHidden = false
+            viewCheckout.isHidden = false
+        }
         
-        btnAbsentM.isUserInteractionEnabled = data.CheckIn == CheckInStatus.checkIn.rawValue
-        btnAbsentPL.isUserInteractionEnabled = data.CheckIn == CheckInStatus.checkIn.rawValue
-        
-        btnCheckIn.isHidden = data.CheckIn != CheckInStatus.checkIn.rawValue
-        btnCheckIn.isUserInteractionEnabled = data.CheckIn == CheckInStatus.checkIn.rawValue
+        setupMorningUI(data: data, shiftStatus: shiftStatus)
+        setupLunchUI(data: data, shiftStatus: shiftStatus)
+        setupCheckOutUI(data: data, shiftStatus: shiftStatus)
+    }
+    
+    func setupMorningUI(data : KidsAttendanceDataModel, shiftStatus : DayShiftStatus) {
+        if data.CheckIn == CheckInStatus.checkIn.rawValue && shiftStatus == .morning {
+            viewMorningAttendance.isHidden = false
+            lblMorningStatus.isHidden = true
+        } else {
+            viewMorningAttendance.isHidden = true
+            lblMorningStatus.isHidden = false
+        }
         
         if data.Morning_Attendance == AttendanceStatus.present.rawValue {
             btnPresentM.setImage(UIImage(named: "CheckSelect"), for: .normal)
             btnAbsentM.setImage(UIImage(named: "CheckDeselect"), for: .normal)
+            lblMorningStatus.text = "Present"
         } else if data.Morning_Attendance == AttendanceStatus.absent.rawValue {
             btnPresentM.setImage(UIImage(named: "CheckDeselect"), for: .normal)
             btnAbsentM.setImage(UIImage(named: "CheckSelect"), for: .normal)
+            lblMorningStatus.text = "Absent"
         } else {
             btnPresentM.setImage(UIImage(named: "CheckDeselect"), for: .normal)
             btnAbsentM.setImage(UIImage(named: "CheckDeselect"), for: .normal)
+            lblMorningStatus.text = "-"
+        }
+    }
+    
+    func setupLunchUI(data : KidsAttendanceDataModel, shiftStatus : DayShiftStatus) {
+        if data.CheckIn == CheckInStatus.checkIn.rawValue && shiftStatus == .lunch {
+            viewLunchAttendance.isHidden = false
+            lblLunchStatus.isHidden = true
+        } else {
+            viewLunchAttendance.isHidden = true
+            lblLunchStatus.isHidden = false
         }
         
         if data.Lunch_Attendance == AttendanceStatus.present.rawValue {
             btnPresentPL.setImage(UIImage(named: "CheckSelect"), for: .normal)
             btnAbsentPL.setImage(UIImage(named: "CheckDeselect"), for: .normal)
+            lblLunchStatus.text = "Present"
         } else if data.Lunch_Attendance == AttendanceStatus.absent.rawValue {
             btnPresentPL.setImage(UIImage(named: "CheckDeselect"), for: .normal)
             btnAbsentPL.setImage(UIImage(named: "CheckSelect"), for: .normal)
+            lblLunchStatus.text = "Absent"
         } else {
             btnPresentPL.setImage(UIImage(named: "CheckDeselect"), for: .normal)
             btnAbsentPL.setImage(UIImage(named: "CheckDeselect"), for: .normal)
+            lblLunchStatus.text = "-"
         }
     }
     
+    func setupCheckOutUI(data : KidsAttendanceDataModel, shiftStatus : DayShiftStatus) {
+        if data.CheckIn == CheckInStatus.checkIn.rawValue && shiftStatus == .checkout {
+            btnCheckOut.isHidden = false
+            btnCheckOut.isUserInteractionEnabled = true
+            lblCheckOutStatus.isHidden = true
+        } else if data.CheckIn == CheckInStatus.checkOut.rawValue && shiftStatus == .checkout {
+            btnCheckOut.isHidden = false
+            btnCheckOut.isUserInteractionEnabled = true
+            lblCheckOutStatus.isHidden = true
+        } else if data.CheckIn == CheckInStatus.checkOut.rawValue {
+            btnCheckOut.isHidden = false
+            btnCheckOut.isUserInteractionEnabled = false
+            lblCheckOutStatus.isHidden = true
+        } else {
+            btnCheckOut.isHidden = true
+            lblCheckOutStatus.isHidden = false
+            lblCheckOutStatus.text = "-"
+        }
+        
+        if data.CheckIn == CheckInStatus.checkOut.rawValue {
+            btnCheckOut.setImage(UIImage(named: "CheckSelect"), for: .normal)
+        } else {
+            btnCheckOut.setImage(UIImage(named: "CheckDeselect"), for: .normal)
+        }
+    }
+    
+    
+    // MARK: - ACTIONS
     @IBAction func morningAttendanceChanged(_ sender: UIButton) {
         if let kidsData = kidsData {
             kidsData.Morning_Attendance = "\(sender.tag)"
@@ -113,7 +196,11 @@ class KidsAttendenceCell: UITableViewCell {
     
     @IBAction func checkoutClicked(_ sender: UIButton) {
         if let kidsData = kidsData {
-            kidsData.CheckIn = CheckInStatus.checkOut.rawValue
+            if kidsData.CheckIn == CheckInStatus.checkIn.rawValue {
+                kidsData.CheckIn = CheckInStatus.checkOut.rawValue
+            } else {
+                kidsData.CheckIn = CheckInStatus.checkIn.rawValue
+            }
         }
         
         self.didClickCheckOut?()

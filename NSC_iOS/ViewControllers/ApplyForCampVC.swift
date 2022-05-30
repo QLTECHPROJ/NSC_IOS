@@ -182,6 +182,7 @@ extension ApplyForCampVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withClass: ApplyForCampCell.self)
         cell.configureSelectionCell(data: arrayCampSearch[indexPath.row])
+        cell.lblSeparator.isHidden = (indexPath.row == arrayCampSearch.count - 1)
         return cell
     }
     

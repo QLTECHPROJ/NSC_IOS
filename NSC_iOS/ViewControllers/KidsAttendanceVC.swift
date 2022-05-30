@@ -19,6 +19,7 @@ class KidsAttendanceVC: BaseViewController {
     var campID = ""
     var campName = ""
     var dayID = ""
+    var dayshift = ""
     var arrayKids = [KidsAttendanceDataModel]()
     
     
@@ -41,6 +42,14 @@ class KidsAttendanceVC: BaseViewController {
         tableView.isHidden = arrayKids.count == 0
         
         tableView.reloadData()
+        
+        if dayshift == DayShiftStatus.none.rawValue {
+            btnSubmit.isUserInteractionEnabled = false
+            btnSubmit.backgroundColor = Theme.colors.gray_7E7E7E
+        } else {
+            btnSubmit.isUserInteractionEnabled = true
+            btnSubmit.backgroundColor = Theme.colors.theme_dark
+        }
     }
     
     override func refreshData() {
@@ -100,7 +109,7 @@ extension KidsAttendanceVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withClass: KidsAttendenceCell.self)
-        cell.configureCell(data: arrayKids[indexPath.row])
+        cell.configureCell(data: arrayKids[indexPath.row], dayshift: self.dayshift)
         
         cell.didChangeAttendance = {
             UIView.performWithoutAnimation {
@@ -122,7 +131,7 @@ extension KidsAttendanceVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 180
+        return UITableView.automaticDimension
     }
     
 }

@@ -16,6 +16,8 @@ class ApplyForCampCell: UITableViewCell {
     @IBOutlet weak var imgSelect: UIImageView!
     @IBOutlet weak var viewAddress: UIView!
     
+    @IBOutlet weak var lblSeparator: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

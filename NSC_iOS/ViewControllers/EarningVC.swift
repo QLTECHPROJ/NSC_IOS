@@ -38,7 +38,7 @@ class EarningVC: BaseViewController {
     
     // MARK: - FUNCTIONS
     override func setupData() {
-        lblBalance.text = "₹ " + totalBalance
+        lblBalance.text = totalBalance
         tableView.reloadData()
         
         lblNoData.isHidden = transactions.count != 0

@@ -70,6 +70,13 @@
                             </label>
                         </subviews>
                     </stackView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckDeselect" translatesAutoresizingMaskIntoConstraints="NO" id="81X-Te-iT8">
+                        <rect key="frame" x="335" y="11.5" width="18" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="81X-Te-iT8" secondAttribute="height" multiplier="1:1" id="PfO-ej-cC8"/>
+                            <constraint firstAttribute="height" constant="18" id="neJ-sD-gGz"/>
+                        </constraints>
+                    </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPO-iV-GEq">
                         <rect key="frame" x="22" y="84" width="331" height="1"/>
                         <color key="backgroundColor" name="DDDDDD"/>
@@ -80,13 +87,6 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckDeselect" translatesAutoresizingMaskIntoConstraints="NO" id="81X-Te-iT8">
-                        <rect key="frame" x="335" y="11.5" width="18" height="18"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="81X-Te-iT8" secondAttribute="height" multiplier="1:1" id="PfO-ej-cC8"/>
-                            <constraint firstAttribute="height" constant="18" id="neJ-sD-gGz"/>
-                        </constraints>
-                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="rPO-iV-GEq" secondAttribute="trailing" constant="22" id="01n-Ta-HjD"/>
@@ -107,6 +107,7 @@
                 <outlet property="lblAddress" destination="Rnb-Xm-Xle" id="dtM-58-zin"/>
                 <outlet property="lblDate" destination="Ssh-2u-Rz4" id="cby-Am-XEZ"/>
                 <outlet property="lblName" destination="vXN-KT-WY7" id="2V8-Og-EFh"/>
+                <outlet property="lblSeparator" destination="rPO-iV-GEq" id="4tb-v3-rK3"/>
                 <outlet property="viewAddress" destination="LfB-O1-Opm" id="aoN-DF-QXS"/>
             </connections>
             <point key="canvasLocation" x="138.40579710144928" y="150.33482142857142"/>

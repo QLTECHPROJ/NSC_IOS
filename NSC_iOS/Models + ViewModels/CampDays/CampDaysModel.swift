@@ -9,6 +9,7 @@ import Foundation
 import EVReflection
 
 enum DayShiftStatus : String {
+    case none = ""
     case morning = "0"
     case lunch = "1"
     case checkout = "2"

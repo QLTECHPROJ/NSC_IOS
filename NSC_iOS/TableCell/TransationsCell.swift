@@ -23,7 +23,7 @@ class TransationsCell: UITableViewCell {
     func configureCell(data : TransactionModel) {
         lblName.text = data.Name
         lblDate.text = data.Date
-        lblAmount.text = "₹ " + data.Amount
+        lblAmount.text = data.Amount
         
         if let strUrl = data.Profile_Image.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let imgUrl = URL(string: strUrl) {
             imgView.sd_setImage(with: imgUrl, completed: nil)
