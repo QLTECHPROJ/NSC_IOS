@@ -28,4 +28,6 @@ class CampDetailModel: EVObject {
     var CampAddress = ""
     var CampImage = ""
     var CampStatus = ""
+    var dayshift = ""
+    var isWorkingDay = ""
 }

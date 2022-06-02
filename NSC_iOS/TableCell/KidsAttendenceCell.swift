@@ -41,7 +41,7 @@ class KidsAttendenceCell: UITableViewCell {
     var didChangeAttendance: (() -> Void)?
     var didClickCheckOut: (() -> Void)?
     
-    var kidsData: KidsAttendanceDataModel?
+    var kidsData: KidsAttendanceDetailModel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -59,7 +59,7 @@ class KidsAttendenceCell: UITableViewCell {
     }
 
     // Configure Cell
-    func configureCell(data : KidsAttendanceDataModel, dayshift : String) {
+    func configureCell(data : KidsAttendanceDetailModel, dayshift : String) {
         self.kidsData = data
         
         lblKidName.text = data.Name
@@ -102,7 +102,7 @@ class KidsAttendenceCell: UITableViewCell {
         setupCheckOutUI(data: data, shiftStatus: shiftStatus)
     }
     
-    func setupMorningUI(data : KidsAttendanceDataModel, shiftStatus : DayShiftStatus) {
+    func setupMorningUI(data : KidsAttendanceDetailModel, shiftStatus : DayShiftStatus) {
         if data.CheckIn == CheckInStatus.checkIn.rawValue && shiftStatus == .morning {
             viewMorningAttendance.isHidden = false
             lblMorningStatus.isHidden = true
@@ -126,7 +126,7 @@ class KidsAttendenceCell: UITableViewCell {
         }
     }
     
-    func setupLunchUI(data : KidsAttendanceDataModel, shiftStatus : DayShiftStatus) {
+    func setupLunchUI(data : KidsAttendanceDetailModel, shiftStatus : DayShiftStatus) {
         if data.CheckIn == CheckInStatus.checkIn.rawValue && shiftStatus == .lunch {
             viewLunchAttendance.isHidden = false
             lblLunchStatus.isHidden = true
@@ -150,7 +150,7 @@ class KidsAttendenceCell: UITableViewCell {
         }
     }
     
-    func setupCheckOutUI(data : KidsAttendanceDataModel, shiftStatus : DayShiftStatus) {
+    func setupCheckOutUI(data : KidsAttendanceDetailModel, shiftStatus : DayShiftStatus) {
         if data.CheckIn == CheckInStatus.checkIn.rawValue && shiftStatus == .checkout {
             btnCheckOut.isHidden = false
             btnCheckOut.isUserInteractionEnabled = true

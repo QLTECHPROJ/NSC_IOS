@@ -21,13 +21,19 @@ enum CheckInStatus : String {
 }
 
 class KidsAttendanceModel: EVObject {
-    var ResponseData: [KidsAttendanceDataModel]?
+    var ResponseData: KidsAttendanceDataModel?
     var ResponseCode: String?
     var ResponseMessage: String?
     var ResponseStatus: String?
 }
 
 class KidsAttendanceDataModel: EVObject {
+    var dayId = ""
+    var dayshift = ""
+    var kidsattendance = [KidsAttendanceDetailModel]()
+}
+
+class KidsAttendanceDetailModel: EVObject {
     var ID = ""
     var Name = ""
     var Group_Name = ""

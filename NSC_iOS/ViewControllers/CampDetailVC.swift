@@ -15,6 +15,7 @@ class CampDetailVC: BaseViewController {
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
+    @IBOutlet weak var btnKids: UIButton!
     
     
     // MARK: - VARIABLES
@@ -27,8 +28,12 @@ class CampDetailVC: BaseViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        setupData()
+        DispatchQueue.main.async {
+            self.btnKids.isUserInteractionEnabled = false
+            self.btnKids.backgroundColor = Theme.colors.gray_7E7E7E
+        }
         
+        setupData()
         refreshData()
     }
     
@@ -54,11 +59,19 @@ class CampDetailVC: BaseViewController {
         lblName.text = campDetails.CampName
         lblAddress.text = campDetails.CampAddress
         lblDescription.attributedText = campDetails.CampDetail.attributedString(alignment: .center, lineSpacing: 5)
+        
+        if campDetails.isWorkingDay == "1" && campDetails.dayshift.trim.count > 0 {
+            btnKids.isUserInteractionEnabled = true
+            btnKids.backgroundColor = Theme.colors.theme_dark
+        } else {
+            btnKids.isUserInteractionEnabled = false
+            btnKids.backgroundColor = Theme.colors.gray_7E7E7E
+        }
     }
     
     override func refreshData() {
         let campDetailVM = CampDetailViewModel()
-        campDetailVM.callCampDetailsAPI(parameters: ["campId":strCampID]) { success in
+        campDetailVM.callCampDetailsAPI(campId: strCampID) { success in
             if success {
                 self.campDetails = campDetailVM.campDetails
                 self.setupData()
@@ -78,9 +91,10 @@ class CampDetailVC: BaseViewController {
             return
         }
         
-        let aVC = AppStoryBoard.main.viewController(viewControllerClass:CampDaysVC.self)
+        let aVC = AppStoryBoard.main.viewController(viewControllerClass:KidsAttendanceVC.self)
         aVC.campID = campDetails.CampId
         aVC.campName = campDetails.CampName
+        aVC.dayshift = campDetails.dayshift
         self.navigationController?.pushViewController(aVC, animated: true)
     }
     

@@ -10,7 +10,8 @@ import Foundation
 class SaveKidsAttendanceViewModel {
     
     func callSaveKidsAttendanceAPI(campId: String, dayId: String, arrayAttendance: [[String:Any]], completion: @escaping (Bool) -> Void) {
-        let parameters : [String:Any] = ["campId":campId,
+        let parameters : [String:Any] = ["coachId":LoginDataModel.currentUser?.ID ?? "",
+                                         "campId":campId,
                                          "dayId":dayId,
                                          "attendance":arrayAttendance.toJSON() ?? ""]
         

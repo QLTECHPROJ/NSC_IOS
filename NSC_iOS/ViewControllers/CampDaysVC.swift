@@ -102,6 +102,7 @@ extension CampDaysVC: UITableViewDelegate , UITableViewDataSource {
             aVC.campID = self.campID
             aVC.campName = self.campName
             aVC.dayID = arrayDays[indexPath.row].dayId
+            aVC.dayshift = arrayDays[indexPath.row].dayshift
             self.navigationController?.pushViewController(aVC, animated: true)
         }
     }

@@ -20,7 +20,7 @@ class KidsAttendanceVC: BaseViewController {
     var campName = ""
     var dayID = ""
     var dayshift = ""
-    var arrayKids = [KidsAttendanceDataModel]()
+    var arrayKids = [KidsAttendanceDetailModel]()
     
     
     // MARK: - VIEW LIFE CYCLE
@@ -56,6 +56,8 @@ class KidsAttendanceVC: BaseViewController {
         let kidsAttendanceVM = KidsAttendanceViewModel()
         kidsAttendanceVM.callShowKidsAttendanceAPI(campId: campID, dayId: dayID) { success in
             if success {
+                self.dayID = kidsAttendanceVM.dayId
+                self.dayshift = kidsAttendanceVM.dayshift
                 self.arrayKids = kidsAttendanceVM.arrayKids
             }
             self.setupData()
