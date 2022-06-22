@@ -17,16 +17,25 @@ class CampDetailVC: BaseViewController {
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var btnKids: UIButton!
     
+    @IBOutlet weak var viewFees: UIView!
+    @IBOutlet weak var viewFeesHeightConst: NSLayoutConstraint!
+    @IBOutlet weak var lblFees: UILabel!
+    @IBOutlet weak var lblDaysAvailable: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    
     
     // MARK: - VARIABLES
     var strCampID = ""
     var campDetails: CampDetailModel?
+    var arrayFees = [String]()
     
     
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        tableView.register(nibWithCellClass: CampDayFeesCell.self)
         
         DispatchQueue.main.async {
             self.btnKids.isUserInteractionEnabled = false
@@ -67,6 +76,15 @@ class CampDetailVC: BaseViewController {
             btnKids.isUserInteractionEnabled = false
             btnKids.backgroundColor = Theme.colors.gray_7E7E7E
         }
+        
+        if arrayFees.count > 0 {
+            viewFeesHeightConst.constant = 60 + CGFloat(arrayFees.count * 30)
+            self.view.layoutIfNeeded()
+        } else {
+            viewFeesHeightConst.constant = 0
+            self.view.layoutIfNeeded()
+        }
+        
     }
     
     override func refreshData() {
@@ -96,6 +114,24 @@ class CampDetailVC: BaseViewController {
         aVC.campName = campDetails.CampName
         aVC.dayshift = campDetails.dayshift
         self.navigationController?.pushViewController(aVC, animated: true)
+    }
+    
+}
+
+
+extension CampDetailVC: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return arrayFees.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 30
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withClass: CampDayFeesCell.self)
+        return cell
     }
     
 }
