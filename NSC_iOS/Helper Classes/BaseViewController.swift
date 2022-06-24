@@ -70,13 +70,13 @@ class BaseViewController: UIViewController {
         
         if userData.PersonalDetailFilled == "0" {
             let aVC = AppStoryBoard.main.viewController(viewControllerClass: PersonalDetailsVC.self)
-            aVC.makeRootController()
+            self.navigationController?.pushViewController(aVC, animated: true)
         } else if userData.BankDetailFilled == "0" {
             let aVC = AppStoryBoard.main.viewController(viewControllerClass: BankDetailsVC.self)
-            aVC.makeRootController()
+            self.navigationController?.pushViewController(aVC, animated: true)
         } else if userData.Status == CoachStatus.Pending.rawValue || userData.Status == CoachStatus.Rejected.rawValue {
             let aVC = AppStoryBoard.main.viewController(viewControllerClass: ProfileStatusVC.self)
-            aVC.makeRootController()
+            self.navigationController?.pushViewController(aVC, animated: true)
         } else {
             let aVC = AppStoryBoard.main.viewController(viewControllerClass: CampListVC.self)
             aVC.makeRootController()

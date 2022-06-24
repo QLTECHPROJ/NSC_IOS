@@ -17,6 +17,7 @@ class SaveKidsAttendanceViewModel {
         
         APIManager.shared.callAPI(router: APIRouter.kidsattendancesave(parameters)) { (response : LogoutModel?) in
             if response?.ResponseCode == "200" {
+                showAlertToast(message: response?.ResponseMessage ?? "")
                 completion(true)
             } else {
                 completion(false)

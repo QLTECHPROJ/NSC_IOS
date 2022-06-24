@@ -15,7 +15,6 @@ class VerifyReferCodeViewModel {
         APIManager.shared.callAPI(router: APIRouter.verify_refercode(parameters)) { (response : LogoutModel?) in
             if response?.ResponseCode == "200" {
                 showAlertToast(message: response?.ResponseMessage ?? "")
-                
                 completion(true)
             } else {
                 completion(false)

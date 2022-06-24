@@ -128,7 +128,11 @@ class OTPVC: BaseViewController {
             hideHud()
             
             if let error = error {
-                showAlertToast(message: error.localizedDescription)
+                if error.localizedDescription == Theme.strings.invalid_otp_firebase {
+                    showAlertToast(message: Theme.strings.alert_invalid_otp)
+                } else {
+                    showAlertToast(message: error.localizedDescription)
+                }
                 return
             }
             

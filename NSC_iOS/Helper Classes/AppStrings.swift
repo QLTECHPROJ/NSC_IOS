@@ -112,6 +112,8 @@ struct AppStrings {
     let alert_invalid_email_error = "Please provide a valid email address"
     let alert_invalid_otp = "Please provide a valid SMS code"
     
+    let invalid_otp_firebase = "The SMS verification code used to create the phone auth credential is invalid. Please resend the verification code SMS and be sure to use the verification code provided by the user."
+    
     let alert_blank_firstname_error = "Please provide a valid First Name"
     let alert_blank_lastname_error = "Please provide a valid Last Name"
     let alert_blank_dob_error = "Date of Birth should not be blank"
