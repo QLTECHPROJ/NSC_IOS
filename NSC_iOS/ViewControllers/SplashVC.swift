@@ -14,12 +14,15 @@ class SplashVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let appVersionVM = AppVersionViewModel()
-        appVersionVM.callAppVersionAPI(completion: { success in
-            if success {
-                self.handleAppUpdatePopup()
-            }
-        })
+        // Wait 2 Seconds for FCM Token
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            let appVersionVM = AppVersionViewModel()
+            appVersionVM.callAppVersionAPI(completion: { success in
+                if success {
+                    self.handleAppUpdatePopup()
+                }
+            })
+        }
     }
     
     

@@ -15,6 +15,7 @@ class AppVersionViewModel {
         let parameters = ["version":APP_VERSION,
                           "timeZone":TimeZone.current.identifier,
                           "deviceType":APP_TYPE,
+                          "deviceId":DEVICE_UUID,
                           "deviceToken":FCM_TOKEN,
                           "coachId":LoginDataModel.currentUser?.ID ?? ""]
         

@@ -11,6 +11,7 @@ class LogoutViewModel {
     
      func callLogoutAPI(completion: @escaping (Bool) -> Void) {
         let parameters = ["deviceType":APP_TYPE,
+                          "deviceId":DEVICE_UUID,
                           "deviceToken":FCM_TOKEN,
                           "coachId":LoginDataModel.currentUser?.ID ?? ""]
         

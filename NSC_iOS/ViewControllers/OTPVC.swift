@@ -158,6 +158,7 @@ class OTPVC: BaseViewController {
                           "email":strEmail,
                           "referCode":strPromoCode,
                           "deviceType":APP_TYPE,
+                          "deviceId":DEVICE_UUID,
                           "deviceToken":FCM_TOKEN]
         
         let signUpVM = SignUpViewModel()
@@ -173,6 +174,7 @@ class OTPVC: BaseViewController {
         let parameters = ["mobile":strMobile,
                           "countryCode":AppVersionDetails.countryCode,
                           "deviceType":APP_TYPE,
+                          "deviceId":DEVICE_UUID,
                           "deviceToken":FCM_TOKEN]
         
         let loginVM = LoginViewModel()
