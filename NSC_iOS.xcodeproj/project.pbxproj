@@ -120,6 +120,16 @@
 		2898FA90283671F7006DF4B8 /* KidsAttendanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2898FA8E283671F7006DF4B8 /* KidsAttendanceViewModel.swift */; };
 		2898FA922836720F006DF4B8 /* KidsAttendanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2898FA912836720F006DF4B8 /* KidsAttendanceModel.swift */; };
 		2898FA932836720F006DF4B8 /* KidsAttendanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2898FA912836720F006DF4B8 /* KidsAttendanceModel.swift */; };
+		289B6A29288934B40095FE32 /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289B6A28288934B30095FE32 /* NotificationVC.swift */; };
+		289B6A2C288934C80095FE32 /* NotificationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289B6A2A288934C80095FE32 /* NotificationListCell.swift */; };
+		289B6A2D288934C80095FE32 /* NotificationListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 289B6A2B288934C80095FE32 /* NotificationListCell.xib */; };
+		289B6A31288934E10095FE32 /* NotificationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289B6A2F288934E10095FE32 /* NotificationListViewModel.swift */; };
+		289B6A32288934E10095FE32 /* NotificationListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289B6A30288934E10095FE32 /* NotificationListModel.swift */; };
+		289B6A332889367A0095FE32 /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289B6A28288934B30095FE32 /* NotificationVC.swift */; };
+		289B6A34288936840095FE32 /* NotificationListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 289B6A2B288934C80095FE32 /* NotificationListCell.xib */; };
+		289B6A35288936840095FE32 /* NotificationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289B6A2A288934C80095FE32 /* NotificationListCell.swift */; };
+		289B6A362889368D0095FE32 /* NotificationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289B6A2F288934E10095FE32 /* NotificationListViewModel.swift */; };
+		289B6A37288936900095FE32 /* NotificationListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289B6A30288934E10095FE32 /* NotificationListModel.swift */; };
 		28A9C40C2817B7C9001B252F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A9C40B2817B7C9001B252F /* AppDelegate.swift */; };
 		28A9C4132817B7C9001B252F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28A9C4112817B7C9001B252F /* Main.storyboard */; };
 		28A9C4162817B7C9001B252F /* NSC_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28A9C4142817B7C9001B252F /* NSC_iOS.xcdatamodeld */; };
@@ -370,6 +380,11 @@
 		2898FA8A28360FFF006DF4B8 /* SaveAppliedCampsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveAppliedCampsViewModel.swift; sourceTree = "<group>"; };
 		2898FA8E283671F7006DF4B8 /* KidsAttendanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidsAttendanceViewModel.swift; sourceTree = "<group>"; };
 		2898FA912836720F006DF4B8 /* KidsAttendanceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidsAttendanceModel.swift; sourceTree = "<group>"; };
+		289B6A28288934B30095FE32 /* NotificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
+		289B6A2A288934C80095FE32 /* NotificationListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationListCell.swift; sourceTree = "<group>"; };
+		289B6A2B288934C80095FE32 /* NotificationListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationListCell.xib; sourceTree = "<group>"; };
+		289B6A2F288934E10095FE32 /* NotificationListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationListViewModel.swift; sourceTree = "<group>"; };
+		289B6A30288934E10095FE32 /* NotificationListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationListModel.swift; sourceTree = "<group>"; };
 		28A9C4082817B7C9001B252F /* NSC_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSC_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28A9C40B2817B7C9001B252F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28A9C4122817B7C9001B252F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -636,6 +651,15 @@
 			path = ShowKidsAttendance;
 			sourceTree = "<group>";
 		};
+		289B6A2E288934E10095FE32 /* NotificationList */ = {
+			isa = PBXGroup;
+			children = (
+				289B6A2F288934E10095FE32 /* NotificationListViewModel.swift */,
+				289B6A30288934E10095FE32 /* NotificationListModel.swift */,
+			);
+			path = NotificationList;
+			sourceTree = "<group>";
+		};
 		28A9C3FF2817B7C9001B252F = {
 			isa = PBXGroup;
 			children = (
@@ -710,6 +734,7 @@
 				9A53D4C9281929B500226853 /* CampListVC.swift */,
 				9A53D4D128193B6D00226853 /* CampDetailVC.swift */,
 				9A53D4D328193C8500226853 /* CampDaysVC.swift */,
+				289B6A28288934B30095FE32 /* NotificationVC.swift */,
 				28F3C255281A5CCF0092A077 /* KidsAttendanceVC.swift */,
 				9AD5ED9A2824EBDD00E0A11F /* UserListPopUpVC.swift */,
 				9A2DBD76282E141C0057FBDD /* ReferVC.swift */,
@@ -781,6 +806,7 @@
 				2898FA9428367219006DF4B8 /* ShowKidsAttendance */,
 				28DA210A283BA4E100EAA0B9 /* SaveKidsAttendance */,
 				2851D2582840FBA200D9D9F9 /* ReferData */,
+				289B6A2E288934E10095FE32 /* NotificationList */,
 			);
 			path = "Models + ViewModels";
 			sourceTree = "<group>";
@@ -1019,6 +1045,8 @@
 				280C1228283F9AA80034898A /* ApplyForCampCell.xib */,
 				28955467284E1D090044FA06 /* CampDayFeesCell.swift */,
 				28955468284E1D090044FA06 /* CampDayFeesCell.xib */,
+				289B6A2A288934C80095FE32 /* NotificationListCell.swift */,
+				289B6A2B288934C80095FE32 /* NotificationListCell.xib */,
 			);
 			path = TableCell;
 			sourceTree = "<group>";
@@ -1124,6 +1152,7 @@
 				9A0F6F63281BA15F008CAA4B /* Poppins-ExtraLight.otf in Resources */,
 				28F3C258281A5D1E0092A077 /* KidsAttendenceCell.xib in Resources */,
 				2813A0182834EED300E6194D /* TransationsCell.xib in Resources */,
+				289B6A34288936840095FE32 /* NotificationListCell.xib in Resources */,
 				282C337C2819617D009401FD /* CampListCell.xib in Resources */,
 				282C337F2819617D009401FD /* LaunchScreen.storyboard in Resources */,
 				9A0F6F65281BA15F008CAA4B /* Poppins-Light.otf in Resources */,
@@ -1153,6 +1182,7 @@
 				9A0F6F62281BA15F008CAA4B /* Poppins-ExtraLight.otf in Resources */,
 				9A53D4CE28192BE400226853 /* CampListCell.xib in Resources */,
 				2813A0172834EED300E6194D /* TransationsCell.xib in Resources */,
+				289B6A2D288934C80095FE32 /* NotificationListCell.xib in Resources */,
 				28A9C4282817C09A001B252F /* LaunchScreen.storyboard in Resources */,
 				28A9C4182817B7CA001B252F /* Assets.xcassets in Resources */,
 				9A0F6F64281BA15F008CAA4B /* Poppins-Light.otf in Resources */,
@@ -1308,6 +1338,7 @@
 				284C3194282681B300F8A63B /* ListItemVC.swift in Sources */,
 				28F830FB281977F000CAF99C /* UITableView+Extension.swift in Sources */,
 				28F83137281977F000CAF99C /* WhereAmIRunning.swift in Sources */,
+				289B6A35288936840095FE32 /* NotificationListCell.swift in Sources */,
 				2898FA8C28360FFF006DF4B8 /* SaveAppliedCampsViewModel.swift in Sources */,
 				2804E39F2819847D00AF4A62 /* String+Timepiece.swift in Sources */,
 				28F83119281977F000CAF99C /* Config.swift in Sources */,
@@ -1353,11 +1384,13 @@
 				282C336E2819617D009401FD /* CampDetailVC.swift in Sources */,
 				28F83125281977F000CAF99C /* NotificationName+Extention.swift in Sources */,
 				9A7740B7282B8927000BDC8C /* ProfileViewModel.swift in Sources */,
+				289B6A37288936900095FE32 /* NotificationListModel.swift in Sources */,
 				28F830D9281977F000CAF99C /* DJPickerView.swift in Sources */,
 				9A48A7502829384000D0A728 /* LogoutModel.swift in Sources */,
 				282C336F2819617D009401FD /* ProfileVC.swift in Sources */,
 				28C8DA2C2822B7590048A172 /* LoginModel.swift in Sources */,
 				28F830D7281977F000CAF99C /* DJTextField.swift in Sources */,
+				289B6A332889367A0095FE32 /* NotificationVC.swift in Sources */,
 				28F83107281977F000CAF99C /* KDCircularProgress.swift in Sources */,
 				28F830E9281977F000CAF99C /* DJContants.swift in Sources */,
 				28F830D5281977F000CAF99C /* DJTextView.swift in Sources */,
@@ -1425,6 +1458,7 @@
 				28F830EF281977F000CAF99C /* String+Extension.swift in Sources */,
 				287554772833907E002FC9BD /* VerifyReferCodeViewModel.swift in Sources */,
 				281AAE39281A85B00070D758 /* APIManager.swift in Sources */,
+				289B6A362889368D0095FE32 /* NotificationListViewModel.swift in Sources */,
 				28F8312D281977F000CAF99C /* AnimationFrames.swift in Sources */,
 				28ED59712822601C0035402F /* LoginCheckModel.swift in Sources */,
 				28F830D3281977F000CAF99C /* DJCheckBox.swift in Sources */,
@@ -1447,6 +1481,7 @@
 				28F830DE281977F000CAF99C /* UIColor+Extension.swift in Sources */,
 				28F830FA281977F000CAF99C /* UITableView+Extension.swift in Sources */,
 				28F8316328197B0600CAF99C /* String+Timepiece.swift in Sources */,
+				289B6A2C288934C80095FE32 /* NotificationListCell.swift in Sources */,
 				2898FA8B28360FFF006DF4B8 /* SaveAppliedCampsViewModel.swift in Sources */,
 				28F83136281977F000CAF99C /* WhereAmIRunning.swift in Sources */,
 				28F83118281977F000CAF99C /* Config.swift in Sources */,
@@ -1492,11 +1527,13 @@
 				28F83124281977F000CAF99C /* NotificationName+Extention.swift in Sources */,
 				28F830D8281977F000CAF99C /* DJPickerView.swift in Sources */,
 				9A7740B6282B8927000BDC8C /* ProfileViewModel.swift in Sources */,
+				289B6A32288934E10095FE32 /* NotificationListModel.swift in Sources */,
 				9A2CFCCF2818139F000A2C1D /* ProfileVC.swift in Sources */,
 				9A48A74F2829384000D0A728 /* LogoutModel.swift in Sources */,
 				28F830D6281977F000CAF99C /* DJTextField.swift in Sources */,
 				28C8DA2B2822B7590048A172 /* LoginModel.swift in Sources */,
 				28F83106281977F000CAF99C /* KDCircularProgress.swift in Sources */,
+				289B6A29288934B40095FE32 /* NotificationVC.swift in Sources */,
 				28F8315F28197B0600CAF99C /* NSDateComponents+Timepiece.swift in Sources */,
 				28F830E8281977F000CAF99C /* DJContants.swift in Sources */,
 				28F3C253281A5CC80092A077 /* KidsAttendenceCell.swift in Sources */,
@@ -1564,6 +1601,7 @@
 				28F8316728197B8C00CAF99C /* CommonFunctions.swift in Sources */,
 				287554762833907E002FC9BD /* VerifyReferCodeViewModel.swift in Sources */,
 				281AAE38281A85B00070D758 /* APIManager.swift in Sources */,
+				289B6A31288934E10095FE32 /* NotificationListViewModel.swift in Sources */,
 				28F8312C281977F000CAF99C /* AnimationFrames.swift in Sources */,
 				28ED59702822601C0035402F /* LoginCheckModel.swift in Sources */,
 				28F830D2281977F000CAF99C /* DJCheckBox.swift in Sources */,

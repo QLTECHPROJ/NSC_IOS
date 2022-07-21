@@ -33,6 +33,8 @@ enum APIRouter : URLRequestConvertible {
     case campdetails([String:String])
     case daylisting([String:String])
     
+    case notification_listing([String:String])
+    
     case coachupdatepersonaldetails([String:String])
     case coachupdatebankdetails([String:String])
     case profileUpdate([String:String])
@@ -85,6 +87,9 @@ enum APIRouter : URLRequestConvertible {
             return APIRoute(path: "campdetails", method: .post, data: data)
         case .daylisting(let data):
             return APIRoute(path: "day-listing", method: .post, data: data)
+            
+        case .notification_listing(let data):
+            return APIRoute(path: "notification-listing", method: .post, data: data)
             
         case .coachupdatepersonaldetails(let data):
             return APIRoute(path: "coachupdatepersonaldetails", method: .post, data: data)

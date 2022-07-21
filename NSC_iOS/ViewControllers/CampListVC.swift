@@ -117,6 +117,11 @@ class CampListVC: BaseViewController {
         navigationController?.pushViewController(aVC, animated: true)
     }
     
+    @IBAction func notificationClicked(_ sender: UIButton) {
+        let aVC = AppStoryBoard.main.viewController(viewControllerClass:NotificationVC.self)
+        self.navigationController?.pushViewController(aVC, animated: true)
+    }
+    
     @IBAction func applyNowClicked(_ sender: UIButton) {
         let aVC = AppStoryBoard.main.viewController(viewControllerClass: ApplyForCampVC.self)
         self.navigationController?.pushViewController(aVC, animated: true)
