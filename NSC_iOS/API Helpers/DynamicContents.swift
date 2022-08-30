@@ -58,8 +58,10 @@ class AppVersionDetails {
     static var postCodeMinDigits = Int(AppVersionDetails.current.postCodeMinDigits) ?? 6
     static var postCodeMaxDigits = Int(AppVersionDetails.current.postCodeMaxDigits) ?? 6
     
+    static var currencySign = AppVersionDetails.current.currencySign
+    
     class func defaultDetails() -> AppVersionDetailModel {
-        let details = AppVersionDetailModel ()
+        let details = AppVersionDetailModel()
         details.IsForce = ""
         details.countryID = "101"
         details.countryCode = "91"
@@ -71,6 +73,9 @@ class AppVersionDetails {
         details.mobileMaxDigits = "10"
         details.postCodeMinDigits = "6"
         details.postCodeMaxDigits = "6"
+        
+        details.currencySign = "₹"
+        
         return details
     }
     

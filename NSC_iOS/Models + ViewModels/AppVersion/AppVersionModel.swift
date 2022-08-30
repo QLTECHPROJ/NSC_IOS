@@ -27,4 +27,6 @@ class AppVersionDetailModel: EVObject {
     var mobileMaxDigits = "10" // default value
     var postCodeMinDigits = "6" // default value
     var postCodeMaxDigits = "6" // default value
+    
+    var currencySign = ""
 }

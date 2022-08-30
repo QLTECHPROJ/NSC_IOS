@@ -12,6 +12,9 @@ class AppConstants {
     
     static let shared = AppConstants()
     
+    // Static from App Side - not coming from response
+    static let zero_amount = "\(AppVersionDetails.currencySign) 0.00"
+    
     var maxDigits : Int {
         if AppVersionDetails.countryCode == "61" {
             return 10
