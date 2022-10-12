@@ -12,6 +12,8 @@ class ProfileVC: BaseViewController {
     
     // MARK: - OUTLETS
     // UIImage
+    @IBOutlet weak var lblName: UILabel!
+    
     @IBOutlet weak var imgUser: UIImageView!
     
     // UITextfield
@@ -88,6 +90,7 @@ class ProfileVC: BaseViewController {
             
             imgUser.loadUserProfileImage(fontSize: 50)
             strImage = userData.Profile_Image
+            lblName.text = userData.Name
         }
         
         buttonEnableDisable()

@@ -67,7 +67,7 @@ class CampDetailVC: BaseViewController {
         
         lblName.text = campDetails.CampName
         lblAddress.text = campDetails.CampAddress
-        lblDescription.attributedText = campDetails.CampDetail.attributedString(alignment: .center, lineSpacing: 5)
+        lblDescription.text = campDetails.CampDetail
         
         if campDetails.isWorkingDay == "1" && campDetails.dayshift.trim.count > 0 {
             btnKids.isUserInteractionEnabled = true

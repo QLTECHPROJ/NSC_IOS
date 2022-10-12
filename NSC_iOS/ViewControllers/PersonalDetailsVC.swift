@@ -10,6 +10,7 @@ import UIKit
 class PersonalDetailsVC: BaseViewController {
     
     // MARK: - OUTLETS
+    @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var btnConfirm: UIButton!
     
@@ -113,6 +114,12 @@ class PersonalDetailsVC: BaseViewController {
             txtRole.text = strName
         } else {
             txtRole.text = ""
+        }
+        
+        if txtState.text != "" {
+            lblTitle.text = "Personal Details"
+        }else {
+            lblTitle.text = "Add Personal Details"
         }
         
         initDOBPickerView()

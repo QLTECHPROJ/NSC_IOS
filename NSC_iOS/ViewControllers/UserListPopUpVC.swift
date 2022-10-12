@@ -82,7 +82,7 @@ extension UserListPopUpVC : UITableViewDelegate, UITableViewDataSource {
             aVC.titleText = Theme.strings.logout
             aVC.detailText = Theme.strings.alert_logout_message
             aVC.firstButtonTitle = Theme.strings.ok
-            aVC.secondButtonTitle = Theme.strings.close
+            aVC.secondButtonTitle = Theme.strings.cancel
             aVC.modalPresentationStyle = .overFullScreen
             aVC.delegate = self
             self.present(aVC, animated: false, completion: nil)

@@ -10,6 +10,8 @@ import UIKit
 class BankDetailsVC: BaseViewController {
     
     // MARK: - OUTLETS
+    @IBOutlet weak var lblTitle: UILabel!
+    
     @IBOutlet weak var txtBankName: UITextField!
     @IBOutlet weak var txtAccountNumber: UITextField!
     @IBOutlet weak var txtAccountName: UITextField!
@@ -72,6 +74,12 @@ class BankDetailsVC: BaseViewController {
         
         if userData.IFSC_Code.trim.count > 0 {
             txtIFSCCode.text = userData.IFSC_Code
+        }
+        
+        if userData.Bank_Name != "" {
+            lblTitle.text = "Bank Details"
+        }else {
+            lblTitle.text = "Add Bank Details"
         }
         
         buttonEnableDisable()
