@@ -99,7 +99,7 @@ struct AppStrings {
     let alert_check_internet = "Internet connection seems to be offline."
     let alert_something_went_wrong = "Oops something went wrong please try again"
     
-    let alert_logout_message = "Are you sure you want to log out \nNSC Coach App??"
+    let alert_logout_message = "Are you sure you want to logout?"
     let alert_blank_inputField_error = "Please fill required details"
     
     let alert_search_term_not_found = "Please try another search criteria"
