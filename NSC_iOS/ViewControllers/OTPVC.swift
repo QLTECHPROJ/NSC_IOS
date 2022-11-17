@@ -36,7 +36,6 @@ class OTPVC: BaseViewController {
         super.viewDidLoad()
         setupUI()
         setupSupportLabel(lblSupport: lblSupport)
-        self.txtOTP.becomeFirstResponder()
     }
     
     
@@ -54,6 +53,11 @@ class OTPVC: BaseViewController {
         } else {
             // Fallback on earlier versions
         }
+        
+        self.txtOTP.attributedPlaceholder = NSAttributedString(string: "Enter OTP", attributes: [
+            .foregroundColor: Theme.colors.gray_7E7E7E,
+            .font:Theme.fonts.appFont(ofSize: 16, weight: .regular)
+        ])
         
         buttonEnableDisable()
     }

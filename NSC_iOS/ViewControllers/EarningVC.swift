@@ -12,7 +12,7 @@ class EarningVC: BaseViewController {
     // MARK: - OUTLETS
     @IBOutlet weak var lblBalance: UILabel!
     @IBOutlet weak var lblNoData: UILabel!
-    
+    @IBOutlet weak var lblTransaction: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -26,7 +26,7 @@ class EarningVC: BaseViewController {
         super.viewDidLoad()
         
         lblBalance.text = "₹ 0"
-        
+        lblTransaction.isHidden = true
         lblNoData.isHidden = true
         lblNoData.text = Theme.strings.no_earnings
         
@@ -40,7 +40,8 @@ class EarningVC: BaseViewController {
     override func setupData() {
         lblBalance.text = totalBalance
         tableView.reloadData()
-        
+        lblTransaction.isHidden = transactions.count == 0
+
         lblNoData.isHidden = transactions.count != 0
         tableView.isHidden = transactions.count == 0
     }
