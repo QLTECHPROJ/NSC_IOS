@@ -75,7 +75,7 @@ class BaseViewController: UIViewController {
             let aVC = AppStoryBoard.main.viewController(viewControllerClass: BankDetailsVC.self)
             self.navigationController?.pushViewController(aVC, animated: true)
         } else if userData.Status == CoachStatus.Pending.rawValue || userData.Status == CoachStatus.Rejected.rawValue {
-            let aVC = AppStoryBoard.main.viewController(viewControllerClass: ProfileStatusVC.self)
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass: CampListVC.self)
             self.navigationController?.pushViewController(aVC, animated: true)
         } else {
             let aVC = AppStoryBoard.main.viewController(viewControllerClass: CampListVC.self)
