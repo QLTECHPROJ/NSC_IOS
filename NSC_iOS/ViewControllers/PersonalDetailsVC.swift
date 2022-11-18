@@ -15,7 +15,7 @@ class PersonalDetailsVC: BaseViewController {
     @IBOutlet weak var btnConfirm: UIButton!
     
     // TextFields
-    @IBOutlet weak var txtDOB: DJPickerView!
+    @IBOutlet weak var txtDOB: UITextField!
     @IBOutlet weak var txtStreet: UITextField!
     @IBOutlet weak var txtState: UITextField!
     @IBOutlet weak var txtCity: UITextField!
@@ -48,7 +48,7 @@ class PersonalDetailsVC: BaseViewController {
     var selectedCamps : ListItem?
     var selectedRole : ListItem?
     var vaccinated = ""
-    
+    let bodDatePicker = UIDatePicker()
     
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
@@ -122,7 +122,7 @@ class PersonalDetailsVC: BaseViewController {
             lblTitle.text = "Add Personal Details"
         }
         
-        initDOBPickerView()
+        self.initDatePicker()
         buttonEnableDisable()
     }
     
@@ -160,38 +160,28 @@ class PersonalDetailsVC: BaseViewController {
         setupData()
     }
     
-    private func initDOBPickerView() {
-        let prevDate = Calendar.current.date(byAdding: .year, value: -14, to: Date()) ?? Date()
-        selectedDOB = prevDate
+    func initDatePicker(){
+        self.bodDatePicker.datePickerMode = .date
+        self.bodDatePicker.maximumDate = Date()
+        self.txtDOB.inputView = self.bodDatePicker
         
-        var dob : Date?
-        
-        txtDOB.type = .date
-        txtDOB.pickerDelegate = self
-        txtDOB.datePicker?.datePickerMode = .date
-        txtDOB.datePicker?.maximumDate = prevDate
-        txtDOB.dateFormatter.dateFormat = Theme.dateFormats.DOB_App
-        
-        let strDOB = LoginDataModel.currentUser?.DOB ?? ""
-        
-        if strDOB.count > 0 {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = Theme.dateFormats.DOB_App
-            dob = dateFormatter.date(from: strDOB)
-            selectedDOB = dob ?? Date()
+        if #available(iOS 14, *) {// Added condition for iOS 14
+            self.bodDatePicker.preferredDatePickerStyle  = .wheels
+            self.bodDatePicker.sizeToFit()
         }
         
+        let dateFormattor = DateFormatter()
+        self.bodDatePicker.addTarget(self, action: #selector(self.datePickerValueChanged(sender:)), for: .valueChanged)
+    }
+    
+    @objc func datePickerValueChanged(sender:UIDatePicker) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Theme.dateFormats.DOB_App
-        dateFormatter.timeZone = TimeZone.current
+        self.txtDOB.text = dateFormatter.string(from: sender.date)
+        let dob = dateFormatter.date(from: txtDOB.text ?? "")
+        selectedDOB = dob ?? Date()
         
-        if let DOB = dob {
-            txtDOB.text = dateFormatter.string(from: DOB)
-            txtDOB.datePicker?.date = DOB
-        } else {
-            txtDOB.text = dateFormatter.string(from: prevDate)
-            txtDOB.datePicker?.date = prevDate
-        }
+        
     }
     
     func setSelectedListItem(listType : ListItemType ,selectedItem : ListItem) {
@@ -397,6 +387,12 @@ extension PersonalDetailsVC : UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         for label in arrayErrorLabels {
             label.isHidden = true
+        }
+        
+        if self.txtDOB == textField, self.txtDOB.text!.trim.isEmpty{
+            let dateformattor = DateFormatter()
+            dateformattor.dateFormat = Theme.dateFormats.DOB_App
+            self.txtDOB.text = dateformattor.string(from: Date())
         }
     }
     
