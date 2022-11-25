@@ -155,6 +155,10 @@ class PersonalDetailsVC: BaseViewController {
             if self.vaccinated.trim.count == 0 {
                 vaccinated = userData.Vaccinated
             }
+            
+            if userData.DOB.trim.count  > 0 {
+                txtDOB.text = userData.DOB
+            }
         }
         
         setupData()
@@ -416,7 +420,19 @@ extension PersonalDetailsVC : UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return textField.resignFirstResponder()
+        if textField == self.txtDOB {
+            
+            self.txtStreet.becomeFirstResponder()
+            
+        } else if textField == self.txtStreet {
+            
+            self.txtPostCode.becomeFirstResponder()
+        }
+        else if textField == self.txtPostCode {
+            
+            textField.resignFirstResponder()
+        }
+        return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

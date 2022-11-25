@@ -288,8 +288,17 @@ extension ProfileVC : UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return textField.resignFirstResponder()
+        if textField == self.txtFName {
+            
+            self.txtLName.becomeFirstResponder()
+            
+        } else if textField == self.txtLName {
+            
+            textField.resignFirstResponder()
+        }
+        return true
     }
+
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         

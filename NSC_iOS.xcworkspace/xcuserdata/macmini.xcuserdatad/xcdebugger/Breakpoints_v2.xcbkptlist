@@ -8,7 +8,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "ABB568B7-9ED6-4A01-B4C8-F17DB64F95B0"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NSC_iOS/Models + ViewModels/Camp/CampListViewModel.swift"
@@ -24,7 +24,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "E8F1387E-1AB7-4671-9BEF-ABE38912A8B1"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NSC_iOS/Models + ViewModels/Camp/CampListViewModel.swift"
@@ -168,7 +168,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "3EBDB8E8-97F5-4689-A129-2FE3F3A4FE25"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NSC_iOS/Models + ViewModels/Camp/CampListViewModel.swift"
@@ -222,8 +222,8 @@
             filePath = "NSC_iOS/ViewControllers/ProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "328"
-            endingLineNumber = "328"
+            startingLineNumber = "337"
+            endingLineNumber = "337"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -238,8 +238,8 @@
             filePath = "NSC_iOS/ViewControllers/ProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "337"
-            endingLineNumber = "337"
+            startingLineNumber = "346"
+            endingLineNumber = "346"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -254,13 +254,13 @@
             filePath = "NSC_iOS/ViewControllers/ProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "332"
-            endingLineNumber = "332"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "B79787FD-A9AA-4811-8657-527FAE401900 - 4a2fac90c91f4c5b"
+                  uuid = "B79787FD-A9AA-4811-8657-527FAE401900 - 4a2fac90c91f4f72"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -270,12 +270,12 @@
                   urlString = "file:///Users/macmini/Desktop/QLTech_Projects/NSC_iOS/NSC_iOS/NSC_iOS/ViewControllers/ProfileVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "333"
-                  endingLineNumber = "333"
+                  startingLineNumber = "342"
+                  endingLineNumber = "342"
                   offsetFromSymbolStart = "1305">
                </Location>
                <Location
-                  uuid = "B79787FD-A9AA-4811-8657-527FAE401900 - 4a2fac90c91f4c5b"
+                  uuid = "B79787FD-A9AA-4811-8657-527FAE401900 - 4a2fac90c91f4f72"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -285,12 +285,12 @@
                   urlString = "file:///Users/macmini/Desktop/QLTech_Projects/NSC_iOS/NSC_iOS/NSC_iOS/ViewControllers/ProfileVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "333"
-                  endingLineNumber = "333"
+                  startingLineNumber = "342"
+                  endingLineNumber = "342"
                   offsetFromSymbolStart = "1339">
                </Location>
                <Location
-                  uuid = "B79787FD-A9AA-4811-8657-527FAE401900 - 4a2fac90c91f4c5b"
+                  uuid = "B79787FD-A9AA-4811-8657-527FAE401900 - 4a2fac90c91f4f72"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -300,8 +300,8 @@
                   urlString = "file:///Users/macmini/Desktop/QLTech_Projects/NSC_iOS/NSC_iOS/NSC_iOS/ViewControllers/ProfileVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "333"
-                  endingLineNumber = "333"
+                  startingLineNumber = "342"
+                  endingLineNumber = "342"
                   offsetFromSymbolStart = "1592">
                </Location>
             </Locations>
@@ -320,6 +320,22 @@
             startingLineNumber = "71"
             endingLineNumber = "71"
             landmarkName = "handleLoginUserRedirection()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B7FA35CC-E87A-47A8-93DB-463BA48B3D1A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NSC_iOS/ViewControllers/PersonalDetailsVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "setupInitialData()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

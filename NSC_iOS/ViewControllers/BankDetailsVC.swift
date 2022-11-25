@@ -238,7 +238,23 @@ extension BankDetailsVC : UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return textField.resignFirstResponder()
+        if textField == self.txtBankName {
+            
+            self.txtAccountNumber.becomeFirstResponder()
+            
+        } else if textField == self.txtAccountNumber {
+            
+            self.txtAccountName.becomeFirstResponder()
+        }
+        else if textField == self.txtAccountName {
+            
+            self.txtIFSCCode.becomeFirstResponder()
+        }
+        else if textField == self.txtIFSCCode {
+            
+            textField.resignFirstResponder()
+        }
+        return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
