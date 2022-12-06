@@ -13,6 +13,8 @@
 			</array>
 		</dict>
 	</array>
+	<key>Privacy - Camera Usage Description </key>
+	<string>Camera access is required to make full use of this app.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

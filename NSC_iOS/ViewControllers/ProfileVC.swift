@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import AVFoundation
 
 class ProfileVC: BaseViewController {
     
@@ -172,19 +173,10 @@ class ProfileVC: BaseViewController {
     
     //MARK:- IMAGE UPLOAD
     func handleImageOptions(buttonTitle : String) {
+        
         switch buttonTitle {
         case Theme.strings.take_a_photo:
-            DispatchQueue.main.async {
-                if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
-                    let picker = UIImagePickerController()
-                    picker.sourceType = .camera
-                    picker.delegate = self
-                    picker.allowsEditing = true
-                    self.present(picker, animated: true, completion: nil)
-                } else {
-                    showAlertToast(message: Theme.strings.alert_camera_not_available)
-                }
-            }
+            checkCameraAccess()
         case Theme.strings.choose_from_gallary:
             DispatchQueue.main.async {
                 let picker = UIImagePickerController()
@@ -199,7 +191,62 @@ class ProfileVC: BaseViewController {
         default:
             break
         }
+    }
+    
+    func checkCameraAccess() {
+        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
         
+        switch cameraAuthorizationStatus {
+        case .notDetermined:
+            requestCameraPermission()
+            
+        case .authorized:
+            presentCamera()
+            
+        case .restricted, .denied:
+            presentCameraSettings()
+        default:
+            break
+        }
+    }
+    
+    func requestCameraPermission() {
+        AVCaptureDevice.requestAccess(for: .video, completionHandler: {accessGranted in
+            guard accessGranted == true else { return }
+            self.presentCamera()
+        })
+    }
+    
+    func presentCamera() {
+        DispatchQueue.main.async {
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
+                let picker = UIImagePickerController()
+                picker.sourceType = .camera
+                picker.delegate = self
+                picker.allowsEditing = true
+                self.present(picker, animated: true, completion: nil)
+            } else {
+                showAlertToast(message: Theme.strings.alert_camera_not_available)
+            }
+        }
+    }
+
+    func presentCameraSettings() {
+        let settingsAppURL = URL(string: UIApplication.openSettingsURLString)!
+        
+        let alert = UIAlertController(
+            title: "Need Camera Access",
+            message: "Camera access is required to make full use of this app.",
+            preferredStyle: UIAlertController.Style.alert
+        )
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Settings", style: .cancel, handler: { (alert) -> Void in
+            UIApplication.shared.open(settingsAppURL, options: [:]
+                                      , completionHandler: nil)
+        }))
+        
+        present(alert, animated: true, completion: nil)
     }
     
     
