@@ -135,7 +135,12 @@ class LoginVC: BaseViewController {
             self.view.isUserInteractionEnabled = true
             
             if let error = error {
-                showAlertToast(message: error.localizedDescription)
+                if error.localizedDescription.contains(string: "The format of the phone number provided is incorrect.") {
+                    self.lblErrMobileNo.isHidden = false
+                    self.lblErrMobileNo.text = Theme.strings.alert_invalid_mobile_error
+                }else {
+                    showAlertToast(message: error.localizedDescription)
+                }
                 return
             }
             
