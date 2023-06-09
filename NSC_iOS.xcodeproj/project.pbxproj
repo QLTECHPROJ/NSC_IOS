@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		121D58192A24BD5C00DFAA89 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 121D58172A24BD5C00DFAA89 /* GoogleService-Info.plist */; };
+		121D581A2A24BD9800DFAA89 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28A9C41C2817B7CA001B252F /* Info.plist */; };
 		2804E39B2819846B00AF4A62 /* NSDate+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F8315A28197B0600CAF99C /* NSDate+Timepiece.swift */; };
 		2804E39C2819847400AF4A62 /* WWCalendarTimeSelector.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28F8315528197B0600CAF99C /* WWCalendarTimeSelector.storyboard */; };
 		2804E39D2819847D00AF4A62 /* Int+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F8315928197B0600CAF99C /* Int+Timepiece.swift */; };
@@ -73,7 +75,6 @@
 		282C337F2819617D009401FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28A9C4272817C09A001B252F /* LaunchScreen.storyboard */; };
 		282C33812819617D009401FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28A9C4172817B7CA001B252F /* Assets.xcassets */; };
 		282C33852819617D009401FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28A9C4112817B7C9001B252F /* Main.storyboard */; };
-		282C33932819645F009401FD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 282C339128196455009401FD /* GoogleService-Info.plist */; };
 		28300C3D282A600000695E7B /* PersonalDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28300C3C282A600000695E7B /* PersonalDetailViewModel.swift */; };
 		28300C3E282A600000695E7B /* PersonalDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28300C3C282A600000695E7B /* PersonalDetailViewModel.swift */; };
 		28300C43282A62DF00695E7B /* PersonalDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28300C42282A62DF00695E7B /* PersonalDetailModel.swift */; };
@@ -155,7 +156,6 @@
 		28AE7228282CDF3A000845D0 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AE7226282CDF3A000845D0 /* AppColors.swift */; };
 		28AE722A282CDFF5000845D0 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AE7229282CDFF5000845D0 /* AppFonts.swift */; };
 		28AE722B282CDFF5000845D0 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AE7229282CDFF5000845D0 /* AppFonts.swift */; };
-		28AEAB49281959D700325C90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28AEAB48281959D700325C90 /* GoogleService-Info.plist */; };
 		28C3807E282E922C00676EAF /* ApplyForCampVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C3807D282E922C00676EAF /* ApplyForCampVC.swift */; };
 		28C3807F282E922C00676EAF /* ApplyForCampVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C3807D282E922C00676EAF /* ApplyForCampVC.swift */; };
 		28C8DA282822B74F0048A172 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C8DA272822B74F0048A172 /* LoginViewModel.swift */; };
@@ -331,6 +331,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		121D58172A24BD5C00DFAA89 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		15FF71ED063A7E208A8A060D /* Pods-NSC_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSC_iOS.release.xcconfig"; path = "Target Support Files/Pods-NSC_iOS/Pods-NSC_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		280C1227283F9AA80034898A /* ApplyForCampCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyForCampCell.swift; sourceTree = "<group>"; };
 		280C1228283F9AA80034898A /* ApplyForCampCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplyForCampCell.xib; sourceTree = "<group>"; };
@@ -356,7 +357,6 @@
 		282ACD67282BB8FC005A8634 /* CampDetailDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampDetailDataModel.swift; sourceTree = "<group>"; };
 		282C338B2819617D009401FD /* NSC_iOS_Staging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSC_iOS_Staging.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		282C338F281962D1009401FD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		282C339128196455009401FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		28300C3C282A600000695E7B /* PersonalDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDetailViewModel.swift; sourceTree = "<group>"; };
 		28300C42282A62DF00695E7B /* PersonalDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDetailModel.swift; sourceTree = "<group>"; };
 		28470DAA281C0CC500FE9C66 /* AlertPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPopUpVC.swift; sourceTree = "<group>"; };
@@ -402,7 +402,6 @@
 		28AE7223282CDF0F000845D0 /* AppStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
 		28AE7226282CDF3A000845D0 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		28AE7229282CDFF5000845D0 /* AppFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
-		28AEAB48281959D700325C90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		28AEAB4B28195B1100325C90 /* NSC_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NSC_iOS.entitlements; sourceTree = "<group>"; };
 		28C3807D282E922C00676EAF /* ApplyForCampVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyForCampVC.swift; sourceTree = "<group>"; };
 		28C8DA272822B74F0048A172 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -569,7 +568,6 @@
 			children = (
 				281AAE4B281AA7800070D758 /* Constants.swift */,
 				28A9C41C2817B7CA001B252F /* Info.plist */,
-				28AEAB48281959D700325C90 /* GoogleService-Info.plist */,
 			);
 			path = Live;
 			sourceTree = "<group>";
@@ -578,8 +576,8 @@
 			isa = PBXGroup;
 			children = (
 				281AAE4E281AA7870070D758 /* Constants.swift */,
+				121D58172A24BD5C00DFAA89 /* GoogleService-Info.plist */,
 				282C338F281962D1009401FD /* Info.plist */,
-				282C339128196455009401FD /* GoogleService-Info.plist */,
 			);
 			path = Staging;
 			sourceTree = "<group>";
@@ -1145,7 +1143,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				280C122C283F9AA80034898A /* ApplyForCampCell.xib in Resources */,
-				282C33932819645F009401FD /* GoogleService-Info.plist in Resources */,
 				28515AA9282E81F4004C7229 /* ContactCell.xib in Resources */,
 				9A0F6F67281BA15F008CAA4B /* Poppins-Medium.otf in Resources */,
 				282C337B2819617D009401FD /* ListItemCell.xib in Resources */,
@@ -1162,6 +1159,7 @@
 				282C33812819617D009401FD /* Assets.xcassets in Resources */,
 				9A0F6F6B281BA15F008CAA4B /* receipt.ttf in Resources */,
 				9AD5EDA02824EC1400E0A11F /* UserListCell.xib in Resources */,
+				121D58192A24BD5C00DFAA89 /* GoogleService-Info.plist in Resources */,
 				28ABEDBE2833C6DD001C3911 /* TitleLabelCell.xib in Resources */,
 				2804E39C2819847400AF4A62 /* WWCalendarTimeSelector.storyboard in Resources */,
 				9A0F6F6D281BA15F008CAA4B /* Poppins-Bold.otf in Resources */,
@@ -1175,7 +1173,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				280C122B283F9AA80034898A /* ApplyForCampCell.xib in Resources */,
-				28AEAB49281959D700325C90 /* GoogleService-Info.plist in Resources */,
 				28515AA8282E81F4004C7229 /* ContactCell.xib in Resources */,
 				9A0F6F66281BA15F008CAA4B /* Poppins-Medium.otf in Resources */,
 				9AE8243F2817E25200A29373 /* ListItemCell.xib in Resources */,
@@ -1183,6 +1180,7 @@
 				9A53D4CE28192BE400226853 /* CampListCell.xib in Resources */,
 				2813A0172834EED300E6194D /* TransationsCell.xib in Resources */,
 				289B6A2D288934C80095FE32 /* NotificationListCell.xib in Resources */,
+				121D581A2A24BD9800DFAA89 /* Info.plist in Resources */,
 				28A9C4282817C09A001B252F /* LaunchScreen.storyboard in Resources */,
 				28A9C4182817B7CA001B252F /* Assets.xcassets in Resources */,
 				9A0F6F64281BA15F008CAA4B /* Poppins-Light.otf in Resources */,
@@ -1633,7 +1631,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = NPXK3VWXMU;
+				DEVELOPMENT_TEAM = MT25J55822;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/NSC_iOS/Supporting Files/Staging/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "NSC Coach Staging";
@@ -1653,7 +1651,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nsc.coach.staging;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nsc.coachapp.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1674,7 +1672,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = NPXK3VWXMU;
+				DEVELOPMENT_TEAM = MT25J55822;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/NSC_iOS/Supporting Files/Staging/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "NSC Coach Staging";
@@ -1694,7 +1692,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nsc.coach.staging;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nsc.coachapp.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1831,7 +1829,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = NPXK3VWXMU;
+				DEVELOPMENT_TEAM = MT25J55822;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/NSC_iOS/Supporting Files/Live/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "NSC Coach";
@@ -1850,7 +1848,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nsc.coach;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nsc.coachapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1871,7 +1869,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = NPXK3VWXMU;
+				DEVELOPMENT_TEAM = MT25J55822;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/NSC_iOS/Supporting Files/Live/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "NSC Coach";
@@ -1890,7 +1888,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nsc.coach;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nsc.coachapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

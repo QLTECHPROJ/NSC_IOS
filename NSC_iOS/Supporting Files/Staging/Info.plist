@@ -9,7 +9,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.171846986289-cqh4go9cu6qpv075bns5um4emp05mh0a</string>
+				<string>com.googleusercontent.apps.171846986289-msn1b2rdgm8h5i8q6p2h2s1p6mjnempb</string>
 			</array>
 		</dict>
 	</array>
@@ -17,6 +17,7 @@
 	<string>Camera access is required to make full use of this app.</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>fetch</string>
 		<string>remote-notification</string>
 	</array>
 </dict>
