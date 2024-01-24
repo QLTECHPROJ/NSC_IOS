@@ -133,13 +133,20 @@ extension UIView {
         }
     }
     
+    func applyBorderView(cornderRadius :CGFloat = 15, backgroundColor : UIColor = .white, borderColor : UIColor = .colorAppTxtFieldGray, borderWidth : CGFloat = 1.0){
+        self.layer.cornerRadius = cornderRadius
+        self.layer.borderColor = borderColor.cgColor
+        self.layer.borderWidth = borderWidth
+        self.backgroundColor = backgroundColor
+    }
+    
     // OUTPUT 1
-    func dropShadow() {
+    func dropShadow(shadowColor : UIColor = .colorAppTxtFieldGray.withAlphaComponent(0.5), shadowOffSet : CGSize = CGSize(width: 1, height: 1), shadowOpacity : Float = 1.0, shadowRadius : CGFloat = 3.0) {
         self.layer.masksToBounds = false
-        self.layer.shadowColor = UIColor.lightGray.cgColor
-        self.layer.shadowOpacity = 1.0
-        self.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        self.layer.shadowRadius = 3.0
+        self.layer.shadowColor = shadowColor.cgColor
+        self.layer.shadowOpacity = shadowOpacity
+        self.layer.shadowOffset = shadowOffSet
+        self.layer.shadowRadius = shadowRadius
     }
     
     // OUTPUT 2

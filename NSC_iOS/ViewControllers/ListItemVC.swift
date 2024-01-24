@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
 enum ListItemType : Int {
     case country = 0
@@ -13,55 +14,140 @@ enum ListItemType : Int {
     case city
     case sport
     case role
+    
 }
+
+class ListItemCell: UITableViewCell {
+    
+    // MARK: - OUTLETS
+    
+    @IBOutlet weak var lblTitle : UILabel!
+    
+    // MARK: - FUNCTIONS
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+        self.lblTitle.applyLabelStyle(fontSize: 12.0, fontName: .SFProDisplayMedium)
+    }
+    
+    func configureCell(data : ListItem, listType: ListItemType) {
+        
+        self.lblTitle.text = data.Name
+    }
+    
+}
+
 
 class ListItemVC: BaseViewController {
     
     // MARK: - OUTLETS
-    @IBOutlet weak var viewBackground: UIView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var txtSearch: UITextField!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var lblNoData: UILabel!
-    @IBOutlet weak var btnClear: UIButton!
     
     
     // MARK: - VARIABLES
+    
     var listType : ListItemType = .country
     var strID = ""
-    var strNoData = Theme.strings.alert_search_term_not_found
     
     var arrayItem = [ListItem]()
     var arrayItemSearch = [ListItem]()
-    var didSelectItem : ((ListItem) -> Void)?
+    
+    private var isAnimated = Bool()
+    private var emptyMessage : String = Theme.strings.alert_search_term_not_found
+    var completionBlock : ((ListItem?,Bool,ListItemType)->Void)?
+    
     
     
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupUI()
+        self.setUpView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let listDataVM = ListDataViewModel()
-        listDataVM.callItemListAPI(strID: self.strID, listType: self.listType) { success in
-            if success {
-                self.arrayItem = listDataVM.listItemData ?? [ListItem]()
-            }
-            self.setupData()
-        }
+        self.apiCallList()
     }
     
     
     // MARK: - FUNCTIONS
-    override func setupUI() {
-        btnClear.isHidden = true
-        lblNoData.isHidden = true
+    
+    private func setUpView(){
+        self.configureUI()
+        self.setData()
+    }
+    
+    private func configureUI(){
+        self.view.backgroundColor = .clear
+        self.view.alpha = 0
+        self.lblTitle.applyLabelStyle(text : "",fontSize: 14.0, fontName: .SFProDisplaySemibold)
+        self.txtSearch.applyStyleTextField(fontsize: 12.0, fontname: .SFProDisplayRegular)
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
         
+        self.txtSearch.addTarget(self, action: #selector(self.searchValueChanged(_:)), for: .allEditingEvents)
+
+    }
+    
+
+    @objc func searchValueChanged(_ sender : UITextField){
+        
+        self.arrayItemSearch = self.arrayItem.compactMap({ obj -> ListItem? in
+        
+            return JSON(obj.Name as Any).stringValue.lowercased().contains(string: JSON(sender.text as Any).stringValue.lowercased()) ? obj : nil
+        })
+        
+        if sender.text!.trim.isEmpty{
+            self.arrayItemSearch = self.arrayItem
+        }
+        
+        self.tableView.reloadData()
+        
+    }
+    
+    func openPopUpVisiable(){
+        UIView.animate(withDuration: 0.5, delay: 0.0) {
+            self.view.alpha = 1
+        }
+    }
+    
+    private func closePopUpVisiable(isCompletion : Bool = false, data : ListItem?){
+        
+        UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
+            
+            self.view.alpha = 0
+            
+        }, completion: { (finished: Bool) in
+            self.dismiss(animated: false) {
+                
+                if let _ = self.completionBlock, let _ = data{
+                    self.completionBlock!(data! ,isCompletion,self.listType)
+                }
+            }
+        })
+    }
+    
+    
+    func apiCallList() {
+       
+        let listDataVM = ListDataViewModel()
+        listDataVM.callItemListAPI(strID: self.strID, listType: self.listType) { success in
+            if success {
+                self.arrayItem = listDataVM.listItemData ?? [ListItem]()
+                self.arrayItemSearch = self.arrayItem
+            }
+            self.tableView.reloadData()
+        }
+   }
+    
+    private func setData() {
+       
         switch listType {
+            
         case .country:
             lblTitle.text = "Choose your country"
             txtSearch.placeholder = "Search for country"
@@ -78,88 +164,19 @@ class ListItemVC: BaseViewController {
             lblTitle.text = "Choose your role"
             txtSearch.placeholder = "Search for role"
         }
-        
-        if checkInternet(showToast: true) == false {
-            txtSearch.isUserInteractionEnabled = false
-            lblNoData.isHidden = true
-        } else {
-            txtSearch.isUserInteractionEnabled = true
-            lblNoData.isHidden = false
-            lblNoData.text = strNoData
-        }
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.viewTapped(_:)))
-        tapGesture.numberOfTapsRequired = 1
-        tapGesture.numberOfTouchesRequired = 1
-        viewBackground.addGestureRecognizer(tapGesture)
-        viewBackground.isUserInteractionEnabled = true
-        
-        tableView.register(nibWithCellClass: ListItemCell.self)
-        tableView.reloadData()
-        
-        txtSearch.addTarget(self, action: #selector(textFieldValueChanged(textField:)), for: UIControl.Event.editingChanged)
     }
+
     
-    override func setupData() {
-        arrayItemSearch = arrayItem
-        tableView.reloadData()
-        lblNoData.isHidden = arrayItemSearch.count != 0
-        tableView.isHidden = arrayItemSearch.count == 0
-    }
-    
-    @objc func textFieldValueChanged(textField : UITextField ) {
-        btnClear.isHidden = textField.text?.count == 0
-    }
-    
-    @objc func viewTapped(_ sender: UITapGestureRecognizer) {
-        self.dismiss(animated: true, completion: nil)
-    }
     
     
     // MARK: - ACTIONS
-    @IBAction func clearSearchClicked(_ sender: UIButton) {
-        txtSearch.text = ""
-        arrayItemSearch = arrayItem
-        btnClear.isHidden = true
-        lblNoData.isHidden = true
-        tableView.isHidden = false
-        tableView.reloadData()
+    @IBAction func btnDismissTapped( _ sender : UIButton){
+        self.closePopUpVisiable(data: nil)
     }
     
 }
 
 
-// MARK: - UITextFieldDelegate
-extension ListItemVC : UITextFieldDelegate {
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        if let text = textField.text,
-            let textRange = Range(range, in: text) {
-            let updatedText = text.replacingCharacters(in: textRange, with: string).trim
-            arrayItemSearch = arrayItem.filter({ (model:ListItem) -> Bool in
-                return model.Name.lowercased().contains(updatedText.lowercased())
-            })
-            
-            if updatedText.trim.count == 0 {
-                arrayItemSearch = arrayItem
-            }
-            
-            if arrayItemSearch.count > 0 {
-                lblNoData.isHidden = true
-            } else {
-                lblNoData.isHidden = false
-                lblNoData.text = strNoData // "Couldn't find " + updatedText + " Try searching again"
-            }
-            lblNoData.isHidden = arrayItemSearch.count != 0
-            tableView.isHidden = arrayItemSearch.count == 0
-            tableView.reloadData()
-        }
-        
-        return true
-    }
-    
-}
 
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -171,17 +188,32 @@ extension ListItemVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withClass: ListItemCell.self)
-        cell.configureCell(data: arrayItemSearch[indexPath.row])
+        cell.configureCell(data: arrayItemSearch[indexPath.row], listType: self.listType)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        didSelectItem?(arrayItemSearch[indexPath.row])
-        self.dismiss(animated: true, completion: nil)
+        self.closePopUpVisiable(isCompletion : false, data: self.arrayItemSearch[indexPath.row])
+    }
+}
+
+//-------------------------------------------------------------------
+//MARK: - Empty TableView Methods
+//-------------------------------------------------------------------
+extension ListItemVC : DZNEmptyDataSetDelegate, DZNEmptyDataSetSource{
+    
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
+        return true
     }
     
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString {
+        
+        let text = self.emptyMessage
+        let attributes = [NSAttributedString.Key.font: UIFont.applyCustomFont(fontName: .SFProDisplayRegular, fontSize: 13.0), NSAttributedString.Key.foregroundColor: UIColor.colorAppTextBlack]
+        return NSAttributedString(string: text, attributes: attributes)
+    }
 }

@@ -7,17 +7,28 @@
 
 import UIKit
 
-class ProfileStatusVC: BaseViewController {
+enum ProfileStatus{
+    case Pending
+    case Approved
+    case Rejected
+    case Hired
+}
+
+class ProfileStatusVC: ClearNaviagtionBarVC {
     
     // MARK: - OUTLETS
     @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblStatus: UILabel!
+    
     @IBOutlet weak var lblSubTitle: UILabel!
     
     @IBOutlet weak var imgViewStatus: UIImageView!
     
-    @IBOutlet weak var btnContinue: UIButton!
-    @IBOutlet weak var btnRefer: UIButton!
+    @IBOutlet weak var btnStatus: UIButton!
+    @IBOutlet weak var btnContinue: AppThemeButton!
+    @IBOutlet weak var btnRefer: AppThemeBorderButton!
+    @IBOutlet weak var btnRefresh : AppThemeBorderButton!
+    
+    @IBOutlet weak var scrollView : UIScrollView!
     
     
     // MARK: - VARIABLES
@@ -29,62 +40,92 @@ class ProfileStatusVC: BaseViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        setupUI()
-        fetchCoachSatusData()
+        self.setUpView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+    }
     
     // MARK: - FUNCTIONS
-    override func setupUI() {
-        lblName.text = "Hello, \(LoginDataModel.currentUser?.Name ?? "")"
+    
+    private func setUpView(){
+        self.configureUI()
+        self.fetchCoachSatusData()
+    }
+    
+    private func configureUI(){
         
-        let stringAttributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.foregroundColor: Theme.colors.theme_dark,
-            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
-        ]
+        self.scrollView.alpha = 0
         
-        let strTitle = "Refer a Coach"
-        let titleRange = (strTitle as NSString).range(of: strTitle)
+        self.title = kProgressTracker
         
-        let attributedString = NSMutableAttributedString.getAttributedString(fromString: strTitle)
-        attributedString.addAttributes(stringAttributes, range: titleRange)
-        btnRefer.setAttributedTitle(attributedString, for: .normal)
+        self.imgViewStatus.layer.cornerRadius = 15.0
         
-        lblStatus.text = ""
+        self.lblName.applyLabelStyle(fontSize : 18.0,fontName : .SFProDisplayBold)
+        self.lblSubTitle.applyLabelStyle(fontSize : 12.0,fontName : .SFProDisplayRegular,textColor: .colorAppTxtFieldGray)
+        
+        self.btnContinue.setTitle(kContinue, for: .normal)
+        self.btnRefresh.setTitle(kRefresh, for: .normal)
+        self.btnRefer.setTitle(kReferACoach, for: .normal)
+        self.btnStatus.applystyle(fontname: .SFProDisplaySemibold, fontsize: 12.0)
+        
+        lblName.text = "\(kHello), \(LoginDataModel.currentUser?.Name ?? "")"
+        
+        self.btnStatus.setTitle("", for: .normal)
         lblSubTitle.text = ""
-        imgViewStatus.isHidden = true
+
         
         DispatchQueue.main.async {
-            self.btnContinue.isUserInteractionEnabled = false
-            self.btnContinue.backgroundColor = Theme.colors.gray_7E7E7E
+            
+            self.btnContinue.isSelect = false
         }
     }
     
-    override func setupData() {
-        lblName.text = "Hello, \(LoginDataModel.currentUser?.Name ?? "")"
+    private func setUpData(){
+        self.lblName.text = "\(kHello), \(LoginDataModel.currentUser?.Name ?? "")"
         
         guard let statusData = coachStatusVM?.coachStatusData else {
             return
         }
+    
+        self.btnStatus.setTitle(JSON(statusData.Title as Any).stringValue, for: .normal)
         
-        lblStatus.text = statusData.Title
-        lblSubTitle.attributedText = statusData.SubTitle.attributedString(alignment: .center, lineSpacing: 5)
+        self.lblSubTitle.text = statusData.SubTitle
         
         if statusData.Status == CoachStatus.Pending.rawValue || statusData.Status == CoachStatus.Rejected.rawValue {
-            imgViewStatus.isHidden = true
-            btnContinue.isUserInteractionEnabled = false
-            btnContinue.backgroundColor = Theme.colors.gray_7E7E7E
+        
+            self.btnContinue.isSelect = false
         } else {
-            imgViewStatus.isHidden = false
-            btnContinue.isUserInteractionEnabled = true
-            btnContinue.backgroundColor = Theme.colors.theme_dark
+    
+            self.btnContinue.isSelect = true
+        }
+        
+        if statusData.Status == CoachStatus.Pending.rawValue{
+            
+            self.btnStatus.setImage(LoginDataModel.currentUser?.setProfileStatus(update: .Pending).statusImage, for: .normal)
+        }
+        else if statusData.Status == CoachStatus.Rejected.rawValue{
+            
+            self.btnStatus.setImage(LoginDataModel.currentUser?.setProfileStatus(update: .Rejected).statusImage, for: .normal)
+        }
+        else if statusData.Status == CoachStatus.Approved.rawValue{
+            
+            self.btnStatus.setImage(LoginDataModel.currentUser?.setProfileStatus(update: .Approved).statusImage, for: .normal)
+        }
+        
+        self.btnStatus.setContentEdges(titleEngesLeft: 10)
+        
+        UIView.animate(withDuration: 1) {
+            self.scrollView.alpha = 1
         }
     }
-    
+
     func fetchCoachSatusData() {
         coachStatusVM = CoachStatusViewModel()
         coachStatusVM?.callCoachStatusAPI(completion: { success in
-            self.setupData()
+            self.setUpData()
         })
     }
     

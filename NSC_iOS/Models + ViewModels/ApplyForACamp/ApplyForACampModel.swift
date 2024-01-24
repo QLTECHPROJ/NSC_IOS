@@ -26,6 +26,7 @@ class ApplyCampModel: EVObject {
     var CampDates = ""
     var Address = ""
     var Venue = ""
+    var CampImage = ""
     var Selected = ""
 }
 

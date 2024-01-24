@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SDWebImage
 import AVFoundation
 
 class ProfileVC: BaseViewController {
@@ -89,7 +88,7 @@ class ProfileVC: BaseViewController {
             txtLName.text = userData.Lname
             txtFEmailAdd.text = userData.Email
             
-            imgUser.loadUserProfileImage(fontSize: 50)
+//            imgUser.loadUserProfileImage(fontSize: 50)
             strImage = userData.Profile_Image
             lblName.text = userData.Name
         }
@@ -226,7 +225,8 @@ class ProfileVC: BaseViewController {
                 picker.allowsEditing = true
                 self.present(picker, animated: true, completion: nil)
             } else {
-                showAlertToast(message: Theme.strings.alert_camera_not_available)
+            
+                GFunctions.shared.showSnackBar(message: Theme.strings.alert_camera_not_available)
             }
         }
     }
@@ -291,9 +291,6 @@ class ProfileVC: BaseViewController {
         
         self.view.endEditing(true)
         let arrayTitles = [Theme.strings.take_a_photo, Theme.strings.choose_from_gallary]
-        //        if let imageStr = LoginDataModel.currentUser?.Profile_Image, imageStr.trim.count > 0 {
-        //            arrayTitles.append(Theme.strings.remove_photo)
-        //        }
         
         showActionSheet(title: "", message: Theme.strings.profile_image_options, titles: arrayTitles, cancelButtonTitle: Theme.strings.cancel_small) { (buttonTitle) in
             DispatchQueue.main.async {
@@ -306,15 +303,7 @@ class ProfileVC: BaseViewController {
         if checkInternet(showToast: true) == false {
             return
         }
-        
-        let aVC = AppStoryBoard.main.viewController(viewControllerClass: AlertPopUpVC.self)
-        aVC.titleText = Theme.strings.deleteCoach
-        aVC.detailText = Theme.strings.delete_user_alert_title
-        aVC.firstButtonTitle = Theme.strings.ok
-        aVC.secondButtonTitle = Theme.strings.close
-        aVC.modalPresentationStyle = .overFullScreen
-        aVC.delegate = self
-        self.present(aVC, animated: false, completion: nil)
+
         
     }
     
@@ -402,23 +391,3 @@ extension ProfileVC : UIImagePickerControllerDelegate, UINavigationControllerDel
     }
     
 }
-// MARK: - AlertPopUpVCDelegate
-extension ProfileVC : AlertPopUpVCDelegate {
-    
-    func handleAction(sender: UIButton, popUpTag: Int) {
-        if sender.tag == 0 {
-            if checkInternet(showToast: true) == false {
-                return
-            }
-            
-            let deleteCoachVM = DeleteCoachViewModel()
-            deleteCoachVM.callDeleteCoachAPI(completion: { success in
-                APPDELEGATE.logout()
-            })
-            
-        }
-    }
-    
-}
-
-

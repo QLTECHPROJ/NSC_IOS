@@ -7,19 +7,21 @@
 
 import UIKit
 
-class ReferVC: BaseViewController {
+class ReferVC: ClearNaviagtionBarVC {
     
     // MARK: - OUTLETS
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblSubTitle: UILabel!
     @IBOutlet weak var lblReferralCode: UILabel!
     
-    @IBOutlet weak var btnRefer: UIButton!
-    @IBOutlet weak var viewRefer: UIView!
+    @IBOutlet weak var btnRefer: AppThemeButton!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     
     
     // MARK: - VARIABLES
-    var referDataVM : ReferDataViewModel?
+
+    var referDataVM = ReferDataViewModel()
     var referCode = ""
     var referLink = ""
     
@@ -29,44 +31,57 @@ class ReferVC: BaseViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        referCode = LoginDataModel.currentUser?.Refer_Code ?? ""
-        referLink = LoginDataModel.currentUser?.referLink ?? ""
-        
-        setupUI()
-        fetchReferData()
+        self.setUpView()
     }
     
     
     // MARK: - FUNCTIONS
-    override func setupUI() {
-        if let referDetail = referDataVM?.referDetail {
-            referCode = referDetail.ReferCode
-            referLink = referDetail.ReferLink
-            
-            lblTitle.text = referDetail.Title
-            lblSubTitle.attributedText = referDetail.Subtitle.attributedString(alignment: .center, lineSpacing: 5)
-        }
+    private func setUpView(){
+        self.configureUI()
         
-        lblReferralCode.text = referCode
+        self.apiCallReferData()
+    }
+    
+    private func configureUI(){
+        self.scrollView.alpha = 0
+        self.title = kReferACoach
+        self.lblTitle.applyLabelStyle(fontSize: 18.0, fontName: .SFProDisplaySemibold)
+        self.lblSubTitle.applyLabelStyle(fontSize: 12.0, fontName: .SFProDisplayRegular, textColor: .colorAppTxtFieldGray)
+        self.lblReferralCode.applyLabelStyle(fontSize: 13.0, fontName: .SFProDisplayBold, textColor: .colorAppThemeOrange)
         
-        if referCode.trim.count > 0 && referLink.trim.count > 0 {
-            btnRefer.isUserInteractionEnabled = true
-            btnRefer.backgroundColor = Theme.colors.theme_dark
+        self.btnRefer.setTitle(kReferACoach, for: .normal)
+        
+        self.referCode = LoginDataModel.currentUser?.Refer_Code ?? ""
+        self.referLink = LoginDataModel.currentUser?.referLink ?? ""
+    }
+    
+    private func setReferData(_ data : JSON) {
+        
+        debugPrint(data)
+        
+        self.referCode = data["ReferCode"].stringValue
+        self.referLink = data["ReferLink"].stringValue
+        
+        self.lblReferralCode.text = data["ReferCode"].stringValue
+        
+        self.lblTitle.attributedText = data["Title"].stringValue.attributedString(alignment: .center, lineSpacing: 5)
+        self.lblSubTitle.attributedText = data["Subtitle"].stringValue.attributedString(alignment: .center, lineSpacing: 5)
+        
+
+        if self.referCode.trim.count > 0 && self.referLink.trim.count > 0 {
+        
+            self.btnRefer.isSelect = true
+        
         } else {
-            btnRefer.isUserInteractionEnabled = false
-            btnRefer.backgroundColor = Theme.colors.gray_7E7E7E
+            
+            self.btnRefer.isSelect = false
         }
         
-        viewRefer.addDashedBorder()
+        UIView.animate(withDuration: 1) {
+            self.scrollView.alpha = 1
+        }
     }
-    
-    func fetchReferData() {
-        referDataVM = ReferDataViewModel()
-        referDataVM?.callReferDataAPI(completion: { success in
-            self.setupUI()
-        })
-    }
-    
+
     
     // MARK: - ACTION
     @IBAction func backClicked(_ sender: UIButton) {
@@ -75,18 +90,21 @@ class ReferVC: BaseViewController {
     
     @IBAction func copyCodeClicked(_ sender: UIButton) {
         if referCode.trim.count == 0 {
-            showAlertToast(message: "Not available at the moment. Please contact support.")
+        
+            GFunctions.shared.showSnackBar(message: kNotAvailableReferAtMoment)
             return
         }
         
         let pasteboard = UIPasteboard.general
         pasteboard.string = referCode
-        showAlertToast(message: Theme.strings.alert_promo_code_copied)
+        
+        GFunctions.shared.showSnackBar(message: Theme.strings.alert_promo_code_copied)
     }
     
     @IBAction func referClicked(_ sender: UIButton) {
         if referCode.trim.count == 0 || referLink.trim.count == 0 {
-            showAlertToast(message: "Not available at the moment. Please contact support.")
+    
+            GFunctions.shared.showSnackBar(message: kNotAvailableReferAtMoment)
             return
         }
         
@@ -96,4 +114,19 @@ class ReferVC: BaseViewController {
         self.navigationController?.pushViewController(aVC, animated: true)
     }
     
+}
+
+//--------------------------------------------------------------------------------
+// MARK: - API Calling Methods
+//--------------------------------------------------------------------------------
+extension ReferVC{
+    
+    private func apiCallReferData(){
+        
+        self.referDataVM.callReferDataAPI(completionBlock: { responseJson, statusCode , message , completion in
+            if completion, let data = responseJson{
+                self.setReferData(data["ResponseData"])
+            }
+        })
+    }
 }

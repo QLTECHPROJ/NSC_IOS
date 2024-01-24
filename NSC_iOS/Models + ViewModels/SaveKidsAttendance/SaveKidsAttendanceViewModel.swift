@@ -17,7 +17,8 @@ class SaveKidsAttendanceViewModel {
         
         APIManager.shared.callAPI(router: APIRouter.kidsattendancesave(parameters)) { (response : LogoutModel?) in
             if response?.ResponseCode == "200" {
-                showAlertToast(message: response?.ResponseMessage ?? "")
+                
+                GFunctions.shared.showSnackBar(message: JSON(response?.ResponseMessage as Any).stringValue)
                 completion(true)
             } else {
                 completion(false)

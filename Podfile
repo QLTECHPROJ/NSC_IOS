@@ -17,6 +17,8 @@ def shared_pods
   pod 'Firebase/Crashlytics'
   pod 'Firebase/Messaging'
   pod 'Firebase/Auth'
+  pod 'SwiftyJSON'
+  pod 'DZNEmptyDataSet'
   
 end
 

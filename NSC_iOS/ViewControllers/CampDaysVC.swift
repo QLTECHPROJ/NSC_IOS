@@ -98,11 +98,9 @@ extension CampDaysVC: UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if arrayDays[indexPath.row].currentDay == "1" {
+            
             let aVC = AppStoryBoard.main.viewController(viewControllerClass:KidsAttendanceVC.self)
             aVC.campID = self.campID
-            aVC.campName = self.campName
-            aVC.dayID = arrayDays[indexPath.row].dayId
-            aVC.dayshift = arrayDays[indexPath.row].dayshift
             self.navigationController?.pushViewController(aVC, animated: true)
         }
     }

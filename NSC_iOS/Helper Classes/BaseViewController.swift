@@ -74,12 +74,18 @@ class BaseViewController: UIViewController {
         } else if userData.BankDetailFilled == "0" {
             let aVC = AppStoryBoard.main.viewController(viewControllerClass: BankDetailsVC.self)
             self.navigationController?.pushViewController(aVC, animated: true)
+            
         } else if userData.Status == CoachStatus.Pending.rawValue || userData.Status == CoachStatus.Rejected.rawValue {
-            let aVC = AppStoryBoard.main.viewController(viewControllerClass: CampListVC.self)
+            
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass: ProfileStatusVC.self)
             self.navigationController?.pushViewController(aVC, animated: true)
         } else {
-            let aVC = AppStoryBoard.main.viewController(viewControllerClass: CampListVC.self)
-            aVC.makeRootController()
+//            let aVC = AppStoryBoard.main.viewController(viewControllerClass: CampListVC.self)
+//            aVC.makeRootController()
+//
+            let homeNav = AUTHENTICATION.instantiateViewController(withIdentifier: "navHome") as! UINavigationController
+            UIApplication.shared.windows.first?.rootViewController = homeNav
+            UIApplication.shared.windows.first?.makeKeyAndVisible()
         }
     }
     
@@ -127,7 +133,7 @@ class BaseViewController: UIViewController {
         let fullAttributedString = NSAttributedString(string:string, attributes: [
             NSAttributedString.Key.paragraphStyle: paragraphStyle,
             NSAttributedString.Key.foregroundColor: Theme.colors.gray_999999.cgColor,
-            NSAttributedString.Key.font: Theme.fonts.appFont(ofSize: 12, weight: .regular),
+            NSAttributedString.Key.font: UIFont.applyCustomFont(fontName: .SFProDisplayRegular, fontSize: 12.0),
         ])
         
         lblSupport.textAlignment = .center
@@ -171,7 +177,7 @@ class BaseViewController: UIViewController {
         let fullAttributedString = NSAttributedString(string:string, attributes: [
             NSAttributedString.Key.paragraphStyle: paragraphStyle,
             NSAttributedString.Key.foregroundColor: Theme.colors.gray_999999.cgColor,
-            NSAttributedString.Key.font: Theme.fonts.appFont(ofSize: 12, weight: .regular),
+            NSAttributedString.Key.font: UIFont.applyCustomFont(fontName: .SFProDisplayRegular, fontSize: 12.0)
         ])
         
         lblPrivacy.textAlignment = .center

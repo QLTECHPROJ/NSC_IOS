@@ -32,7 +32,8 @@ class ListDataViewModel {
         }
         
         guard let apiRequest = apiRequest else {
-            showAlertToast(message: Theme.strings.alert_something_went_wrong)
+            
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_something_went_wrong)
             return
         }
         

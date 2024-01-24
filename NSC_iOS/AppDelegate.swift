@@ -9,6 +9,8 @@ import UIKit
 import CoreData
 import Firebase
 import IQKeyboardManagerSwift
+@_exported import SDWebImage
+@_exported import SwiftyJSON
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set App Notification Count to "0" on App Launch
         UIApplication.shared.applicationIconBadgeNumber = 0
         
+        
+        UITextField.appearance().tintColor = .colorAppThemeOrange
+        APIURL.shared.baseUrlType = .staging
+        
         // IQKeyboardManager Setup
         IQKeyboardManager.shared.enable = true
         
@@ -33,20 +39,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self // Firebase Cloud Messaging
         
-        // UIFont setup for
-        UIFont.overrideInitialize()
+        // UIFont setup font
         
         window?.makeKeyAndVisible()
         window?.rootViewController = AppStoryBoard.main.intialViewController()
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
+            
+            if let userInfo = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [AnyHashable:Any] {
+                
+                //                GFunctions.shared.showSnackBar(message: "didFinishLaunchingWithOptions Payload :- \(userInfo)")
+                
+                self.handlePushNotification(userInfo: userInfo as NSDictionary )
+            }
+        }
+        
         return true
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        let appVersionVM = AppVersionViewModel()
+        appVersionVM.callAppVersionAPI(completion: { success in
+            if success {
+               
+            }
+        })
     }
     
     func logout() {
         LoginDataModel.currentUser = nil
         
-        let aVC = AppStoryBoard.main.viewController(viewControllerClass: LoginVC.self)
-        aVC.makeRootController()
+        let loginNav = AUTHENTICATION.instantiateViewController(withIdentifier: "navLogin") as! UINavigationController
+        UIApplication.shared.windows.first?.rootViewController = loginNav
+        UIApplication.shared.windows.first?.makeKeyAndVisible()
     }
     
     func openPushNotificationPermissionAlert() {
@@ -159,11 +184,16 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+      
+        UIApplication.shared.applicationIconBadgeNumber = 1
+        UIApplication.shared.applicationIconBadgeNumber = 0
         
         let userInfo = response.notification.request.content.userInfo
-        print("Notification Payload :- ",userInfo)
+      
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.handlePushNotification(userInfo: userInfo as NSDictionary)
+        }
     }
-    
 }
 
 extension AppDelegate : MessagingDelegate {
@@ -193,3 +223,57 @@ extension AppDelegate {
     }
     
 }
+
+//------------------------------------------------------------------------------------------------
+//MARK: - Custome Push Handling Funs
+//------------------------------------------------------------------------------------------------
+extension AppDelegate{
+    
+    //*** All Push Handling Methods ***//
+    
+    @objc func handlePushNotification(userInfo: NSDictionary) {
+        
+        guard let topVC = UIApplication.topViewController() else{
+            
+            return
+        }
+    
+        guard  let flag = userInfo["flag"] as? String else {return}
+        
+        if flag == NotificationTags.earning.rawValue{
+            
+            if let vc = topVC as? EarningVC{
+                
+                vc.apiCallMyEarning()
+            }
+            else{
+                
+                let aVC = AppStoryBoard.main.viewController(viewControllerClass:EarningVC.self)
+                UIApplication.topViewController()?.navigationController?.pushViewController(aVC, animated: true)
+            }
+        }
+        else if flag == NotificationTags.swapGroup.rawValue{
+            if let vc = topVC as? KidsAttendanceVC{
+                vc.apiCallShowKidsAttendanceAPI()
+            }
+            else{
+                
+                let aVC = AppStoryBoard.main.viewController(viewControllerClass:KidsAttendanceVC.self)
+                aVC.campID = (userInfo["id"] as? String) ?? ""
+                UIApplication.topViewController()?.navigationController?.pushViewController(aVC, animated: true)
+            }
+        }
+        else if flag == NotificationTags.kidCheckIn.rawValue{
+            
+            if let vc = topVC as? KidsAttendanceVC{
+                vc.apiCallShowKidsAttendanceAPI()
+            }
+            else{
+                let aVC = AppStoryBoard.main.viewController(viewControllerClass:KidsAttendanceVC.self)
+                aVC.campID = (userInfo["id"] as? String) ?? ""
+                UIApplication.topViewController()?.navigationController?.pushViewController(aVC, animated: true)
+            }
+        }
+    }
+}
+

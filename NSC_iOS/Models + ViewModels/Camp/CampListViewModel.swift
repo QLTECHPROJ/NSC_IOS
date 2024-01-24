@@ -13,10 +13,10 @@ class CampListViewModel {
     var arrayCurrentCampList = [CampDetailModel]()
     var arrayUpcomingCampList = [CampDetailModel]()
     
-    func callCampListAPI(completion: @escaping (Bool) -> Void) {
+    func callCampListAPI(isLoader : Bool = false ,completion: @escaping (Bool) -> Void) {
         let parameters = ["coachId":LoginDataModel.currentUser?.ID ?? ""]
         
-        APIManager.shared.callAPI(router: APIRouter.camplisting(parameters)) { [weak self] (response : CampListModel?) in
+        APIManager.shared.callAPI(router: APIRouter.camplisting(parameters),displayHud: isLoader,showToast: false) { [weak self] (response : CampListModel?) in
             if response?.ResponseCode == "200", let responseData = response?.ResponseData {
                 self?.BannerImage = responseData.BannerImage
                 self?.arrayCurrentCampList = responseData.current

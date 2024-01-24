@@ -119,7 +119,7 @@ enum APIRouter : URLRequestConvertible {
     
     func asURLRequest() throws -> URLRequest {
         let route = self.route
-        let url = URL(string: API_BASE_URL)!
+        let url = URL(string: APIURL.shared.getBaseUrl())!
         var mutableURLRequest = URLRequest(url: url.appendingPathComponent(route.path))
         mutableURLRequest.httpMethod = route.method.rawValue
         
@@ -129,7 +129,7 @@ enum APIRouter : URLRequestConvertible {
         mutableURLRequest.setValue(DEVICE_UUID, forHTTPHeaderField: "Yaccess")
         
         print("API Parameters :- ", route.data ?? "")
-        print("API Path :- ", API_BASE_URL + route.path)
+        print("API Path :- ", APIURL.shared.getBaseUrl() + route.path)
         
         if let data = route.data {
             if route.method == .get {

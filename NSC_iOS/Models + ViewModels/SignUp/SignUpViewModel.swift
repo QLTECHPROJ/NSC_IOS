@@ -18,9 +18,7 @@ class SignUpViewModel {
                 
                 LoginDataModel.currentUser = responseData
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    showAlertToast(message: Theme.strings.welcome_message)
-                }
+                
                 
                 completion(true)
             } else {

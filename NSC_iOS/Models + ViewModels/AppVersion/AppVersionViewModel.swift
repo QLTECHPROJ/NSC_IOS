@@ -25,6 +25,10 @@ class AppVersionViewModel {
                 
                 AppVersionDetails.current = responseData
                 
+                let notiObj : JSON = [
+                    "isDone" : true
+                ]
+                NotificationCenter.default.post(name: NSNotification.Name.appVersionDetails, object: notiObj)
                 completion(true)
             } else {
                 completion(false)

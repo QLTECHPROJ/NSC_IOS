@@ -40,6 +40,26 @@ extension LoginDataModel {
         }
     }
     
+    func setProfileStatus(update withStatus : ProfileStatus)->(status : ProfileStatus, statusImage : UIImage){
+        
+        switch withStatus{
+            
+        case .Hired :
+            
+            return (status : withStatus, statusImage : UIImage(named: "statusHired")!)
+            
+        case .Approved :
+            
+            return (status : withStatus, statusImage : UIImage(named: "statusApproved")!)
+            
+        case .Rejected :
+            
+            return (status : withStatus, statusImage : UIImage(named: "statusRejected")!)
+            
+        default :
+            return (status : withStatus, statusImage : UIImage(named: "statusPending")!)
+        }
+    }
 }
 
 
@@ -59,6 +79,7 @@ class AppVersionDetails {
     static var postCodeMaxDigits = Int(AppVersionDetails.current.postCodeMaxDigits) ?? 6
     
     static var currencySign = AppVersionDetails.current.currencySign
+    static var countryIcon = AppVersionDetails.current.countryIcon
     
     class func defaultDetails() -> AppVersionDetailModel {
         let details = AppVersionDetailModel()
@@ -75,6 +96,7 @@ class AppVersionDetails {
         details.postCodeMaxDigits = "6"
         
         details.currencySign = "₹"
+        details.countryIcon = ""
         
         return details
     }

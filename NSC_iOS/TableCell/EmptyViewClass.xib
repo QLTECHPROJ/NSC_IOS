@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="ZH5-nM-uZf" customClass="EmptyViewClass" customModule="NSC_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="25D-3M-Rxn">
+                    <rect key="frame" x="25" y="395.5" width="364" height="105.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="py8-4C-SVu">
+                            <rect key="frame" x="0.0" y="0.0" width="364" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bY5-uU-Oqu">
+                            <rect key="frame" x="0.0" y="40.5" width="364" height="65"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o6T-0R-nGb" customClass="AppThemeBorderButton" customModule="NSC_iOS" customModuleProvider="target">
+                                    <rect key="frame" x="40" y="5" width="284" height="55"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="o6T-0R-nGb" secondAttribute="height" multiplier="284:55" id="jPH-65-rqF"/>
+                                    </constraints>
+                                    <state key="normal" title="Create New Plan">
+                                        <color key="titleColor" name="ColorOrange"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="btnActionTapped:" destination="ZH5-nM-uZf" eventType="touchUpInside" id="LDM-Y7-D40"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="o6T-0R-nGb" secondAttribute="trailing" constant="40" id="AHi-s2-Drr"/>
+                                <constraint firstAttribute="bottom" secondItem="o6T-0R-nGb" secondAttribute="bottom" constant="5" id="Wdj-GP-Ro0"/>
+                                <constraint firstItem="o6T-0R-nGb" firstAttribute="top" secondItem="bY5-uU-Oqu" secondAttribute="top" constant="5" id="jNE-I0-fH5"/>
+                                <constraint firstItem="o6T-0R-nGb" firstAttribute="leading" secondItem="bY5-uU-Oqu" secondAttribute="leading" constant="40" id="kSN-qP-3QL"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="yWC-sz-n2V"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="25D-3M-Rxn" firstAttribute="leading" secondItem="yWC-sz-n2V" secondAttribute="leading" constant="25" id="MJr-xe-69O"/>
+                <constraint firstItem="yWC-sz-n2V" firstAttribute="trailing" secondItem="25D-3M-Rxn" secondAttribute="trailing" constant="25" id="Xz4-LD-J7u"/>
+                <constraint firstItem="25D-3M-Rxn" firstAttribute="centerX" secondItem="ZH5-nM-uZf" secondAttribute="centerX" id="bnN-2Q-ahB"/>
+                <constraint firstItem="25D-3M-Rxn" firstAttribute="centerY" secondItem="ZH5-nM-uZf" secondAttribute="centerY" id="oGp-e5-75c"/>
+            </constraints>
+            <connections>
+                <outlet property="btnActionButton" destination="o6T-0R-nGb" id="Z9c-hr-cjc"/>
+                <outlet property="lblEmptyViewTitle" destination="py8-4C-SVu" id="An5-UP-Nvu"/>
+            </connections>
+            <point key="canvasLocation" x="1223" y="-643"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="ColorOrange">
+            <color red="0.99607843137254903" green="0.59215686274509804" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

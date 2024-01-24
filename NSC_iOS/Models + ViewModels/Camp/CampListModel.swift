@@ -21,6 +21,12 @@ class CampListDataModel: EVObject {
     var upcoming = [CampDetailModel]()
 }
 
+class MainCampDetailModel: EVObject {
+    var title = ""
+    var data = [CampDetailModel]()
+}
+
+
 class CampDetailModel: EVObject {
     var CampId = ""
     var CampName = ""
@@ -30,4 +36,15 @@ class CampDetailModel: EVObject {
     var CampStatus = ""
     var dayshift = ""
     var isWorkingDay = ""
+    var CampDates = ""
+    var totalPrice = ""
+    var dayAvialability = [DayAvialabilityModel]()
 }
+
+class DayAvialabilityModel: EVObject {
+    var dayPrice = ""
+    var coachAvailability = ""
+    var day = ""
+}
+
+

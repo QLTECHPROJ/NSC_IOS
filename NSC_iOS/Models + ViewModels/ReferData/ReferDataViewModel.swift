@@ -8,21 +8,22 @@
 import Foundation
 
 class ReferDataViewModel {
-    
-    var referDetail: ReferDetailModel?
-    
-    func callReferDataAPI(completion: @escaping (Bool) -> Void) {
+
+    func callReferDataAPI(completionBlock: @escaping (JSON?,String?,String?,Bool) -> Void) {
+        
         let parameters = ["coachId":LoginDataModel.currentUser?.ID ?? ""]
         
-        APIManager.shared.callAPI(router: APIRouter.referdata(parameters)) { [weak self] (response : ReferDataModel?) in
-            if let responseData = response?.ResponseData {
-                self?.referDetail = responseData
+        APIManager.shared.callAPIWithJSON(router: APIRouter.referdata(parameters),showToast : false) { responseData, data, statusCode, message, completion in
+            if completion, statusCode == ApiKeys.ApiStatusCode.success.rawValue, let receivdeData = data {
                 
-                completion(true)
-            } else {
-                completion(false)
+                debugPrint(receivdeData)
+        
+                completionBlock(receivdeData,statusCode,message,true)
+            }
+            else{
+
+                completionBlock(nil,statusCode,message,false)
             }
         }
     }
-    
 }

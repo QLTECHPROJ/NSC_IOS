@@ -10,6 +10,40 @@ import CryptoKit
 import Alamofire
 import EVReflection
 
+enum ApiKeys {
+//    case header(ApiHeaderKeys)
+//    case encrypt(EncryptionKeys)
+//    case respsone(ApiResponseKey)
+    case statusCode(ApiStatusCode)
+    
+    var value: String {
+        switch self {
+//        case .header(let key):
+//            return key.rawValue
+//        case .encrypt(let key):
+//            return key.rawValue
+//        case .respsone(let key):
+//            return key.rawValue
+        case .statusCode(let key):
+            return key.rawValue
+      }
+    }
+}
+/// Set All keys here
+extension ApiKeys {
+    
+//    200 sucess
+//    401 fail
+//    403 un auth acess
+    //MARK:- APIStatusCodeEnum
+    internal enum ApiStatusCode: String {
+        
+        case invalidOrFail                  = "401"
+        case success                        = "200"
+        case userSessionExpire              = "403"
+    }
+}
+
 
 class APIManager {
     
@@ -20,7 +54,9 @@ class APIManager {
     func callAPI<M : EVObject>(router : URLRequestConvertible, displayHud : Bool = true, showToast : Bool = true, response : @escaping (M) -> Void) {
         
         if checkInternet() == false {
-            showAlertToast(message: Theme.strings.alert_check_internet)
+            
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_check_internet)
+            
             response(M())
             return
         }
@@ -48,7 +84,7 @@ class APIManager {
                             if (dict["ResponseCode"] as? String) == "403" {
                                 APPDELEGATE.logout()
                             } else if let message = dict["ResponseMessage"] as? String, message.trim.count > 0 , message != "Reminder not Available for any playlist!" {
-                                if showToast { showAlertToast(message: message) }
+                                if showToast { GFunctions.shared.showSnackBar(message: message) }
                             }
                         }
                     }
@@ -66,7 +102,9 @@ class APIManager {
     func callUploadWebService<M : EVObject>(apiUrl : String, includeHeader : Bool, parameters : [String:Any]?, uploadParameters : [UploadDataModel], httpMethod : Alamofire.HTTPMethod, displayHud : Bool = true, showToast : Bool = true, responseModel : @escaping (M) -> Void) {
         
         if checkInternet() == false {
-            showAlertToast(message: Theme.strings.alert_check_internet)
+            
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_check_internet)
+            
             responseModel(M())
             return
         }
@@ -124,7 +162,7 @@ class APIManager {
                                     if (dict["ResponseCode"] as? String) == "403" {
                                         APPDELEGATE.logout()
                                     } else if let message = dict["ResponseMessage"] as? String, message.trim.count > 0 {
-                                        if showToast { showAlertToast(message: message) }
+                                        if showToast {  GFunctions.shared.showSnackBar(message: message)}
                                     }
                                 }
                             }
@@ -137,7 +175,7 @@ class APIManager {
             case .failure(let error):
                 hideHud()
                 print("Error in upload: \(error.localizedDescription)")
-                showAlertToast(message: error.localizedDescription)
+                GFunctions.shared.showSnackBar(message: error.localizedDescription)
             }
         }
         
@@ -162,10 +200,10 @@ class APIManager {
         case 401:
             // UnAuthenticated request
             response(false)
-            if showToast && message.trim.count > 0 { showAlertToast(message: message) }
+            if showToast && message.trim.count > 0 { GFunctions.shared.showSnackBar(message: message) }
         default:
             response(false)
-            if showToast && message.trim.count > 0 { showAlertToast(message: message) }
+            if showToast && message.trim.count > 0 { GFunctions.shared.showSnackBar(message: message) }
         }
     }
     
@@ -227,4 +265,59 @@ extension APIManager {
         return tokenRandom ?? ""
     }
     
+}
+
+extension APIManager{
+    
+    func callAPIWithJSON(router : URLRequestConvertible,
+                         isLoader : Bool = true,
+                         showToast : Bool = true,
+                         withBlock completion :((DataResponse<Any>,_ data : JSON?,_ statusCode : String?,_ message : String,_ completion : Bool) -> Void)?){
+        if checkInternet() == false {
+            
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_check_internet)
+            
+            return
+        }
+
+        if isLoader {
+            showHud()
+        }
+
+        Alamofire.request(router).responseJSON(completionHandler: { responseData in
+            hideHud()
+            debugPrint(responseData)
+            switch responseData.result {
+            case .success(let response) :
+
+                debugPrint(responseData)
+                
+                if let value = responseData.result.value as? NSDictionary{
+                    let jsonValue = JSON(value)
+                    if JSON(value)["ResponseCode"].stringValue == ApiKeys.ApiStatusCode.success.rawValue{
+                      
+                        completion?(responseData,JSON(value),JSON(value)["ResponseCode"].stringValue,JSON(value)["ResponseMessage"].stringValue,true)
+                    }
+                    else if JSON(value)["ResponseCode"].stringValue == ApiKeys.ApiStatusCode.userSessionExpire.rawValue{
+//AppDelegate.shared.updateWindow()
+                        completion?(responseData,nil,JSON(value)["ResponseCode"].stringValue,JSON(value)["ResponseMessage"].stringValue,false)
+                    }
+                    else if JSON(value)["ResponseCode"].stringValue == ApiKeys.ApiStatusCode.invalidOrFail.rawValue{
+                        completion?(responseData,nil,JSON(value)["ResponseCode"].stringValue,JSON(value)["ResponseMessage"].stringValue,false)
+                    }
+                }
+                break
+
+            case .failure(let error):
+
+                if (error as NSError).code == NSURLErrorCancelled {
+                    // Manage cancellation here
+
+                    debugPrint("apiName\(router),======== error = \(error)")
+                    completion?(JSON(responseData).rawValue as! DataResponse<Any>,nil,nil,error.localizedDescription,false)
+                    return
+                }
+            }
+        })
+    }
 }

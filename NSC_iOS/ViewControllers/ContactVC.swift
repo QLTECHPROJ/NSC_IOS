@@ -9,6 +9,7 @@ import Foundation
 import ContactsUI
 import MessageUI
 import EVReflection
+import DZNEmptyDataSet
 
 /**** Contact Model ****/
 
@@ -18,15 +19,47 @@ class ContactModel : EVObject {
     var contactImage : UIImage?
 }
 
-class ContactVC: BaseViewController {
+
+class ContactCell: UITableViewCell {
+    
+    // MARK: - OUTLETS
+    @IBOutlet weak var imgView : UIImageView!
+    @IBOutlet weak var lblName : UILabel!
+    @IBOutlet weak var lblNumber : UILabel!
+    @IBOutlet weak var btnInvite : UIButton!
+    
+    
+    // MARK: - VARIABLES
+
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.imgView.layer.cornerRadius = 10.0
+        self.lblName.applyLabelStyle(fontSize: 14.0, fontName: .SFProDisplaySemibold)
+        self.lblNumber.applyLabelStyle(fontSize: 11.0, fontName: .SFProDisplayRegular, textColor: .colorAppTxtFieldGray)
+        self.btnInvite.applystyle(fontname: .SFProDisplaySemibold, fontsize: 11.0, titleText: kInvite, titleColor: .colorAppThemeOrange)
+    }
+    
+
+    // MARK: - FUNCTIONS
+    // Configure Cell
+    func configureCell(data : ContactModel) {
+        lblName.text = data.contactName
+        lblNumber.text = data.contactNumber
+        imgView.image = UIImage(named: "defaultUserIcon")! //data.contactImage
+        
+        lblName.isHidden = (data.contactName.trim.count == 0)
+
+    }
+}
+
+class ContactVC: ClearNaviagtionBarVC {
     
     // MARK: - OUTLETS
     @IBOutlet weak var txtSearch: UITextField!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var viewSearch: UIView!
-    @IBOutlet weak var lblNoData: UILabel!
-    @IBOutlet weak var btnClear: UIButton!
-    
+    @IBOutlet weak var vwSearch: AppShadowViewClass!
     
     // MARK: - VARIABLES
     var arrayContactList = [CNContact]()
@@ -36,35 +69,42 @@ class ContactVC: BaseViewController {
     var referCode = ""
     var referLink = ""
     
+    private var emptyMessage : String = Theme.strings.no_contacts_to_display
+    private var isAnimated = Bool()
+    
     
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupUI()
-        fetchContacts()
-        setupData()
+        self.setUpView()
     }
     
     
     // MARK: - FUNCTIONS
-    override func setupUI() {
-        tableView.register(nibWithCellClass: ContactCell.self)
+    private func setUpView(){
+        self.configureUI()
+        self.fetchContacts()
+        self.setData()
+    }
+    
+    private func configureUI(){
+        self.title = kInvite
+        self.isAnimated = true
+        self.txtSearch.applyStyleTextField(placeholder : kSearchContactNumber,fontsize: 12.0, fontname: .SFProDisplayRegular)
+
+        self.vwSearch.shadowColorVW =  UIColor(red: 0.827, green: 0.82, blue: 0.847, alpha: 0.7).cgColor
+        self.vwSearch.shadowOffSetSize = CGSize(width: 9, height: 9)
+        self.vwSearch.shadowRadiusSize = 18
         
-        btnClear.isHidden = true
-        lblNoData.isHidden = true
-        
-        lblNoData.isHidden = true
-        lblNoData.text = Theme.strings.no_contacts_to_display
-        lblNoData.textColor = Theme.colors.textColor
-        
-        txtSearch.delegate = self
-        txtSearch.addTarget(self, action: #selector(textFieldValueChanged(textField:)), for: UIControl.Event.editingChanged)
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
         
         tableView.reloadData()
     }
     
-    override func setupData() {
+    
+    private func setData() {
         arrayContacts = [ContactModel]()
         for contact in arrayContactList {
             let contactData = ContactModel()
@@ -74,12 +114,12 @@ class ContactVC: BaseViewController {
                 contactData.contactNumber = phoneNumber.stringValue
             }
             
-            if let imageData = contact.thumbnailImageData, let contactImage = UIImage(data: imageData) {
-                contactData.contactImage = contactImage
-            } else {
-                contactData.contactImage = UIImage(named: "userIcon")
-            }
-            
+//            if let imageData = contact.thumbnailImageData, let contactImage = UIImage(data: imageData) {
+//                contactData.contactImage = contactImage
+//            } else {
+//                contactData.contactImage = UIImage(named: "defaultUserIcon")
+//            }
+//
             arrayContacts.append(contactData)
         }
         
@@ -87,14 +127,8 @@ class ContactVC: BaseViewController {
         
         arrayContactsSearch = arrayContacts
         tableView.reloadData()
-        lblNoData.isHidden = arrayContactsSearch.count != 0
-        tableView.isHidden = arrayContactsSearch.count == 0
     }
-    
-    @objc func textFieldValueChanged(textField : UITextField ) {
-        btnClear.isHidden = textField.text?.count == 0
-    }
-    
+
     func fetchContacts() {
         let keys = [
             CNContactFormatter.descriptorForRequiredKeys(for: .fullName),
@@ -114,8 +148,7 @@ class ContactVC: BaseViewController {
             print(error.localizedDescription)
         }
         
-        // arrayContactList = arrayContactList.sorted(by: { $0.givenName > $1.givenName })
-        self.setupData()
+        self.setData()
     }
     
     func sendSMS(contact : ContactModel) {
@@ -140,7 +173,8 @@ class ContactVC: BaseViewController {
             controller.messageComposeDelegate = self
             self.present(controller, animated: true, completion: nil)
         } else {
-            showAlertToast(message: Theme.strings.alert_cannot_send_message)
+            
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_cannot_send_message)
         }
     }
     
@@ -153,9 +187,6 @@ class ContactVC: BaseViewController {
     @IBAction func clearSearchClicked(_ sender: UIButton) {
         txtSearch.text = ""
         arrayContactsSearch = arrayContacts
-        btnClear.isHidden = true
-        lblNoData.isHidden = true
-        tableView.isHidden = false
         tableView.reloadData()
     }
     
@@ -184,15 +215,6 @@ extension ContactVC: UITextFieldDelegate {
                 arrayContactsSearch = arrayContacts
             }
             
-            if arrayContactsSearch.count > 0 {
-                lblNoData.isHidden = true
-            } else {
-                lblNoData.isHidden = false
-                lblNoData.text = Theme.strings.alert_search_term_not_found
-            }
-            
-            lblNoData.isHidden = arrayContactsSearch.count != 0
-            tableView.isHidden = arrayContactsSearch.count == 0
             tableView.reloadData()
         }
         
@@ -212,18 +234,41 @@ extension ContactVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withClass: ContactCell.self)
         cell.configureCell(data: arrayContactsSearch[indexPath.row])
-        cell.inviteClicked = {
-            self.sendSMS(contact: self.arrayContactsSearch[indexPath.row])
-        }
+        cell.btnInvite.addTarget(self, action: #selector(self.btnInviteTapped(_:)), for: .touchUpInside)
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 68
+    @objc func btnInviteTapped(_ sender : UIButton){
+        self.sendSMS(contact: self.arrayContactsSearch[sender.tag])
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if self.isAnimated{
+            cell.alpha = 0
+            self.isAnimated = indexPath.row == (self.arrayContactsSearch.count-1) ? false : true
+            UIView.animate(withDuration: 2, delay: 0.05*Double(indexPath.row), options: .transitionFlipFromBottom, animations: {
+                cell.alpha = 1
+            })
+        }
+    }
 }
 
+//-------------------------------------------------------------------
+//MARK: - Empty TableView Methods
+//-------------------------------------------------------------------
+extension ContactVC : DZNEmptyDataSetDelegate, DZNEmptyDataSetSource{
+    
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString {
+        
+        let text = self.emptyMessage
+        let attributes = [NSAttributedString.Key.font: UIFont.applyCustomFont(fontName: .SFProDisplayRegular, fontSize: 13.0), NSAttributedString.Key.foregroundColor: UIColor.colorAppTextBlack]
+        return NSAttributedString(string: text, attributes: attributes)
+    }
+}
 
 // MARK: - MFMessageComposeViewControllerDelegate
 extension ContactVC : MFMessageComposeViewControllerDelegate {
@@ -231,15 +276,20 @@ extension ContactVC : MFMessageComposeViewControllerDelegate {
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         switch result {
         case .cancelled:
-            showAlertToast(message: "Message Sending Cancelled")
+            
+            GFunctions.shared.showSnackBar(message: kMessageSendingCancelled)
+            
         case .sent:
             print("Message Sent")
-        case .failed:
-            showAlertToast(message: "Message Sening Failed")
-        default:
-            showAlertToast(message: "Message Sening Failed")
-        }
         
+        case .failed:
+            
+            GFunctions.shared.showSnackBar(message: kMessageSendingFailed)
+            
+        default:
+        
+            GFunctions.shared.showSnackBar(message: kMessageSendingFailed)
+        }
         controller.dismiss(animated: true, completion: nil)
     }
     

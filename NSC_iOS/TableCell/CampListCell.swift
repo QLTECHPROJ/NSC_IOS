@@ -6,7 +6,23 @@
 //
 
 import UIKit
-import SDWebImage
+
+
+class CampHeaderTbleCell : UITableViewCell{
+    
+    @IBOutlet weak var lblTitle : UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.lblTitle.applyLabelStyle(fontSize: 16.0, fontName: .SFProDisplaySemibold)
+    }
+    
+    func configureDataHeaderCell(with data : MainCampDetailModel){
+        
+        self.lblTitle.text = data.title
+    }
+}
 
 class CampListCell: UITableViewCell {
     
@@ -20,19 +36,34 @@ class CampListCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        viewBack.dropShadow()
+        imgCamp.layer.cornerRadius = 12.0
+        
+        self.lblCampTitle.applyLabelStyle(fontSize: 13.0, fontName: .SFProDisplaySemibold)
+        self.lblCampLocation.applyLabelStyle(fontSize: 10.0, fontName: .SFProDisplayRegular, textColor: .colorAppTextBlack)
+        self.lblCampDesc.applyLabelStyle(fontSize: 10.0, fontName: .SFProDisplayRegular, textColor: .colorAppTextBlack)
+        self.lblCampDesc.numberOfLines = 3
+        viewBack.dropShadow(shadowRadius : 5)
     }
     
     // Configure Cell
-    func configureCell(data : CampDetailModel) {
-        lblCampTitle.text = data.CampName
-        lblCampDesc.text = data.CampDetail
-        lblCampLocation.text = data.CampAddress
+    func configureCell(data : CampDetailModel?,listType : String) {
         
-        imgCamp.roundCorners(corners: [.topLeft, .bottomLeft], radius: 10)
+        guard let indexdata = data else {return}
+        self.lblCampTitle.text = indexdata.CampName
         
-        if let strUrl = data.CampImage.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let imgUrl = URL(string: strUrl) {
-            imgCamp.sd_setImage(with: imgUrl, completed: nil)
+        self.lblCampDesc.text = indexdata.CampDetail
+        self.lblCampLocation.text = indexdata.CampAddress
+        
+        if let strUrl = indexdata.CampImage.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let imgUrl = URL(string: strUrl) {
+
+            imgCamp.sd_setImage(with: imgUrl)
+        }
+        
+        if listType == kCurrentCamp{
+            self.viewBack.dropShadow(shadowRadius : 15)
+        }
+        else{
+            self.viewBack.applyBorderView()
         }
     }
     

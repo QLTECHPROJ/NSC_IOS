@@ -17,6 +17,7 @@ class KidsAttendenceCell: UITableViewCell {
     @IBOutlet weak var lblStatus: UILabel!
     @IBOutlet weak var lblGroupName: UILabel!
     
+    
     @IBOutlet weak var viewMorning: UIView!
     @IBOutlet weak var viewLunch: UIView!
     @IBOutlet weak var viewCheckout: UIView!
@@ -65,7 +66,7 @@ class KidsAttendenceCell: UITableViewCell {
         lblKidName.text = data.Name
         lblGroupName.text = data.Group_Name
         
-        lblStatus.text = data.isFirstTimer == "0" ? "First timer" : ""
+        lblStatus.text = data.isFirstTimer == "1" ? "First timer" : ""
         
         DispatchQueue.main.async {
             if data.CheckIn == CheckInStatus.checkIn.rawValue {
@@ -78,7 +79,9 @@ class KidsAttendenceCell: UITableViewCell {
         }
         
         let shiftStatus = DayShiftStatus(rawValue: dayshift) ?? .none
+        
         switch shiftStatus {
+            
         case .morning:
             viewMorning.isHidden = false
             viewLunch.isHidden = true
@@ -92,7 +95,7 @@ class KidsAttendenceCell: UITableViewCell {
             viewLunch.isHidden = false
             viewCheckout.isHidden = false
         default:
-            viewMorning.isHidden = false
+            viewMorning.isHidden = true
             viewLunch.isHidden = false
             viewCheckout.isHidden = false
         }
@@ -103,9 +106,12 @@ class KidsAttendenceCell: UITableViewCell {
     }
     
     func setupMorningUI(data : KidsAttendanceDetailModel, shiftStatus : DayShiftStatus) {
+        
         if data.CheckIn == CheckInStatus.checkIn.rawValue && shiftStatus == .morning {
+            
             viewMorningAttendance.isHidden = false
             lblMorningStatus.isHidden = true
+            
         } else {
             viewMorningAttendance.isHidden = true
             lblMorningStatus.isHidden = false
@@ -151,18 +157,33 @@ class KidsAttendenceCell: UITableViewCell {
     }
     
     func setupCheckOutUI(data : KidsAttendanceDetailModel, shiftStatus : DayShiftStatus) {
+        
         if data.CheckIn == CheckInStatus.checkIn.rawValue && shiftStatus == .checkout {
+            
             btnCheckOut.isHidden = false
             btnCheckOut.isUserInteractionEnabled = true
             lblCheckOutStatus.isHidden = true
+            
         } else if data.CheckIn == CheckInStatus.checkOut.rawValue && shiftStatus == .checkout {
+            
             btnCheckOut.isHidden = false
             btnCheckOut.isUserInteractionEnabled = true
             lblCheckOutStatus.isHidden = true
+            
         } else if data.CheckIn == CheckInStatus.checkOut.rawValue {
+            
             btnCheckOut.isHidden = false
             btnCheckOut.isUserInteractionEnabled = false
             lblCheckOutStatus.isHidden = true
+            self.btnAbsentPL.isUserInteractionEnabled = false
+            self.btnPresentPL.isUserInteractionEnabled = false
+            
+        }else if data.CheckIn == CheckInStatus.toBeCheckedIn.rawValue {
+            btnCheckOut.isHidden = false
+            btnCheckOut.isUserInteractionEnabled = false
+            lblCheckOutStatus.isHidden = true
+            self.btnPresentM.isUserInteractionEnabled = false
+            self.btnAbsentM.isUserInteractionEnabled = false
         } else {
             btnCheckOut.isHidden = true
             lblCheckOutStatus.isHidden = false
@@ -195,6 +216,7 @@ class KidsAttendenceCell: UITableViewCell {
     }
     
     @IBAction func checkoutClicked(_ sender: UIButton) {
+        
         if let kidsData = kidsData {
             if kidsData.CheckIn == CheckInStatus.checkIn.rawValue {
                 kidsData.CheckIn = CheckInStatus.checkOut.rawValue

@@ -6,115 +6,104 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
-class CampListVC: BaseViewController {
+class CampListVC: ClearNaviagtionBarVC {
     
-    // MARK: - OUTLETS
+    //--------------------------------------------------------------------------------------
+    // MARK: - Outlets
+    //--------------------------------------------------------------------------------------
+    
     @IBOutlet weak var tableHeaderView: UIView!
     @IBOutlet weak var imgBanner: UIImageView!
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var lblNoData: UILabel!
-    @IBOutlet weak var btnApplyNow: UIButton!
     
     @IBOutlet weak var imgUser: UIImageView!
     @IBOutlet weak var lblName: UILabel!
     
-    
-    // MARK: - VARIABLES
+    //--------------------------------------------------------------------------------------
+    // MARK: - Variables
+    //--------------------------------------------------------------------------------------
     var campListVM : CampListViewModel?
     
     var BannerImage = ""
     var arrayCurrentCampList = [CampDetailModel]()
     var arrayUpcomingCampList = [CampDetailModel]()
     
+    var arrMain : [MainCampDetailModel] = []
     
-    // MARK: - VIEW LIFE CYCLE
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    private var emptyMessage : String = Theme.strings.no_camps_to_display
+    private var isAnimated = Bool()
+    
+    deinit{
+        self.removeClassObservers()
+    }
+    
+    //--------------------------------------------------------------------------------------
+    // MARK: - Custom Methods
+    //--------------------------------------------------------------------------------------
+    private func setUpView(){
         
-        btnApplyNow.isHidden = true
-        lblNoData.isHidden = true
-        lblNoData.text = Theme.strings.no_camps_to_display
+        self.addClassObservers()
+        self.configureUI()
+    }
+    
+    private func configureUI(){
+        self.isAnimated = true
+        self.imgBanner.backgroundColor = .clear
+        self.lblName.applyLabelStyle(isAdjustFontWidth: true,text : "",fontSize: 14.0, fontName: .SFProDisplaySemibold)
         
-        tableView.register(nibWithCellClass: TitleLabelCell.self)
-        tableView.register(nibWithCellClass: CampListCell.self)
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
+        
+        self.tableView.refreshControl = self.refreshControl
         tableView.tableHeaderView = UIView()
-        tableView.refreshControl = self.refreshControl
-    }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
-        setupUI()
-        self.refreshData()
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
-    
-    // MARK: - FUNCTIONS
-    override func setupUI() {
-        imgUser.loadUserProfileImage(fontSize: 20)
+    private func setUpUI() {
+        
+        self.imgUser.sd_setImage(with: LoginDataModel.currentUser?.Profile_Image.url(), placeholderImage: UIImage(named: "defaultUserIcon")!, context: nil)
+        
         let strName = (LoginDataModel.currentUser?.Fname ?? "") + " " + (LoginDataModel.currentUser?.Lname ?? "")
-        lblName.text = strName.trim.count > 0 ? strName : "Guest"
+        self.lblName.text = strName.trim.count > 0 ? strName : kGuest
         
-        let stringAttributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.foregroundColor: Theme.colors.theme_dark,
-            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
-        ]
-        
-        let strTitle = "Apply Now"
-        let titleRange = (strTitle as NSString).range(of: strTitle)
-        
-        let attributedString = NSMutableAttributedString.getAttributedString(fromString: strTitle)
-        attributedString.addAttributes(stringAttributes, range: titleRange)
-        btnApplyNow.setAttributedTitle(attributedString, for: .normal)
     }
+
     
-    override func setupData() {
+    private func setUpData() {
         
         if BannerImage.trim.count > 0, let strUrl = BannerImage.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let imgUrl = URL(string: strUrl) {
             imgBanner.sd_setImage(with: imgUrl, completed: nil)
             tableView.tableHeaderView = tableHeaderView
-            tableView.reloadData()
+            
         } else {
             tableView.tableHeaderView = UIView()
         }
-        
-        if arrayCurrentCampList.count > 0 || arrayUpcomingCampList.count > 0 {
-            btnApplyNow.isHidden = true
-            lblNoData.isHidden = true
-            tableView.isHidden = false
-        } else {
-            btnApplyNow.isHidden = false
-            lblNoData.isHidden = false
-            tableView.isHidden = true
-        }
-        
-        tableView.reloadData()
+    
+        self.tableView.reloadData()
     }
     
     override func handleRefresh(_ refreshControl: UIRefreshControl) {
-        self.refreshData()
-        refreshControl.endRefreshing()
+        self.apiCallCampList()
     }
     
-    override func refreshData() {
-        let campListViewModel = CampListViewModel()
-        campListViewModel.callCampListAPI(completion: { success in
-            if success {
-                self.BannerImage = campListViewModel.BannerImage
-                self.arrayCurrentCampList = campListViewModel.arrayCurrentCampList
-                self.arrayUpcomingCampList = campListViewModel.arrayUpcomingCampList
-            }
-            self.setupData()
-        })
-    }
+   
     
-    //MARK:- ACTION
+    //--------------------------------------------------------------------------------------
+    //MARK: - Anctions
+    //--------------------------------------------------------------------------------------
     @IBAction func userMenuClicked(_ sender: UIButton) {
-        let aVC = AppStoryBoard.main.viewController(viewControllerClass:UserListPopUpVC.self)
-        navigationController?.pushViewController(aVC, animated: true)
+        
+        let aVC = AppStoryBoard.main.viewController(viewControllerClass:MenuVC.self)
+        self.navigationController?.pushViewController(aVC, animated: true)
     }
     
     @IBAction func notificationClicked(_ sender: UIButton) {
@@ -122,88 +111,165 @@ class CampListVC: BaseViewController {
         self.navigationController?.pushViewController(aVC, animated: true)
     }
     
-    @IBAction func applyNowClicked(_ sender: UIButton) {
-        let aVC = AppStoryBoard.main.viewController(viewControllerClass: ApplyForCampVC.self)
-        self.navigationController?.pushViewController(aVC, animated: true)
-    }
     
     @IBAction func bannerClicked(_ sender: UIButton) {
         let aVC = AppStoryBoard.main.viewController(viewControllerClass: ReferVC.self)
         self.navigationController?.pushViewController(aVC, animated: true)
     }
     
+    //--------------------------------------------------------------------------------------
+    // MARK: - View Life Cycle
+    //--------------------------------------------------------------------------------------
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        
+        self.setUpView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.apiCallCampList(true)
+        
+    }
 }
 
 
-// MARK: - UITableViewDelegate, UITableViewDataSource
+//--------------------------------------------------------------------------------------
+// MARK: - UITableView Methods
+//--------------------------------------------------------------------------------------
 extension CampListVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return self.arrMain.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return arrayCurrentCampList.count
-        } else {
-            return arrayUpcomingCampList.count
-        }
+        
+        return self.arrMain[section].data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withClass: CampListCell.self)
-            cell.configureCell(data: arrayCurrentCampList[indexPath.row])
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withClass: CampListCell.self)
-            cell.configureCell(data: arrayUpcomingCampList[indexPath.row])
-            return cell
-        }
+        
+        let cell = tableView.dequeueReusableCell(withClass: CampListCell.self)
+        cell.configureCell(data: self.arrMain[indexPath.section].data[indexPath.row], listType: self.arrMain[indexPath.section].title)
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 112
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell = tableView.dequeueReusableCell(withClass: TitleLabelCell.self)
-        
-        if section == 0 {
-            cell.lblTitle.text = "Current Camp"
-        } else {
-            cell.lblTitle.text = "Upcoming Camps"
-        }
-        
+        let cell = tableView.dequeueReusableCell(withClass: CampHeaderTbleCell.self)
+        cell.backgroundColor = .colorAppThemeBGWhite
+        cell.configureDataHeaderCell(with: self.arrMain[section])
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            if arrayCurrentCampList.count > 0 {
-                return UITableView.automaticDimension
-            }
-        } else {
-            if arrayUpcomingCampList.count > 0 {
-                return UITableView.automaticDimension
-            }
-        }
         
-        return 0
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            let aVC = AppStoryBoard.main.viewController(viewControllerClass:CampDetailVC.self)
-            aVC.strCampID = arrayCurrentCampList[indexPath.row].CampId
-            aVC.campDetails = arrayCurrentCampList[indexPath.row]
-            self.navigationController?.pushViewController(aVC, animated: true)
-        } else {
-            let aVC = AppStoryBoard.main.viewController(viewControllerClass:CampDetailVC.self)
-            aVC.strCampID = arrayUpcomingCampList[indexPath.row].CampId
-            aVC.campDetails = arrayUpcomingCampList[indexPath.row]
-            self.navigationController?.pushViewController(aVC, animated: true)
-        }
+        
+        let aVC = AppStoryBoard.main.viewController(viewControllerClass:CampDetailVC.self)
+        aVC.strCampID = self.arrMain[indexPath.section].data[indexPath.row].CampId
+        aVC.campDetails = self.arrMain[indexPath.section].data[indexPath.row]
+        self.navigationController?.pushViewController(aVC, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if self.isAnimated{
+            cell.alpha = 0
+            self.isAnimated = indexPath.row == (self.arrMain[indexPath.section].data.count-1) ? false : true
+            UIView.animate(withDuration: 2, delay: 0.05*Double(indexPath.row), options: .transitionFlipFromBottom, animations: {
+                cell.alpha = 1
+            })
+        }
+    }
 }
+
+//--------------------------------------------------------------------------------------
+//MARK: - Empty TableView Methods
+//--------------------------------------------------------------------------------------
+extension CampListVC : DZNEmptyDataSetDelegate, DZNEmptyDataSetSource{
+   
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
+
+        return EmptyViewClass.shared.showEmptyView(title : self.emptyMessage,actionButtonTitle : kApplyNow)
+    }
+}
+
+//--------------------------------------------------------------------------------------
+//MARK: - API Calling Methods
+//--------------------------------------------------------------------------------------
+extension CampListVC{
+    
+    private func apiCallCampList(_ isLoader : Bool = false) {
+        let campListViewModel = CampListViewModel()
+        campListViewModel.callCampListAPI(isLoader : isLoader){ success in
+            
+            self.refreshControl.endRefreshing()
+            
+            if success {
+                self.BannerImage = campListViewModel.BannerImage
+                self.arrayCurrentCampList = campListViewModel.arrayCurrentCampList
+                self.arrayUpcomingCampList = campListViewModel.arrayUpcomingCampList
+                
+                self.arrMain = []
+                if !self.arrayCurrentCampList.isEmpty {
+                    let mainData = MainCampDetailModel()
+                    mainData.title = kCurrentCamp
+                    mainData.data = self.arrayCurrentCampList
+                    self.arrMain.append(mainData)
+                }
+                
+                if !self.arrayUpcomingCampList.isEmpty {
+                    let mainData = MainCampDetailModel()
+                    mainData.title = kUpcomingCamps
+                    mainData.data = self.arrayUpcomingCampList
+                    self.arrMain.append(mainData)
+                }
+            }
+            
+            self.setUpUI()
+            self.setUpData()
+        }
+    }
+}
+
+//----------------------------------------------------------------------------
+//MARK: - Class observers Methods
+//----------------------------------------------------------------------------
+extension CampListVC {
+    
+    func addClassObservers() {
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.btnApplyNowTapped(_:)), name: NSNotification.Name.emptyViewReturnAction, object: nil)
+    }
+    
+    func removeClassObservers() {
+//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.emptyViewReturnAction, object: nil)
+    }
+    
+    //----------------------------------------------------------------------------
+    // Update like/unlike on comment's reply
+    
+//    @objc func btnApplyNowTapped(_ notification : NSNotification) {
+//
+//        if let dataModel = notification.object as? JSON {
+//
+//            if dataModel["action"].boolValue{
+//                let aVC = AppStoryBoard.main.viewController(viewControllerClass: ApplyForCampVC.self)
+//                self.navigationController?.pushViewController(aVC, animated: true)
+//            }
+//        }
+//    }
+}
+

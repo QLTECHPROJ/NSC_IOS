@@ -33,14 +33,12 @@ struct Theme {
     static var colors = AppColors()
     static var images = AppImages()
     static var strings = AppStrings()
-    static var fonts = AppFonts()
     static var dateFormats = AppDateFormats()
     
     func changeTheme() {
         Theme.colors = AppColors()
         Theme.images = AppImages()
         Theme.strings = AppStrings()
-        Theme.fonts = AppFonts()
         Theme.dateFormats = AppDateFormats()
     }
     

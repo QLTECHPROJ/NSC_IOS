@@ -17,10 +17,10 @@ class LogoutViewModel {
         
         APIManager.shared.callAPI(router: APIRouter.logout(parameters)) { (response : LogoutModel?) in
             if response?.ResponseCode == "200" {
+                
+                GFunctions.shared.showSnackBar(message: JSON(response?.ResponseMessage as Any).stringValue)
                 completion(true)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    showAlertToast(message: response?.ResponseMessage ?? "")
-                }
+                
             } else {
                 completion(false)
             }

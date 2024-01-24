@@ -7,19 +7,19 @@
 //
 
 import UIKit
-import TTTAttributedLabel
 import FirebaseAuth
 
-class OTPVC: BaseViewController {
+class OTPVC: ClearNaviagtionBarVC {
     
     // MARK: - OUTLETS
     @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblOTP: UILabel!
     @IBOutlet weak var lblSubTitle: UILabel!
-    @IBOutlet weak var lblError: UILabel!
-    @IBOutlet weak var lblSupport: TTTAttributedLabel!
     
     @IBOutlet weak var txtOTP: UITextField!
-    @IBOutlet weak var btnDone: UIButton!
+    @IBOutlet weak var btnContinue: AppThemeButton!
+    
+    @IBOutlet weak var btnResend: UIButton!
     
     
     // MARK: - VARIABLES
@@ -31,47 +31,77 @@ class OTPVC: BaseViewController {
     var strPromoCode = ""
     
     
+    
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        setupSupportLabel(lblSupport: lblSupport)
+        setUpView()
+        
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    
     }
     
     
     // MARK: - FUNCTIONS
-    override func setupUI() {
-        let strSMSSent = "We've sent SMS with a 6-digit code to \n+\(AppVersionDetails.countryCode)\(strMobile)."
-        lblSubTitle.attributedText = strSMSSent.attributedString(alignment: .center, lineSpacing: 5)
+    
+    private func setUpView(){
         
-        // txtOTP.tintColor = UIColor.clear
-        txtOTP.delegate = self
-        txtOTP.addTarget(self, action: #selector(textFieldEdidtingDidChange(_ :)), for: .editingChanged)
+        self.configureUI()
+        self.buttonEnable()
+    }
+    private func configureUI(){
+        
+        self.lblTitle.applyLabelStyle(text: kOTPVerification, fontSize: 28.0, fontName: .SFProDisplayBold)
+        
+        self.lblOTP.applyLabelStyle(text: kOTP, fontSize: 13.0, fontName: .SFProDisplayRegular, textColor : .colorAppTxtFieldGray)
+        self.btnResend.applystyle(fontname: .SFProDisplayBold, fontsize: 11.0, titleText: kResendOTP, titleColor: .colorAppThemeOrange)
+        
+        let defaultFontAttributePhone = [NSAttributedString.Key.foregroundColor: UIColor.colorAppDarkGray ,NSAttributedString.Key.font: UIFont.applyCustomFont(fontName: .SFProDisplayRegular, fontSize: 11.0)]
+        let blueFontAttributePhone = [NSAttributedString.Key.foregroundColor: UIColor.colorAppThemeOrange,NSAttributedString.Key.font: UIFont.applyCustomFont(fontName: .SFProDisplayBold, fontSize: 11.0)] as [NSAttributedString.Key : Any]
+    
+        self.lblSubTitle.text = "\(kEnterTheOTPYouReceivecTo) +\(AppVersionDetails.countryCode)\(strMobile)"
+        self.lblSubTitle.attributedText = (self.lblSubTitle.text)?.getAttributedText(defaultDic: defaultFontAttributePhone, attributeDic: blueFontAttributePhone, attributedStrings: ["+\(AppVersionDetails.countryCode)\(strMobile)"])
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.lblEditPhoneNumberTapped(_:)))
+        self.lblSubTitle.isUserInteractionEnabled = true
+        self.lblSubTitle.addGestureRecognizer(tap)
+        
+        self.lblSubTitle.lineSpacing(lineSpacing: 5.0, alignment: self.lblSubTitle.textAlignment)
+                
+        self.txtOTP.applyStyleTextField(placeholder : "",fontsize: 16, fontname: .SFProDisplayMedium)
+        self.txtOTP.addTarget(self, action: #selector(textFieldEdidtingDidChange(_ :)), for: .editingChanged)
         
         if #available(iOS 12.0, *) {
             txtOTP.textContentType = .oneTimeCode
         } else {
             // Fallback on earlier versions
         }
-        
-        self.txtOTP.attributedPlaceholder = NSAttributedString(string: "Enter OTP", attributes: [
-            .foregroundColor: Theme.colors.gray_7E7E7E,
-            .font:Theme.fonts.appFont(ofSize: 16, weight: .regular)
-        ])
-        
-        buttonEnableDisable()
+
     }
     
-    override func buttonEnableDisable() {
-        if (txtOTP.text?.trim.count ?? 0) < 6 {
-            btnDone.isUserInteractionEnabled = false
-            btnDone.backgroundColor = Theme.colors.gray_7E7E7E
-            btnDone.removeGradient()
-        } else {
-            btnDone.isUserInteractionEnabled = true
-            btnDone.backgroundColor = Theme.colors.theme_dark
+    @objc func lblEditPhoneNumberTapped(_ tapGesture : UITapGestureRecognizer) {
+        self.view.endEditing(true)
+        if tapGesture.didTapAttributedTextInLabel(label: self.lblSubTitle, inRange: (self.lblSubTitle.attributedText!.string as NSString).range(of: "+\(AppVersionDetails.countryCode)\(strMobile)")) {
+            
+            debugPrint("+\(AppVersionDetails.countryCode)\(strMobile)")
+            self.navigationController?.popViewController(animated: true)
+           
         }
     }
+    
+    private func buttonEnable(){
+        if (txtOTP.text?.trim.count ?? 0) < 6 {
+            self.btnContinue.isSelect = false
+        }
+        else{
+            self.btnContinue.isSelect = true
+        }
+    }
+    
     
     @objc func textFieldEdidtingDidChange(_ textField :UITextField) {
         let attributedString = NSMutableAttributedString(string: textField.text!)
@@ -80,8 +110,12 @@ class OTPVC: BaseViewController {
     }
     
     func checkValidation() -> Bool {
+        
+        self.view.endEditing(true)
+        
         if (txtOTP.text?.trim.count ?? 0) < 6 {
-            self.lblError.text = Theme.strings.alert_invalid_otp
+
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_invalid_otp)
             return false
         }
         
@@ -102,11 +136,13 @@ class OTPVC: BaseViewController {
             hideHud()
             
             if let error = error {
-                showAlertToast(message: error.localizedDescription)
+                
+                GFunctions.shared.showSnackBar(message: error.localizedDescription)
+                
                 return
             }
             
-            showAlertToast(message: Theme.strings.sms_sent)
+            GFunctions.shared.showSnackBar(message: Theme.strings.sms_sent)
             
             // Sign in using the verificationID and the code sent to the user
             authVerificationID = verificationID ?? ""
@@ -114,7 +150,6 @@ class OTPVC: BaseViewController {
     }
     
     func autoVerifyOTP() {
-        self.view.endEditing(true)
         
         if checkValidation() {
             let strOTP = txtOTP.text ?? ""
@@ -133,9 +168,12 @@ class OTPVC: BaseViewController {
             
             if let error = error {
                 if error.localizedDescription == Theme.strings.invalid_otp_firebase {
-                    showAlertToast(message: Theme.strings.alert_invalid_otp)
+                    
+                    GFunctions.shared.showSnackBar(message: Theme.strings.alert_invalid_otp)
+                    
                 } else {
-                    showAlertToast(message: error.localizedDescription)
+                    
+                    GFunctions.shared.showSnackBar(message: error.localizedDescription)
                 }
                 return
             }
@@ -145,7 +183,7 @@ class OTPVC: BaseViewController {
         }
     }
     
-    override func goNext() {
+    private func goNext() {
         if isFromSignUp {
             handleSignUp()
         } else {
@@ -168,6 +206,7 @@ class OTPVC: BaseViewController {
         let signUpVM = SignUpViewModel()
         signUpVM.callCoachRegisterAPI(parameters: parameters) { success in
             if success {
+                GFunctions.shared.showSnackBar(message: Theme.strings.welcome_message)
                 self.handleLoginUserRedirection()
             }
         }
@@ -184,6 +223,7 @@ class OTPVC: BaseViewController {
         let loginVM = LoginViewModel()
         loginVM.callLoginAPI(parameters: parameters) { success in
             if success {
+                GFunctions.shared.showSnackBar(message: Theme.strings.welcome_message)
                 self.handleLoginUserRedirection()
             }
         }
@@ -192,7 +232,7 @@ class OTPVC: BaseViewController {
     
     // MARK: - ACTIONS
     @IBAction func backClicked(_ sender: UIButton) {
-        self.view.endEditing(true)
+        
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -204,16 +244,15 @@ class OTPVC: BaseViewController {
     @IBAction func resendSMSClicked(_ sender: UIButton) {
         self.view.endEditing(true)
         
-        txtOTP.text = ""
-        lblError.isHidden = true
+        self.txtOTP.text = ""
         
-        buttonEnableDisable()
+        buttonEnable()
         
         self.sendOTP()
     }
     
     @IBAction func editNumberClicked(_ sender: UIButton) {
-        self.view.endEditing(true)
+        
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -244,13 +283,13 @@ extension OTPVC : UITextFieldDelegate {
         textField.attributedText = attributedString
         
         // textField.text = updatedText
-        buttonEnableDisable()
+        buttonEnable()
         self.autoVerifyOTP()
         return false
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        buttonEnableDisable()
+        buttonEnable()
     }
     
 }

@@ -12,4 +12,6 @@ import Foundation
 
 extension NSNotification.Name {
     static let refreshData = NSNotification.Name.init("refreshData")
+    static let emptyViewReturnAction = NSNotification.Name.init("emptyViewReturnAction")
+    static let appVersionDetails = NSNotification.Name.init("appVersionDetails")
 }

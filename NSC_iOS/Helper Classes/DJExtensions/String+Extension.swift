@@ -24,6 +24,15 @@ extension String {
         let usernameTest = NSPredicate(format: "SELF MATCHES %@", regex)
         return usernameTest.evaluate(with: self)
     }
+    
+    func url() -> URL {
+        
+        guard let url = URL(string: self) else {
+            return URL(string : "www.google.co.in")!
+        }
+        return url
+    }
+    
    
     func isValidPassword() -> Bool {
 
@@ -399,6 +408,18 @@ extension String {
       return dateFormatter.string(from: dt ?? Date())
     }
     
+    func getAttributedText ( defaultDic : [NSAttributedString.Key : Any] , attributeDic : [NSAttributedString.Key : Any]?, attributedStrings : [String]) -> NSMutableAttributedString {
+        
+        let attributeText : NSMutableAttributedString = NSMutableAttributedString(string: self, attributes: defaultDic)
+        for strRange in attributedStrings {
+            if let range = self.range(of: strRange) {
+                let startIndex = self.distance(from: self.startIndex, to: range.lowerBound)
+                let range1 = NSMakeRange(startIndex, strRange.count)
+                attributeText.setAttributes(attributeDic, range: range1)
+            }
+        }
+        return attributeText
+    }
 }
 
 extension NSString {

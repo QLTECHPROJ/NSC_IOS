@@ -9,22 +9,21 @@ import Foundation
 
 class EarningViewModel {
     
-    var totalBalance = ""
-    var transactions = [TransactionModel]()
-    
-    func callMyEarningAPI(completion: @escaping (Bool) -> Void) {
+    func callMyEarningAPI(completionBlock: @escaping (JSON?,String?,String?,Bool) -> Void) {
+        
         let parameters = ["coachId":LoginDataModel.currentUser?.ID ?? ""]
         
-        APIManager.shared.callAPI(router: APIRouter.myearning(parameters)) { [weak self] (response : EarningModel?) in
-            if response?.ResponseCode == "200", let responseData = response?.ResponseData {
-                self?.totalBalance = responseData.TotalBalance
-                self?.transactions = responseData.transactions
+        APIManager.shared.callAPIWithJSON(router: APIRouter.myearning(parameters),showToast : false) { responseData, data, statusCode, message, completion in
+            if completion, statusCode == ApiKeys.ApiStatusCode.success.rawValue, let receivdeData = data {
                 
-                completion(true)
-            } else {
-                completion(false)
+                debugPrint(receivdeData)
+        
+                completionBlock(receivdeData,statusCode,message,true)
+            }
+            else{
+                
+                completionBlock(nil,statusCode,message,false)
             }
         }
     }
-    
 }

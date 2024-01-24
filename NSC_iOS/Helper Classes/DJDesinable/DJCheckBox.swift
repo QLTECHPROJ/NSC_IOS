@@ -53,16 +53,17 @@ class DJCheckBox: UIControl {
         {
             if isChecked {
                 imageView.image = checkImage
-                font = UIFont(name: Theme.fonts.semiBold, size: 15)!
+                font = UIFont.applyCustomFont(fontName: .SFProDisplaySemibold, fontSize: 15.0)
+                
             }
             else {
-                font = UIFont(name: Theme.fonts.medium, size: 15)!
+                font = UIFont.applyCustomFont(fontName: .SFProDisplayMedium, fontSize: 15.0)
                 imageView.image = unCheckImage
             }
         }
     }
-    @IBInspectable var font : UIFont = UIFont(name: Theme.fonts.medium, size: 15)!
-        {
+    @IBInspectable var font : UIFont = UIFont.applyCustomFont(fontName: .SFProDisplayMedium, fontSize: 15.0)
+    {
         didSet
         {
             labelView.font = font
@@ -87,10 +88,10 @@ class DJCheckBox: UIControl {
         labelView.frame = CGRect(x: imageView.frame.origin.x + imageView.frame.size.width + paddingLeft, y: 0, width: self.frame.width - (imageView.frame.size.width + paddingLeft) , height: self.frame.height)
         labelView.textColor = textColor
         if isChecked {
-            labelView.font = UIFont(name: Theme.fonts.semiBold, size: 15)
+            labelView.font = UIFont.applyCustomFont(fontName: .SFProDisplaySemibold, fontSize: 15.0)
         }
         else {
-            labelView.font = UIFont(name: Theme.fonts.medium, size: 15)
+            labelView.font = UIFont.applyCustomFont(fontName: .SFProDisplayMedium, fontSize: 15.0)
         }
     }
     

@@ -9,20 +9,21 @@ import Foundation
 
 class NotificationListViewModel {
     
-    var arrayNotifications = [NotificationListDataModel]()
-    
-    func callNotificationListAPI(completion: @escaping (Bool) -> Void) {
-        let parameters = ["coachId":"1"]
+    func callNotificationListAPI(isLoader : Bool = false,completionBlock: @escaping (JSON?,String?,String?,Bool) -> Void) {
         
-        APIManager.shared.callAPI(router: APIRouter.notification_listing(parameters)) { [weak self] (response : NotificationListModel?) in
-            if response?.ResponseCode == "200", let responseData = response?.ResponseData {
-                self?.arrayNotifications = responseData
+        let parameters = ["coachId":LoginDataModel.currentUser?.ID ?? ""]
+        
+        APIManager.shared.callAPIWithJSON(router: APIRouter.notification_listing(parameters),isLoader : isLoader,showToast : false) { responseData, data, statusCode, message, completion in
+            if completion, statusCode == ApiKeys.ApiStatusCode.success.rawValue, let receivdeData = data {
                 
-                completion(true)
-            } else {
-                completion(false)
+                debugPrint(receivdeData)
+        
+                completionBlock(receivdeData,statusCode,message,true)
+            }
+            else{
+            
+                completionBlock(nil,statusCode,message,false)
             }
         }
     }
-    
 }

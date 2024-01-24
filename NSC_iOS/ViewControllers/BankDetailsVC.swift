@@ -7,93 +7,97 @@
 
 import UIKit
 
-class BankDetailsVC: BaseViewController {
+class BankDetailsVC: ClearNaviagtionBarVC {
     
     // MARK: - OUTLETS
-    @IBOutlet weak var lblTitle: UILabel!
-    
     @IBOutlet weak var txtBankName: UITextField!
     @IBOutlet weak var txtAccountNumber: UITextField!
     @IBOutlet weak var txtAccountName: UITextField!
     @IBOutlet weak var txtIFSCCode: UITextField!
     
-    @IBOutlet weak var lblErrBankName: UILabel!
-    @IBOutlet weak var lblErrAccountNumber: UILabel!
-    @IBOutlet weak var lblErrAccountName: UILabel!
-    @IBOutlet weak var lblErrIFSCCode: UILabel!
+    @IBOutlet weak var lblBankName: UILabel!
+    @IBOutlet weak var lblAccountNumber: UILabel!
+    @IBOutlet weak var lblAccountHolderName: UILabel!
+    @IBOutlet weak var lblIFSCCode: UILabel!
     
     @IBOutlet weak var btnBack: UIButton!
-    @IBOutlet weak var btnConfirm: UIButton!
+    @IBOutlet weak var btnConfirm: AppThemeButton!
+    
     
     
     // MARK: - VARIABLES
     var isFromEdit = false
-    var arrayErrorLabels = [UILabel]()
-    
+
     
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        btnBack.isHidden = !isFromEdit
-        
-        setupUI()
-        setupData()
-        
-        self.fetchCoachDetails {
-            self.setupData()
-        }
+        setUpView()
     }
     
     
     // MARK: - FUNCTIONS
-    override func setupUI() {
-        arrayErrorLabels = [lblErrBankName, lblErrAccountNumber, lblErrAccountName, lblErrIFSCCode]
-        
-        for label in arrayErrorLabels {
-            label.isHidden = true
-        }
+    private func setUpView(){
+        self.configureUI()
+        self.setUpData()
     }
     
-    override func setupData() {
+    private func configureUI(){
+        self.btnBack.isHidden = !isFromEdit
+        
+        self.lblBankName.applyLabelStyle(text: kBankName, fontSize: 13.0, fontName: .SFProDisplayRegular, textColor : .colorAppTxtFieldGray)
+        self.lblAccountNumber.applyLabelStyle(text: kAccountNumber, fontSize: 13.0, fontName: .SFProDisplayRegular, textColor : .colorAppTxtFieldGray)
+        self.lblAccountHolderName.applyLabelStyle(text: kAccountName, fontSize: 13.0, fontName: .SFProDisplayRegular, textColor : .colorAppTxtFieldGray)
+        self.lblIFSCCode.applyLabelStyle(text: kIFSCCode, fontSize: 13.0, fontName: .SFProDisplayRegular, textColor : .colorAppTxtFieldGray)
+        
+        self.txtBankName.applyStyleTextField(placeholder : "", fontsize: 13.0, fontname: .SFProDisplayMedium)
+        self.txtAccountNumber.applyStyleTextField(placeholder : "", fontsize: 13.0, fontname: .SFProDisplayMedium)
+        self.txtAccountName.applyStyleTextField(placeholder : "", fontsize: 13.0, fontname: .SFProDisplayMedium)
+        self.txtIFSCCode.applyStyleTextField(placeholder : "", fontsize: 13.0, fontname: .SFProDisplayMedium)
+        
+        self.btnConfirm.setTitle(kConfirm, for: .normal)
+    }
+    
+    private func setUpData() {
+        
         guard let userData = LoginDataModel.currentUser else {
             return
         }
         
         if userData.Bank_Name.trim.count > 0 {
-            txtBankName.text = userData.Bank_Name
+            self.txtBankName.text = userData.Bank_Name
         }
         
         if userData.Account_Number.trim.count > 0 {
-            txtAccountNumber.text = userData.Account_Number
+            self.txtAccountNumber.text = userData.Account_Number
         }
         
         if userData.Account_Name.trim.count > 0 {
-            txtAccountName.text = userData.Account_Name
+            self.txtAccountName.text = userData.Account_Name
         }
         
         if userData.IFSC_Code.trim.count > 0 {
-            txtIFSCCode.text = userData.IFSC_Code
+            self.txtIFSCCode.text = userData.IFSC_Code
         }
         
-        if userData.Bank_Name != "" {
-            lblTitle.text = "Bank Details"
+        if  userData.Bank_Name != "" {
+            self.title = kBankDetails
         }else {
-            lblTitle.text = "Add Bank Details"
+            self.title = kAddBankDetails
         }
         
-        buttonEnableDisable()
+        self.btnEnableDisable()
     }
     
-    override func buttonEnableDisable() {
+    private func btnEnableDisable() {
         var shouldEnable = true
         
         let userData = LoginDataModel.currentUser
         
-        let strBankName = txtBankName.text?.trim
-        let strAccountNumber = txtAccountNumber.text?.trim
-        let strAccountName = txtAccountName.text?.trim
-        let strIFSCCode = txtIFSCCode.text?.trim
+        let strBankName = self.txtBankName.text?.trim
+        let strAccountNumber = self.txtAccountNumber.text?.trim
+        let strAccountName = self.txtAccountName.text?.trim
+        let strIFSCCode = self.txtIFSCCode.text?.trim
         
         
         if strBankName?.count == 0 || strAccountNumber?.count == 0 ||
@@ -109,62 +113,70 @@ class BankDetailsVC: BaseViewController {
         }
         
         if shouldEnable {
-            btnConfirm.isUserInteractionEnabled = true
-            btnConfirm.backgroundColor = Theme.colors.theme_dark
+            
+            self.btnConfirm.isSelect = true
+            
         } else {
-            btnConfirm.isUserInteractionEnabled = false
-            btnConfirm.backgroundColor = Theme.colors.gray_7E7E7E
-            btnConfirm.removeGradient()
+            
+            self.btnConfirm.isSelect = false
         }
     }
     
     func checkValidation() -> Bool {
+        
+        self.view.endEditing(true)
+        
         var isValid = true
-        let strBankName = txtBankName.text?.trim ?? ""
-        let strAccountNumber = txtAccountNumber.text?.trim ?? ""
-        let strAccountName = txtAccountName.text?.trim ?? ""
-        let strIFSCCode = txtIFSCCode.text?.trim ?? ""
+        let strBankName = self.txtBankName.text?.trim ?? ""
+        let strAccountNumber = self.txtAccountNumber.text?.trim ?? ""
+        let strAccountName = self.txtAccountName.text?.trim ?? ""
+        let strIFSCCode = self.txtIFSCCode.text?.trim ?? ""
         
         if strBankName.count == 0 {
+            
             isValid = false
-            lblErrBankName.isHidden = false
-            lblErrBankName.text = Theme.strings.alert_blank_bankname_error
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_blank_bankname_error)
         }
         
         if strAccountNumber.count == 0 {
+            
             isValid = false
-            lblErrAccountNumber.isHidden = false
-            lblErrAccountNumber.text = Theme.strings.alert_invalid_accountnumber_error
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_invalid_accountnumber_error)
+            
         } else if strAccountNumber.count < 10 || strAccountNumber.count > 20 {
+            
             isValid = false
-            lblErrAccountNumber.isHidden = false
-            lblErrAccountNumber.text = Theme.strings.alert_invalid_accountnumber_error
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_invalid_accountnumber_error)
+            
         } else if strAccountNumber.isNumber == false {
+           
             isValid = false
-            lblErrAccountNumber.isHidden = false
-            lblErrAccountNumber.text = Theme.strings.alert_invalid_accountnumber_error
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_invalid_accountnumber_error)
+            
         }
         
         if strAccountName.count == 0 {
+            
             isValid = false
-            lblErrAccountName.isHidden = false
-            lblErrAccountName.text = Theme.strings.alert_blank_accountname_error
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_blank_accountname_error)
+            
         }
         
         if strIFSCCode.count == 0 {
+            
             isValid = false
-            lblErrIFSCCode.isHidden = false
-            lblErrIFSCCode.text = Theme.strings.alert_invalid_ifsccode_error
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_invalid_ifsccode_error)
+            
         } else if strIFSCCode.count < 6 || strIFSCCode.count > 20 {
+            
             isValid = false
-            lblErrIFSCCode.isHidden = false
-            lblErrIFSCCode.text = Theme.strings.alert_invalid_ifsccode_error
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_invalid_ifsccode_error)
         }
         
         return isValid
     }
     
-    override func goNext() {
+    private func goNextScreen() {
         let coachDetailVM = CoachDetailViewModel()
         coachDetailVM.callCoachDetailsAPI { success in
             
@@ -187,10 +199,7 @@ class BankDetailsVC: BaseViewController {
     
     @IBAction func confirmClicked(_ sender: UIButton) {
         if checkValidation() {
-            for label in arrayErrorLabels {
-                label.isHidden = true
-            }
-            
+           
             let parameters = ["coachId":LoginDataModel.currentUser?.ID ?? "",
                               "bankName":txtBankName.text ?? "",
                               "accountNumber":txtAccountNumber.text ?? "",
@@ -200,23 +209,16 @@ class BankDetailsVC: BaseViewController {
             let bankDetailVM = BankDetailViewModel()
             bankDetailVM.callUpdateBankDetailsAPI(parameters: parameters) { success in
                 if success {
-                    self.goNext()
+                    self.goNextScreen()
                 }
             }
         }
     }
-    
 }
 
 
 // MARK: - UITextFieldDelegate
 extension BankDetailsVC : UITextFieldDelegate {
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        for label in arrayErrorLabels {
-            label.isHidden = true
-        }
-    }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text,
@@ -226,9 +228,9 @@ extension BankDetailsVC : UITextFieldDelegate {
         
         let updatedText = text.replacingCharacters(in: textRange, with: string)
         
-        if textField == txtIFSCCode && updatedText.count > 20 {
+        if textField == self.txtIFSCCode && updatedText.count > 20 {
             return false
-        } else if textField == txtAccountNumber {
+        } else if textField == self.txtAccountNumber {
             if !updatedText.isNumber || updatedText.count > 20 {
                 return false
             }
@@ -257,8 +259,7 @@ extension BankDetailsVC : UITextFieldDelegate {
         return true
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        buttonEnableDisable()
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        self.btnEnableDisable()
     }
-    
 }

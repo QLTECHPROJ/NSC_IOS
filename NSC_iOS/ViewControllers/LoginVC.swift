@@ -10,107 +10,101 @@ import UIKit
 import TTTAttributedLabel
 import FirebaseAuth
 
-class LoginVC: BaseViewController {
+class LoginVC: ClearNaviagtionBarVC {
     
     // MARK: - OUTLETS
     //UILabel
     @IBOutlet weak var lblTitle: UILabel!
-    @IBOutlet weak var lblSubTitle: UILabel!
-    @IBOutlet weak var lblErrMobileNo: UILabel!
-    @IBOutlet weak var lblPrivacy: TTTAttributedLabel!
-    @IBOutlet weak var lblSupport: TTTAttributedLabel!
+    @IBOutlet weak var lblPhoneNo: UILabel!
+    
+    @IBOutlet weak var imgFlag: UIImageView!
+
+    @IBOutlet weak var lblPrivacyTermCondition: UILabel!
     
     //UIButton
-    @IBOutlet weak var btnCountryCode: UIButton!
-    @IBOutlet weak var btnGetSMSCode: UIButton!
+    
+    @IBOutlet weak var btnGetSMSCode: AppThemeButton!
     
     //UITextfield
+    @IBOutlet weak var txtCountryCode: UITextField!
     @IBOutlet weak var txtMobile: UITextField!
     
-    //UIStackView
-    @IBOutlet weak var stackView: UIStackView!
     
     
     // MARK: - VARIABLES
     var loginCheckVM : LoginCheckViewModel?
     var isFromOTP = false
+
     
-    
-    // MARK: - VIEW LIFE CYCLE
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
-        setupPrivacyLabel(lblPrivacy: lblPrivacy)
-        setupSupportLabel(lblSupport: lblSupport)
-        setupData()
+    deinit{
+        self.removeClassObservers()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if isFromOTP {
-            txtMobile.becomeFirstResponder()
-        } else {
-            txtMobile.text = ""
-        }
-        
-        buttonEnableDisable()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.view.endEditing(true)
-    }
-    
+
     
     // MARK: - FUNCTIONS
-    override func setupUI() {
-        txtMobile.delegate = self
-        lblTitle.text = Theme.strings.login_title
-        lblSubTitle.attributedText = Theme.strings.login_subtitle.attributedString(alignment: .center, lineSpacing: 5)
+    private func setUpView(){
+        self.addClassObservers()
+        self.configureUI()
     }
     
-    override func setupData() {
-        let countryText = AppVersionDetails.countryShortName + " " + "+" + AppVersionDetails.countryCode
-        btnCountryCode.setTitle(countryText, for: .normal)
+    private func configureUI(){
+        self.view.backgroundColor = .colorAppThemeBGWhite
+        self.lblTitle.applyLabelStyle(text: kLogIn, fontSize: 28.0, fontName: .SFProDisplayBold)
         
-        buttonEnableDisable()
-    }
+        self.lblPhoneNo.applyLabelStyle(text: kMobileNumber, fontSize: 13.0, fontName: .SFProDisplayRegular, textColor : .colorAppTxtFieldGray)
+        self.txtCountryCode.applyStyleTextField(fontsize: 13.0, fontname: .SFProDisplayMedium)
+        
+        self.txtCountryCode.text = "\(JSON(AppVersionDetails.countryShortName as Any).stringValue) +\(JSON(AppVersionDetails.countryCode as Any).stringValue)"
+        self.imgFlag.sd_setImage(with: JSON(AppVersionDetails.countryIcon as Any).stringValue.url(), placeholderImage: nil, context: nil)
+        
+        self.txtMobile.applyStyleTextField(placeholder : "", fontsize: 13.0, fontname: .SFProDisplayMedium)
+        
+        //        let countryText = AppVersionDetails.countryShortName + " " + "+" + AppVersionDetails.countryCode
+        
+        self.btnGetSMSCode.setTitle(kGetOTP, for: .normal)
+        self.buttonEnableDisable()
+        
+        let defaultFontAttribute = [NSAttributedString.Key.foregroundColor: UIColor.colorAppDarkGray ,NSAttributedString.Key.font: UIFont.applyCustomFont(fontName: .SFProDisplayRegular, fontSize: 11.0)]
+        let blueFontAttribute = [NSAttributedString.Key.foregroundColor: UIColor.colorAppDarkGray,NSAttributedString.Key.font: UIFont.applyCustomFont(fontName: .SFProDisplayRegular, fontSize: 11.0),NSAttributedString.Key.underlineColor: UIColor.colorAppDarkGray, NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue] as [NSAttributedString.Key : Any]
     
-    override func buttonEnableDisable() {
-        let mobile = txtMobile.text?.trim
+        self.lblPrivacyTermCondition.text = kByClickingOnGetOTPYouAgreeToOurTCsPrivacyPolicy
+        self.lblPrivacyTermCondition.attributedText = (self.lblPrivacyTermCondition.text)?.getAttributedText(defaultDic: defaultFontAttribute, attributeDic: blueFontAttribute, attributedStrings: [kTCs,kPrivacyPolicy])
         
-        if mobile?.count == 0 {
-            btnGetSMSCode.isUserInteractionEnabled = false
-            btnGetSMSCode.backgroundColor = Theme.colors.gray_7E7E7E
-            btnGetSMSCode.removeGradient()
-        } else {
-            btnGetSMSCode.isUserInteractionEnabled = true
-            btnGetSMSCode.backgroundColor = Theme.colors.theme_dark
-        }
+        self.lblPrivacyTermCondition.lineSpacing(lineSpacing: 10.0, alignment: self.lblPrivacyTermCondition.textAlignment)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.lblTCsPrivacyPolicyTapped(_:)))
+        self.lblPrivacyTermCondition.isUserInteractionEnabled = true
+        self.lblPrivacyTermCondition.addGestureRecognizer(tap)
+    }
+
+    
+    private func buttonEnableDisable() {
+        
+        self.btnGetSMSCode.isSelect = !self.txtMobile.text!.trim.isEmpty
     }
     
     func checkValidation() -> Bool {
+        
+        self.view.endEditing(true)
+        
         var isValid = true
         let strMobile = txtMobile.text?.trim ?? ""
-        if strMobile.count == 0 {
-            isValid = false
-            self.lblErrMobileNo.isHidden = false
-            self.lblErrMobileNo.text = Theme.strings.alert_invalid_mobile_error
-        } else if strMobile.count < AppVersionDetails.mobileMinDigits || strMobile.count > AppVersionDetails.mobileMaxDigits {
-            isValid = false
-            self.lblErrMobileNo.isHidden = false
-            self.lblErrMobileNo.text = Theme.strings.alert_invalid_mobile_error
-        } else if strMobile.isPhoneNumber == false {
-            isValid = false
-            lblErrMobileNo.isHidden = false
-            lblErrMobileNo.text = Theme.strings.alert_invalid_mobile_error
-        }
         
+        if strMobile.count == 0 {
+            
+            isValid = false
+            
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_invalid_mobile_error)
+            
+        } else if strMobile.count < AppVersionDetails.mobileMinDigits || strMobile.count > AppVersionDetails.mobileMaxDigits {
+            
+            isValid = false
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_invalid_mobile_error)
+        }
         return isValid
     }
     
-    override func goNext() {
+    func goNext() {
         if loginCheckVM?.loginFlag == "0" {
             let aVC = AppStoryBoard.main.viewController(viewControllerClass: SignUpVC.self)
             aVC.strMobile = txtMobile.text ?? ""
@@ -136,15 +130,17 @@ class LoginVC: BaseViewController {
             
             if let error = error {
                 if error.localizedDescription.contains(string: "The format of the phone number provided is incorrect.") {
-                    self.lblErrMobileNo.isHidden = false
-                    self.lblErrMobileNo.text = Theme.strings.alert_invalid_mobile_error
+                    
+                    GFunctions.shared.showSnackBar(message: Theme.strings.alert_invalid_mobile_error)
+                    
                 }else {
-                    showAlertToast(message: error.localizedDescription)
+                    
+                    GFunctions.shared.showSnackBar(message: error.localizedDescription)
                 }
                 return
             }
             
-            showAlertToast(message: Theme.strings.sms_sent)
+            GFunctions.shared.showSnackBar(message: Theme.strings.sms_sent)
             
             // Sign in using the verificationID and the code sent to the user
             authVerificationID = verificationID ?? ""
@@ -155,13 +151,29 @@ class LoginVC: BaseViewController {
         }
     }
     
-    
     // MARK: - ACTIONS
-    @IBAction func loginClicked(_ sender: UIButton) {
+    
+    @objc func lblTCsPrivacyPolicyTapped(_ tapGesture : UITapGestureRecognizer) {
         self.view.endEditing(true)
+        if tapGesture.didTapAttributedTextInLabel(label: self.lblPrivacyTermCondition, inRange: (self.lblPrivacyTermCondition.attributedText!.string as NSString).range(of: kTCs)) {
+            
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass:WebViewVC.self)
+            aVC.urlType = .termsNcondition
+            self.navigationController?.pushViewController(aVC, animated: true)
+        }
+        
+        if tapGesture.didTapAttributedTextInLabel(label: self.lblPrivacyTermCondition, inRange: (self.lblPrivacyTermCondition.attributedText!.string as NSString).range(of: kPrivacyPolicy)) {
+            
+            let aVC = AppStoryBoard.main.viewController(viewControllerClass:WebViewVC.self)
+            aVC.urlType = .privacyPolicy
+            self.navigationController?.pushViewController(aVC, animated: true)
+        }
+    }
+    
+    @IBAction func loginClicked(_ sender: UIButton) {
         
         if checkValidation() {
-            lblErrMobileNo.isHidden = true
+            
             isFromOTP = true
             
             let parameters = ["mobile":txtMobile.text ?? "",
@@ -176,6 +188,28 @@ class LoginVC: BaseViewController {
         }
     }
     
+    // MARK: - VIEW LIFE CYCLE
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if isFromOTP {
+            txtMobile.becomeFirstResponder()
+        } else {
+            txtMobile.text = ""
+        }
+        
+        self.buttonEnableDisable()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+    }
 }
 
 
@@ -183,15 +217,15 @@ class LoginVC: BaseViewController {
 extension LoginVC : UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.lblErrMobileNo.isHidden = true
+    
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return textField.resignFirstResponder()
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        buttonEnableDisable()
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        self.buttonEnableDisable()
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -214,3 +248,29 @@ extension LoginVC : UITextFieldDelegate {
     
 }
 
+
+//----------------------------------------------------------------------------
+//MARK: - Class observers Methods
+//----------------------------------------------------------------------------
+extension LoginVC{
+    
+    func addClassObservers(){
+        NotificationCenter.default.addObserver(self, selector: #selector(self.notificationGetAppVersionsDetails(notification:)), name: NSNotification.Name.appVersionDetails, object: nil)
+    }
+    
+    func removeClassObservers() {
+        NotificationCenter.default.removeObserver(NSNotification.Name.appVersionDetails)
+    }
+    
+    @objc func notificationGetAppVersionsDetails(notification : NSNotification) {
+        
+        if let object = notification.object as? JSON {
+            if object["isDone"].boolValue{
+                
+                self.txtCountryCode.text = "\(JSON(AppVersionDetails.countryShortName as Any).stringValue) +\(JSON(AppVersionDetails.countryCode as Any).stringValue)"
+                self.imgFlag.sd_setImage(with: JSON(AppVersionDetails.countryIcon as Any).stringValue.url(), placeholderImage: nil, context: nil)
+            }
+           
+        }
+    }
+}

@@ -7,12 +7,11 @@
 
 import UIKit
 
-class PersonalDetailsVC: BaseViewController {
+class PersonalDetailsVC: ClearNaviagtionBarVC {
     
     // MARK: - OUTLETS
-    @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var btnBack: UIButton!
-    @IBOutlet weak var btnConfirm: UIButton!
+    @IBOutlet weak var btnConfirm: AppThemeButton!
     
     // TextFields
     @IBOutlet weak var txtDOB: UITextField!
@@ -24,14 +23,14 @@ class PersonalDetailsVC: BaseViewController {
     @IBOutlet weak var txtRole: UITextField!
     
     // Error Labels
-    @IBOutlet weak var lblErrDOB: UILabel!
-    @IBOutlet weak var lblErrStreet: UILabel!
-    @IBOutlet weak var lblErrState: UILabel!
-    @IBOutlet weak var lblErrCity: UILabel!
-    @IBOutlet weak var lblErrPostCode: UILabel!
-    @IBOutlet weak var lblErrCamps: UILabel!
-    @IBOutlet weak var lblErrRole: UILabel!
-    @IBOutlet weak var lblErrVaccinated: UILabel!
+    @IBOutlet weak var lblDOB: UILabel!
+    @IBOutlet weak var lblStreetAddress: UILabel!
+    @IBOutlet weak var lblState: UILabel!
+    @IBOutlet weak var lblCity: UILabel!
+    @IBOutlet weak var lblPostCode: UILabel!
+    @IBOutlet weak var lblSelectCamps: UILabel!
+    @IBOutlet weak var lblSelectYourRole: UILabel!
+    @IBOutlet weak var lblVaccinated: UILabel!
     
     // Vaccinated - Yes / No
     @IBOutlet weak var btnYes: UIButton!
@@ -39,58 +38,83 @@ class PersonalDetailsVC: BaseViewController {
     
     
     // MARK: - VARIABLES
+   
     var isFromEdit = false
-    var arrayErrorLabels = [UILabel]()
     
     var selectedDOB = Date()
     var selectedState : ListItem?
     var selectedCity : ListItem?
     var selectedCamps : ListItem?
     var selectedRole : ListItem?
+
     var vaccinated = ""
     let bodDatePicker = UIDatePicker()
     
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpView()
         
-        btnBack.isHidden = !isFromEdit
-        
-        setupUI()
-        setupData()
-        setupInitialData()
-        
-        self.fetchCoachDetails {
-            self.setupInitialData()
-        }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
     
     
     // MARK: - FUNCTIONS
-    override func setupUI() {
-        arrayErrorLabels = [lblErrDOB, lblErrStreet, lblErrState, lblErrCity, lblErrPostCode, lblErrCamps, lblErrRole, lblErrVaccinated]
-        
-        for label in arrayErrorLabels {
-            label.isHidden = true
-        }
-        
-        btnYes.setImage(UIImage(named: "CheckDeselect"), for: .normal)
-        btnNo.setImage(UIImage(named: "CheckDeselect"), for: .normal)
-        
-        txtState.isEnabled = false
-        txtCity.isEnabled = false
-        txtCamps.isEnabled = false
-        txtRole.isEnabled = false
+    private func setUpView(){
+        self.configureUI()
+        self.initDatePicker()
+        self.setUpData()
+        self.setupInitialData()
     }
     
-    override func setupData() {
-        if vaccinated == "1" {
-            btnYes.setImage(UIImage(named: "CheckSelect"), for: .normal)
-            btnNo.setImage(UIImage(named: "CheckDeselect"), for: .normal)
-        } else if vaccinated == "0" {
-            btnYes.setImage(UIImage(named: "CheckDeselect"), for: .normal)
-            btnNo.setImage(UIImage(named: "CheckSelect"), for: .normal)
-        }
+    
+    private func configureUI(){
+        self.title = kPersonalDetails
+        
+        self.btnBack.isHidden = !isFromEdit
+                
+        self.lblDOB.applyLabelStyle(text: kDOB, fontSize: 13.0, fontName: .SFProDisplayRegular, textColor : .colorAppTxtFieldGray)
+        self.lblStreetAddress.applyLabelStyle(text: kStreetAddress, fontSize: 13.0, fontName: .SFProDisplayRegular, textColor : .colorAppTxtFieldGray)
+        self.lblState.applyLabelStyle(text: kState, fontSize: 13.0, fontName: .SFProDisplayRegular, textColor : .colorAppTxtFieldGray)
+        self.lblCity.applyLabelStyle(text: kCity, fontSize: 13.0, fontName: .SFProDisplayRegular, textColor : .colorAppTxtFieldGray)
+        self.lblPostCode.applyLabelStyle(text: kPostCode, fontSize: 13.0, fontName: .SFProDisplayRegular, textColor : .colorAppTxtFieldGray)
+        self.lblSelectCamps.applyLabelStyle(text: kSport, fontSize: 13.0, fontName: .SFProDisplayRegular, textColor : .colorAppTxtFieldGray)
+        self.lblSelectYourRole.applyLabelStyle(text: kRole, fontSize: 13.0, fontName: .SFProDisplayRegular, textColor : .colorAppTxtFieldGray)
+        self.lblVaccinated.applyLabelStyle(text: kAreYouVaccinated, fontSize: 13.0, fontName: .SFProDisplayRegular, textColor : .colorAppTxtFieldGray)
+        
+        self.txtDOB.applyStyleTextField(placeholder : "", fontsize: 13.0, fontname: .SFProDisplayMedium)
+        
+        self.txtStreet.applyStyleTextField(placeholder : "", fontsize: 13.0, fontname: .SFProDisplayMedium)
+        
+        self.txtState.applyStyleTextField(placeholder : "", fontsize: 13.0, fontname: .SFProDisplayMedium)
+        self.txtState.isEnabled = false
+        
+        self.txtCity.applyStyleTextField(placeholder : "", fontsize: 13.0, fontname: .SFProDisplayMedium)
+        self.txtCity.isEnabled = false
+        
+        self.txtPostCode.applyStyleTextField(placeholder : "", fontsize: 13.0, fontname: .SFProDisplayMedium)
+        
+        self.txtCamps.applyStyleTextField(placeholder : "", fontsize: 13.0, fontname: .SFProDisplayMedium)
+        self.txtCamps.isEnabled = false
+        
+        self.txtRole.applyStyleTextField(placeholder : "", fontsize: 13.0, fontname: .SFProDisplayMedium)
+        self.txtRole.isEnabled = false
+        
+        self.btnYes.applystyle(fontname: .SFProDisplayRegular, fontsize: 13.0, titleText: kYes, titleColor: .colorAppTextBlack)
+        self.btnNo.applystyle(fontname: .SFProDisplayRegular, fontsize: 13.0, titleText: kNo, titleColor: .colorAppTextBlack)
+        self.btnConfirm.setTitle(kConfirm, for: .normal)
+        
+        self.btnYes.setContentEdges(titleEngesLeft:  -20, ImageEngesLeft:  -30, titleEngesRight:  0, ImageEngesRight: 0)
+        
+        self.btnNo.setContentEdges(titleEngesLeft:  -20, ImageEngesLeft:  -30, titleEngesRight:  0, ImageEngesRight: 0)
+    }
+    
+    private func setUpData(){
         
         if let strName = selectedState?.Name {
             txtState.text = strName
@@ -116,14 +140,13 @@ class PersonalDetailsVC: BaseViewController {
             txtRole.text = ""
         }
         
-        if txtState.text != "" {
-            lblTitle.text = "Personal Details"
+        if  txtState.text != "" {
+            self.title = kPersonalDetails
         }else {
-            lblTitle.text = "Add Personal Details"
+            self.title = kAddPersonalDetails
         }
         
-        self.initDatePicker()
-        buttonEnableDisable()
+        self.btnEnableDisable()
     }
     
     func setupInitialData() {
@@ -154,14 +177,22 @@ class PersonalDetailsVC: BaseViewController {
             
             if self.vaccinated.trim.count == 0 {
                 vaccinated = userData.Vaccinated
+                
+                self.setVaccinatedUser(userData.Vaccinated == "1" ? 1 : 0)
             }
             
             if userData.DOB.trim.count  > 0 {
                 txtDOB.text = userData.DOB
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = Theme.dateFormats.DOB_App
+                if let _ = dateFormatter.date(from: userData.DOB){
+                    self.selectedDOB = dateFormatter.date(from: userData.DOB)!
+                }
             }
         }
         
-        setupData()
+        self.setUpData()
     }
     
     func initDatePicker(){
@@ -184,8 +215,6 @@ class PersonalDetailsVC: BaseViewController {
         self.txtDOB.text = dateFormatter.string(from: sender.date)
         let dob = dateFormatter.date(from: txtDOB.text ?? "")
         selectedDOB = dob ?? Date()
-        
-        
     }
     
     func setSelectedListItem(listType : ListItemType ,selectedItem : ListItem) {
@@ -199,99 +228,111 @@ class PersonalDetailsVC: BaseViewController {
             self.selectedCamps = selectedItem
         case .role:
             self.selectedRole = selectedItem
+       
         default:
             break
         }
         
-        self.setupData()
+        self.setUpData()
     }
     
-    override func buttonEnableDisable() {
+    private func btnEnableDisable() {
+        
         var shouldEnable = true
         
-        if txtStreet.text?.trim.count == 0 || txtPostCode.text?.trim.count == 0 || vaccinated.trim.count == 0 {
+        if self.txtStreet.text!.trim.isEmpty || self.txtPostCode.text!.trim.isEmpty || self.vaccinated.trim.isEmpty {
             shouldEnable = false
         }
         
-        if selectedState == nil || selectedCity == nil || selectedCamps == nil || selectedRole == nil {
+        if self.selectedState == nil || self.selectedCity == nil || self.selectedCamps == nil || self.selectedRole == nil {
             shouldEnable = false
         }
-        
-        if shouldEnable {
-            btnConfirm.isUserInteractionEnabled = true
-            btnConfirm.backgroundColor = Theme.colors.theme_dark
-        } else {
-            btnConfirm.isUserInteractionEnabled = false
-            btnConfirm.backgroundColor = Theme.colors.gray_7E7E7E
-            btnConfirm.removeGradient()
-        }
+        self.btnConfirm.isSelect = shouldEnable
     }
     
     func checkValidation() -> Bool {
+        
+        self.view.endEditing(true)
+        
         var isValid = true
         let strStreet = txtStreet.text?.trim ?? ""
         let strPostCode = txtPostCode.text?.trim ?? ""
         
-        if txtDOB.text?.trim.count == 0 || selectedDOB.differenceWith(Date(), inUnit: NSCalendar.Unit.year) < 14 {
+        let dateformattor = DateFormatter()
+        dateformattor.dateFormat = Theme.dateFormats.DOB_App
+        let dOBTemp = dateformattor.date(from: self.txtDOB.text!)
+        
+        if txtDOB.text?.trim.count == 0{
+            
             isValid = false
-            lblErrDOB.isHidden = false
-            lblErrDOB.text = Theme.strings.alert_dob_error
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_dob_error)
+            
+        }
+        
+        if let _ = dOBTemp, selectedDOB.differenceWith(Date(), inUnit: NSCalendar.Unit.year) < 18{
+            
+            isValid = false
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_dob_error)
         }
         
         if strStreet.count == 0 {
+            
             isValid = false
-            lblErrStreet.isHidden = false
-            lblErrStreet.text = Theme.strings.alert_blank_street_error
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_blank_street_error)
+            
         }
         
         if selectedState == nil {
+            
             isValid = false
-            lblErrState.isHidden = false
-            lblErrState.text = Theme.strings.alert_select_state
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_select_state)
         }
         
         if selectedCity == nil {
+            
             isValid = false
-            lblErrCity.isHidden = false
-            lblErrCity.text = Theme.strings.alert_select_city
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_select_city)
+            
         }
         
         if strPostCode.count == 0 {
+            
             isValid = false
-            lblErrPostCode.isHidden = false
-            lblErrPostCode.text = Theme.strings.alert_invalid_postcode_error
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_invalid_postcode_error)
+            
         } else if strPostCode.count < AppVersionDetails.postCodeMinDigits || strPostCode.count > AppVersionDetails.postCodeMaxDigits {
+            
             isValid = false
-            lblErrPostCode.isHidden = false
-            lblErrPostCode.text = Theme.strings.alert_invalid_postcode_error
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_invalid_postcode_error)
+            
         } else if strPostCode.isNumber == false {
+            
             isValid = false
-            lblErrPostCode.isHidden = false
-            lblErrPostCode.text = Theme.strings.alert_invalid_postcode_error
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_invalid_postcode_error)
         }
         
         if selectedCamps == nil {
+    
             isValid = false
-            lblErrCamps.isHidden = false
-            lblErrCamps.text = Theme.strings.alert_select_sport
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_select_sport)
         }
         
         if selectedRole == nil {
+            
             isValid = false
-            lblErrRole.isHidden = false
-            lblErrRole.text = Theme.strings.alert_select_role
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_select_role)
         }
         
         if vaccinated.trim.count == 0 {
+            
             isValid = false
-            lblErrVaccinated.isHidden = false
-            lblErrVaccinated.text = Theme.strings.alert_blank_vaccination_error
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_blank_vaccination_error)
         }
         
         return isValid
     }
     
-    override func goNext() {
+    private func goNextScreen(){
         let coachDetailVM = CoachDetailViewModel()
         coachDetailVM.callCoachDetailsAPI { success in
             
@@ -308,7 +349,7 @@ class PersonalDetailsVC: BaseViewController {
     
     // MARK: - ACTIONS
     @IBAction func backClicked(_ sender: UIButton) {
-        self.view.endEditing(true)
+        
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -325,7 +366,8 @@ class PersonalDetailsVC: BaseViewController {
             strID = AppVersionDetails.countryID
         case .city:
             if selectedState == nil {
-                showAlertToast(message: "Please select state first")
+                
+                GFunctions.shared.showSnackBar(message: kPleaseSelectStateFirst)
                 return
             }
             strID = selectedState?.ID ?? ""
@@ -335,32 +377,43 @@ class PersonalDetailsVC: BaseViewController {
             break
         }
         
+        
         let aVC = AppStoryBoard.main.viewController(viewControllerClass:ListItemVC.self)
         aVC.listType = listType
         aVC.strID = strID
-        aVC.didSelectItem = { selectedItem in
-            self.setSelectedListItem(listType: listType, selectedItem: selectedItem)
-        }
         aVC.modalPresentationStyle = .overFullScreen
-        self.navigationController?.present(aVC, animated: true, completion: nil)
+        UIApplication.topViewController()?.present(aVC, animated: false, completion :{
+            aVC.openPopUpVisiable()
+        })
+        aVC.completionBlock = { receviceData , completion , type in
+            if let data = receviceData , type == listType{
+                self.setSelectedListItem(listType: listType, selectedItem: data)
+            }
+        }
     }
     
     @IBAction func vaccinatedOptionClicked(_ sender: UIButton) {
-        if sender == btnYes {
+        self.view.endEditing(true)
+        self.setVaccinatedUser(sender.tag)
+    }
+    
+    private func setVaccinatedUser(_ tag : Int = 1){
+        if tag == 1{
             vaccinated = "1"
-        } else {
-            vaccinated = "0"
+            self.btnYes.isSelected = true
+            self.btnNo.isSelected = false
         }
-        
-        setupData()
+        else{
+            vaccinated = "0"
+            self.btnNo.isSelected = true
+            self.btnYes.isSelected = false
+        }
+        self.btnEnableDisable()
     }
     
     @IBAction func confirmClicked(_ sender: UIButton) {
         if checkValidation() {
-            for label in arrayErrorLabels {
-                label.isHidden = true
-            }
-            
+           
             var parameters = ["coachId":LoginDataModel.currentUser?.ID ?? "",
                               "dob":txtDOB.text ?? "",
                               "country":AppVersionDetails.countryCode,
@@ -376,7 +429,7 @@ class PersonalDetailsVC: BaseViewController {
             let personalDetailVM = PersonalDetailViewModel()
             personalDetailVM.callUpdatePersonalDetailsAPI(parameters: parameters) { success in
                 if success {
-                    self.goNext()
+                    self.goNextScreen()
                 }
             }
         }
@@ -389,10 +442,7 @@ class PersonalDetailsVC: BaseViewController {
 extension PersonalDetailsVC : UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        for label in arrayErrorLabels {
-            label.isHidden = true
-        }
-        
+      
         if self.txtDOB == textField, self.txtDOB.text!.trim.isEmpty{
             let dateformattor = DateFormatter()
             dateformattor.dateFormat = Theme.dateFormats.DOB_App
@@ -436,7 +486,7 @@ extension PersonalDetailsVC : UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        buttonEnableDisable()
+        self.btnEnableDisable()
     }
     
 }

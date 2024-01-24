@@ -8,98 +8,138 @@
 import UIKit
 
 
-protocol AlertPopUpVCDelegate {
-    func handleAction(sender : UIButton, popUpTag : Int )
+enum AlertPopUpType : String {
+    
+    case logout
+    case deleteAccount
+    case normalUpdate
+    case forceUpadte
+    case removeMedia
+    case none
 }
 
 
-class AlertPopUpVC: BaseViewController {
+
+class AlertPopUpVC: UIViewController {
     
     
     // MARK: - OUTLETS
     @IBOutlet weak var lblTitle : UILabel!
     @IBOutlet weak var lblDetail : UILabel!
     
-    @IBOutlet weak var btnDelete : UIButton!
-    @IBOutlet weak var btnClose : UIButton!
+    @IBOutlet weak var btnTrue : AppThemeButton!
+    @IBOutlet weak var btnFalse : AppThemeBorderButton!
     
     
     // MARK: - VARIABLES
-    var titleText = Theme.strings.normal_update_title
-    var detailText = Theme.strings.normal_update_subtitle
+    var alertType : AlertPopUpType = .none
     
-    var firstButtonTitle = Theme.strings.update
-    var secondButtonTitle = Theme.strings.not_now
-    
-    var firstButtonBackgroundColor = Theme.colors.theme_dark
-    var secondButtonBackgroundColor = UIColor.clear
-    
-    var firstButtonTitleColor = Theme.colors.white
-    var secondButtonTitleColor = Theme.colors.theme_dark
-    
-    var hideFirstButton = false
-    var hideSecondButton = false
-    
-    var isFirstButtonGradient = true
-    var isSecondButtonGradient = false
-    
-    var popUpTag = 0
-    
-    // 0 : Delete, 1 : Close
-    var delegate : AlertPopUpVCDelegate?
-    
-    
-    // MARK: - VIEW LIFE CYCLE
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // setupUI()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        setupUI()
-    }
+    var completionBlock : ((Bool,AlertPopUpType)->Void)?
     
     
     // MARK: - FUNCTIONS
-    override func setupUI() {
-        lblTitle.text = titleText
-        lblDetail.attributedText = detailText.attributedString(alignment: .center, lineSpacing: 5)
+    
+    private func setUpView(){
+        self.configureUI()
+        self.setData()
+    }
+    
+    private func configureUI(){
+        self.view.alpha = 0
+        self.lblTitle.applyLabelStyle(fontSize: 16.0, fontName: .SFProDisplayBold)
+        self.lblDetail.applyLabelStyle(fontSize: 13.0, fontName: .SFProDisplayMedium)
         
-        lblTitle.numberOfLines = 0
-        
-        btnDelete.isHidden = firstButtonTitle.count == 0
-        btnClose.isHidden = secondButtonTitle.count == 0
-        
-        btnDelete.setTitle(firstButtonTitle, for: UIControl.State.normal)
-        btnDelete.setTitleColor(firstButtonTitleColor, for: .normal)
-        btnDelete.backgroundColor = firstButtonBackgroundColor
-        
-        btnClose.setTitle(secondButtonTitle, for: UIControl.State.normal)
-        btnClose.setTitleColor(secondButtonTitleColor, for: .normal)
-        btnClose.backgroundColor = secondButtonBackgroundColor
-        
-        btnDelete.isHidden = hideFirstButton
-        btnClose.isHidden = hideSecondButton
-        
-        if isFirstButtonGradient {
-            btnDelete.backgroundColor = Theme.colors.theme_dark
+        self.btnTrue.isSelect = true
+    }
+    
+    func openPopUpVisiable(){
+        UIView.animate(withDuration: 0.5, delay: 0.0) {
+            self.view.alpha = 1
         }
+    }
+    
+    private func closePopUpVisiable(isCompletion : Bool = false){
         
-        if isSecondButtonGradient {
-            btnClose.backgroundColor = Theme.colors.theme_dark
+        UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations: {
+            
+            self.view.alpha = 0
+            
+        }, completion: { (finished: Bool) in
+            self.dismiss(animated: false) {
+                
+                if let _ = self.completionBlock{
+                    self.completionBlock!(isCompletion,self.alertType)
+                }
+            }
+        })
+    }
+    
+    
+    private func setData(){
+       
+        if self.alertType == .logout{
+            
+            self.lblTitle.text = kLogout
+            self.lblDetail.text = kAlertForAppLogoutPersmission
+            
+            self.btnTrue.setTitle(kYes, for: .normal)
+            self.btnFalse.setTitle(kCancel, for: .normal)
+        }
+        else if self.alertType == .forceUpadte{
+            
+            self.lblTitle.text = kForceUpdate
+            self.lblDetail.text = kForceUpdateInstruction
+            
+            self.btnTrue.setTitle(kUpdate, for: .normal)
+            self.btnFalse.isHidden = true
+        }
+        else if self.alertType == .normalUpdate{
+            
+            self.lblTitle.text = kNormalUpdate
+            self.lblDetail.text = kNormalUpdateInstruction
+            
+            self.btnTrue.setTitle(kUpdate, for: .normal)
+            self.btnFalse.setTitle(kNotNow, for: .normal)
+        }
+        else if self.alertType == .deleteAccount{
+            
+            self.lblTitle.text = kDeleteAccount
+            self.lblDetail.text = kAlertForDeleteAccountPersmission
+            
+            self.btnTrue.setTitle(kDelete, for: .normal)
+            self.btnFalse.setTitle(kCancel, for: .normal)
+        }
+        else if self.alertType == .removeMedia{
+            
+            self.lblTitle.text = kDeleteMedia
+            self.lblDetail.text = kDeleteMediaInstruction
+            
+            self.btnTrue.setTitle(kYes, for: .normal)
+            self.btnFalse.setTitle(kCancel, for: .normal)
         }
     }
     
     
     // MARK: - ACTIONS
-    @IBAction func buttonClicked(_ sender : UIButton) {
-        self.dismiss(animated: false) {
-            self.delegate?.handleAction(sender: sender, popUpTag: self.popUpTag)
-        }
+    
+    @IBAction func btnTrueTapped(_ sender : UIButton) {
+        self.closePopUpVisiable(isCompletion: true)
     }
     
+    @IBAction func btnFalseTapped(_ sender : UIButton) {
+        self.closePopUpVisiable()
+    }
+    
+    // MARK: - VIEW LIFE CYCLE
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.setUpView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+    }
 }
 

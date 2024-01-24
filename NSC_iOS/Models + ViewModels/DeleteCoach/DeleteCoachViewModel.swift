@@ -15,9 +15,9 @@ class DeleteCoachViewModel {
         APIManager.shared.callAPI(router: APIRouter.deletecoach(parameters)) { (response : LogoutModel?) in
             if response?.ResponseCode == "200" {
                 completion(true)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    showAlertToast(message: response?.ResponseMessage ?? "")
-                }
+                
+                GFunctions.shared.showSnackBar(message: JSON(response?.ResponseMessage as Any).stringValue)
+                
             } else {
                 completion(false)
             }

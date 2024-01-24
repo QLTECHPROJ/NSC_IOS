@@ -168,3 +168,185 @@ struct AppStrings {
     let same_num_desc = "Happiness is sweeter when shared. That's why we're eager for you to share your subscription with someone you care for." + "\n" + "The first person invited gets the same benefits as you at no additional cost."
     
 }
+
+var kMessageSendingCancelled = "Message Sending Cancelled"
+
+var kMessageSendingFailed = "Message Sending Failed"
+
+var kPleaseSelectStateFirst = "Please select state first"
+
+var kLogIn = "Log In"
+
+var kMobileNumber = "Mobile Number"
+
+var kGetOTP = "Get OTP"
+
+var kByClickingOnGetOTPYouAgreeToOurTCsPrivacyPolicy = "By clicking on Register or Sign up you agree to our T&C'c and Privacy Policy"
+
+var kTCs = "T&C'c"
+
+var kPrivacyPolicy = "Privacy Policy"
+
+var kEnterTheOTPYouReceivecTo = "Enter the OTP you received to"
+
+var kEnterOTP = "Enter OTP"
+
+var kOTPVerification = "OTP Verification"
+
+var kResendOTP = "Resend OTP"
+
+var kEditPhoneNumber = "Edit Phone Number"
+
+var kOTP = "OTP"
+
+var kProgressTracker = "Progress Tracker"
+
+var kContinue = "Continue"
+
+var kRefresh = "Refresh"
+
+var kReferACoach = "Refer a Coach"
+
+var kHello = "Hello"
+
+var kNotAvailableReferAtMoment = "Not available at the moment. Please contact support."
+
+var kReferFriend = "Refer Friend"
+
+var kInvite = "Invite"
+
+var kSearchhere = "Search here"
+
+var kSearchContactNumber = "Search contact number"
+
+var kTermsCondition = "Terms & Conditions"
+
+var kEditProfile = "Edit Profile"
+
+var kMyEarning = "My Earnings"
+
+var kLogout = "Logout"
+
+var kApplyForACamp = "Apply For Camp"
+
+var kBankDetails = "Bank Details"
+
+var kPersonalDetails = "Personal Details"
+
+var kAccount = "Account"
+
+var kSignUp = "Sign Up"
+
+var kFirstName = "First Name"
+
+var kLastName = "Last Name"
+
+var kEmailAddress = "Email Address"
+
+var kPromoCode = "Promo Code"
+
+var kApply = "Apply"
+
+var kDeleteAccount = "Delete Account"
+
+var kAlertForAppLogoutPersmission = "Are you sure you want to logout?"
+
+var kYes = "Yes"
+
+var kCancel = "Cancel"
+
+var kForceUpdate = "Update Required"
+
+var kForceUpdateInstruction = "To keep using NSC CM App, download the latest version"
+
+var kUpdate = "Update"
+
+var kNormalUpdate = "Update NSC Coach App"
+
+var kNormalUpdateInstruction = "NSC Coach App recommends that you update to the latest version"
+
+var kNotNow = "Not Now"
+
+var kAlertForDeleteAccountPersmission = "Are you sure you want to delete your account?"
+
+var kDelete = "Delete"
+
+var kDeleteMedia = "Delete Media"
+
+var kDeleteMediaInstruction = "Are you sure you want to delete image?"
+
+var kAddPersonalDetails = "Add Personal Details"
+
+var kDOB = "DOB"
+
+var kStreetAddress = "Street Address"
+
+var kState = "State"
+
+var kCity = "City"
+
+var kPostCode = "Post Code"
+
+var kSport = "Sport"
+
+var kRole = "Role"
+
+var kAreYouVaccinated = "Are you vaccinated?"
+
+var kNo = "No"
+
+var kConfirm = "Confirm"
+
+var kAddBankDetails = "Add Bank Details"
+
+var kBankName = "Bank Name"
+
+var kAccountNumber = "Account Number"
+
+var kAccountName = "Account Name"
+
+var kIFSCCode = "IFSC Code"
+
+var kYourTotalEarnings = "Your Total Earnings"
+
+var kTransactions = "Transactions"
+
+var kCurrentCamp = "Current Camp"
+
+var kUpcomingCamps = "Upcoming Camps"
+
+var kGuest = "Guest"
+
+var kCampDetails = "Camp Details"
+
+var kKids = "Kids"
+
+var kFees = "Fees"
+
+var kDaysAvailable = "Days Available"
+
+var kNotifications = "Notifications"
+
+var kYESTERDAY = "YESTERDAY"
+
+var kTODAY = "TODAY"
+
+var kApplyNow = "Apply Now"
+
+var kSearchByCampSportLocation = "You can search camps near you"
+
+var kKidsAttendance = "Kids Attendance"
+
+var kGroupNameColmn = "Gruop Name :"
+
+var kMornings = "Mornings"
+
+var kPostLunch = "Post Lunch"
+
+var kCheckOut = "Check Out"
+
+var kPresent = "Present"
+
+var kAbsent = "Absent"
+
+var kDay = "Day"

@@ -162,3 +162,45 @@ extension UIColor {
         return toHex()
     }
 }
+
+
+extension UIColor {
+    class func colorFromHex(hex: Int) -> UIColor { return UIColor(red: (CGFloat((hex & 0xFF0000) >> 16)) / 255.0, green: (CGFloat((hex & 0xFF00) >> 8)) / 255.0, blue: (CGFloat(hex & 0xFF)) / 255.0, alpha: 1.0)
+    }
+    
+//    static var ColorAppGold                 : UIColor { return UIColor(named: "ThemeGoldColor")!}
+//    static var ColorAppBlue                 : UIColor { return  UIColor.colorFromHex(hex: 0x0984E3) }
+    
+    static var colorAppTextBlack : UIColor { return UIColor.hexStringToUIColor(hex: "#000000")}
+    static var colorAppTxtFieldGray : UIColor { return UIColor.hexStringToUIColor(hex: "#9796A1")}
+    static var colorAppDarkGray : UIColor { return UIColor.hexStringToUIColor(hex: "#5B5B5E")}
+    static var colorAppThemeOrange : UIColor { return UIColor.hexStringToUIColor(hex: "#FE724C")}
+    static var colorAppThemeBGWhite : UIColor { return UIColor.hexStringToUIColor(hex: "#FDFDFF")}
+    static var colorAppPoisonGreen : UIColor { return UIColor.hexStringToUIColor(hex: "#008743")}
+    static var colorAppDullBlue : UIColor { return UIColor.hexStringToUIColor(hex: "#3E5481")}
+    static var colorAppDullBlueLight : UIColor { return UIColor.hexStringToUIColor(hex: "#9FA5C0")}
+    
+
+    
+    class func hexStringToUIColor (hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+        
+        if ((cString.count) != 6) {
+            return UIColor.black
+        }
+        
+        var rgbValue:UInt32 = 0
+        Scanner(string: cString).scanHexInt32(&rgbValue)
+        
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
+}

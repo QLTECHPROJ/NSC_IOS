@@ -6,106 +6,130 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
+
+class ApplyForCampCell: UITableViewCell {
+    
+    @IBOutlet weak var viewBack: UIView!
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblAddress: UILabel!
+    @IBOutlet weak var lblDate: UILabel!
+    
+    @IBOutlet weak var imgCamp: UIImageView!
+    
+    @IBOutlet weak var btnSelect: UIButton!
+    
+    @IBOutlet weak var stackVAddress: UIStackView!
+    @IBOutlet weak var stackVDate: UIStackView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+        
+        
+        self.btnSelect.isUserInteractionEnabled = false
+        self.imgCamp.layer.cornerRadius = 5.0
+        
+        self.lblName.applyLabelStyle(fontSize: 13.0, fontName: .SFProDisplaySemibold)
+        self.lblAddress.applyLabelStyle(fontSize: 10.0, fontName: .SFProDisplayRegular, textColor: .colorAppTextBlack)
+        self.lblAddress.numberOfLines = 3
+        
+        self.lblDate.applyLabelStyle(fontSize: 10.0, fontName: .SFProDisplayRegular, textColor: .colorAppTextBlack)
+        self.viewBack.dropShadow(shadowRadius : 5)
+    }
+    
+    // Configure Cell
+    func configureSelectionCell(data : ApplyCampModel) {
+        self.lblName.text = data.Name
+        self.lblAddress.text = data.Address
+        self.lblDate.text = data.CampDates
+        
+        self.stackVAddress.isHidden = data.Address.trim.isEmpty
+        self.stackVDate.isHidden = data.CampDates.trim.isEmpty
+        
+        self.btnSelect.isSelected = JSON(data.Selected as Any).boolValue
+        
+        self.imgCamp.sd_setImage(with: JSON(data.CampImage as Any).stringValue.url(), placeholderImage: nil, context: nil)
+    }
+    
+}
+
 
 class ApplyForCampVC: BaseViewController {
     
-    // MARK: - OUTLETS
+    //-------------------------------------------------------------------------------
+    // MARK: - Outlets
+    //-------------------------------------------------------------------------------
+    
     @IBOutlet weak var txtSearch: UITextField!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var viewSearch: UIView!
-    @IBOutlet weak var lblNoData: UILabel!
-    @IBOutlet weak var btnClear: UIButton!
-    @IBOutlet weak var btnApply: UIButton!
+    @IBOutlet weak var vwSearch: AppShadowViewClass!
+    @IBOutlet weak var btnApply: AppThemeButton!
     
-    
-    // MARK: - VARIABLES
-    var maxCount = 3
+    //-------------------------------------------------------------------------------
+    // MARK: - Variables
+    //-------------------------------------------------------------------------------
+    var maxCount = 0
     var arrayCamp = [ApplyCampModel]()
     var arrayCampSearch = [ApplyCampModel]()
     
+    private var emptyMessage : String = Theme.strings.no_camps_to_display
+    private var isAnimated = Bool()
     
-    // MARK: - VIEW LIFE CYCLE
+    //-------------------------------------------------------------------------------
+    // MARK: - View Life Cycle
+    //-------------------------------------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupUI()
-        buttonEnableDisable()
+        self.setUpView()
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let applyForACampVM = ApplyForACampViewModel()
-        applyForACampVM.callItemListAPI { success in
-            if success {
-                self.maxCount = applyForACampVM.maxCount
-                self.arrayCamp = applyForACampVM.arrayCamps ?? [ApplyCampModel]()
-                self.setupData()
-            }
-        }
+        
     }
     
-    
-    // MARK: - FUNCTIONS
-    override func setupUI() {
-        tableView.register(nibWithCellClass: ApplyForCampCell.self)
-        
-        btnClear.isHidden = true
-        lblNoData.isHidden = true
-        
-        lblNoData.isHidden = true
-        lblNoData.text = Theme.strings.no_camps_to_display
-        lblNoData.textColor = Theme.colors.textColor
-        
-        txtSearch.placeholder = Theme.strings.search_camps
-        txtSearch.delegate = self
-        txtSearch.addTarget(self, action: #selector(textFieldValueChanged(textField:)), for: UIControl.Event.editingChanged)
-        
-        tableView.reloadData()
+    //-------------------------------------------------------------------------------
+    // MARK: - Functions
+    //-------------------------------------------------------------------------------
+    private func setUpView(){
+        self.configureUI()
+        self.btnEnableDisable()
+        self.apiCallItemList(true)
     }
     
-    override func setupData() {
-        arrayCampSearch = arrayCamp
-        tableView.reloadData()
+    private func configureUI(){
         
-        lblNoData.isHidden = arrayCampSearch.count != 0
-        tableView.isHidden = arrayCampSearch.count == 0
+        self.title = kApplyForACamp
         
-        buttonEnableDisable()
+        self.isAnimated = true
+        self.txtSearch.applyStyleTextField(placeholder : kSearchByCampSportLocation,fontsize: 12.0, fontname: .SFProDisplayRegular)
+
+        self.vwSearch.shadowColorVW =  UIColor(red: 0.827, green: 0.82, blue: 0.847, alpha: 0.7).cgColor
+        self.vwSearch.shadowOffSetSize = CGSize(width: 9, height: 9)
+        self.vwSearch.shadowRadiusSize = 18
+        
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
+        
     }
     
-    @objc func textFieldValueChanged(textField : UITextField ) {
-        btnClear.isHidden = textField.text?.count == 0
-    }
-    
-    override func buttonEnableDisable() {
-        let count = arrayCamp.filter({ $0.Selected == "1" }).count
+    private func btnEnableDisable() {
         
-        DispatchQueue.main.async {
-            if count > 0 {
-                self.btnApply.isUserInteractionEnabled = true
-                self.btnApply.backgroundColor = Theme.colors.theme_dark
-            } else {
-                self.btnApply.isUserInteractionEnabled = false
-                self.btnApply.backgroundColor = Theme.colors.gray_7E7E7E
-            }
-        }
+        let selectedArray = self.arrayCamp.filter({ $0.Selected == "1" })
+        self.btnApply.isSelect = !selectedArray.isEmpty
+        self.tableView.reloadData()
     }
     
-    
-    // MARK: - ACTIONS
+    //-------------------------------------------------------------------------------
+    // MARK: - Actions
+    //-------------------------------------------------------------------------------
     @IBAction func backClicked(_ sender : UIButton) {
-        self.view.endEditing(true)
+        
         self.navigationController?.popViewController(animated: true)
-    }
-    
-    @IBAction func clearSearchClicked(_ sender: UIButton) {
-        txtSearch.text = ""
-        arrayCampSearch = arrayCamp
-        btnClear.isHidden = true
-        lblNoData.isHidden = true
-        tableView.isHidden = false
-        tableView.reloadData()
     }
     
     @IBAction func applyClicked(_ sender : UIButton) {
@@ -125,14 +149,15 @@ class ApplyForCampVC: BaseViewController {
                 }
             }
         } else {
-            showAlertToast(message: Theme.strings.alert_select_camp)
+            GFunctions.shared.showSnackBar(message: Theme.strings.alert_select_camp)
         }
     }
     
 }
 
-
-// MARK: - UITextFieldDelegate
+//-------------------------------------------------------------------------------
+// MARK: - UITextField Methods
+//-------------------------------------------------------------------------------
 extension ApplyForCampVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -146,24 +171,15 @@ extension ApplyForCampVC: UITextFieldDelegate {
             let updatedText = text.replacingCharacters(in: textRange, with: string)
             print("Search text :- ",updatedText)
             
-            arrayCampSearch = arrayCamp.filter({ (model:ApplyCampModel) -> Bool in
+            self.arrayCampSearch = self.arrayCamp.filter({ (model:ApplyCampModel) -> Bool in
                 return model.Name.lowercased().contains(updatedText.lowercased())
             })
             
             if updatedText.trim.count == 0 {
-                arrayCampSearch = arrayCamp
+                self.arrayCampSearch = self.arrayCamp
             }
             
-            if arrayCampSearch.count > 0 {
-                lblNoData.isHidden = true
-            } else {
-                lblNoData.isHidden = false
-                lblNoData.text = Theme.strings.alert_search_term_not_found
-            }
-            
-            lblNoData.isHidden = arrayCampSearch.count != 0
-            tableView.isHidden = arrayCampSearch.count == 0
-            tableView.reloadData()
+            self.btnEnableDisable()
         }
         
         return true
@@ -171,41 +187,86 @@ extension ApplyForCampVC: UITextFieldDelegate {
     
 }
 
-
-// MARK: - UITableViewDelegate, UITableViewDataSource
+//-------------------------------------------------------------------------------
+// MARK: - UITableView Methods
+//-------------------------------------------------------------------------------
 extension ApplyForCampVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrayCampSearch.count
+        return self.arrayCampSearch.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withClass: ApplyForCampCell.self)
-        cell.configureSelectionCell(data: arrayCampSearch[indexPath.row])
-        cell.lblSeparator.isHidden = (indexPath.row == arrayCampSearch.count - 1)
+        
+        cell.configureSelectionCell(data: self.arrayCampSearch[indexPath.row])
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if arrayCampSearch[indexPath.row].Selected == "1" {
-            arrayCampSearch[indexPath.row].Selected = "0"
-        } else {
-            let count = arrayCamp.filter({ $0.Selected == "1" }).count
+        if self.arrayCampSearch[indexPath.row].Selected == "1" {
             
-            if count < maxCount {
-                arrayCampSearch[indexPath.row].Selected = "1"
+            self.arrayCampSearch[indexPath.row].Selected = "0"
+            
+        } else {
+            
+            let count = self.arrayCamp.filter({ $0.Selected == "1" }).count
+            
+            if count < self.maxCount {
+            
+                self.arrayCampSearch[indexPath.row].Selected = "1"
+                
             } else {
-                showAlertToast(message: "You can pick up to \(self.maxCount) camps. They can be changed anytime.")
+              
+                GFunctions.shared.showSnackBar(message: "You can pick up to \(self.maxCount) camps. They can be changed anytime.")
             }
         }
-        
-        tableView.reloadData()
-        buttonEnableDisable()
+        self.btnEnableDisable()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+}
+
+//-------------------------------------------------------------------------------
+//MARK: - Empty TableView Methods
+//-------------------------------------------------------------------------------
+extension ApplyForCampVC : DZNEmptyDataSetDelegate, DZNEmptyDataSetSource{
     
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString {
+        
+        let text = self.emptyMessage
+        let attributes = [NSAttributedString.Key.font: UIFont.applyCustomFont(fontName: .SFProDisplayRegular, fontSize: 13.0), NSAttributedString.Key.foregroundColor: UIColor.colorAppTextBlack]
+        return NSAttributedString(string: text, attributes: attributes)
+    }
+}
+//-------------------------------------------------------------------------------
+//MARK: - API Calling Methods
+//-------------------------------------------------------------------------------
+extension ApplyForCampVC{
+    
+    private func apiCallItemList(_ isLoader : Bool = false){
+        
+        let applyForACampVM = ApplyForACampViewModel()
+        
+        applyForACampVM.callItemListAPI(isLoader : isLoader) { success in
+            
+            self.refreshControl.endRefreshing()
+            if success {
+                self.maxCount = applyForACampVM.maxCount
+                self.arrayCamp = applyForACampVM.arrayCamps ?? [ApplyCampModel]()
+                self.arrayCampSearch = self.arrayCamp
+            }
+            
+            self.btnEnableDisable()
+        }
+    }
 }
